@@ -1,0 +1,94 @@
+import &StandardImport, &Lib
+
+
+class LoadData
+
+  @bucketsToAges:
+    "All Ages":          array to 85
+    "Under 1 year":      [] 0
+    "0-17 years":        array to 17
+    "1-4 years":         array from 1 to 4
+    "5-14 years":        array from 5 to 14
+    "15-24 years":       array from 15 to 24
+    "18-29 years":       array from 18 to 29
+    "25-34 years":       array from 25 to 34
+    "30-39 years":       array from 30 to 39
+    "35-44 years":       array from 35 to 44
+    "40-49 years":       array from 40 to 49
+    "45-54 years":       array from 45 to 54
+    "50-64 years":       array from 50 to 64
+    "55-64 years":       array from 55 to 64
+    "65-74 years":       array from 65 to 74
+    "75-84 years":       array from 75 to 84
+    "85 years and over": [] 85
+
+  @ageToBuckets:
+    each ages, bucket from @bucketsToAges into out = {}
+      each age in ages
+        out[age] ?= []
+        .push bucket
+
+  @populationData: =>
+    @_populationData ?=
+      loadCsv :data/us-population.csv
+      .then (rows) ->
+        each row in rows when row.sex == 0 and row.age <= 85 into out = {}
+          a = out[upperCamelCase row.name] ?= {}
+          a[row.age] = row.popest2019Civ
+
+  @deathData: =>
+    @_deathData ?=
+      loadCsv :data/us-deaths.csv
+      .then (rows) ->
+        each row in rows when row.sex == "All Sexes" into out = {}
+          row extract
+            group, startDate
+            state
+            ageGroup
+            covid19Deaths
+            totalDeaths
+
+          timeRange =
+            if row.group == "By Year"
+              row.year
+            else
+              [_, month, date, year] = row.startDate.match /// ^(\d+)/(\d+)/(\d+)$
+              month = month | 0
+              if month < 10 then month = "0#{month}"
+              "" #{year}-#{month}
+
+          a = out[upperCamelCase state] ?= {}
+          b = a[timeRange] ?= {}
+          b[ageGroup] =
+            covid19Deaths:  covid19Deaths | 0
+            totalDeaths:    totalDeaths | 0
+
+  @mergedData: =>
+    Promise.all []
+      @populationData()
+      @deathData()
+    .then ([popData, deathData]) ->
+      object stateData, state in deathData when popData[state]
+        object timeBucketData, timeBucket in stateData
+          object fields, ageBucket in timeBucketData
+            population =
+              reduce sum, age from @bucketsToAges[ageBucket] inject 0
+                sum + popData[state][age]
+
+            yearsSurvivalDivisor = if /^\d+$/.test(timeBucket) then 1 else 12
+            {}
+              population
+              fields.totalDeaths
+              fields.covid19Deaths
+              relativeCovidDeathRisk:
+                if fields.totalDeaths > 0
+                  fields.covid19Deaths / fields.totalDeaths
+                else 0
+
+              absoluteCovidDeathRisk = fields.covid19Deaths / population
+              deathOdds: round population / fields.totalDeaths
+              covidDeathOdds: round population / fields.covid19Deaths
+              "yearsAtLeast99%Survival": Math.floor (Math.log(.99) / Math.log(1-absoluteCovidDeathRisk)) / yearsSurvivalDivisor
+              "yearsAtLeast50%Survival": Math.floor (Math.log(.5) / Math.log(1-absoluteCovidDeathRisk)) / yearsSurvivalDivisor
+
+  @preparedData: => Promise.then -> &data/preparedData

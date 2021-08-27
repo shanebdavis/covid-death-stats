@@ -1,4 +1,0 @@
-import &ArtStandardLib, &Lib, &LoadData
-
-mergedData()
-.then log

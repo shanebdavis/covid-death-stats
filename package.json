@@ -1,8 +1,14 @@
 {
   "dependencies": {
+    "@art-suite/cli": "^1.4.0",
     "art-class-system": "^1.11.15",
     "art-standard-lib": "^1.71.2",
     "caffeine-script": "^0.74.1",
     "csv-parse": "^4.16.0"
+  },
+  "scripts": {
+    "download-latest-covid-data": "curl https://data.cdc.gov/api/views/9bhg-hcku/rows.csv?accessType=DOWNLOAD > data/Provisional_COVID-19_Deaths_by_Sex_and_Age.csv",
+    "prepare-json": "./covid-cli json > data/prepared.json",
+    "update-data": "npm run download-latest-covid-data; npm run prepare-json"
   }
 }

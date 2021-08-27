@@ -1,0 +1,10 @@
+import &ArtStandardLib, &Lib, &LoadData
+
+mergedData()
+.then (data) ->
+  log formattedInspect
+    data
+    color: true
+    maxArrayLength: 1000000
+    maxDepth:       1000000
+    maxCount:       1000000

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "art-class-system": "^1.11.15",
+    "art-standard-lib": "^1.71.2",
+    "caffeine-script": "^0.74.1",
+    "csv-parse": "^4.16.0"
+  }
+}

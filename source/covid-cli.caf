@@ -132,15 +132,15 @@ require :@art-suite/cli
               merge
                 row
                 if odds
-                  covidDeathOdds: "" 1:#{} round(population/covid19Deaths) | 0
-                  totalDeathOdds: "" 1:#{} round(population/totalDeaths) | 0
+                  covidDeathOdds: if covid19Deaths == 0 then "0:#{commaize population}" else "" 1:#{} commaize round(population/covid19Deaths) | 0
+                  totalDeathOdds: "" 1:#{} commaize round(population/totalDeaths) | 0
                 if absoluteRisk
                   absoluteCovidDeathRisk: "" #{(100* absoluteCovidDeathRisk).toFixed 4}%
                   absoluteTotalDeathRisk: "" #{(100 * totalDeaths / population).toFixed 4}%
                 if increasedRisk
                   increasedRiskDueToCovid: "" #{(100 * covid19Deaths / (totalDeaths - covid19Deaths)).toFixed 2}%
                 if relativeOdds
-                  relativeOddsOfCovidDeath: "" 1:#{} round(totalDeaths / covid19Deaths) | 0
+                  relativeOddsOfCovidDeath: if covid19Deaths == 0 then "0:#{totalDeaths}" else "" 1:#{} commaize min round(totalDeaths / covid19Deaths)
                 if expectedYears
                   "expectedYearsBeforeMoreThan#{round(100 * percent)|0}PercentChanceOfCovidDeath":
                     if covid19Deaths == 0

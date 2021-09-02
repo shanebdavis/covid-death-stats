@@ -80,15 +80,15 @@ class LoadData
               population
               fields.totalDeaths
               fields.covid19Deaths
-              relativeCovidDeathRisk:
-                if fields.totalDeaths > 0
-                  fields.covid19Deaths / fields.totalDeaths
-                else 0
+              # relativeCovidDeathRisk:
+              #   if fields.totalDeaths > 0
+              #     fields.covid19Deaths / fields.totalDeaths
+              #   else 0
 
-              absoluteCovidDeathRisk = fields.covid19Deaths / population
-              deathOdds: round population / fields.totalDeaths
-              covidDeathOdds: round population / fields.covid19Deaths
-              "yearsAtLeast99%Survival": Math.floor (Math.log(.99) / Math.log(1-absoluteCovidDeathRisk)) / yearsSurvivalDivisor
-              "yearsAtLeast50%Survival": Math.floor (Math.log(.5) / Math.log(1-absoluteCovidDeathRisk)) / yearsSurvivalDivisor
+              # absoluteCovidDeathRisk = fields.covid19Deaths / population
+              # deathOdds: round population / fields.totalDeaths
+              # covidDeathOdds: round population / fields.covid19Deaths
+              # "yearsAtLeast99%Survival": Math.floor (Math.log(.99) / Math.log(1-absoluteCovidDeathRisk)) / yearsSurvivalDivisor
+              # "yearsAtLeast50%Survival": Math.floor (Math.log(.5) / Math.log(1-absoluteCovidDeathRisk)) / yearsSurvivalDivisor
 
   @preparedData: => Promise.then -> &data/preparedData

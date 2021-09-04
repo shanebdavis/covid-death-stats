@@ -1,5 +1,11 @@
 import &StandardImport, &Lib
 
+parseCsvInt = (v) ->
+  switch
+  when v is Number then v | 0
+  when m = v?.match? /\d+/
+    m | 0
+  else null
 
 class LoadData
 
@@ -60,8 +66,8 @@ class LoadData
           a = out[upperCamelCase state] ?= {}
           b = a[timeRange] ?= {}
           b[ageGroup] =
-            covid19Deaths:  covid19Deaths | 0
-            totalDeaths:    totalDeaths | 0
+            covid19Deaths:  parseCsvInt covid19Deaths
+            totalDeaths:    parseCsvInt totalDeaths
 
   @mergedData: =>
     Promise.all []

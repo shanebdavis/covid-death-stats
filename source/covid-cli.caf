@@ -44,12 +44,35 @@ require :@art-suite/cli
         expectedYears:
           argument: "1% to 100%"
           description: "" The expected number of years before the death-risk due to covid-19 exceeds the proved percentage
+        age:
+          """
+            Select age-range. Can specify a partial name and the first match will be used. Valid age ranges:
+
+            #{} formattedInspect validAgeRanges = []
+              "All Ages"
+              "Under 1 year"
+              "0-17 years"
+              "1-4 years"
+              "5-14 years"
+              "15-24 years"
+              "18-29 years"
+              "25-34 years"
+              "30-39 years"
+              "35-44 years"
+              "40-49 years"
+              "45-54 years"
+              "50-64 years"
+              "55-64 years"
+              "65-74 years"
+              "75-84 years"
+              "85 years and over"
+
         state:
           """
-            Select UnitedStates or a specific state. Valid options:
+            Select UnitedStates or a specific state. Can specify a partial name and the first match will be used. For example: `--state wash` will select Washington state. Valid options:
 
             #{}
-              []
+              validStates = []
                 :UnitedStates
                 :Alabama
                 :Alaska
@@ -108,7 +131,7 @@ require :@art-suite/cli
             Select year or month. Valid options:
 
             2020, 2021, 2020-01, 2020-02, 2020-03, 2020-04, 2020-05, 2020-06, 2020-07, 2020-08, 2020-09, 2020-10, 2020-11, 2020-12, 2021-01, 2021-02, 2021-03, 2021-04, 2021-05, 2021-06, 2021-07, 2021-08
-      run: ({state, time, odds, absoluteRisk, increasedRisk, relativeOdds, expectedYears}) ->
+      run: ({state, time, age, odds, absoluteRisk, increasedRisk, relativeOdds, expectedYears}) ->
         if expectedYears?
           expectedYears = :50% if !expectedYears.match? /(\d*\.)?\d+/
           [n] = expectedYears.match /(\d*\.)?\d+/
@@ -116,36 +139,61 @@ require :@art-suite/cli
 
         else expectedYears = null
 
+        if state
+          stateRegExp = ///i #{state}
+          state = find s in validStates when
+            stateRegExp.test s
+
+        if age
+          ageRegExp = ///i #{age}
+          age = find a in validAgeRanges when
+            ageRegExp.test a
+
         if time == 2021
           log.warn "" Cannot use `expectedYears` for all of 2021 since 2021 isn't complete yet. Try 2020, or a specific month like: 2021-08.
           expectedYears = null
 
+        prepareRow = (row) ->
+          row extract population, totalDeaths, covid19Deaths
+          absoluteCovidDeathRisk = covid19Deaths / population
+          yearsSurvivalDivisor = if /^\d+$/.test(time) then 1 else 12
+          merge
+            row
+            if odds
+              covidDeathOdds: if covid19Deaths == 0 then "0:999,999,999" else "" 1:#{} commaize round(population/covid19Deaths) | 0
+              totalDeathOdds:
+                if totalDeaths > 0
+                  "" 1:#{} commaize round(population/totalDeaths) | 0
+                else "0:999,999,999"
+            if absoluteRisk
+              absoluteCovidDeathRisk: covid19Deaths && "" #{(100* absoluteCovidDeathRisk).toFixed 4}%
+              absoluteTotalDeathRisk: "" #{(100 * totalDeaths / population).toFixed 4}%
+            if increasedRisk
+              increasedRiskDueToCovid: covid19Deaths &&
+                if totalDeaths > covid19Deaths
+                  "" #{(100 * covid19Deaths / (totalDeaths - covid19Deaths)).toFixed 2}%
+                else :0.00%
+            if relativeOdds
+              relativeOddsOfCovidDeath: covid19Deaths && if covid19Deaths == 0 then "0:999,999,999" else "" 1:#{} commaize min round(totalDeaths / covid19Deaths)
+            if expectedYears
+              "expectedYearsBeforeMoreThan#{round(100 * percent)|0}PercentChanceOfCovidDeath":
+                if covid19Deaths? && totalDeaths?
+                  if covid19Deaths == 0
+                    "" 999,999,999
+                  else
+                    commaize Math.floor (Math.log(1 - percent) / Math.log(1 - absoluteCovidDeathRisk)) / yearsSurvivalDivisor
+                else null
+
         preparedData()
         .then (data) ->
-          data = data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
-          {}
-            state, time
-            data: object row from data
-              row extract population, totalDeaths, covid19Deaths
-              absoluteCovidDeathRisk = covid19Deaths / population
-              yearsSurvivalDivisor = if /^\d+$/.test(time) then 1 else 12
-              merge
-                row
-                if odds
-                  covidDeathOdds: if covid19Deaths == 0 then "0:#{commaize population}" else "" 1:#{} commaize round(population/covid19Deaths) | 0
-                  totalDeathOdds: "" 1:#{} commaize round(population/totalDeaths) | 0
-                if absoluteRisk
-                  absoluteCovidDeathRisk: "" #{(100* absoluteCovidDeathRisk).toFixed 4}%
-                  absoluteTotalDeathRisk: "" #{(100 * totalDeaths / population).toFixed 4}%
-                if increasedRisk
-                  increasedRiskDueToCovid: "" #{(100 * covid19Deaths / (totalDeaths - covid19Deaths)).toFixed 2}%
-                if relativeOdds
-                  relativeOddsOfCovidDeath: if covid19Deaths == 0 then "0:#{totalDeaths}" else "" 1:#{} commaize min round(totalDeaths / covid19Deaths)
-                if expectedYears
-                  "expectedYearsBeforeMoreThan#{round(100 * percent)|0}PercentChanceOfCovidDeath":
-                    if covid19Deaths == 0
-                      "" 1,000,000,000
-                    else
-                      commaize Math.floor (Math.log(1 - percent) / Math.log(1 - absoluteCovidDeathRisk)) / yearsSurvivalDivisor
+          merge {}
+            state, time, age
+            data:
+              if age && !time
+                object data from data[state = upperCamelCase state ? :UnitedStates]
+                  prepareRow data[age]
 
-
+              else
+                data = data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
+                object row, ageRange from data
+                  prepareRow row

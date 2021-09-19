@@ -17,27 +17,20 @@ require :@art-suite/cli
       When told "Three people turned pink last year," should you be concerned? Well, if you are on Mars and there are only 4 people total, yes, you should be concerned. Your odds are 75% that you'll turn pink. However, if you are on Earth, 3 out of 7.9 billion. You're more likely to win the Lottery 550 times.
 
   commands:
-    states:
-      description: "" Show valid state names
-      run: ->
-        mergedData()
-        .then (data) ->
-          Object.keys data.UnitedStates
-
     json:
       description: "" Output all data as JSON
       run: ->
         mergedData()
         .then JSON.stringify
 
-    csv:
-      description: "" Output all data as CSV
-      run: ->
-        mergedData()
-        .then (data) ->
-          compactFlatten
-            # data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
-            array d1 in data
+    # csv:
+    #   description: "" Output all data as CSV
+    #   run: ->
+    #     mergedData()
+    #     .then (data) ->
+    #       compactFlatten
+    #         # data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
+    #         array d1 in data
 
 
     numbers:
@@ -140,7 +133,8 @@ require :@art-suite/cli
         preparedData()
         .then (data) ->
           merge {}
-            state, time, age
+            time, age
+            state: state ? "" All United States
             data:
               if age && !time
                 object data, k from data[state = upperCamelCase state ? :UnitedStates] when !/^\d+$/.test k
@@ -176,7 +170,7 @@ require :@art-suite/cli
                     v = v.replace /,|%/g ''
 
                   v = v - 0
-                  v, v, v
+                  array til 4 with v
               height: height
               colors: array color in colors
                 &asciichart[color]

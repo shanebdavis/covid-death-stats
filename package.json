@@ -8,6 +8,8 @@
     "chalk": "^4.1.2",
     "csv-parse": "^4.16.0"
   },
+  "name": "covid-death-stats",
+  "bin": "covid-death-stats",
   "scripts": {
     "download-latest-covid-data": "curl https://data.cdc.gov/api/views/9bhg-hcku/rows.csv?accessType=DOWNLOAD > data/Provisional_COVID-19_Deaths_by_Sex_and_Age.csv",
     "prepare-json": "./covid-cli json > data/preparedData.json",

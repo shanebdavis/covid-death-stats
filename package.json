@@ -3,7 +3,9 @@
     "@art-suite/cli": "^1.4.0",
     "art-class-system": "^1.11.15",
     "art-standard-lib": "^1.71.2",
+    "asciichart": "^1.5.25",
     "caffeine-script": "^0.74.1",
+    "chalk": "^4.1.2",
     "csv-parse": "^4.16.0"
   },
   "scripts": {

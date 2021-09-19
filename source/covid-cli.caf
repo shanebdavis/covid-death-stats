@@ -1,5 +1,11 @@
 import &ArtStandardLib, &Source/LoadData
 
+colors =
+  :green
+  :blue
+  :yellow
+  :magenta
+
 require :@art-suite/cli
 .start
   description:
@@ -36,14 +42,18 @@ require :@art-suite/cli
 
     numbers:
       description: "" Show the numbers
-      options:
-        odds: "" The odds of dying of anything and the odds of dying of covid-19.
-        absoluteRisk:   "" Percentage chance of death and death by covid-19. This is also the ABSOLUTE increased risk of death..
-        increasedRisk:  "" Increased disk of death due to covid-19 as a percentage. This is the RELATIVE increased risk of death over other kinds of death
-        relativeOdds:   "" If you died, the odds you died of covid-19. I.E. The number of times more likely to die of something else other than covid-19.
-        expectedYears:
-          argument: "1% to 100%"
-          description: "" The expected number of years before the death-risk due to covid-19 exceeds the proved percentage
+      options: merge
+        &StatFunctions
+        chart: "" Show charts instead of numbers.
+        skip:
+          argument: :number
+          description: "" skip the first N rows of output
+        height:
+          argument: :lines
+          description: "" The hight of the graph in console lines
+        short:
+          argument: :number
+          description: "" stop short N rows of output
         age:
           """
             Select age-range. Can specify a partial name and the first match will be used. Valid age ranges:
@@ -72,72 +82,37 @@ require :@art-suite/cli
             Select UnitedStates or a specific state. Can specify a partial name and the first match will be used. For example: `--state wash` will select Washington state. Valid options:
 
             #{}
-              validStates = []
-                :UnitedStates
-                :Alabama
-                :Alaska
-                :Arizona
-                :Arkansas
-                :California
-                :Colorado
-                :Connecticut
-                :Delaware
-                :DistrictOfColumbia
-                :Florida
-                :Georgia
-                :Hawaii
-                :Idaho
-                :Illinois
-                :Indiana
-                :Iowa
-                :Kansas
-                :Kentucky
-                :Louisiana
-                :Maine
-                :Maryland
-                :Massachusetts
-                :Michigan
-                :Minnesota
-                :Mississippi
-                :Missouri
-                :Montana
-                :Nebraska
-                :Nevada
-                :NewHampshire
-                :NewJersey
-                :NewMexico
-                :NewYork
-                :NorthCarolina
-                :NorthDakota
-                :Ohio
-                :Oklahoma
-                :Oregon
-                :Pennsylvania
-                :RhodeIsland
-                :SouthCarolina
-                :SouthDakota
-                :Tennessee
-                :Texas
-                :Utah
-                :Vermont
-                :Virginia
-                :Washington
-                :WestVirginia
-                :Wisconsin
-                :Wyoming
+              validStates = compactFlattenAll
+                :UnitedStates :Alabama :Alaska :Arizona :Arkansas :California :Colorado
+                :Connecticut :Delaware :DistrictOfColumbia :Florida :Georgia :Hawaii
+                :Idaho :Illinois :Indiana :Iowa :Kansas :Kentucky :Louisiana :Maine
+                :Maryland :Massachusetts :Michigan :Minnesota :Mississippi :Missouri
+                :Montana :Nebraska :Nevada :NewHampshire :NewJersey :NewMexico :NewYork
+                :NorthCarolina :NorthDakota :Ohio :Oklahoma :Oregon :Pennsylvania
+                :RhodeIsland :SouthCarolina :SouthDakota :Tennessee :Texas :Utah :Vermont
+                :Virginia :Washington :WestVirginia :Wisconsin :Wyoming
+
               .join ", "
         time:
           """
             Select year or month. Valid options:
 
             2020, 2021, 2020-01, 2020-02, 2020-03, 2020-04, 2020-05, 2020-06, 2020-07, 2020-08, 2020-09, 2020-10, 2020-11, 2020-12, 2021-01, 2021-02, 2021-03, 2021-04, 2021-05, 2021-06, 2021-07, 2021-08
-      run: ({state, time, age, odds, absoluteRisk, increasedRisk, relativeOdds, expectedYears}) ->
+
+      run: (options) ->
+        {state, time, age, chart, expectedYears, skip: _skip, short: _short, height = 20} = options
+        if _skip? || _short?
+          _skip ?= 0
+          _short ?= 0
+
         if expectedYears?
           expectedYears = :50% if !expectedYears.match? /(\d*\.)?\d+/
           [n] = expectedYears.match /(\d*\.)?\d+/
-          percent = bound .01, (n | 0) / 100, 1
+          expectedYearsPercent = bound .01, (n | 0) / 100, 1
 
         else expectedYears = null
+
+        options = merge options, {} expectedYearsPercent
 
         if state
           stateRegExp = ///i #{state}
@@ -149,7 +124,7 @@ require :@art-suite/cli
           age = find a in validAgeRanges when
             ageRegExp.test a
 
-        if time == 2021
+        if time == 2021 && expectedYears
           log.warn "" Cannot use `expectedYears` for all of 2021 since 2021 isn't complete yet. Try 2020, or a specific month like: 2021-08.
           expectedYears = null
 
@@ -159,30 +134,8 @@ require :@art-suite/cli
           yearsSurvivalDivisor = if /^\d+$/.test(time) then 1 else 12
           merge
             row
-            if odds
-              covidDeathOdds: if covid19Deaths == 0 then "0:999,999,999" else "" 1:#{} commaize round(population/covid19Deaths) | 0
-              totalDeathOdds:
-                if totalDeaths > 0
-                  "" 1:#{} commaize round(population/totalDeaths) | 0
-                else "0:999,999,999"
-            if absoluteRisk
-              absoluteCovidDeathRisk: covid19Deaths && "" #{(100* absoluteCovidDeathRisk).toFixed 4}%
-              absoluteTotalDeathRisk: "" #{(100 * totalDeaths / population).toFixed 4}%
-            if increasedRisk
-              increasedRiskDueToCovid: covid19Deaths &&
-                if totalDeaths > covid19Deaths
-                  "" #{(100 * covid19Deaths / (totalDeaths - covid19Deaths)).toFixed 2}%
-                else :0.00%
-            if relativeOdds
-              relativeOddsOfCovidDeath: covid19Deaths && if covid19Deaths == 0 then "0:999,999,999" else "" 1:#{} commaize min round(totalDeaths / covid19Deaths)
-            if expectedYears
-              "expectedYearsBeforeMoreThan#{round(100 * percent)|0}PercentChanceOfCovidDeath":
-                if covid19Deaths? && totalDeaths?
-                  if covid19Deaths == 0
-                    "" 999,999,999
-                  else
-                    commaize Math.floor (Math.log(1 - percent) / Math.log(1 - absoluteCovidDeathRisk)) / yearsSurvivalDivisor
-                else null
+            object {f}, k in &StatFunctions when options[k]
+              f row, options
 
         preparedData()
         .then (data) ->
@@ -190,10 +143,55 @@ require :@art-suite/cli
             state, time, age
             data:
               if age && !time
-                object data from data[state = upperCamelCase state ? :UnitedStates]
+                object data, k from data[state = upperCamelCase state ? :UnitedStates] when !/^\d+$/.test k
                   prepareRow data[age]
 
               else
                 data = data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
-                object row, ageRange from data
+                object row, ageRange from data when !chart || !/All Ages|0-17|18-29|50-64/.test ageRange
                   prepareRow row
+
+        .then (resolvedData) ->
+          if _skip?
+            keys = Object.keys(resolvedData.data)
+            merge resolvedData,
+              data: object k, i from keys.slice _skip, keys.length - _short
+                resolvedData.data[k]
+          else resolvedData
+
+        .then (resolvedData) ->
+          if chart
+            plots = if chart != true then compactFlatten [chart]
+            else array v, k in &StatFunctions when options[k] with k
+            if plots.length == 0 then plots = :covid19Deaths :totalDeaths
+
+            log &asciichart.plot
+              array k in plots
+                compactFlatten array row, i in array resolvedData.data
+                  v = row[k]
+                  if /[:]/.test v
+                    [a, v] = v.split ":"
+
+                  if /,|%/.test v
+                    v = v.replace /,|%/g ''
+
+                  v = v - 0
+                  v, v, v
+              height: height
+              colors: array color in colors
+                &asciichart[color]
+
+            resolvedData = merge
+              x-axis:
+                if age && !time
+                  :months
+                else
+                  :age
+              y-axis:
+                array plot, i in plots
+                  &chalk[colors[i]] plot
+                .join ', '
+
+              resolvedData
+
+          resolvedData

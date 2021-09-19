@@ -27,7 +27,10 @@ require :@art-suite/cli
       description: "" Show the numbers
       options: merge
         &StatFunctions
-        chart: "" Show charts instead of numbers.
+        chart:
+          argument: "" [one or more explicit values to graph; has smart defaults]
+          description: "" Show charts in addition to numbers.
+
         skip:
           argument: :number
           description: "" skip the first N rows of output

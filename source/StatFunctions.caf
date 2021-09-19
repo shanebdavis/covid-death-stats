@@ -51,7 +51,7 @@ relativeOddsOfCovidDeath:
 
 ## "expectedYearsBeforeMoreThan#{round(100 * expectedYearsPercent)|0}PercentChanceOfCovidDeath":
 expectedYears:
-  argument: "1% to 100%"
+  argument: "[1% to 100% - default: 50%]"
   default: "50%"
   description:
     ""

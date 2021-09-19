@@ -23,16 +23,6 @@ require :@art-suite/cli
         mergedData()
         .then JSON.stringify
 
-    # csv:
-    #   description: "" Output all data as CSV
-    #   run: ->
-    #     mergedData()
-    #     .then (data) ->
-    #       compactFlatten
-    #         # data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
-    #         array d1 in data
-
-
     numbers:
       description: "" Show the numbers
       options: merge
@@ -142,7 +132,7 @@ require :@art-suite/cli
 
               else
                 data = data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
-                object row, ageRange from data when !chart || !/All Ages|0-17|18-29|50-64/.test ageRange
+                object row, ageRange from data when !chart || !/All Ages|0-17|18-29|^\d0-/.test ageRange
                   prepareRow row
 
         .then (resolvedData) ->

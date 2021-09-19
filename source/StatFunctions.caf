@@ -8,7 +8,7 @@ nullCheck = (obj, f) ->
   else f
 
 covidDeathOdds:
-  description: "" The odds of dying dying of Vovid-19. For example, 1:100 is less chance of dying than 1:10. Higher is better.
+  description: "" The odds of dying dying of Covid-19. For example, 1:100 is less chance of dying than 1:10. Higher is better.
   f: (stats) ->
     nullCheck
       {population, covid19Deaths} = stats

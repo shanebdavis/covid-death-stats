@@ -42,6 +42,51 @@ class LoadData
           a = out[upperCamelCase row.name] ?= {}
           a[row.age] = row.popest2019Civ
 
+  deathTypeHelper = (rows) ->
+    out = UnitedStates: {}
+    addPop = (state, age, kind, deaths, population) ->
+      stateStats = out[state] ?= {}
+      ageStats = stateStats[age] ?= {}
+      ageStats.totalDeaths = (ageStats.totalDeaths ? 0) + (deaths | 0)
+      ageStats.population = (ageStats.population ? 0) + (population | 0)
+      ageStats[kind] = (ageStats[kind] ? 0) + (deaths | 0)
+
+    each {state, age, kind, deaths, population} in rows into out when kind != "Undetermined "
+      kind = lowerCamelCase switch
+      when /Non-Injury/.test kind then :Disease
+      when kind == "Legal Intervention / Operations of War" then :LegalOrWar
+      when kind == "Unintentional" then :Accident
+      when kind == "Other specified, not elsewhere classified Injury", kind == "Other specified, classifiable Injury" then :OtherInjury
+      else kind.trim()
+      kind = switch kind
+      when :naturalEnvironmental then :nature
+      when :motorVehicleTraffic then :motorVehicle
+      when :fireFlame then :fire
+      when :otherPedalCyclist then :cyclist
+      when :unspecifiedInjury then :otherInjury
+      when :cutPierce then :cut
+      else kind
+
+      state = upperCamelCase state
+
+      if out[state]?[age]?.population
+        population = 0 # only count it once per state + age
+      addPop :UnitedStates, age,        kind, deaths, population
+      addPop :UnitedStates, "All Ages", kind, deaths, population
+      addPop state, age,                kind, deaths, population
+      addPop state, "All Ages",         kind, deaths, population
+
+
+  @intentData: =>
+    @_intentData ?=
+      loadCsv :data/2019-us-death-intent.csv
+      .then deathTypeHelper
+
+  @mechanismData: =>
+    @_mechanismData ?=
+      loadCsv :data/2019-us-death-mechanism.csv
+      .then deathTypeHelper
+
   @deathData: =>
     @_deathData ?=
       loadCsv :data/us-deaths.csv

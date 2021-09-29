@@ -14,7 +14,7 @@
   },
   "scripts": {
     "download-latest-covid-data": "curl https://data.cdc.gov/api/views/9bhg-hcku/rows.csv?accessType=DOWNLOAD > data/Provisional_COVID-19_Deaths_by_Sex_and_Age.csv",
-    "prepare-json": "./covid-cli json > data/preparedData.json",
+    "prepare-json": "./covid-death-stats json > data/preparedData.json",
     "update-data": "npm run download-latest-covid-data; npm run prepare-json"
   },
   "version": "0.1.1"

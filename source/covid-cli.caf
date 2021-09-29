@@ -20,10 +20,11 @@ require :@art-suite/cli
     json:
       description: "" Output all data as JSON
       run: ->
-        Promise.deepAll
-          covid: mergedData()
-          intent: intentData()
-          mechanism: mechanismData()
+        Promise.deepAll {}
+          covidData: mergedData()
+          intentData()
+          mechanismData()
+
         .then JSON.stringify
 
     numbers:
@@ -122,24 +123,28 @@ require :@art-suite/cli
           absoluteCovidDeathRisk = covid19Deaths / population
           yearsSurvivalDivisor = if /^\d+$/.test(time) then 1 else 12
           merge
-            row
+            {population, totalDeaths, covid19Deaths} = row
             object {f}, k in &StatFunctions when options[k]
               f row, options
 
         preparedData()
-        .then ({covid: data}) ->
+        .then ({covidData, intentData, mechanismData}) ->
           merge {}
-            time, age
+            time: time ? if !age? then :2020
+            age
             state: state ? "" All United States
             data:
               if age && !time
-                object data, k from data[state = upperCamelCase state ? :UnitedStates] when !/^\d+$/.test k
-                  prepareRow data[age]
+                object data, k from covidData[state = upperCamelCase state ? :UnitedStates] when !/^\d+$/.test k
+                  prepareRow merge data[age], intent: intentData[state][age], mechanism: mechanismData[state][age]
 
               else
-                data = data[state = upperCamelCase state ? :UnitedStates][time ?= :2021]
-                object row, ageRange from data when !chart || !/All Ages|0-17|18-29|^\d0-/.test ageRange
-                  prepareRow row
+                covidData = covidData[state = upperCamelCase state ? :UnitedStates][time ?= :2020]
+                object row, ageRange from covidData when
+                    !age? || age == ageRange
+                    && !chart || !/All Ages|0-17|18-29|^\d0-/.test ageRange
+
+                  prepareRow merge row, intent: intentData[state][ageRange], mechanism: mechanismData[state][ageRange]
 
         .then (resolvedData) ->
           if _skip?

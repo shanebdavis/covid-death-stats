@@ -40,7 +40,7 @@ class LoadData
       .then (rows) ->
         each row in rows when row.sex == 0 and row.age <= 85 into out = {}
           a = out[upperCamelCase row.name] ?= {}
-          a[row.age] = row.popest2019Civ
+          a[normalizeAge row.age] = row.popest2019Civ
 
   deathTypeHelper = (rows) ->
     out = UnitedStates: {}
@@ -76,6 +76,8 @@ class LoadData
       addPop state, age,                kind, deaths, population
       addPop state, "All Ages",         kind, deaths, population
 
+  normalizeAge = (age) ->
+    if age == "85 years and over" then "85+ years" else age
 
   @intentData: =>
     @_intentData ?=
@@ -110,7 +112,7 @@ class LoadData
 
           a = out[upperCamelCase state] ?= {}
           b = a[timeRange] ?= {}
-          b[ageGroup] =
+          b[normalizeAge ageGroup] =
             covid19Deaths:  parseCsvInt covid19Deaths
             totalDeaths:    parseCsvInt totalDeaths
 

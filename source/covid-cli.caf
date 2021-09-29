@@ -20,7 +20,10 @@ require :@art-suite/cli
     json:
       description: "" Output all data as JSON
       run: ->
-        mergedData()
+        Promise.deepAll
+          covid: mergedData()
+          intent: intentData()
+          mechanism: mechanismData()
         .then JSON.stringify
 
     numbers:
@@ -124,7 +127,7 @@ require :@art-suite/cli
               f row, options
 
         preparedData()
-        .then (data) ->
+        .then ({covid: data}) ->
           merge {}
             time, age
             state: state ? "" All United States

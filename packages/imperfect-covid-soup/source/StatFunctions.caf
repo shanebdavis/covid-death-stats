@@ -66,10 +66,12 @@ totalDeathRisk:
 
 covidDeathRisk:
   description: "" The probability of dying dying of Covid-19. Combine with --odds for the odds of dying by covid.
-  f: (stats, {odds}) ->
+  f: (stats, {odds, relative}) ->
     nullCheck
       {population, covid19Deaths} = stats
-      if odds
+      if relative
+        1
+      else if odds
         formatOdds covid19Deaths / population
       else
         formatProbability covid19Deaths / population

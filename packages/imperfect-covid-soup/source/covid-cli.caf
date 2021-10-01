@@ -137,6 +137,8 @@ require :@art-suite/cli
           merge {}
             time: time ? if !age? then :2020
             age
+            odds: if options.odds then "" Showing odds of event happening
+            relative: if options.relative then "" Showing relative probably of event compared to the probabily of death by covid. e.g. Event A is 9x more likely than death by covid.
             state: state ? "" All United States
             data:
               if age && !time

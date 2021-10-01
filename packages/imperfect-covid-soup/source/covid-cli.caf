@@ -68,7 +68,7 @@ require :@art-suite/cli
               "85 years and over"
 
         odds:     "" Show odds rather than probabilities.
-        relative: "" Compare probabilities to covid-death probabilities. e.g.. probability A is 9x more likely than the probability of covid-death
+        relative: "" Compare probabilities to covid-death probabilities. e.g. The probability A is 9x more likely than the probability of covid-death.
 
         state:
           """

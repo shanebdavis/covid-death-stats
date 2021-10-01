@@ -26,7 +26,7 @@ class LoadData
     "55-64 years":       array from 55 to 64
     "65-74 years":       array from 65 to 74
     "75-84 years":       array from 75 to 84
-    "85 years and over": [] 85
+    "85+ years":         [] 85
 
   @ageToBuckets:
     each ages, bucket from @bucketsToAges into out = {}
@@ -53,6 +53,7 @@ class LoadData
 
     each {state, age, kind, deaths, population} in rows into out when kind != "Undetermined "
       kind = lowerCamelCase switch
+      when /no intent classified/i.test kind then :DiseaseOrUnknownIntent
       when /Non-Injury/.test kind then :Disease
       when kind == "Legal Intervention / Operations of War" then :LegalOrWar
       when kind == "Unintentional" then :Accident

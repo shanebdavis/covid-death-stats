@@ -7,6 +7,58 @@ nullCheck = (obj, f) ->
     f obj
   else f
 
+formatRelative = (p) -> p.toFixed if p < 1 then 3 else if p < 10 then 2 else 1
+formatOdds = (p) -> "" 1:#{} commaize round(1/p) | 0
+formatProbability = (p) -> "#{(100*p).toFixed 4}%"
+
+buildCodCompareFunction = (field) ->
+  argument: "" [one or more specific #{field} fields to show - default: all]
+  description:
+    ""
+      Absolute probability of death due to non-covid causes of death by #{capitalize field} (2019 data).
+      Combine with `--relatve` option to compare how much more likely each non-covid cause is compared to covid.
+      Combine with `--odds` to display the absolute odds of each cause of death.
+
+  f: (stats, options) ->
+    codOption = options[field]
+    {odds, relative, relativeOdds} = options
+    codData = stats[field]
+    statsWeCareAbout = {covid19Deaths, population} = stats
+    if codData
+      covidDeathProbability = covid19Deaths / population
+      codPopulation = codData.population
+
+      m =
+        object v, k in codData when k != :population && k != :totalDeaths
+          deathProbability = v / codPopulation
+          if relative
+            formatRelative deathProbability / covidDeathProbability
+
+          else if odds
+            formatOdds deathProbability
+
+          else formatProbability deathProbability
+
+      if codOption?.length > 0
+        m = object key from compactFlattenAll codOption with m[key]
+
+      nullCheck
+        statsWeCareAbout
+        m
+
+totalDeathRisk:
+  f: (stats, options) ->
+    nullCheck
+      if options.relative then {population, covid19Deaths, totalDeaths} = stats
+      else {population, totalDeaths} = stats
+
+      if options.odds
+        formatOdds totalDeaths / population
+      else if options.relative
+        formatRelative totalDeaths / covid19Deaths
+      else
+        formatProbability totalDeaths / population
+
 covidDeathOdds:
   description: "" The odds of dying dying of Covid-19. For example, 1:100 is less chance of dying than 1:10. Higher is better.
   f: (stats) ->
@@ -27,13 +79,13 @@ absoluteCovidDeathRisk:
   description: "" Percentage chance of death by Covid-19. This is also the ABSOLUTE increased risk of death. Lower is better.
   f: (stats) -> nullCheck
     {covid19Deaths, population} = stats
-    "" #{(100*(covid19Deaths / population)).toFixed 4}%
+    formatProbability covid19Deaths / population
 
 absoluteTotalDeathRisk:
   description: "" Percentage chance of death. This is also the ABSOLUTE increased risk of death. Lower is better.
   f: (stats) -> nullCheck
     {population, totalDeaths} = stats
-    "" #{(100 * totalDeaths / population).toFixed 4}%
+    formatProbability totalDeaths / population
 
 increasedRiskDueToCovid:
   description:  "" Increased disk of death due to covid-19 as a percentage. This is the RELATIVE increased risk of death over all other kinds of death. Lower is better.
@@ -48,6 +100,20 @@ relativeOddsOfCovidDeath:
   f: (stats) -> nullCheck
     {totalDeaths, covid19Deaths} = stats
     if covid19Deaths == 0 then null else "" 1:#{} commaize min round(totalDeaths / covid19Deaths)
+
+relativeNonCovidDeathProbability:
+  description: "" If you died, the probability that it was something other than covid compared to the proability it was covid. i.e. "5 times more likely to die of XYZ than covid"
+  f: (stats) -> nullCheck
+    {totalDeaths, covid19Deaths} = stats
+    nonCovidDeaths = totalDeaths - covid19Deaths
+    / covid19Deaths
+    .toFixed 1
+
+intent:
+  buildCodCompareFunction :intent
+
+mechanism:
+  buildCodCompareFunction :mechanism
 
 ## "expectedYearsBeforeMoreThan#{round(100 * expectedYearsPercent)|0}PercentChanceOfCovidDeath":
 expectedYears:

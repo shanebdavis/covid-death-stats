@@ -67,6 +67,9 @@ require :@art-suite/cli
               "75-84 years"
               "85 years and over"
 
+        odds:     "" Show odds rather than probabilities.
+        relative: "" Compare probabilities to covid-death probabilities. e.g.. probability A is 9x more likely than the probability of covid-death
+
         state:
           """
             Select UnitedStates or a specific state. Can specify a partial name and the first match will be used. For example: `--state wash` will select Washington state. Valid options:
@@ -124,8 +127,10 @@ require :@art-suite/cli
           yearsSurvivalDivisor = if /^\d+$/.test(time) then 1 else 12
           merge
             {population, totalDeaths, covid19Deaths} = row
-            object {f}, k in &StatFunctions when options[k]
+            object {f}, k in &StatFunctions when options[k] and k != :intent && k != :mechanism
               f row, options
+            &StatFunctions.intent.f row, options if options.intent
+            &StatFunctions.mechanism.f row, options if options.mechanism
 
         preparedData()
         .then ({covidData, intentData, mechanismData}) ->
@@ -163,7 +168,7 @@ require :@art-suite/cli
             log &asciichart.plot
               array k in plots
                 compactFlatten array row, i in array resolvedData.data
-                  v = row[k]
+                  v = row[k] ? 0
                   if /[:]/.test v
                     [a, v] = v.split ":"
 

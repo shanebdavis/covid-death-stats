@@ -5,12 +5,20 @@
     "art-app-kit": "^1.4.4",
     "art-class-system": "^1.11.15",
     "art-standard-lib": "^1.71.2",
+    "art-suite": "^2.0.7",
+    "art-suite-app": "^1.0.4",
     "asciichart": "^1.5.25",
     "caffeine-script": "^0.74.1",
     "chalk": "^4.1.2",
     "covid-death-stats": "file:packages/imperfect-covid-soup",
+    "crypto-browserify": "^3.12.0",
     "csv-parse": "^4.16.0",
-    "undefined": "file:packages/imperfect-covid-soup-app"
+    "source-map-loader": "^3.0.0",
+    "stream-browserify": "^3.0.0",
+    "undefined": "file:packages/imperfect-covid-soup-app",
+    "webpack": "^5.56.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.0"
   },
   "scripts": {
     "sync": "art-monorepo sync",

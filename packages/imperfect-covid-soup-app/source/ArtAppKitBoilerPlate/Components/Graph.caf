@@ -1,0 +1,172 @@
+import &StandardImport, &Lib, {} &Bar, &Button
+
+class Graph extends ViewStateComponent
+
+  @subscriptions
+    :covidData
+    :graphState
+
+  @stateFields
+    probabilityMode: :relative
+    selectedData: null
+    showOptionsFor: null
+
+  @propFields :animationOn
+
+  preprocessState: (newState) ->
+    newState.covidData extract? covidData, intentData, mechanismData
+    newState.graphState extract? region, time
+
+    merge
+      newState
+      selectedData: object v, age from covidData?[region]?[time]
+        merge
+          v
+          nonCovid19Deaths: v.totalDeaths - v.covid19Deaths
+          totalDeathRisk:   v.totalDeaths / v.population
+          covid19DeathRisk: v.covid19Deaths / v.population
+          {totalDeaths: totalDeaths2019, accident: accidentalDeath, homicide, suicide} = intentData?[region]?[age] ? {}
+          {dorwning, motorVehicle: carAccident, disease, firearm, poisoning, suffocation, fire: deathByFire, fall: deathFromFall} = mechanismData?[region]?[age] ? {}
+
+  @getter
+    relative: -> @probabilityMode == :relative
+    unit: ->
+      switch @probabilityMode
+      when :relative then :x
+      when :probability then :%
+      else ''
+
+    data: ->
+      array row, age in @selectedData
+        label:
+          age
+          .replace /Under /g 'Under\n'
+          .replace /[ ]years/g '\nyears'
+
+        value:
+          if row[@graphState.top]?
+            row[@graphState.top] ? 1
+            / row[@graphState.bottom] ? 1
+          else null
+
+      # &GraphFunctions.deathRisk @selectedData, {} @probabilityMode
+      # []
+      #   value: 8.80,   label: "All Ages"
+      #   value: 377.8,  label: "Under\n1 year"
+      #   value: 141.6,  label: "1-4\nyears"
+      #   value: 83.0,   label: "5-14\nyears"
+      #   value: 58.7,   label: "15-24\nyears"
+      #   value: 28.2,   label: "25-34\nyears"
+      #   value: 15.5,   label: "35-44\nyears"
+      #   value: 10.5,   label: "45-54\nyears"
+      #   value: 9.70,   label: "55-64\nyears"
+      #   value: 8.22,   label: "65-74\nyears"
+      #   value: 7.75,   label: "75-84\nyears"
+      #   value: 8.25,   label: "85+\nyears"
+
+    maxValue: ->
+      base =
+        reduce a, {value, label}, k from @data inject 0 when !/All/.test label
+          max a, if isInfinite(value) then 0 else value
+
+      find v from maxValues when base < v
+
+  renderLabledSection: ({label, items}) ->
+    Element
+      :childrenSize :row
+      childrenMargins: @gridSize / 2
+      TextElement
+        TextStyles.tinyText
+        size: w: @gridSize * 3, hch: 1
+        padding: v: @gridSize / 2
+        color: TextPalette.black.primary
+        text: label
+
+      Element
+        :flow
+        :parentWidthChildrenHeight
+        childrenMargins: @gridSize / 2
+        array item in items
+          Button item
+
+  getOptions: (optionsType) ->
+    switch optionsType
+    when :top     then Object.keys @selectedData["All Ages"]
+    when :bottom  then compactFlattenAll :1 Object.keys @selectedData["All Ages"]
+    when :time    then Object.keys @covidData.covidData.UnitedStates
+    when :region  then Object.keys @covidData.covidData
+
+  render: ->
+    @ extract maxValue
+    # log {} maxValue, @graphState, @selectedData, @data
+    Element
+      :column
+      childrenMargins: @gridSize * 2
+      animators:
+        if @animationOn
+          location:
+            duration: 2
+            f: :easeInQuad
+            from: xw: -1 y: 0
+        else {}
+
+      Element
+        :row :childrenBottomLeft
+        childrenMargins: @gridSize
+        array {value, label} in @data
+          Bar {}
+            value
+            label
+            maxValue
+            @unit
+            probabilityMode:
+              if value >= 1
+                if @graphState.bottom && @graphState.bottom != "1" then :relative
+                else :count
+              else :probability
+
+      Element
+        :column
+        padding: top: @gridSize * 4
+        childrenMargins: @gridSize / 2
+
+        TextElement
+          TextStyles.mediumBoldText
+          :childrenSize
+          text:
+            if @denominator
+              "" #{humanLabel @numerator} / #{humanLabel @denominator}
+            else
+              humanLabel @numerator
+
+        @covidData?.updatedAt && TextElement
+          TextStyles.smallText
+          color: TextPalette.black.primary
+          :childrenSize
+          :textTopLeft
+          text:
+            """
+              updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
+
+        Element
+          :row
+          :parentWidthChildrenHeight
+          childrenMargins: @gridSize / 4
+          array option in :top :bottom :time :region
+            Button {}
+              text: humanLabel @graphState[option] ? 1
+              selected = @showOptionsFor == option
+              action: ->
+                @showOptionsFor = if selected
+                  null
+                else option
+
+        @showOptionsFor && @renderLabledSection
+          label: @showOptionsFor
+          items: array a in @getOptions @showOptionsFor
+            text:
+              if @showOptionsFor == :time
+                a
+              else humanLabel a
+            selected: @graphState[@showOptionsFor] == a
+            action:   -> models.graphState[@showOptionsFor] = a

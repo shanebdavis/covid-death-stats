@@ -1,5 +1,19 @@
 {
   "dependencies": {
-    "art-app-kit": "^1.4.4"
+    "art-app-kit": "^1.4.4",
+    "art-suite": "^2.0.7",
+    "art-suite-app": "^1.0.4",
+    "crypto-browserify": "^3.12.0",
+    "source-map-loader": "^3.0.0",
+    "stream-browserify": "^3.0.0",
+    "webpack": "^5.56.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.0"
+  },
+  "scripts": {
+    "build": "webpack --progress",
+    "build-assets": "cpf-tool asset-source/icons/*.svg -o assets/icons.cpf --camelCase",
+    "start": "nn -s --watch&\ncafSourceMaps=true webpack serve --hot --progress --open --static public&\nwait",
+    "test": "nn -s; mocha -u tdd"
   }
 }

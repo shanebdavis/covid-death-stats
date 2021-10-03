@@ -1,0 +1,9 @@
+import &ArtSuite
+
+class GraphState extends ApplicationState
+
+  @stateFields
+    region: :UnitedStates
+    time: :2020
+    top: :covid19Deaths
+    bottom: :1

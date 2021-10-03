@@ -1,0 +1,12 @@
+import &ArtSuite
+
+class Clock extends ApplicationState
+  @stateFields
+    seconds: toSeconds()
+
+  _update: ->
+    @seconds = toSeconds()
+    timeout 50 -> @_update()
+
+  constructor: ->
+    timeout 0 -> @_update()

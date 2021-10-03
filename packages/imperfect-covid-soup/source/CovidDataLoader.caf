@@ -1,0 +1,149 @@
+import &StandardImport, &NodeLib
+
+parseCsvInt = (v) ->
+  switch
+  when v is Number then v | 0
+  when m = v?.match? /\d+/
+    m | 0
+  else null
+
+class CovidDataLoader extends BaseClass
+
+  @bucketsToAges:
+    "All Ages":          array to 85
+    "Under 1 year":      [] 0
+    "0-17 years":        array to 17
+    "1-4 years":         array from 1 to 4
+    "5-14 years":        array from 5 to 14
+    "15-24 years":       array from 15 to 24
+    "18-29 years":       array from 18 to 29
+    "25-34 years":       array from 25 to 34
+    "30-39 years":       array from 30 to 39
+    "35-44 years":       array from 35 to 44
+    "40-49 years":       array from 40 to 49
+    "45-54 years":       array from 45 to 54
+    "50-64 years":       array from 50 to 64
+    "55-64 years":       array from 55 to 64
+    "65-74 years":       array from 65 to 74
+    "75-84 years":       array from 75 to 84
+    "85+ years":         [] 85
+
+  @ageToBuckets:
+    each ages, bucket from @bucketsToAges into out = {}
+      each age in ages
+        out[age] ?= []
+        .push bucket
+
+  deathTypeHelper = (rows) ->
+    out = UnitedStates: {}
+    addPop = (state, age, kind, deaths, population) ->
+      stateStats = out[state] ?= {}
+      if age == "< 1 year"
+        age = "Under 1 year"
+      ageStats = stateStats[age] ?= {}
+      ageStats.totalDeaths = (ageStats.totalDeaths ? 0) + (deaths | 0)
+      ageStats.population = (ageStats.population ? 0) + (population | 0)
+      ageStats[kind] = (ageStats[kind] ? 0) + (deaths | 0)
+
+    each {state, age, kind, deaths, population} in rows into out when kind != "Undetermined "
+      kind = lowerCamelCase switch
+      when /no intent classified/i.test kind then :DiseaseOrUnknownIntent
+      when /Non-Injury/.test kind then :Disease
+      when kind == "Legal Intervention / Operations of War" then :LegalOrWar
+      when kind == "Unintentional" then :Accident
+      when kind == "Other specified, not elsewhere classified Injury", kind == "Other specified, classifiable Injury" then :OtherInjury
+      else kind.trim()
+      kind = switch kind
+      when :naturalEnvironmental then :nature
+      when :motorVehicleTraffic then :motorVehicle
+      when :fireFlame then :fire
+      when :otherPedalCyclist then :cyclist
+      when :unspecifiedInjury then :otherInjury
+      when :cutPierce then :cut
+      else kind
+
+      state = upperCamelCase state
+
+      if out[state]?[age]?.population
+        population = 0 # only count it once per state + age
+      addPop :UnitedStates, age,        kind, deaths, population
+      addPop :UnitedStates, "All Ages", kind, deaths, population
+      addPop state, age,                kind, deaths, population
+      addPop state, "All Ages",         kind, deaths, population
+
+  normalizeAge = (age) ->
+    if age == "85 years and over" then "85+ years" else age
+
+
+  @classGetter
+    rawUsDeaths:          -> @_rawUsDeaths          ?= loadCsv :data/us-deaths.csv
+    rawUsPopulation:      -> @_rawUsPopulation      ?= loadCsv :data/us-population.csv
+    rawUsDeathIntent:     -> @_rawUsDeathIntent     ?= loadCsv :data/2019-us-death-intent.csv
+    rawUsDeathMechanism:  -> @_rawUsDeathMechanism  ?= loadCsv :data/2019-us-death-mechanism.csv
+    intentData:           -> @_intentData           ?= @rawUsDeathIntent.then deathTypeHelper
+    mechanismData:        -> @_mechanismData        ?= @rawUsDeathMechanism.then deathTypeHelper
+
+    updatedAt: -> @_updatedAt ?= @rawUsDeaths.then (rows) ->
+      toDate reduce a, {dataAsOf} from rows inject 0
+        max a, Date.parse dataAsOf
+
+    populationData: ->
+      @_populationData ?=
+        @rawUsPopulation
+        .then (rows) ->
+          each row in rows when row.sex == 0 and row.age <= 85 into out = {}
+            a = out[upperCamelCase row.name] ?= {}
+            a[normalizeAge row.age] = row.popest2019Civ
+
+    deathData: ->
+      @_deathData ?=
+        @rawUsDeaths
+        .then (rows) ->
+          each row in rows when row.sex == "All Sexes" into out = {}
+            row extract
+              group, startDate
+              state
+              ageGroup
+              covid19Deaths
+              totalDeaths
+
+            timeRange =
+              if row.group == "By Year"
+                row.year
+              else
+                [_, month, date, year] = row.startDate.match /// ^(\d+)/(\d+)/(\d+)$
+                month = month | 0
+                if month < 10 then month = "0#{month}"
+                "" #{year}-#{month}
+
+            a = out[upperCamelCase state] ?= {}
+            b = a[timeRange] ?= {}
+            b[normalizeAge ageGroup] =
+              covid19Deaths:  parseCsvInt covid19Deaths
+              totalDeaths:    parseCsvInt totalDeaths
+
+    covidData: -> @_covidData ?=
+      Promise.all []
+        @populationData
+        @deathData
+      .then ([popData, deathData]) ->
+        object stateData, state in deathData when popData[state]
+          object timeBucketData, timeBucket in stateData
+            object fields, ageBucket in timeBucketData
+              population =
+                reduce sum, age from @bucketsToAges[ageBucket] inject 0
+                  sum + popData[state][age]
+
+              yearsSurvivalDivisor = if /^\d+$/.test(timeBucket) then 1 else 12
+              {}
+                population
+                fields.totalDeaths
+                fields.covid19Deaths
+
+    preparedData: ->
+      @_preparedData ?=
+        Promise.deepAll {}
+          @updatedAt
+          @covidData
+          @intentData
+          @mechanismData

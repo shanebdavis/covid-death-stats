@@ -1,0 +1,77 @@
+import &StandardImport, &Lib
+
+class Bar extends ViewStateComponent
+
+  @propFields :value :unit :label :maxValue :probabilityMode
+
+  @stateFields
+    mouseIn: null
+
+  setMouseIn: ({target, location}) ->
+    @mouseIn = point
+      if location.x > target.currentSize.x / 2 then 1 else 0
+      bound 0, location.y / target.currentSize.y, 1
+
+  render: ->
+    @ extract value
+    if isInfinite value
+      value = @maxValue
+
+    Element
+      key: @label
+      size:
+        ww: 1
+        hh: min 1, scale = value / @maxValue
+      draw: #d
+      on:
+        mouseIn: @setMouseIn
+
+        mouseOut: ({target, location}) ->
+          @setMouseIn {target, location}
+          timeout 5 -> @clearMouseIn()
+
+      animators:
+        size: toFrom: w: 0 hh: scale
+        opacity: toFrom: 0
+
+      Element
+        :clip
+        if @mouseIn?
+          Element
+            location: ps: @mouseIn
+            axis: .5
+            size: ({x, y}) -> point 1.41 * 2 * max x, y
+            animators: size:
+              d: 1
+              toFrom: 0
+            draw:
+              :circle
+              #ca00ca
+
+      TextElement
+        TextStyles.tinyBoldText
+        :childrenSize
+        axis: :bottomCenter
+        location: h: -@gridSize / 2, xw: .5
+        color: TextPalette.black.secondary
+        text:
+          if @value
+            switch @probabilityMode
+            when :count then commaize round @value
+            when :relative then formatRelative @value
+            when :probability then formatProbability @value
+            else
+              if isInfinite @value
+                :infinity
+              else
+                @value + @unit
+          else '' + @value
+
+      TextElement
+        TextStyles.tinyBoldText
+        :childrenSize
+        :textCenterCenter
+        axis: :topCenter
+        location: yh: 1 y: @gridSize * 2 xw: .5
+        color: TextPalette.black.secondary
+        text: @label

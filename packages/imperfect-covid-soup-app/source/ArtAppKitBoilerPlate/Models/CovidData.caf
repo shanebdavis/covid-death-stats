@@ -1,0 +1,25 @@
+import &ArtSuite
+
+class CovidData extends ApplicationState
+  @stateFields
+    covidData: undefined
+    mechanismData: undefined
+    intentData: undefined
+
+  ageFilter =
+    ///
+      ^
+      (
+        All |
+        Under |
+        1-4 |
+        \d*5- |
+        85
+      )
+  getInitialState: ->
+    object d0, field from &covid-death-stats.getPreparedData()
+      if field == :covidData
+        object d1, region from d0
+          object d2, time from d1
+            object _, age from d2 when ageFilter.test age
+      else d0

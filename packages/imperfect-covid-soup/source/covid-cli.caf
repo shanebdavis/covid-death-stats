@@ -1,4 +1,4 @@
-import &ArtStandardLib, &Source/LoadData
+import &ArtStandardLib, &PreparedData
 
 colors =
   :green
@@ -17,14 +17,15 @@ require :@art-suite/cli
       When told "Three people turned pink last year," should you be concerned? Well, if you are on Mars and there are only 4 people total, yes, you should be concerned. Your odds are 75% that you'll turn pink. However, if you are on Earth, 3 out of 7.9 billion. You're more likely to win the Lottery 550 times.
 
   commands:
+    updatedAt:
+      description: "" When the data was last updated.
+      run: ->
+        &CovidDataLoader.updatedAt
+
     json:
       description: "" Output all data as JSON
       run: ->
-        Promise.deepAll {}
-          covidData: mergedData()
-          intentData()
-          mechanismData()
-
+        &CovidDataLoader.preparedData
         .then JSON.stringify
 
     numbers:
@@ -132,10 +133,11 @@ require :@art-suite/cli
             &StatFunctions.intent.f row, options if options.intent
             &StatFunctions.mechanism.f row, options if options.mechanism
 
-        preparedData()
-        .then ({covidData, intentData, mechanismData}) ->
+        Promise.then -> getPreparedData()
+        .then ({updatedAt, covidData, intentData, mechanismData}) ->
           merge {}
             time: time ? if !age? then :2020
+            updatedAt: if updatedAt then formatDate updatedAt, "" mmmm d, yyyy
             age
             odds: if options.odds then "" Showing odds of event happening
             relative: if options.relative then "" Showing relative probably of event compared to the probabily of death by covid. e.g. Event A is 9x more likely than death by covid.

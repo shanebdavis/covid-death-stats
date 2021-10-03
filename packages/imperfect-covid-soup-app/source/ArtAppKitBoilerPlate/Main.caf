@@ -1,0 +1,7 @@
+import &ArtSuite, &ArtAppKit, &Components
+
+initArtSuiteApp MainComponent: class MyHelloWorldComponent extends Component
+
+  render: ->
+    CanvasElement
+      Home()

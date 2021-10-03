@@ -1,0 +1,34 @@
+import &StandardImport, &covid-death-stats
+{}
+  deathRisk: (selectedData, options) ->
+    array row, age in selectedData
+      label:
+        age
+        .replace /Under /g 'Under\n'
+        .replace /[ ]years/g '\nyears'
+
+      value: covidDeathRiskSingle row, options
+
+  covidDeathRiskSingle = ({population, totalDeaths, covid19Deaths}, {probabilityMode})->
+    switch probabilityMode
+    when :relative  then nullCheck
+      {totalDeaths, covid19Deaths}
+      totalDeaths / covid19Deaths
+
+    when :count     then covid19Deaths
+
+    else nullCheck
+      {population, covid19Deaths}
+      covid19Deaths / population
+
+  totalDeathRiskSingle = ({population, totalDeaths, covid19Deaths}, {probabilityMode})->
+    switch probabilityMode
+    when :relative  then nullCheck
+      {totalDeaths, covid19Deaths}
+      covid19Deaths / totalDeaths
+
+    when :count     then totalDeaths
+
+    else nullCheck
+      {population, totalDeaths}
+      totalDeaths / population

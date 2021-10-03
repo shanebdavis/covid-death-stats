@@ -1,0 +1,47 @@
+import &StandardImport, &ArtAppKit/Client.MenuSupportWidgets
+
+class Button extends ViewStateComponent
+
+  @propFields :selected
+
+  render: ->
+    AppKitButtonWrapper
+      size: cs: 1
+      animators: :draw :size
+      draw: (state, props) ->
+        state extract hover, disabled, gridSize
+        props extract radius, drawPadding, hoverColor, lightColor, backgroundColor
+        hoverColor ?=
+          if lightColor
+            TextPalette.white.secondary
+          else AppPalette.mediumLightPrimary
+        padding: drawPadding
+        radius: radius ? gridSize / 2
+        fill:
+          if @selected then TextPalette.black.barely
+          else TextPalette.black.barely.withAlpha 0
+        outline:
+          lineWidth: 2
+          color:
+            if hover
+              TextPalette.black.primary
+            else
+              TextPalette.black.primary.withAlpha 0
+
+      noFocus: true
+
+      @props
+
+      @props.children ?
+        Element
+          :childrenSize
+          :row
+          :childrenCenterCenter
+          padding: @gridSize / 2
+          TextElement
+            if @selected
+              TextStyles.smallBoldText
+            else
+              TextStyles.smallText
+            :childrenSize
+            @props

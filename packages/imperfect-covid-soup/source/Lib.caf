@@ -1,25 +1,17 @@
 import &ArtStandardLib
-parse = &csvParse
 
 {}
-  loadCsv = (filename) ->
-    new Promise (resolve, reject) ->
-      records = []
-      parser =
-        &fs
-        .createReadStream filename
-        .pipe parse {}
+  nullCheck = (obj, f) ->
+    if find v in obj when !v? with true
+      null
+    else if f is Function
+      f obj
+    else f
 
-      parser.on :readable ->
-        record = null
-        while record = parser.read()
-          records.push record
-
-      parser.on :end -> resolve records
-      parser.on :error reject
-    .then ([columns, rows...]) ->
-      array row in rows
-        object col, i in columns with-key lowerCamelCase col
-          if /^\d+$/.test v = row[i]
-            v | 0
-          else v
+  formatRelative = (p) -> p.toFixed if p < 1 then 3 else if p < 10 then 2 else 1
+  formatOdds = (p) ->
+    "" 1:#{}
+      if p == 0
+        "999,999,999"
+      else commaize round(1/p) | 0
+  formatProbability = (p) -> "#{(100*p).toFixed 4}%"

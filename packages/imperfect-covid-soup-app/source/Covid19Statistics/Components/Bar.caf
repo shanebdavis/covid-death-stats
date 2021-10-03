@@ -1,5 +1,33 @@
 import &StandardImport, &Lib
 
+
+formatNumber = (p) ->
+  if isInfinite p
+    :Infinity
+  else
+    switch
+    when p >= 99999999 then "#{Math.round(p / 1000000)}m"
+    when p >= 999999 then "#{(p / 1000000).toFixed 1}m"
+    when p >= 99999 then "#{Math.round(p / 1000)}k"
+    when p >= 9999 then "#{(p / 1000).toFixed 1}k"
+    when p >= 999 then commaize Math.round p
+    when p >= 100 then Math.round p
+    when float32Eq (p | 0), p then p | 0
+    when p >= 10 then p.toFixed 1
+    else p.toFixed 2
+
+formatProbability = (p) ->
+  if p < .001001
+    "1:#{formatNumber 1/p}"
+  else
+    100 * p
+    .toFixed
+      switch
+      when p < .010001 then 3
+      when p < .100001 then 2
+      else 1
+    + :%
+
 class Bar extends ViewStateComponent
 
   @propFields :value :unit :label :maxValue :probabilityMode
@@ -57,8 +85,7 @@ class Bar extends ViewStateComponent
         text:
           if @value
             switch @probabilityMode
-            when :count then commaize round @value
-            when :relative then formatRelative @value
+            when :relative :count then formatNumber @value
             when :probability then formatProbability @value
             else
               if isInfinite @value

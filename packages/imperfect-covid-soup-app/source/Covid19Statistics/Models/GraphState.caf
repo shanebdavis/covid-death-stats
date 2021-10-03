@@ -7,3 +7,5 @@ class GraphState extends ApplicationState
     time: :2020
     top: :covid19Deaths
     bottom: :1
+    xAxis: :age
+    age: "All Ages"

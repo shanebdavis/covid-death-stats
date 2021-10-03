@@ -1,0 +1,25 @@
+import &ArtStandardLib
+avYears = (p, n = 100) ->
+  invP = 1 - p
+  i = 1 | 0
+  sum = 0
+  threshold = p * .01
+  nextTerm = threshold * 2
+  thisPower = lastPower = 1
+  Math extract pow
+  while nextTerm > threshold
+    thisPower = pow invP, i
+
+    sum += nextTerm = i *
+      lastPower - thisPower
+
+    lastPower = thisPower
+    i = i + 1 | 0
+
+  # log {} i, sum
+  sum
+
+array p in .1 .01 .001 .0186
+  log {} p, avYears p
+# log avYears 0.0000016587727379627192
+

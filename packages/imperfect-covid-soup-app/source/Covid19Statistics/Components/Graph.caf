@@ -13,20 +13,32 @@ class Graph extends ViewStateComponent
 
   @propFields :animationOn
 
+  applyScale = (scale, obj) ->
+    if scale? && scale != 1
+      object v, k in obj with v * scale
+    else obj
+
+  createSelectedDataEntry = (covidDataRecord, region, age, intentData, mechanismData, scale) ->
+    merge
+      covidDataRecord
+      nonCovid19Deaths: covidDataRecord.totalDeaths - covidDataRecord.covid19Deaths
+      applyScale scale, {totalDeaths: totalDeaths2019, accident: accidentDeaths2019, homicide: homicides2019, suicide: suicides2019} = intentData?[region]?[age] ? {}
+      applyScale scale, {drowning: drownings2019, motorVehicle: carAccidents2019, disease: diseaseDeaths2019, firearm: firearmDeaths2019, poisoning: poisonings2019, suffocation: suffocationDeaths2019, fall: deathFromFalls2019} = mechanismData?[region]?[age] ? {}
+
   preprocessState: (newState) ->
     newState.covidData extract? covidData, intentData, mechanismData
-    newState.graphState extract? region, time
+    newState.graphState extract? region, time, xAxis, age
 
     merge
       newState
-      selectedData: object v, age from covidData?[region]?[time]
-        merge
-          v
-          nonCovid19Deaths: v.totalDeaths - v.covid19Deaths
-          totalDeathRisk:   v.totalDeaths / v.population
-          covid19DeathRisk: v.covid19Deaths / v.population
-          {totalDeaths: totalDeaths2019, accident: accidentalDeath, homicide, suicide} = intentData?[region]?[age] ? {}
-          {dorwning, motorVehicle: carAccident, disease, firearm, poisoning, suffocation, fire: deathByFire, fall: deathFromFall} = mechanismData?[region]?[age] ? {}
+      selectedData:
+        if xAxis == :time
+          object covidDataAgeRecords, time from covidData?[region] when /^\d+-/.test time
+            covidDataRecord = covidDataAgeRecords[age]
+            createSelectedDataEntry covidDataRecord, region, age, intentData, mechanismData, 1/12
+        else
+          object covidDataRecord, age from covidData?[region]?[time]
+            createSelectedDataEntry covidDataRecord, region, age, intentData, mechanismData
 
   @getter
     relative: -> @probabilityMode == :relative
@@ -37,11 +49,15 @@ class Graph extends ViewStateComponent
       else ''
 
     data: ->
-      array row, age in @selectedData
+      array row, label in @selectedData
         label:
-          age
-          .replace /Under /g 'Under\n'
-          .replace /[ ]years/g '\nyears'
+          if m = label.match /(^\d+)-(\d+)$/
+            [_, year, month] = m
+            "#{months[month|0]}\n#{year}"
+          else
+            label
+            .replace /Under /g 'Under\n'
+            .replace /[ ]years/g '\nyears'
 
         value:
           if row[@graphState.top]?
@@ -66,7 +82,7 @@ class Graph extends ViewStateComponent
 
     maxValue: ->
       base =
-        reduce a, {value, label}, k from @data inject 0 when !/All/.test label
+        reduce a, {value, label}, k from @data inject 0 when !/All|Jan\n2020|Feb\n2020/.test label
           max a, if isInfinite(value) then 0 else value
 
       find v from maxValues when base < v
@@ -91,10 +107,12 @@ class Graph extends ViewStateComponent
 
   getOptions: (optionsType) ->
     switch optionsType
-    when :top     then Object.keys @selectedData["All Ages"]
-    when :bottom  then compactFlattenAll :1 Object.keys @selectedData["All Ages"]
+    when :xAxis   then :age :time
+    when :top     then Object.keys find @selectedData
+    when :bottom  then compactFlattenAll :1 Object.keys find @selectedData
     when :time    then Object.keys @covidData.covidData.UnitedStates
     when :region  then Object.keys @covidData.covidData
+    when :age     then Object.keys find @covidData.covidData.UnitedStates
 
   render: ->
     @ extract maxValue
@@ -115,6 +133,7 @@ class Graph extends ViewStateComponent
         childrenMargins: @gridSize
         array {value, label} in @data
           Bar {}
+            key: label
             value
             label
             maxValue
@@ -152,7 +171,7 @@ class Graph extends ViewStateComponent
           :row
           :parentWidthChildrenHeight
           childrenMargins: @gridSize / 4
-          array option in :top :bottom :time :region
+          array option in :xAxis :top :bottom :region if @graphState.xAxis == :time then :age else :time
             Button {}
               text: humanLabel @graphState[option] ? 1
               selected = @showOptionsFor == option

@@ -88,22 +88,13 @@ class Graph extends ViewStateComponent
       find v from maxValues when base < v
 
   renderLabledSection: ({label, items}) ->
-    Element
-      :childrenSize :row
-      childrenMargins: @gridSize / 2
-      TextElement
-        TextStyles.tinyText
-        size: w: @gridSize * 3, hch: 1
-        padding: v: @gridSize / 2
-        color: TextPalette.black.primary
-        text: label
 
-      Element
-        :flow
-        :parentWidthChildrenHeight
-        childrenMargins: @gridSize / 2
-        array item in items
-          Button item
+    Element
+      :flow
+      :parentWidthChildrenHeight
+      childrenMargins: @gridSize / 2
+      array item in items
+        Button item
 
   getOptions: (optionsType) ->
     switch optionsType
@@ -130,6 +121,7 @@ class Graph extends ViewStateComponent
 
       Element
         :row :childrenBottomLeft
+        key: @graphState.xAxis
         childrenMargins: @gridSize
         array {value, label} in @data
           Bar {}
@@ -138,6 +130,7 @@ class Graph extends ViewStateComponent
             label
             maxValue
             @unit
+            colorPalette: if @graphState.bottom != "1" then :color else :grey
             probabilityMode:
               if value >= 1
                 if @graphState.bottom && @graphState.bottom != "1" then :relative
@@ -145,43 +138,41 @@ class Graph extends ViewStateComponent
               else :probability
 
       Element
-        :column
+        :row
         padding: top: @gridSize * 4
         childrenMargins: @gridSize / 2
 
-        TextElement
-          TextStyles.mediumBoldText
-          :childrenSize
-          text:
-            if @denominator
-              "" #{humanLabel @numerator} / #{humanLabel @denominator}
-            else
-              humanLabel @numerator
-
-        @covidData?.updatedAt && TextElement
-          TextStyles.smallText
-          color: TextPalette.black.primary
-          :childrenSize
-          :textTopLeft
-          text:
-            """
-              updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
-
         Element
-          :row
-          :parentWidthChildrenHeight
+          :column
+          size: w: @gridSize * 10, hh: 1
           childrenMargins: @gridSize / 4
           array option in :xAxis :top :bottom :region if @graphState.xAxis == :time then :age else :time
-            Button {}
-              text: humanLabel @graphState[option] ? 1
-              selected = @showOptionsFor == option
-              action: ->
-                @showOptionsFor = if selected
-                  null
-                else option
+            []
+              TextElement
+                TextStyles.tinyText
+                size: w: @gridSize * 3, hch: 1
+                padding: v: @gridSize / 2
+                color: TextPalette.black.primary
+                text: option
+
+              Element
+                :childrenSize
+                location: x: -@gridSize / 2
+                Button {}
+                  selected = @showOptionsFor == option
+                  text:
+                    humanLabel @graphState[option] ? 1
+                    + if option == :xAxis then '' else if selected then " ▸" else " ▹"
+                    .trim()
+                  action: ->
+                    if option == :xAxis
+                      models.graphState.xAxis = if models.graphState.xAxis == :time then :age else :time
+                    else
+                      @showOptionsFor = if selected
+                        null
+                      else option
 
         @showOptionsFor && @renderLabledSection
-          label: @showOptionsFor
           items: array a in @getOptions @showOptionsFor
             text:
               if @showOptionsFor == :time

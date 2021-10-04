@@ -28,9 +28,31 @@ formatProbability = (p) ->
       else 1
     + :%
 
+c1 = rgbColor #e62322
+c2 = rgbColor #ffb270
+c3 = rgbColor #ffe96b
+
+barColors =
+  grey:
+    grey = rgbColor #c
+    grey.blend :black, 1 - .85
+    grey.blend :black, 1 - .7
+    grey.blend :black, 1 - .55
+    grey.blend :black, 1 - .40
+
+  color:
+    []
+      c1
+      c1.blend :black, 1 - .85
+      c1.blend :black, 1 - .7
+      c1.blend :black, 1 - .55
+      c1.blend :black, 1 - .40
+
+oneColor = #aca8a8
+
 class Bar extends ViewStateComponent
 
-  @propFields :value :unit :label :maxValue :probabilityMode
+  @propFields :value :unit :label :maxValue :probabilityMode :colorPalette
 
   @stateFields
     mouseIn: null
@@ -45,12 +67,39 @@ class Bar extends ViewStateComponent
     if isInfinite value
       value = @maxValue
 
+    colorPalette = barColors[@colorPalette] || barColors.grey
+
+    bars = [] 1 # .1 .7 .5 .24 .8
+    barWidth = 1 / bars.length
+    barTotal = reduce a, b from bars inject 0 with a + b
+    barMax = reduce a, b from bars inject 0 with max a, b
+
+    layout = :stacked
+    barSum = 0
+
     Element
       key: @label
       size:
         ww: 1
         hh: min 1, scale = value / @maxValue
-      draw: #d
+      draw:
+        array bar, i in bars
+          rectangle:
+            if layout == :stacked
+              bar /= barTotal
+              barSum += bar
+              barPos = barSum
+              (ps) -> rect 0, (1 - barPos) * ps.y, ps.x, bar * ps.y
+            else
+              bar /= barMax
+              (ps) -> rect
+                ps.x * i * barWidth
+                (1 - bar) * ps.y
+                ps.x * barWidth
+                bar * ps.y
+
+          fill: colorPalette[i % colorPalette.length]
+
       on:
         mouseIn: @setMouseIn
 
@@ -59,6 +108,7 @@ class Bar extends ViewStateComponent
           timeout 5 -> @clearMouseIn()
 
       animators:
+        draw: {}
         size: toFrom: w: 0 hh: scale
         opacity: toFrom: 0
 

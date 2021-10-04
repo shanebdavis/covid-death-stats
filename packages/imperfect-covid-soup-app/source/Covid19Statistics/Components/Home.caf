@@ -2,7 +2,7 @@ import &StandardImport
 
 class Home extends ViewStateComponent
 
-  @subscriptions :clock.seconds
+  @subscriptions :clock.seconds :covidData
 
   @stateFields
     startTime: 0
@@ -18,6 +18,16 @@ class Home extends ViewStateComponent
 
     Element
       draw: #f
+
+      TextElement
+        TextStyles.tinyText
+        padding: @gridSize
+        color: TextPalette.black.secondary
+        :childrenSize
+        :bottomRight
+        text:
+          """
+            updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
 
       Element
         padding: @gridSize * 2

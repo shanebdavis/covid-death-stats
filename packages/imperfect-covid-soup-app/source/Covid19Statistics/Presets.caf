@@ -1,0 +1,15 @@
+
+[]
+  {}
+    title:  "" Covid-19 Death Count
+    description: "" This is the typical data that has been shared on Covid-19: the death count over time. Without a comparable, though, this data has no meaning. It canont be interpreted, and one cannot make decisions of any type based upon it.
+    top:    "covid19Deaths"
+    bottom: "1"
+    xAxis:  "time"
+
+  {}
+    title: "" Covid-19 Death Risk by Age Group
+    description: "" This graph shows the chance of death by Covid-19 separated out by age group.
+    top: "covid19Deaths"
+    bottom: "population"
+    xAxis: "age"

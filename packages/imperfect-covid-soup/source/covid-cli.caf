@@ -23,10 +23,26 @@ require :@art-suite/cli
         &CovidDataLoader.updatedAt
 
     json:
+      options:
+        out: "" file name to save as
       description: "" Output all data as JSON
-      run: ->
+      run: ({out}) ->
         &CovidDataLoader.preparedData
-        .then JSON.stringify
+        .then (preparedData) ->
+          json = JSON.stringify preparedData
+          if out
+            &fs.writeFileSync out, json
+            {}
+              out
+              summary: object v, k in preparedData
+                switch
+                when k == :updatedAt then v
+                when v is Object
+                  keys: "" #{Object.keys(v).join ', '}
+                when v is Array
+                  length: v.length
+
+          else json
 
     numbers:
       description: "" Show the numbers

@@ -74,7 +74,6 @@ class CovidDataLoader extends BaseClass
   normalizeAge = (age) ->
     if age == "85 years and over" then "85+ years" else age
 
-
   @classGetter
     rawUsDeaths:          -> @_rawUsDeaths          ?= loadCsv :data/us-deaths.csv
     rawUsPopulation:      -> @_rawUsPopulation      ?= loadCsv :data/us-population.csv
@@ -101,22 +100,27 @@ class CovidDataLoader extends BaseClass
         .then (rows) ->
           each row in rows when row.sex == "All Sexes" into out = {}
             row extract
-              group, startDate
+              group
+              startDate
               state
               ageGroup
               covid19Deaths
               totalDeaths
 
             timeRange =
-              if row.group == "By Year"
+              switch row.group
+              when "By Year"
                 row.year
-              else
+              when "By Month"
                 [_, month, date, year] = row.startDate.match /// ^(\d+)/(\d+)/(\d+)$
                 month = month | 0
                 if month < 10 then month = "0#{month}"
                 "" #{year}-#{month}
+              when "By Total"
+                "All Time"
+              else throw new Error "new group? #{{row.group}}"
 
-            a = out[upperCamelCase state] ?= {}
+            a = out[upperCamelCase state] ?= "All Time": {}
             b = a[timeRange] ?= {}
             b[normalizeAge ageGroup] =
               covid19Deaths:  parseCsvInt covid19Deaths

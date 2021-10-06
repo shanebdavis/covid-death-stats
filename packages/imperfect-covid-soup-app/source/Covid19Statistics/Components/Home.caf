@@ -8,10 +8,13 @@ class Home extends ViewStateComponent
     startTime: 0
     animationOn: true
 
+  @getter
+    timeDelta: -> 10 # @seconds - @startTime
+
   getInitialState: -> startTime: toSeconds()
 
   @getter
-    step: -> 20 * (@seconds - @startTime) | 0
+    step: -> 20 * @timeDelta
     showGraphNow: -> @step > 120
 
   render: ->

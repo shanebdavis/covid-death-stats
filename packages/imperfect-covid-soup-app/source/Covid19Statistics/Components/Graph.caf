@@ -1,5 +1,8 @@
 import &StandardImport, &Lib, {} &Bar, &Button
 
+sum = (list) ->
+  reduce a, b from list inject 0 with a + b
+
 class Graph extends ViewStateComponent
 
   @subscriptions
@@ -26,19 +29,77 @@ class Graph extends ViewStateComponent
       applyScale scale, {drowning: drownings2019, motorVehicle: carAccidents2019, disease: diseaseDeaths2019, firearm: firearmDeaths2019, poisoning: poisonings2019, suffocation: suffocationDeaths2019, fall: deathFromFalls2019} = mechanismData?[region]?[age] ? {}
 
   preprocessState: (newState) ->
-    newState.covidData extract? covidData, intentData, mechanismData
-    newState.graphState extract? region, time, xAxis, age
+    newState.covidData extract? covidData, intentData, mechanismData, times, ages
+    newState.graphState extract? region, time, age
+    [aRegion] = region
+    [aTime] = time
+    [anAge] = age
+
+    axis = if aTime == "All Time" || (anAge != "All Ages" && time.length > age.length) then :time else :age
+
+    axisKeys = if axis == :time
+      if aTime == "All Time"
+        array v from times when !/^All/.test v
+      else time
+    else
+      if anAge == "All Ages"
+        array v from ages when !/^All/.test v
+      else age
 
     merge
       newState
       selectedData:
-        if xAxis == :time
-          object covidDataAgeRecords, time from covidData?[region] when /^\d+-/.test time
-            covidDataRecord = covidDataAgeRecords[age]
-            createSelectedDataEntry covidDataRecord, region, age, intentData, mechanismData, 1/12
+        unless covidData
+          {}
         else
-          object covidDataRecord, age from covidData?[region]?[time]
-            createSelectedDataEntry covidDataRecord, region, age, intentData, mechanismData
+          if axis == :time
+            object aTime from axisKeys
+              if region.length > 1
+                array aRegion in region
+                  createSelectedDataEntry
+                    covidData[aRegion][aTime][anAge]
+                    aRegion
+                    anAge
+                    intentData
+                    mechanismData
+                    1/12
+
+              else
+                array anAge in age
+                  createSelectedDataEntry
+                    covidData[aRegion][aTime][anAge]
+                    aRegion
+                    anAge
+                    intentData
+                    mechanismData
+                    1/12
+
+          else
+            object anAge from axisKeys
+              if region.length > 1
+                array aRegion in region
+                  createSelectedDataEntry
+                    covidData[aRegion][aTime][anAge]
+                    aRegion
+                    anAge
+                    intentData
+                    mechanismData
+
+              else
+                array aTime in time
+                  createSelectedDataEntry
+                    covidData[aRegion][aTime][anAge]
+                    aRegion
+                    anAge
+                    intentData
+                    mechanismData
+
+  valueCalc: (row, numerator, denominator) ->
+    n = if numerator == "1" then 1 else row[numerator]
+    d = if denominator == "1" then 1 else row[denominator]
+    if n? && d?
+      n / d
+    else null
 
   @getter
     relative: -> @probabilityMode == :relative
@@ -49,65 +110,64 @@ class Graph extends ViewStateComponent
       else ''
 
     data: ->
-      array row, label in @selectedData
-        label:
-          if m = label.match /(^\d+)-(\d+)$/
-            [_, year, month] = m
-            "#{months[month|0]}\n#{year}"
-          else
-            label
-            .replace /Under /g 'Under\n'
-            .replace /[ ]years/g '\nyears'
+      @graphState extract layout, numerator, denominator
+      array rows, label in @selectedData
+        [firstRow] = rows
+        {}
+          label:
+            if m = label.match /(^\d+)-(\d+)$/
+              [_, year, month] = m
+              "#{months[month|0]}\n#{year}"
+            else
+              label
+              .replace /Under /g 'Under\n'
+              .replace /[ ]years/g '\nyears'
 
-        value:
-          if row[@graphState.top]?
-            row[@graphState.top] ? 1
-            / row[@graphState.bottom] ? 1
-          else null
+          values =
+            if numerator.length > 1
+              array n in numerator with @valueCalc firstRow, n, denominator[0]
+            else if denominator.length > 1
+              array d in denominator with @valueCalc firstRow, numerator[0], d
+            else
+              array row in rows with @valueCalc row, numerator[0], denominator[0]
 
-      # &GraphFunctions.deathRisk @selectedData, {} @probabilityMode
-      # []
-      #   value: 8.80,   label: "All Ages"
-      #   value: 377.8,  label: "Under\n1 year"
-      #   value: 141.6,  label: "1-4\nyears"
-      #   value: 83.0,   label: "5-14\nyears"
-      #   value: 58.7,   label: "15-24\nyears"
-      #   value: 28.2,   label: "25-34\nyears"
-      #   value: 15.5,   label: "35-44\nyears"
-      #   value: 10.5,   label: "45-54\nyears"
-      #   value: 9.70,   label: "55-64\nyears"
-      #   value: 8.22,   label: "65-74\nyears"
-      #   value: 7.75,   label: "75-84\nyears"
-      #   value: 8.25,   label: "85+\nyears"
+          value:
+            if layout == :stacked
+              sum values
+            else
+              Math.max values...
 
     maxValue: ->
       base =
         reduce a, {value, label}, k from @data inject 0 when !/All|Jan\n2020|Feb\n2020/.test label
-          max a, if isInfinite(value) then 0 else value
+          max a, switch
+          when isInfinite(value) then 0
+          else value
 
       find v from maxValues when base < v
 
   renderLabledSection: ({label, items}) ->
-
     Element
       :flow
       :parentWidthChildrenHeight
+      key: label
+      animators: opacity: toFrom: 0
       childrenMargins: @gridSize / 2
       array item in items
         Button item
 
   getOptions: (optionsType) ->
     switch optionsType
-    when :xAxis   then :age :time
-    when :top     then Object.keys find @selectedData
-    when :bottom  then compactFlattenAll :1 Object.keys find @selectedData
-    when :time    then Object.keys @covidData.covidData.UnitedStates
-    when :region  then Object.keys @covidData.covidData
-    when :age     then Object.keys find @covidData.covidData.UnitedStates
+    when :numerator :denominator then compactFlattenAll :1 Object.keys (find @selectedData)[0]
+    when :time        then compactFlatten [] "All Time" @covidData.times
+    when :region      then @covidData.regions
+    when :age         then @covidData.ages
 
   render: ->
     @ extract maxValue
-    # log {} maxValue, @graphState, @selectedData, @data
+    @graphState extract layout, numerator, denominator
+    hasDenominator = denominator.length > 1 || denominator[0] != "1"
+    hasNumerator = numerator.length > 1 || numerator[0] != "1"
     Element
       :column
       childrenMargins: @gridSize * 2
@@ -120,63 +180,67 @@ class Graph extends ViewStateComponent
         else {}
 
       Element
-        :row :childrenBottomLeft
-        key: @graphState.xAxis
-        childrenMargins: @gridSize
-        array {value, label} in @data
-          Bar {}
-            key: label
-            value
-            label
-            maxValue
-            @unit
-            colorPalette: if @graphState.bottom != "1" then :color else :grey
-            probabilityMode:
-              if value >= 1
-                if @graphState.bottom && @graphState.bottom != "1" then :relative
-                else :count
-              else :probability
+        Element
+          :row :childrenBottomLeft
+          animators: opacity: toFrom: 0
+          childrenMargins: @gridSize
+          array row in @data
+            Bar row, {}
+              key: row.label
+              layout
+              maxValue
+              @unit
+              colorPalette: if hasDenominator && hasNumerator then :color else :grey
+              probabilityMode:
+                if row.value >= 1
+                  if hasDenominator then :relative
+                  else :count
+                else :probability
 
       Element
         :row
         padding: top: @gridSize * 4
         childrenMargins: @gridSize / 2
 
+
         Element
-          :column
+          :column :childrenTopCenter
           size: w: @gridSize * 10, hh: 1
           childrenMargins: @gridSize / 4
-          array option in :xAxis :top :bottom :region if @graphState.xAxis == :time then :age else :time
+          array option in :numerator :denominator :region :age :time
             []
-              TextElement
-                TextStyles.tinyText
-                size: w: @gridSize * 3, hch: 1
-                padding: v: @gridSize / 2
-                color: TextPalette.black.primary
-                text: option
+              if option == :denominator
+                Element
+                  size: h: 1 ww: 1
+                  draw: TextPalette.black.tertiary
+              else
+                TextElement
+                  TextStyles.tinyText
+                  padding: v: @gridSize / 2
+                  color: TextPalette.black.secondary
+                  text: if option == :numerator then :equation else dashCase option
 
-              Element
-                :childrenSize
-                location: x: -@gridSize / 2
-                Button {}
-                  selected = @showOptionsFor == option
-                  text:
-                    humanLabel @graphState[option] ? 1
-                    + if option == :xAxis then '' else if selected then " ▸" else " ▹"
-                    .trim()
-                  action: ->
-                    if option == :xAxis
-                      models.graphState.xAxis = if models.graphState.xAxis == :time then :age else :time
-                    else
-                      @showOptionsFor = if selected
-                        null
-                      else option
+              Button {}
+                selected = @showOptionsFor == option
+                text:
+                  array o in @graphState[option]
+                    humanLabel o
+                  .join "\n"
+                  + if selected then " ▸" else " ▹"
+                  .trim()
+                action: ->
+                  @showOptionsFor = if selected
+                    null
+                  else option
 
-        @showOptionsFor && @renderLabledSection
-          items: array a in @getOptions @showOptionsFor
-            text:
-              if @showOptionsFor == :time
-                a
-              else humanLabel a
-            selected: @graphState[@showOptionsFor] == a
-            action:   -> models.graphState[@showOptionsFor] = a
+        Element
+          @showOptionsFor && @renderLabledSection
+            label: @showOptionsFor
+            items: array a in @getOptions @showOptionsFor
+              text: humanLabel a
+              selected: a in @graphState[@showOptionsFor]
+              action:   (event) ->
+                if event.props.shiftKey
+                  models.graphState.multiSelect @showOptionsFor, a
+                else
+                  models.graphState.select @showOptionsFor, a

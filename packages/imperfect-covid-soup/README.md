@@ -172,8 +172,11 @@ data:
   "85 years and over": population: 749846,   totalDeaths: 101857, covid19Deaths: 9302,  covidDeathOdds: 1:81
   ```
 
-  # Source Data
+# Source Data
 
 - Population data: https://www.census.gov/data/tables/time-series/demo/popest/2010s-state-detail.html
 - Covid Deaths data: https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku
 - Non-Covid Death Data (2019): https://wonder.cdc.gov/controller/datarequest/D77
+
+### Other Data of Note (not used in this app, though)
+-  https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm

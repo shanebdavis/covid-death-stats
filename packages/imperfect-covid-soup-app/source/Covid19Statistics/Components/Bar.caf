@@ -52,7 +52,7 @@ oneColor = #aca8a8
 
 class Bar extends ViewStateComponent
 
-  @propFields :value :unit :label :maxValue :probabilityMode :colorPalette
+  @propFields :value :values :unit :label :maxValue :probabilityMode :colorPalette :layout
 
   @stateFields
     mouseIn: null
@@ -63,22 +63,24 @@ class Bar extends ViewStateComponent
       bound 0, location.y / target.currentSize.y, 1
 
   render: ->
-    @ extract value
+    @ extract value, values, layout, label
+
+    bars = array v in values
+      v / value
+
     if isInfinite value
       value = @maxValue
 
     colorPalette = barColors[@colorPalette] || barColors.grey
 
-    bars = [] 1 # .1 .7 .5 .24 .8
     barWidth = 1 / bars.length
     barTotal = reduce a, b from bars inject 0 with a + b
     barMax = reduce a, b from bars inject 0 with max a, b
 
-    layout = :stacked
     barSum = 0
 
     Element
-      key: @label
+      key: label
       size:
         ww: 1
         hh: min 1, scale = value / @maxValue
@@ -86,12 +88,12 @@ class Bar extends ViewStateComponent
         array bar, i in bars
           rectangle:
             if layout == :stacked
-              bar /= barTotal
+              bar = if barTotal > 0 then bar / barTotal else 0
               barSum += bar
               barPos = barSum
               (ps) -> rect 0, (1 - barPos) * ps.y, ps.x, bar * ps.y
             else
-              bar /= barMax
+              bar = if barMax > 0 then bar / barMax else 0
               (ps) -> rect
                 ps.x * i * barWidth
                 (1 - bar) * ps.y
@@ -133,16 +135,16 @@ class Bar extends ViewStateComponent
         location: h: -@gridSize / 2, xw: .5
         color: TextPalette.black.secondary
         text:
-          if @value
+          if value
             switch @probabilityMode
-            when :relative :count then formatNumber @value
-            when :probability then formatProbability @value
+            when :relative :count then formatNumber value
+            when :probability then formatProbability value
             else
-              if isInfinite @value
+              if isInfinite value
                 :infinity
               else
-                @value + @unit
-          else '' + @value
+                value + @unit
+          else '' + value
 
       TextElement
         TextStyles.tinyBoldText
@@ -151,4 +153,4 @@ class Bar extends ViewStateComponent
         axis: :topCenter
         location: yh: 1 y: @gridSize * 2 xw: .5
         color: TextPalette.black.secondary
-        text: @label
+        text: label

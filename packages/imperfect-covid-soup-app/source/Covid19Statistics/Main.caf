@@ -1,7 +1,9 @@
 import &ArtSuite, &ArtAppKit, &Components
 
-initArtSuiteApp MainComponent: class MyHelloWorldComponent extends Component
+initArtSuiteApp
+  title: "" Covid Statistics
+  MainComponent: class CovidStatistics extends Component
 
-  render: ->
-    CanvasElement
-      Home()
+    render: ->
+      CanvasElement
+        Home()

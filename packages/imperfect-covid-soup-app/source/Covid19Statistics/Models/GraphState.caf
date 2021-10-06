@@ -1,11 +1,41 @@
 import &ArtSuite
 
+defaults =
+  region:       [] :UnitedStates
+  time:         [] "All Time"
+  numerator:    [] :1
+  denominator:  [] :1
+  age:          [] "All Ages"
+
+
 class GraphState extends ApplicationState
 
   @stateFields
-    region: :UnitedStates
-    time: :2020
-    top: :covid19Deaths
-    bottom: :1
-    xAxis: :age
-    age: "All Ages"
+    layout: :adjacent
+
+    region:       [] :UnitedStates
+    time:         [] :2020
+    numerator:    [] :covid19Deaths
+    denominator:  [] :1
+    age:          [] "All Ages"
+
+  select: (type, value) ->
+    @setState [type]: [] value
+
+  multiSelect: (type, value) ->
+    @setState (state) ->
+      merge
+        state
+
+        # only numerator or denominator can have > 1 selected
+        switch type
+        when :denominator then numerator: [] state.numerator[0]
+        when :numerator   then denominator: [] state.denominator[0]
+
+        [type]:
+          if value in currentSelected = state[type]
+            if state[type].length > 1
+              arrayWithoutValue currentSelected, value
+            else defaults[type]
+          else
+            arrayWith currentSelected, value

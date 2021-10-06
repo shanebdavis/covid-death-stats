@@ -5,6 +5,10 @@ class CovidData extends ApplicationState
     covidData: undefined
     mechanismData: undefined
     intentData: undefined
+    regions: undefined
+    updatedAt: undefined
+    times: undefined
+    ages: undefined
 
   ageFilter =
     ///
@@ -17,9 +21,14 @@ class CovidData extends ApplicationState
         85
       )
   getInitialState: ->
-    object d0, field from &covid-death-stats.getPreparedData()
-      if field == :covidData
-        object d1, region from d0
-          object d2, time from d1
-            object _, age from d2 when ageFilter.test age
-      else d0
+    covidData = null
+    merge
+      object d0, field from &covid-death-stats.getPreparedData()
+        if field == :covidData
+          covidData = object d1, region from d0
+            object d2, time from d1
+              object _, age from d2 when ageFilter.test age
+        else d0
+      regions:  Object.keys covidData
+      times:    Object.keys covidData.UnitedStates
+      ages:     Object.keys covidData.UnitedStates["2020"]

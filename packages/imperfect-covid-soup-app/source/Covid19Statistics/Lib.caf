@@ -11,6 +11,9 @@ import &ArtStandardLib
   humanLabel = (p) ->
     if m = p?.match /(^\d+-\d+) years/i
       "#{m[1]} Years"
+    else if m = p?.match /^(\d\d\d\d)-(\d\d)$/
+      [_, year, month] = m
+      "" #{months[month|0]}, #{year}
     else
       upperCamelCase p, ' '
       .replace /(\d+$)/, " $1"

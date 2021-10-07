@@ -6,23 +6,19 @@ defaults =
   numerator:    [] :1
   denominator:  [] :1
   age:          [] "All Ages"
-
+  graphType:    [] :Age
+  layout:       :adjacent
 
 class GraphState extends ApplicationState
 
-  @stateFields
-    layout: :adjacent
-
-    region:       [] :UnitedStates
-    time:         [] :2020
+  @stateFields merge
+    defaults
     numerator:    [] :covid19Deaths
-    denominator:  [] :1
-    age:          [] "All Ages"
 
   select: (type, value) ->
     @setState [type]: [] value
 
-  multiSelect: (type, value) ->
+  multiSelect: (type, value, order) ->
     @setState (state) ->
       merge
         state
@@ -39,3 +35,14 @@ class GraphState extends ApplicationState
             else defaults[type]
           else
             arrayWith currentSelected, value
+          .sort (a, b) ->
+            if order
+              if 0 <= aIndex = order.indexOf a
+                if 0 <= bIndex = order.indexOf b
+                  aIndex - bIndex
+                else
+                  1
+              else if b in order
+                -1
+            else
+              a.localeCompare b

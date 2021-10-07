@@ -1,7 +1,10 @@
 import &StandardImport, &Lib, {} &Bar, &Button
 
 sum = (list) ->
-  reduce a, b from list inject 0 with a + b
+  reduce a, b from list inject 0
+    if a? and b?
+      a + b
+    else null
 
 class Graph extends ViewStateComponent
 
@@ -13,6 +16,7 @@ class Graph extends ViewStateComponent
     probabilityMode: :relative
     selectedData: null
     showOptionsFor: null
+    exampleData: null
 
   @propFields :animationOn
 
@@ -30,16 +34,16 @@ class Graph extends ViewStateComponent
 
   preprocessState: (newState) ->
     newState.covidData extract? covidData, intentData, mechanismData, times, ages
-    newState.graphState extract? region, time, age
+    newState.graphState extract? region, time, age, graphType
     [aRegion] = region
     [aTime] = time
     [anAge] = age
 
-    axis = if aTime == "All Time" || (anAge != "All Ages" && time.length > age.length) then :time else :age
+    [axis] = graphType
 
     axisKeys = if axis == :time
       if aTime == "All Time"
-        array v from times when !/^All/.test v
+        array v from times when !/^All|^202\d$/.test v
       else time
     else
       if anAge == "All Ages"
@@ -48,6 +52,13 @@ class Graph extends ViewStateComponent
 
     merge
       newState
+      exampleData: createSelectedDataEntry
+        covidData.UnitedStates["All Time"]["All Ages"]
+        :UnitedStates
+        "All Ages"
+        intentData
+        mechanismData
+
       selectedData:
         unless covidData
           {}
@@ -131,9 +142,9 @@ class Graph extends ViewStateComponent
             else
               array row in rows with @valueCalc row, numerator[0], denominator[0]
 
-          value:
+          value: log
             if layout == :stacked
-              sum values
+              sum log values
             else
               Math.max values...
 
@@ -158,8 +169,9 @@ class Graph extends ViewStateComponent
 
   getOptions: (optionsType) ->
     switch optionsType
-    when :numerator :denominator then compactFlattenAll :1 Object.keys (find @selectedData)[0]
-    when :time        then compactFlatten [] "All Time" @covidData.times
+    when :graphType then :time :age
+    when :numerator :denominator then compactFlattenAll :1 Object.keys @exampleData
+    when :time        then @covidData.times
     when :region      then @covidData.regions
     when :age         then @covidData.ages
 
@@ -202,12 +214,11 @@ class Graph extends ViewStateComponent
         padding: top: @gridSize * 4
         childrenMargins: @gridSize / 2
 
-
         Element
           :column :childrenTopCenter
           size: w: @gridSize * 10, hh: 1
           childrenMargins: @gridSize / 4
-          array option in :numerator :denominator :region :age :time
+          array option in :graphType :numerator :denominator :region :time :age
             []
               if option == :denominator
                 Element
@@ -236,11 +247,11 @@ class Graph extends ViewStateComponent
         Element
           @showOptionsFor && @renderLabledSection
             label: @showOptionsFor
-            items: array a in @getOptions @showOptionsFor
+            items: array a in order = @getOptions @showOptionsFor
               text: humanLabel a
               selected: a in @graphState[@showOptionsFor]
               action:   (event) ->
                 if event.props.shiftKey
-                  models.graphState.multiSelect @showOptionsFor, a
+                  models.graphState.multiSelect @showOptionsFor, a, order
                 else
                   models.graphState.select @showOptionsFor, a

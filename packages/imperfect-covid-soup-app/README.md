@@ -16,3 +16,7 @@ resources
   - what the axis is
   - what the 'columns' are (colors)
     - and how the colors map
+  - try pie-chart for single-column datasets
+  - mouse-over should show all the numbers you might want to know
+- CSV export
+- presets and preset tour

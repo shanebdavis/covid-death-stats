@@ -30,5 +30,11 @@ class CovidData extends ApplicationState
               object _, age from d2 when ageFilter.test age
         else d0
       regions:  Object.keys covidData
-      times:    Object.keys covidData.UnitedStates
+      times:
+        compactFlatten []
+          "All Time"
+          arrayWithoutValue
+            Object.keys covidData.UnitedStates
+            "All Time"
+
       ages:     Object.keys covidData.UnitedStates["2020"]

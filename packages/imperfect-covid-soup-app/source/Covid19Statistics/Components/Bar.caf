@@ -80,7 +80,6 @@ class Bar extends ViewStateComponent
     barSum = 0
 
     Element
-      key: label
       size:
         ww: 1
         hh: min 1, scale = value / @maxValue
@@ -110,7 +109,7 @@ class Bar extends ViewStateComponent
           timeout 5 -> @clearMouseIn()
 
       animators:
-        draw: {}
+        draw: duration: 1
         size: toFrom: w: 0 hh: scale
         opacity: toFrom: 0
 

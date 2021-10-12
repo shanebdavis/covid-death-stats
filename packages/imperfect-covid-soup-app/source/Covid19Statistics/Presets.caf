@@ -1,15 +1,139 @@
 
 []
   {}
-    title:  "" Covid-19 Death Count
-    description: "" This is the typical data that has been shared on Covid-19: the death count over time. Without a comparable, though, this data has no meaning. It canont be interpreted, and one cannot make decisions of any type based upon it.
-    numerator:    "covid19Deaths"
-    denominator: "1"
-    xAxis:  "time"
+    description:
+      """
+        # Covid-19 Death Count Data (not a Statistic)
+
+        This is the typical data that has been shared on Covid-19: the death count over time.
+        Unfortunately, this is just data. It has no meaning and cannot be used for any useful purpose in
+        itself.
+
+        ### How to Interpret the Graph:
+
+        > This graph cannot be interpreted; it has no meaning.
+
+    graphState:
+      numerator:    [] :covid19Deaths
+      denominator:  [] :1
+      graphType:    [] :time
 
   {}
-    title: "" Covid-19 Death Risk by Age Group
-    description: "" This graph shows the chance of death by Covid-19 separated out by age group.
-    numerator: "covid19Deaths"
-    denominator: "population"
-    xAxis: "age"
+    description:
+      """
+        # Covid-19 Death Risk over Time
+
+        To give data meaning, it must be compared. Take the Covid-19 death count and divide it by the total population, and now we have
+        statistics: the probabily of death due to Covid-19.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the chance of dying during each time period
+
+
+
+    graphState:
+      numerator:    [] :covid19Deaths
+      denominator:  [] :population
+      graphType:    [] :time
+
+  {}
+    description:
+      """
+        # Covid-19 Death Risk by Age Group
+
+        Breaking out the data by age group provides even more insightful statistics.
+        Covid-19 has dramatically differnt death-risks depending upon age group.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the chance of dying during the time period from Covid 19 for each age group.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] "covid19Deaths"
+      denominator:  [] "population"
+
+  {}
+    description:
+      """
+        # Life Expectancy due to Covid-19 Death Risk
+
+        A surprizingly simple result of probability theory is that by inverting the probability
+        of an invent, you get the average number of times you must sample from that probability
+        before the event happens.
+
+        For example, if you wanted to know how many times you must roll a 6-side die before you
+        get a 5 (or any other specific number), all you have to do is take the probability of rolling
+        a 5, which is 1 in 6, and invert it to get 6. On average, you will have to roll the die 6 times to get
+        a 5.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
+
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :population
+      denominator:  [] :covid19Deaths
+      time:         [] :last12Months
+
+
+  {}
+    description:
+      """
+        # Comparing Suicides (2019) and Covid-19 Death Risks (%time%)
+        >-- Suicides: 2019, Covid-19 Death Risks: %time%
+
+        Another useful way to understand probabilities is to compare them with other, known probabilities. In this graph we find a startling comparision. Our youth are many times more likely to commit suicide than they are to die of Covid-19.
+
+        In order to minimize deaths and maximize life, we logically should invest proportionally in each death-risk. Over investing in one risk inceases the chance of overall death by neglecting the other death-risk probabilities.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities) vs chance of dying during the time period from Covid-19.
+        * Note: this comparision is only meaningful if the selected time (currently: %time%) is also exactly one year.
+        * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :suicides2019
+      denominator:  [] :covid19Deaths
+      time:         [] :last12Months
+
+  {}
+    description:
+      """
+        # Comparing Car Accidents and Covid-19 Death Risks
+        >-- Car Accidents: 2019, Covid-19 Death Risks: %time%
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities) vs chance of dying during the time period from Covid-19.
+        * Note: this comparision is only meaningful if the selected time (currently: %time%) is also exactly one year.
+        * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :carAccidents2019
+      denominator:  [] :covid19Deaths
+      time:         [] :last12Months
+
+  {}
+    description:
+      """
+        # Comparing Non-Covid19 Deaths to Covid-19 Deaths
+        >-- both: %time%
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the likelyhood of dying of anything else compared to Covid 19.
+        * e.g. 45 means "45 times more likely to die of something else other than Covid 19"
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :nonCovid19Deaths
+      denominator:  [] :covid19Deaths
+      time:         [] :last12Months

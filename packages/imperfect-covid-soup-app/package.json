@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "art-app-kit": "^1.4.4",
+    "art-markdown": "^1.2.6",
     "art-suite": "^2.0.7",
     "art-suite-app": "^1.0.4",
     "crypto-browserify": "^3.12.0",

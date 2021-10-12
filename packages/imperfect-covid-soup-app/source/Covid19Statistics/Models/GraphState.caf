@@ -2,21 +2,25 @@ import &ArtSuite
 
 defaults =
   region:       [] :UnitedStates
-  time:         [] "All Time"
+  time:         [] :last12Months
   numerator:    [] :1
   denominator:  [] :1
   age:          [] "All Ages"
   graphType:    [] :Age
-  layout:       :adjacent
+  layout:       [] :adjacent
 
 class GraphState extends ApplicationState
 
   @stateFields merge
     defaults
+    preset:       0
     numerator:    [] :covid19Deaths
+    &Presets[0].graphState
 
   select: (type, value) ->
-    @setState [type]: [] value
+
+    @setState
+      [type]: [] value
 
   multiSelect: (type, value, order) ->
     @setState (state) ->
@@ -46,3 +50,8 @@ class GraphState extends ApplicationState
                 -1
             else
               a.localeCompare b
+
+  setPreset: (presetNumber) ->
+    @setState merge
+      {} preset = presetNumber %% &Presets.length
+      &Presets[preset].graphState

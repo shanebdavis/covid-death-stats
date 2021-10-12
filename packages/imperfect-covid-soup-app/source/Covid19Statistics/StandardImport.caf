@@ -1,3 +1,4 @@
 []
   &ArtSuite
   &ArtAppKit/Client
+  &ArtMarkdown/Client

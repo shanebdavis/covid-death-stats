@@ -52,7 +52,7 @@ oneColor = #aca8a8
 
 class Bar extends ViewStateComponent
 
-  @propFields :value :values :unit :label :maxValue :probabilityMode :colorPalette :layout
+  @propFields :value :values :valueLabel :unit :label :maxValue :probabilityMode :colorPalette :layout
 
   @stateFields
     mouseIn: null
@@ -84,6 +84,7 @@ class Bar extends ViewStateComponent
         ww: 1
         hh: min 1, scale = value / @maxValue
       draw:
+        :clip
         array bar, i in bars
           rectangle:
             if layout == :stacked
@@ -100,6 +101,7 @@ class Bar extends ViewStateComponent
                 bar * ps.y
 
           fill: colorPalette[i % colorPalette.length]
+        :reset
 
       on:
         mouseIn: @setMouseIn
@@ -134,7 +136,9 @@ class Bar extends ViewStateComponent
         location: h: -@gridSize / 2, xw: .5
         color: TextPalette.black.secondary
         text:
-          if value
+          if @valueLabel is String
+            @valueLabel
+          else if value
             switch @probabilityMode
             when :relative :count then formatNumber value
             when :probability then formatProbability value

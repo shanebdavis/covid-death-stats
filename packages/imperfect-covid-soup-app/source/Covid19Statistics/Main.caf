@@ -1,9 +1,3 @@
-import &ArtSuite, &ArtAppKit, &Components
-
-initArtSuiteApp
-  title: "" Covid Statistics
-  MainComponent: class CovidStatistics extends Component
-
-    render: ->
-      CanvasElement
-        Home()
+&ArtAppKit/Client.init {}
+  title:  "" Covid Statistics
+  App:    &Components.Home

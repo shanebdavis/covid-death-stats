@@ -1,10 +1,46 @@
 import &StandardImport, &Lib, {} &Bar, &Button
 
-sum = (list) ->
-  reduce a, b from list inject 0
-    if a? and b?
-      a + b
-    else null
+isPublicValue = (b) -> b? && (b == 0 || b > 9)
+minPrivValue = 1
+maxPrivValue = 9
+
+{showFullDetails} = getEnv()
+
+fullDetails = (b) ->
+  if b? then b else (maxPrivValue / minPrivValue) /2
+
+valuesSum = (list, canShowAnyValue) ->
+  reduce a, b from list inject [0 0] with
+    if showFullDetails
+      []
+        a[0] + if b? then b else minPrivValue
+        a[1] + if b? then b else maxPrivValue
+
+    else if canShowAnyValue
+      []
+        v = a[0] + b
+        v
+
+    else
+      []
+        a[0] + if isPublicValue b then b else minPrivValue
+        a[1] + if isPublicValue b then b else maxPrivValue
+
+valuesMax = (list, canShowAnyValue) ->
+  reduce a, b from list inject [0 0]
+    if showFullDetails
+      []
+        max a[0], if b? then b else minPrivValue
+        max a[1], if b? then b else maxPrivValue
+
+    else if canShowAnyValue
+      []
+        v = max a[0], b
+        v
+    else
+      []
+        max a[0], if isPublicValue b then b else minPrivValue
+        max a[1], if isPublicValue b then b else maxPrivValue
 
 class Graph extends ViewStateComponent
 
@@ -42,8 +78,12 @@ class Graph extends ViewStateComponent
     [axis] = graphType
 
     axisKeys = if axis == :time
-      if aTime == "All Time"
-        array v from times when !/^All|^202\d$/.test v
+      switch aTime
+      when "All Time"
+        array v from times when !/^(All.*|202\d|last.*)$/i.test v
+      when "last12Months"
+        a = array v from times when !/^(All.*|202\d|last.*)$/i.test v
+        a.slice a.length - 13, a.length - 1
       else time
     else
       if anAge == "All Ages"
@@ -122,8 +162,24 @@ class Graph extends ViewStateComponent
 
     data: ->
       @graphState extract layout, numerator, denominator
+      haveDenominator = !(denominator.length == 1 && denominator[0] == "1")
       array rows, label in @selectedData
         [firstRow] = rows
+
+        values =
+          if numerator.length > 1
+            array n in numerator with @valueCalc firstRow, n, denominator[0]
+          else if denominator.length > 1
+            array d in denominator with @valueCalc firstRow, numerator[0], d
+          else
+            array row in rows with @valueCalc row, numerator[0], denominator[0]
+
+        [lowValue, highValue] =
+          if layout[0] == :stacked
+            valuesSum values, haveDenominator
+          else
+            valuesMax values, haveDenominator
+
         {}
           label:
             if m = label.match /(^\d+)-(\d+)$/
@@ -134,19 +190,9 @@ class Graph extends ViewStateComponent
               .replace /Under /g 'Under\n'
               .replace /[ ]years/g '\nyears'
 
-          values =
-            if numerator.length > 1
-              array n in numerator with @valueCalc firstRow, n, denominator[0]
-            else if denominator.length > 1
-              array d in denominator with @valueCalc firstRow, numerator[0], d
-            else
-              array row in rows with @valueCalc row, numerator[0], denominator[0]
-
-          value: log
-            if layout == :stacked
-              sum log values
-            else
-              Math.max values...
+          values
+          value: (lowValue + highValue) / 2
+          valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
 
     maxValue: ->
       base =
@@ -159,17 +205,36 @@ class Graph extends ViewStateComponent
 
   renderLabledSection: ({label, items}) ->
     Element
-      :flow
-      :parentWidthChildrenHeight
-      key: label
+      :row
       animators: opacity: toFrom: 0
-      childrenMargins: @gridSize / 2
-      array item in items
-        Button item
+      Element
+        :column
+        childrenMargins: @gridSize * 2
+        TextElement
+          TextStyles.xLargeBoldText
+          :childrenHeightParentWidth
+          text: upperCamelCase label, ' '
+
+        ScrollElement
+          :clip
+
+          Element
+            :flow
+            :parentWidthChildrenHeight
+            padding: 2
+            key: label
+            childrenMargins: @gridSize / 2
+            array item in items
+              Button item
+
+      Button
+        action: @clearShowOptionsFor
+        Icon icon: :close iconScale: .5
 
   getOptions: (optionsType) ->
     switch optionsType
     when :graphType then :time :age
+    when :layout    then :stacked :adjacent
     when :numerator :denominator then compactFlattenAll :1 Object.keys @exampleData
     when :time        then @covidData.times
     when :region      then @covidData.regions
@@ -199,7 +264,7 @@ class Graph extends ViewStateComponent
           array row in @data
             Bar row, {}
               key: row.label
-              layout
+              layout: layout[0]
               maxValue
               @unit
               colorPalette: if hasDenominator && hasNumerator then :color else :grey
@@ -212,18 +277,21 @@ class Graph extends ViewStateComponent
       Element
         :row
         padding: top: @gridSize * 4
-        childrenMargins: @gridSize / 2
+        childrenMargins: @gridSize * 2
 
         Element
           :column :childrenTopCenter
           size: w: @gridSize * 10, hh: 1
           childrenMargins: @gridSize / 4
-          array option in :graphType :numerator :denominator :region :time :age
+          array option in :graphType :layout :numerator :denominator :region :time :age
             []
               if option == :denominator
                 Element
-                  size: h: 1 ww: 1
-                  draw: TextPalette.black.tertiary
+                  size: ww: 1 h: @gridSize
+                  Element
+                    :centerCenter
+                    size: h: 1 ww: 1
+                    draw: TextPalette.black.tertiary
               else
                 TextElement
                   TextStyles.tinyText
@@ -245,13 +313,63 @@ class Graph extends ViewStateComponent
                   else option
 
         Element
-          @showOptionsFor && @renderLabledSection
-            label: @showOptionsFor
-            items: array a in order = @getOptions @showOptionsFor
-              text: humanLabel a
-              selected: a in @graphState[@showOptionsFor]
-              action:   (event) ->
-                if event.props.shiftKey
-                  models.graphState.multiSelect @showOptionsFor, a, order
-                else
-                  models.graphState.select @showOptionsFor, a
+          if @showOptionsFor
+            @renderLabledSection
+              label: @showOptionsFor
+              items: array a in order = @getOptions @showOptionsFor
+                text: humanLabel a
+                selected: a in @graphState[@showOptionsFor]
+                action:   (event) ->
+                  if event.props.shiftKey
+                    models.graphState.multiSelect @showOptionsFor, a, order
+                  else
+                    models.graphState.select @showOptionsFor, a
+          else
+            preset = &Presets[@graphState.preset]
+            numPresets = &Presets.length
+            custom = find v, k in preset.graphState when neq v, @graphState[k]
+            Element
+              animators: opacity: toFrom: 0
+              key: :preset
+              :row
+              :childrenTopLeft
+              childrenMargins: @gridSize * 2
+
+              Element
+                :clip
+                ScrollElement
+                  :centerCenter
+                  size: w: @gridSize * 48 max: ww: 1
+                  MarkdownView
+                    text:
+                      if custom
+                        """
+                          # Custom
+
+                          * Explore the dataset via the legent on the left
+                          * Return to the presets by clicking the triangles next to the preset indicator on the right
+                      else
+                        preset.description
+                        .replace /(%(\w+)%)/g, (a, b, c) ->
+                          array v in @graphState[c] with humanLabel v
+                          .join ", "
+
+              Element
+                :row :parentWidthChildrenHeight
+                size: w: @gridSize * 14, hch: 1
+                childrenMargins: @gridSize
+                :childrenCenterRight
+                Button
+                  action: -> models.graphState.setPreset @graphState.preset - 1
+                  Element
+                    :row :childrenSize
+                    Icon icon: :caretLeft
+                TextElement
+                  TextStyles.mediumText
+                  :childrenSize
+                  text: "preset #{@graphState.preset + 1} / #{numPresets}"
+                Button
+                  action: -> models.graphState.setPreset @graphState.preset + 1
+                  Element
+                    :row :childrenSize
+                    Icon icon: :caretRight

@@ -39,7 +39,7 @@ class Home extends ViewStateComponent
           :childrenSize
           color: TextPalette.black.secondary
           axis: .5
-          location: xw: .5 yh: if @step > 30 then 1 else .5
+          location: xw: .5 yh: if @step > 30 then 0 else .5
           animators:
             if @animationOn
               location: duration: 3 f: :easeBothQuad

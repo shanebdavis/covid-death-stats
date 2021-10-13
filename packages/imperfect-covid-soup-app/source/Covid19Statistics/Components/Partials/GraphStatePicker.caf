@@ -1,0 +1,42 @@
+import &StandardImport
+
+class GraphStatePicker extends ViewStateComponent
+
+  @propFields :label :items :closeAction
+
+  render: ->
+    @ extract label, items
+
+    Element
+      :column
+      Element
+        :row
+        animators: opacity: toFrom: 0
+        Element
+          :column
+          childrenMargins: @gridSize * 2
+          TextElement
+            TextStyles.xLargeBoldText
+            :childrenHeightParentWidth
+            text: upperCamelCase label, ' '
+
+          ScrollElement
+            :clip
+
+            Element
+              :flow
+              :parentWidthChildrenHeight
+              padding: 2
+              key: label
+              childrenMargins: @gridSize / 2
+              array item in items
+                Button item
+
+        Button
+          action: @closeAction
+          Icon icon: :close iconScale: .5
+
+      TextElement
+        TextStyles.tinyText
+        color: TextPalette.black.secondary
+        text: "" shift-click to pick more than one

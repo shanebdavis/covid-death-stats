@@ -1,0 +1,50 @@
+import &StandardImport
+
+class Legend extends ViewStateComponent
+
+  @subscriptions :graphState
+
+  @propFields :showOptionsFor :setShowOptionsFor
+
+  invertEquation: ->
+    models.graphState.setState
+      numerator: @graphState.denominator
+      denominator: @graphState.numerator
+
+  render: ->
+    Element
+      ScrollElement
+        :column :childrenTopCenter :clip
+
+        childrenMargins: @gridSize / 4
+        array option in :graphType :layout :numerator :denominator :region :time :age
+          []
+            if option == :denominator
+              Element
+                size: ww: 1 h: @gridSize
+                on: pointerClick: @invertEquation
+                :pointerCursor
+                Element
+                  :centerCenter
+                  size: h: 1 ww: 1
+                  draw: TextPalette.black.tertiary
+
+            else
+              TextElement
+                TextStyles.tinyText
+                padding: v: @gridSize / 2
+                color: TextPalette.black.secondary
+                text: if option == :numerator then :equation else dashCase option
+
+            Button {}
+              selected = @showOptionsFor == option
+              text:
+                array o in @graphState[option]
+                  humanLabel o
+                .join "\n"
+                + if selected then " ▸" else " ▹"
+                .trim()
+              action: ->
+                @setShowOptionsFor if selected
+                  null
+                else option

@@ -1,17 +1,51 @@
 
+youngAgeGroup = ['1-4 years', '5-14 years', '15-24 years']
+middleAgeGroup = ['25-34 years', '35-44 years', '45-54 years', '55-64 years']
+olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
+
 []
   {}
     description:
       """
-        # Covid-19 Death Count Data (not a Statistic)
+        # Understanding Covid-19 with Data
 
-        This is the typical data that has been shared on Covid-19: the death count over time.
-        Unfortunately, this is just data. It has no meaning and cannot be used for any useful purpose in
-        itself.
+        Statistics and probability are hard to understand. Our biological hardware isn't good
+        at assessing probabilities that didn't help us survive in the past - e.g. any probability less
+        than about 1 in 100. In order to understand Covid-19, we need math to translate
+        the data into something meaningful to help us make important decisions.
+
+        Contents:
+
+        * Statistics, Not Just Data
+
+        * Covid-19 Death Risk over Time
+
+        * Quantifying the Covid-19 Death Risk by Age Group
+
+        ** Older ages
+        ** Middle ages
+        ** Younger ages
+
+    graphState:
+      numerator:    [] :covid19Deaths
+      denominator:  [] :1
+      graphType:    [] :time
+      age:          [] "All Ages"
+
+  {}
+    description:
+      """
+        # Statistics, Not Just Data
+
+        Above is a typical chart of Covid-19 the death counts over time.
+        Unfortunately, this is just data. It has no meaning. It cannot be
+        used for any useful purpose in itself.
 
         ### How to Interpret the Graph:
 
         > This graph cannot be interpreted; it has no meaning.
+
+        * Covid-19 Death Count, %region%, %age%, %time%
 
     graphState:
       numerator:    [] :covid19Deaths
@@ -24,13 +58,37 @@
         # Covid-19 Death Risk over Time
 
         To give data meaning, it must be compared. Take the Covid-19 death count and divide it by the total population, and now we have
-        statistics: the probabily of death due to Covid-19.
+        statistics: the probably of death due to Covid-19.
+
+        > Everything is relative. -Einstein
+
+        Although we have transformed the data into potentially meaningful statistics, these probabilities
+        are still significantly smaller than 1 in 100. We need something more to understand
+        how to make day-to-day decisions around Covid-19.
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the chance of dying during each time period
+        * Numbers represent the chance of dying during each time period.
+        * %region%, %age%, %time%
 
+        ### A Note About the Data
 
+        All data in this tool comes from the CDC or the US Census. Click the data-sources link on the right for details.
+
+        The facts, as best I can tell:
+
+        * It's very hard to get reliable Covid-19 data.
+        * Death data is perhaps the most reliable (each death is unlikely to be counted twice), but it is still troubled data.
+        * Death counts between 1 and 9 cannot be reported due to CDC privacy guidelines. If you see "nulls" or number-ranges, this is why.
+        * Covid-19 deaths are hard to define, but the definitions by the CDC and the WHO more-or-less translate to any death where Covid-19 might have been a contributing factor in any way. This rules out some deaths such as accidental deaths, suicides, murders and a few others, but it still leaves a lot of questions about how to actually assess the Covid-19 risk.
+
+        It is important for each person to assess whether they think the Covid-19 Death Data from the CDC. Below is my best attempt at an unbiased interpretation, take it with a grain of salt:
+
+        * At worst actual Covid-19 deaths are no more than twice the numbers expressed here.
+        * Most likely, the CDC death counts are a good worst-case number.
+        * Actual risk is probably less than the risks presented here.
+
+        > Note: none of this data separates out co-morbidities. People who have no co-morbidities will have less Covid-19 death risk than the numbers presented here. People with co-morbidities may have higher risk.
 
     graphState:
       numerator:    [] :covid19Deaths
@@ -40,20 +98,101 @@
   {}
     description:
       """
-        # Covid-19 Death Risk by Age Group
+        # Quantifying the Covid-19 Death Risk by Age Group
 
-        Breaking out the data by age group provides even more insightful statistics.
-        Covid-19 has dramatically differnt death-risks depending upon age group.
+        Covid-19 has dramatically different death-risks depending upon age group. To get a sense of actual Covid-19 death risk and how it impacts
+        daily lives, I think it's most useful to examine the risks for three different age groups: Older, middle and younger people.
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the chance of dying during the time period from Covid 19 for each age group.
+        * Numbers represent the chance of dying from Covid 19 for each age group.
+        * %region%, %age%, %time%
 
     graphState:
       graphType:    [] :age
       numerator:    [] "covid19Deaths"
       denominator:  [] "population"
+      age:          [] "All Ages"
 
+  {}
+    description:
+      """
+        # Age 65+: Covid-19 Death Risk
+
+        We'll focus first on the most at-risk population: people 65 years old and older.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the chance of dying from Covid 19 for each age group.
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] "covid19Deaths"
+      denominator:  [] "population"
+      age:          olderAgeGroup
+
+  {}
+    description:
+      """
+        # Age 65+: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+        This graph is simply the inverse of the previous page.
+
+        A surprizingly simple result of probability theory is that by inverting the probability
+        of an invent, you get the average number of times you must sample from that probability
+        before the event happens.
+
+        For example, if you wanted to know how many times you must roll a 6-side die before you
+        get a 5 (or any other specific number), all you have to do is take the probability of rolling
+        a 5, which is 1 in 6, and invert it to get 6. On average, you will have to roll the die 6 times to get
+        a 5.
+
+        ### Quantifying Older Ages Death Risk
+
+        * The most at-risk population of all, 85+, could expect to live on average another 51 years (age 132) if Covid-19 was the sole death risk.
+        * In other words, if, year after year the covid death risk remained the same, and there were no other death risks, people 85+ would have to wait an average of 51 years before Covid-19's death risk catches up with them.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+        * %region%, %age%, %time%
+        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] "covid19Deaths"
+      numerator:    [] "population"
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          olderAgeGroup
+
+  {}
+    description:
+      """
+        # Age 25-64: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] "covid19Deaths"
+      numerator:    [] "population"
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          middleAgeGroup
+  {}
+    description:
+      """
+        # Age 1-24: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] "covid19Deaths"
+      numerator:    [] "population"
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+##
   {}
     description:
       """
@@ -71,6 +210,7 @@
         ### How to Interpret the Graph:
 
         * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+        * %region%, %age%, %time%
         * Note: this assumes the death risk stays the same year after year after year ad infinitum.
 
 
@@ -94,6 +234,7 @@
         ### How to Interpret the Graph:
 
         * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities) vs chance of dying during the time period from Covid-19.
+        * %region%, %age%, %time%
         * Note: this comparision is only meaningful if the selected time (currently: %time%) is also exactly one year.
         * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
 
@@ -112,6 +253,7 @@
         ### How to Interpret the Graph:
 
         * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities) vs chance of dying during the time period from Covid-19.
+        * %region%, %age%, %time%
         * Note: this comparision is only meaningful if the selected time (currently: %time%) is also exactly one year.
         * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
 
@@ -131,6 +273,7 @@
 
         * Numbers represent the likelyhood of dying of anything else compared to Covid 19.
         * e.g. 45 means "45 times more likely to die of something else other than Covid 19"
+        * %region%, %age%, %time%
 
     graphState:
       graphType:    [] :age

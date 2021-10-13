@@ -1,4 +1,4 @@
-import &StandardImport, &Lib, {} &Bar, &Button
+import &StandardImport, &Widgets, &PagePart, &Partials, &Lib
 
 isPublicValue = (b) -> b? && (b == 0 || b > 9)
 minPrivValue = 1
@@ -49,7 +49,6 @@ class Graph extends ViewStateComponent
     :graphState
 
   @stateFields
-    probabilityMode: :relative
     selectedData: null
     showOptionsFor: null
     exampleData: null
@@ -153,13 +152,6 @@ class Graph extends ViewStateComponent
     else null
 
   @getter
-    relative: -> @probabilityMode == :relative
-    unit: ->
-      switch @probabilityMode
-      when :relative then :x
-      when :probability then :%
-      else ''
-
     data: ->
       @graphState extract layout, numerator, denominator
       haveDenominator = !(denominator.length == 1 && denominator[0] == "1")
@@ -195,53 +187,29 @@ class Graph extends ViewStateComponent
           valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
 
     maxValue: ->
+      valuesCount = 0
       base =
         reduce a, {value, label}, k from @data inject 0 when !/All|Jan\n2020|Feb\n2020/.test label
-          max a, switch
-          when isInfinite(value) then 0
-          else value
+          if isInfinite(value)
+            a
+          else
+            valuesCount++
+            max a, value
 
-      find v from maxValues when base < v
+      if valuesCount > 0
+        find v from maxValues when base < v
+      else 1
 
-  renderLabledSection: ({label, items}) ->
-    Element
-      :row
-      animators: opacity: toFrom: 0
-      Element
-        :column
-        childrenMargins: @gridSize * 2
-        TextElement
-          TextStyles.xLargeBoldText
-          :childrenHeightParentWidth
-          text: upperCamelCase label, ' '
-
-        ScrollElement
-          :clip
-
-          Element
-            :flow
-            :parentWidthChildrenHeight
-            padding: 2
-            key: label
-            childrenMargins: @gridSize / 2
-            array item in items
-              Button item
-
-      Button
-        action: @clearShowOptionsFor
-        Icon icon: :close iconScale: .5
-
-  getOptions: (optionsType) ->
-    switch optionsType
-    when :graphType then :time :age
-    when :layout    then :stacked :adjacent
-    when :numerator :denominator then compactFlattenAll :1 Object.keys @exampleData
-    when :time        then @covidData.times
-    when :region      then @covidData.regions
-    when :age         then @covidData.ages
+  invertEquation: ->
+    models.graphState.setState
+      numerator: @graphState.denominator
+      denominator: @graphState.numerator
 
   render: ->
     @ extract maxValue
+    preset = &Presets[@graphState.preset]
+    custom = find v, k in preset.graphState when neq v, @graphState[k]
+
     @graphState extract layout, numerator, denominator
     hasDenominator = denominator.length > 1 || denominator[0] != "1"
     hasNumerator = numerator.length > 1 || numerator[0] != "1"
@@ -257,16 +225,18 @@ class Graph extends ViewStateComponent
         else {}
 
       Element
+        padding: top: @gridSize * 3
         Element
           :row :childrenBottomLeft
           animators: opacity: toFrom: 0
-          childrenMargins: @gridSize
+          padding: h: -@gridSize / 2
           array row in @data
             Bar row, {}
+              numBars: @data.length
               key: row.label
               layout: layout[0]
               maxValue
-              @unit
+              unit: !custom && preset.graphState.unit
               colorPalette: if hasDenominator && hasNumerator then :color else :grey
               probabilityMode:
                 if row.value >= 1
@@ -274,102 +244,4 @@ class Graph extends ViewStateComponent
                   else :count
                 else :probability
 
-      Element
-        :row
-        padding: top: @gridSize * 4
-        childrenMargins: @gridSize * 2
-
-        Element
-          :column :childrenTopCenter
-          size: w: @gridSize * 10, hh: 1
-          childrenMargins: @gridSize / 4
-          array option in :graphType :layout :numerator :denominator :region :time :age
-            []
-              if option == :denominator
-                Element
-                  size: ww: 1 h: @gridSize
-                  Element
-                    :centerCenter
-                    size: h: 1 ww: 1
-                    draw: TextPalette.black.tertiary
-              else
-                TextElement
-                  TextStyles.tinyText
-                  padding: v: @gridSize / 2
-                  color: TextPalette.black.secondary
-                  text: if option == :numerator then :equation else dashCase option
-
-              Button {}
-                selected = @showOptionsFor == option
-                text:
-                  array o in @graphState[option]
-                    humanLabel o
-                  .join "\n"
-                  + if selected then " ▸" else " ▹"
-                  .trim()
-                action: ->
-                  @showOptionsFor = if selected
-                    null
-                  else option
-
-        Element
-          if @showOptionsFor
-            @renderLabledSection
-              label: @showOptionsFor
-              items: array a in order = @getOptions @showOptionsFor
-                text: humanLabel a
-                selected: a in @graphState[@showOptionsFor]
-                action:   (event) ->
-                  if event.props.shiftKey
-                    models.graphState.multiSelect @showOptionsFor, a, order
-                  else
-                    models.graphState.select @showOptionsFor, a
-          else
-            preset = &Presets[@graphState.preset]
-            numPresets = &Presets.length
-            custom = find v, k in preset.graphState when neq v, @graphState[k]
-            Element
-              animators: opacity: toFrom: 0
-              key: :preset
-              :row
-              :childrenTopLeft
-              childrenMargins: @gridSize * 2
-
-              Element
-                :clip
-                ScrollElement
-                  :centerCenter
-                  size: w: @gridSize * 48 max: ww: 1
-                  MarkdownView
-                    text:
-                      if custom
-                        """
-                          # Custom
-
-                          * Explore the dataset via the legent on the left
-                          * Return to the presets by clicking the triangles next to the preset indicator on the right
-                      else
-                        preset.description
-                        .replace /(%(\w+)%)/g, (a, b, c) ->
-                          array v in @graphState[c] with humanLabel v
-                          .join ", "
-
-              Element
-                :row :parentWidthChildrenHeight
-                size: w: @gridSize * 14, hch: 1
-                childrenMargins: @gridSize
-                :childrenCenterRight
-                Button
-                  action: -> models.graphState.setPreset @graphState.preset - 1
-                  Element
-                    :row :childrenSize
-                    Icon icon: :caretLeft
-                TextElement
-                  TextStyles.mediumText
-                  :childrenSize
-                  text: "preset #{@graphState.preset + 1} / #{numPresets}"
-                Button
-                  action: -> models.graphState.setPreset @graphState.preset + 1
-                  Element
-                    :row :childrenSize
-                    Icon icon: :caretRight
+      PageBottom {} preset, custom

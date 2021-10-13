@@ -1,0 +1,39 @@
+import &StandardImport, &ArtBrowserTools
+
+class PageSelector extends ViewStateComponent
+
+  @subscriptions :graphState
+
+  render: ->
+    numPresets = &Presets.length
+
+    Element
+      :column
+      :childrenTopCenter
+      childrenMargins: @gridSize
+
+      TextElement
+        TextStyles.mediumText
+        :childrenSize
+        text: "Page #{@graphState.preset + 1} / #{numPresets}"
+
+      Element
+        :row :parentWidthChildrenHeight
+        :childrenSize
+        childrenMargins: @gridSize
+        :childrenCenterRight
+        Button
+          action: -> models.graphState.setPreset @graphState.preset - 1
+          Element
+            :row :childrenSize
+            Icon icon: :caretLeft
+
+        Button
+          action: -> models.graphState.setPreset @graphState.preset + 1
+          Element
+            :row :childrenSize
+            Icon icon: :caretRight
+
+      Button
+        action: -> openLink :https://github.com/shanebdavis/covid-death-stats/tree/main/packages/imperfect-covid-soup#source-data
+        text: "" data sources

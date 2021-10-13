@@ -1,0 +1,74 @@
+import &StandardImport
+
+class PageBottom extends ViewStateComponent
+  @subscriptions :graphState :covidData
+
+  @propFields :preset :custom
+
+  @stateFields showOptionsFor: null
+
+  getOptions: (optionsType) ->
+    switch optionsType
+    when :graphType then :time :age
+    when :layout    then :stacked :adjacent
+    when :numerator :denominator then 'population', 'totalDeaths', 'covid19Deaths', 'nonCovid19Deaths', 'totalDeaths2019', 'accidentDeaths2019', 'homicides2019', 'suicides2019', 'drownings2019', 'carAccidents2019', 'diseaseDeaths2019', 'firearmDeaths2019', 'poisonings2019', 'suffocationDeaths2019', 'deathFromFalls2019'
+    when :time        then @covidData.times
+    when :region      then @covidData.regions
+    when :age         then @covidData.ages
+
+  render: ->
+    Element
+      :row
+      padding: top: @gridSize * 4
+      childrenMargins: @gridSize * 2
+
+      Element
+        size: w: @gridSize * 10
+        Legend {} @showOptionsFor, @setShowOptionsFor
+
+      Element
+        if @showOptionsFor
+          GraphStatePicker
+            closeAction: @clearShowOptionsFor
+            label: @showOptionsFor
+            items: array a in order = @getOptions @showOptionsFor
+              text: humanLabel a
+              selected: a in @graphState[@showOptionsFor]
+              action:   (event) ->
+                if event.props.shiftKey
+                  models.graphState.multiSelect @showOptionsFor, a, order
+                else
+                  models.graphState.select @showOptionsFor, a
+
+        else
+          Element
+            animators: opacity: toFrom: 0
+            key: :preset
+            :row
+            :childrenTopLeft
+            childrenMargins: @gridSize * 2
+
+            Element
+              :clip
+              ScrollElement
+                :centerCenter
+                size: w: @gridSize * 48 max: ww: 1
+                padding: bottom: @gridSize
+                MarkdownView
+                  text:
+                    if @custom
+                      """
+                        # Custom
+
+                        * Explore the dataset via the legent on the left
+                        * Return to the presets by clicking the triangles next to the preset indicator on the right
+
+                    else
+                      @preset.description
+                      .replace /(%(\w+)%)/g, (a, b, c) ->
+                        array v in @graphState[c] with humanLabel v
+                        .join ", "
+
+            Element
+              size: w: @gridSize * 10
+              PageSelector()

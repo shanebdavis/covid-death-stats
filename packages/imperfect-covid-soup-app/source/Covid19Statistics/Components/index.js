@@ -4,8 +4,9 @@
 (module.exports = require('./namespace'))
 
 .addModules({
-  Bar:    require('./Bar'),
-  Button: require('./Button'),
-  Graph:  require('./Graph'),
-  Home:   require('./Home')
+  Graph: require('./Graph'),
+  Home:  require('./Home')
 });
+require('./PagePart');
+require('./Partials');
+require('./Widgets');

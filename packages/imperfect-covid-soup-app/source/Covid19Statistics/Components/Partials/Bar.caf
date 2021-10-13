@@ -65,7 +65,7 @@ oneColor = #aca8a8
 
 class Bar extends ViewStateComponent
 
-  @propFields :numBars :value :values :valueLabel :unit :label :maxValue :probabilityMode :colorPalette :layout
+  @propFields :size :location :numBars :value :values :valueLabel :unit :label :maxValue :probabilityMode :colorPalette :layout
 
   @stateFields
     mouseIn: null
@@ -95,103 +95,100 @@ class Bar extends ViewStateComponent
     barSum = 0
 
     Element
-      size:
-        ww: 1
-        hh: min 1, scale = value / maxValue
 
-      padding: h: @gridSize / 2
-      on:
-        mouseIn: @setMouseIn
+      {}
+        @size
+        @location
+        padding: h: @gridSize / 2
+        on:
+          mouseIn: @setMouseIn
 
-        mouseOut: ({target, location}) ->
-          @setMouseIn {target, location}
-          timeout 5 -> @clearMouseIn()
+          mouseOut: ({target, location}) ->
+            @setMouseIn {target, location}
+            timeout 5 -> @clearMouseIn()
 
-      animators:
-        size: toFrom: w: 0 hh: scale
-        opacity: toFrom: 0
-
-      Element
         animators:
-          draw: duration: 1
-        draw:
-          :clip
+          size:     {}
+          location: {}
+          opacity:  toFrom: 0
 
-          array bar, i in bars
-            rectangle:
-              if layout == :stacked
-                bar = if barTotal > 0
-                  if isInfinite bar
-                    maxValue
-                  else
-                    bar / barTotal
+        childrenMargins: @gridSize * 2
 
-                else 0
-
-                barSum += bar
-                barPos = barSum
-                (ps) -> rect 0, (1 - barPos) * ps.y, ps.x, bar * ps.y
-              else
-                bar = if barMax > 0
-                  if isInfinite bar
-                    maxValue
-                  else
-                    bar / barMax
-
-                else 0
-                (ps) -> rect
-                  ps.x * i * barWidth
-                  (1 - bar) * ps.y
-                  ps.x * barWidth
-                  bar * ps.y
-
-            fill: colorPalette[i % colorPalette.length]
+      :column :childrenBottomCenter
 
       Element
-        :clip
-        if @mouseIn?
-          Element
-            location: ps: @mouseIn
-            axis: .5
-            size: ({x, y}) -> point 1.41 * 2 * max x, y
-            animators: size:
-              d: 1
-              toFrom: 0
-            draw:
-              :circle
-              #ca00ca
+        Element
+          :bottomLeft
+          animators:
+            size: duration: .25
+            draw: duration: .25
+          size: ww: 1 hh: min 1, scale = value / maxValue
+          draw:
+            :clip
 
-      TextElement
-        TextStyles.mediumBoldText
-        fontSize: bound
-          TextStyles.tinyBoldText.fontSize
-          TextStyles.mediumBoldText.fontSize * 9 / @numBars
-          TextStyles.xLargeBoldText.fontSize
+            array bar, i in bars
+              rectangle:
+                if layout == :stacked
+                  bar = if barTotal > 0
+                    if isInfinite bar
+                      maxValue
+                    else
+                      bar / barTotal
 
-        :childrenSize
-        animators: :fontSize
-        axis: :bottomCenter
-        location: h: -@gridSize / 2, xw: .5
-        color: TextPalette.black.primary
-        text:
-          if @valueLabel is String
-            @valueLabel
-          else if labelValue
-            switch @probabilityMode
-            when :relative :count then formatNumber labelValue, @unit
-            when :probability then formatProbability labelValue, @unit
-            else
-              if isInfinite labelValue
-                :infinity
-              else
-                labelValue + @unit
-          else '' + labelValue
+                  else 0
+
+                  barSum += bar
+                  barPos = barSum
+                  (ps) -> rect 0, (1 - barPos) * ps.y, ps.x, bar * ps.y
+
+                else
+                  bar = if barMax > 0
+                    if isInfinite bar
+                      maxValue
+                    else
+                      bar / barMax
+
+                  else 0
+
+                  (ps) -> rect
+                    ps.x * i * barWidth
+                    (1 - bar) * ps.y
+                    ps.x * barWidth
+                    bar * ps.y
+
+              fill: colorPalette[i % colorPalette.length]
+
+            :reset
+
+          TextElement
+            TextStyles.mediumBoldText
+            fontSize: bound
+              TextStyles.tinyBoldText.fontSize
+              TextStyles.mediumBoldText.fontSize * 9 / @numBars
+              TextStyles.xLargeBoldText.fontSize
+
+            :childrenSize
+            animators: :fontSize
+            axis: x: .5 y: 1
+            location: xw: .5 y: -@gridSize / 2
+            color: TextPalette.black.primary
+            text:
+              if @valueLabel is String
+                @valueLabel
+              else if labelValue
+                switch @probabilityMode
+                when :relative :count then formatNumber labelValue, @unit
+                when :probability then formatProbability labelValue, @unit
+                else
+                  if isInfinite labelValue
+                    :infinity
+                  else
+                    labelValue + @unit
+              else '' + labelValue
 
       TextElement
         TextStyles.tinyBoldText
         :childrenSize
         :textCenterCenter
-        axis: :topCenter
-        location: yh: 1 y: @gridSize * 2 xw: .5
         color: TextPalette.black.secondary
         text: label

@@ -2,16 +2,7 @@ import &StandardImport
 
 class Home extends ViewStateComponent
 
-  @subscriptions :clock.seconds :covidData
-
-  @stateFields
-    startTime: 0
-    animationOn: true
-
-  @getter
-    timeDelta: -> 10 # @seconds - @startTime
-
-  getInitialState: -> startTime: toSeconds()
+  @subscriptions :covidData
 
   @getter
     step: -> 20 * @timeDelta
@@ -33,43 +24,17 @@ class Home extends ViewStateComponent
             updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
 
       Element
+        :column
+        childrenMargins: @gridSize * 2
         padding: @gridSize * 2
         TextElement
           TextStyles.xLargeText
           :childrenSize
           color: TextPalette.black.secondary
           axis: .5
-          location: xw: .5 yh: if @step > 30 then 0 else .5
-          animators:
-            if @animationOn
-              location: duration: 3 f: :easeBothQuad
-            else {}
+          location: xw: .5 yh: 0
 
           text:
             "" Covid-19 Statistics
-            .slice 0, @step
 
-        if @step > 70
-          Element
-            :centerCenter
-            key: :line
-            size:
-              h: @gridSize / 2
-              ww: 1
-            animators:
-              if @animationOn
-                size:
-                  duration: 2
-                  from: w: 0 h: @gridSize / 2
-              else {}
-            draw: TextPalette.black.primary
-
-        Element
-          if @showGraphNow
-            &Graph {} @animationOn
-
-        !@showGraphNow && Element
-          on: pointerClick: ->
-            @clearAnimationOn()
-            @startTime = @seconds - secondsPer.minute * 10
-
+        &Graph()

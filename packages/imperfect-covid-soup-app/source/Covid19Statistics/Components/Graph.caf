@@ -215,7 +215,8 @@ class Graph extends ViewStateComponent
     hasNumerator = numerator.length > 1 || numerator[0] != "1"
     Element
       :column
-      childrenMargins: @gridSize * 2
+      childrenMargins: @gridSize * 4
+
       animators:
         if @animationOn
           location:
@@ -225,13 +226,14 @@ class Graph extends ViewStateComponent
         else {}
 
       Element
-        padding: top: @gridSize * 3
         Element
-          :row :childrenBottomLeft
+          # :row
           animators: opacity: toFrom: 0
           padding: h: -@gridSize / 2
-          array row in @data
+          array row, i in @data
             Bar row, {}
+              location: xw: i / @data.length
+              size: ww: 1 / @data.length
               numBars: @data.length
               key: row.label
               layout: layout[0]
@@ -243,5 +245,14 @@ class Graph extends ViewStateComponent
                   if hasDenominator then :relative
                   else :count
                 else :probability
+
+        Element
+          location:
+            yh: 1 y: -@gridSize * 2.5
+          key: :line
+          size:
+            h: @gridSize / 2
+            ww: 1
+          draw: TextPalette.black.primary
 
       PageBottom {} preset, custom

@@ -19,7 +19,6 @@ class PageBottom extends ViewStateComponent
   render: ->
     Element
       :row
-      padding: top: @gridSize * 4
       childrenMargins: @gridSize * 2
 
       Element
@@ -42,7 +41,6 @@ class PageBottom extends ViewStateComponent
 
         else
           Element
-            animators: opacity: toFrom: 0
             key: :preset
             :row
             :childrenTopLeft

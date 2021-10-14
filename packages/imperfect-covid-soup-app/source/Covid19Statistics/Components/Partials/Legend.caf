@@ -1,6 +1,6 @@
 import &StandardImport
 
-class Legend extends ViewStateComponent
+class Legend extends PointerActionsMixin ViewStateComponent
 
   @subscriptions :graphState
 
@@ -13,7 +13,16 @@ class Legend extends ViewStateComponent
 
   render: ->
     Element
-      ScrollElement
+      :column childrenMargins: @gridSize
+      draw:
+        radius: 5
+        padding: -@gridSize
+        outline: TextPalette.black.quaternary
+      TextElement
+        TextStyles.smallBoldText
+        color: TextPalette.black.secondary
+        text: :legend
+      ScrollerWithBar
         :column :childrenTopCenter :clip
 
         childrenMargins: @gridSize / 4

@@ -11,7 +11,7 @@ class PageBottom extends ViewStateComponent
     switch optionsType
     when :graphType then :time :age
     when :layout    then :stacked :adjacent
-    when :numerator :denominator then 'population', 'totalDeaths', 'covid19Deaths', 'nonCovid19Deaths', 'totalDeaths2019', 'accidentDeaths2019', 'homicides2019', 'suicides2019', 'drownings2019', 'carAccidents2019', 'diseaseDeaths2019', 'firearmDeaths2019', 'poisonings2019', 'suffocationDeaths2019', 'deathFromFalls2019'
+    when :numerator :denominator then :1 :population :totalDeaths :covid19Deaths :nonCovid19Deaths :totalDeaths2019 :accidentDeaths2019 :homicides2019 :suicides2019 :drownings2019 :carAccidents2019 :diseaseDeaths2019 :firearmDeaths2019 :poisonings2019 :suffocationDeaths2019 :deathFromFalls2019'
     when :time        then @covidData.times
     when :region      then @covidData.regions
     when :age         then @covidData.ages
@@ -19,7 +19,7 @@ class PageBottom extends ViewStateComponent
   render: ->
     Element
       :row
-      childrenMargins: @gridSize * 2
+      childrenMargins: @gridSize
 
       Element
         size: w: @gridSize * 10
@@ -43,23 +43,26 @@ class PageBottom extends ViewStateComponent
           Element
             key: :preset
             :row
-            :childrenTopLeft
-            childrenMargins: @gridSize * 2
+            childrenMargins: @gridSize
 
             Element
               :clip
-              ScrollElement
+              :row :childrenTopCenter
+
+              ScrollerWithBar
                 :centerCenter
                 size: w: @gridSize * 48 max: ww: 1
-                padding: bottom: @gridSize
+                padding:
+                  bottom: @gridSize
+                  h: @gridSize
                 MarkdownView
                   text:
                     if @custom
                       """
                         # Custom
 
-                        * Explore the dataset via the legent on the left
-                        * Return to the presets by clicking the triangles next to the preset indicator on the right
+                        * Explore the dataset via the legend on the left
+                        * Return to the presets by clicking advancing to the next or previous page
 
                     else
                       @preset.description

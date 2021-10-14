@@ -52,6 +52,7 @@ class Graph extends ViewStateComponent
     selectedData: null
     showOptionsFor: null
     exampleData: null
+    previousMaxValue: null
 
   @propFields :animationOn
 
@@ -187,6 +188,7 @@ class Graph extends ViewStateComponent
           valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
 
     maxValue: ->
+
       valuesCount = 0
       base =
         reduce a, {value, label}, k from @data inject 0 when !/All|Jan\n2020|Feb\n2020/.test label
@@ -197,7 +199,14 @@ class Graph extends ViewStateComponent
             max a, value
 
       if valuesCount > 0
-        find v from maxValues when base < v
+        log {}
+          @previousMaxValue, base, scaledBase: 4 * base
+          useItA: @previousMaxValue > base
+          useItB: @previousMaxValue < 4 * base
+        if @previousMaxValue > base && @previousMaxValue < 4 * base
+          @previousMaxValue
+        else @previousMaxValue = base # find v from maxValues when base < v
+
       else 1
 
   invertEquation: ->
@@ -248,8 +257,9 @@ class Graph extends ViewStateComponent
 
         Element
           location:
-            yh: 1 y: -@gridSize * 2.5
+            yh: 1 y: -@gridSize * 3
           key: :line
+          axis: y: .5
           size:
             h: @gridSize / 2
             ww: 1

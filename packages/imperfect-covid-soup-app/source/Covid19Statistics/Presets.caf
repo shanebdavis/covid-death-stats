@@ -1,20 +1,31 @@
 
-youngAgeGroup = ['1-4 years', '5-14 years', '15-24 years']
-middleAgeGroup = ['25-34 years', '35-44 years', '45-54 years', '55-64 years']
+youngAgeGroup = ['5-14 years', '15-24 years', '25-34 years']
+middleAgeGroup = ['35-44 years', '45-54 years', '55-64 years']
 olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
 []
   {}
     description:
       """
-        # Understanding Covid-19 with Data
+        #- Understanding Covid-19 with Data
+        ##- How to Make Evidence Based Decisions About Safety
 
         Statistics and probability are hard to understand. Our biological hardware isn't good
         at assessing probabilities that didn't help us survive in the past - e.g. any probability less
         than about 1 in 100. In order to understand Covid-19, we need math to translate
         the data into something meaningful to help us make important decisions.
 
-        Contents:
+        ### About This App
+
+        This app uses the latest CDC Covid-19 death data, pre-pandemic CDC death data from 2019 and population data from the US Cencus. This app is United-States focused mostly
+        because of the challenges of getting comparable data sets across nations.
+
+        ### Features
+
+        * Multi-page slide-show: Explains some basics statistics, demos how to use the app, and shares a few significant, evidence-based results with everyday implications.
+        * Fully interactive graph: Change all the graph settings at any time by using the buttons in the legend.
+
+        ### Slide Show Contents
 
         * Statistics, Not Just Data
 
@@ -22,9 +33,13 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         * Quantifying the Covid-19 Death Risk by Age Group
 
-        ** Older ages
-        ** Middle ages
+        ** Older ages - Covid-19 & Life Expectancy
+        ** Middle ages - Covid-19 vs other, current death risks
         ** Younger ages
+
+        ### Disclaimer
+
+        * This app does not prevent you from making non-sense statistics. In particular, make sure you are comparing apples to apples in terms of time ranges.
 
     graphState:
       numerator:    [] :covid19Deaths
@@ -105,7 +120,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the chance of dying from Covid 19 for each age group.
+        * Numbers represent the chance of dying from Covid 19 for each age group for the given period.
         * %region%, %age%, %time%
 
     graphState:
@@ -170,7 +185,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Age 25-64: Average Additional Life Expectancy Due to Covid-19 Death Risk
+        # All Ages: Average Additional Life Expectancy Due to Covid-19 Death Risk
 
     graphState:
       graphType:    [] :age
@@ -178,17 +193,113 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] "population"
       unit:         [] :years
       time:         [] :last12Months
-      age:          middleAgeGroup
+      age:          [] "All Ages"
+
   {}
     description:
       """
-        # Age 1-24: Average Additional Life Expectancy Due to Covid-19 Death Risk
+        # Age 35-64: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+        For ages 35-64, Additional Life Expectancy numbers are a little absurd.
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] :covid19Deaths
+      numerator:    [] :population
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          middleAgeGroup
+
+  {}
+    description:
+      """
+        # Age 35-64: Non Covid-19 Deaths vs Covid-19 Deaths
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each group will die of something other than Covid-19
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :nonCovid19Deaths
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          middleAgeGroup
+
+  {}
+    description:
+      """
+        # Age 5-34: Average Additional Life Expectancy Due to Covid-19 Death Risk
 
     graphState:
       graphType:    [] :age
       denominator:  [] "covid19Deaths"
       numerator:    [] "population"
       unit:         [] :years
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+  {}
+    description:
+      """
+        # Age 5-34: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] "covid19Deaths"
+      numerator:    [] "population"
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+  {}
+    description:
+      """
+        # Age 5-34: Suicide Risk vs Covid-19 Death Risk
+
+        A sobering comparison. People 34 years and younger, and in particular our youth are
+        significanly more at risk of comitting suicide compared to dying of Covid-19.
+
+        Purely based on the math, in order to maximize the health and safety of our kids, we have
+        to invest our efforts proportional to all risks. If one death risk is 3x larger than another,
+        it should have 3x as much investment. To do anything else is at the very minimum a case of
+        trajically missplaced priorities, and can potentially cause more harm than good.
+
+        > Note: The suicide risk data is from 2019.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each group might commit suicide compared to dying from Covid-19
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :suicides2019
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+  {}
+    description:
+      """
+        # Age 5-34: Suicide Risk vs Covid-19 Death Risk
+
+        > Note: The suicide risk data is from 2019.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each group might commit suicide compared to dying from Covid-19
+        * %region%, %age%, %time%
+
+    graphState:
+      layout:       [] :stacked
+      graphType:    [] :age
+      numerator:    [] :suicides2019
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
       time:         [] :last12Months
       age:          youngAgeGroup
 

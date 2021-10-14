@@ -41,7 +41,7 @@ formatProbability = (p) ->
       else 1
     + :%
 
-c1 = rgbColor #e62322
+c1 = rgbColor #ca00ca
 c2 = rgbColor #ffb270
 c3 = rgbColor #ffe96b
 
@@ -186,9 +186,15 @@ class Bar extends ViewStateComponent
                     labelValue + @unit
               else '' + labelValue
 
-      TextElement
-        TextStyles.tinyBoldText
-        :childrenSize
-        :textCenterCenter
-        color: TextPalette.black.secondary
-        text: label
+      Element
+        size: h: @gridSize * 2
+        TextElement
+          TextStyles.smallBoldText
+          fontSize: bound
+            TextStyles.tinyBoldText.fontSize
+            TextStyles.smallBoldText.fontSize * 10 / @numBars
+            TextStyles.mediumBoldText.fontSize
+          :parentWidthChildrenHeight
+          :textCenterCenter
+          color: TextPalette.black.secondary
+          text: label

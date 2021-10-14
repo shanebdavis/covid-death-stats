@@ -2,6 +2,7 @@
   "dependencies": {
     "@art-suite/cli": "^1.4.0",
     "@art-suite/monorepo": "^1.6.1",
+    "@art-suite/pointer-actions-mixin": "^1.0.3",
     "art-app-kit": "^1.4.4",
     "art-class-system": "^1.11.15",
     "art-markdown": "^1.2.6",

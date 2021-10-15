@@ -178,5 +178,7 @@ data:
 - Covid Deaths data: https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku
 - Non-Covid Death Data (2019): https://wonder.cdc.gov/controller/datarequest/D77
 
+
 ### Other Data of Note (not used in this app, though)
--  https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm
+- https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm
+- [Minnesota Suicide Mortality, Preliminary 2020 Report](https://www.health.state.mn.us/communities/suicide/documents/2020prelimsuicidedata.pdf)

@@ -16,5 +16,6 @@
     "build-assets": "cpf-tool asset-source/icons/*.svg -o assets/icons.cpf --camelCase",
     "start": "nn -s --watch&\ncafSourceMaps=true webpack serve --hot --progress --open --static public&\nwait",
     "test": "nn -s; mocha -u tdd"
-  }
+  },
+  "version": "0.1.0"
 }

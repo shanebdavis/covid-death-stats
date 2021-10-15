@@ -4,11 +4,7 @@
 (module.exports = require('./namespace'))
 
 .addModules({
-  GraphFunctions: require('./GraphFunctions'),
+  DataLib:        require('./DataLib'),
   Lib:            require('./Lib'),
-  Main:           require('./Main'),
-  Presets:        require('./Presets'),
   StandardImport: require('./StandardImport')
 });
-require('./Components');
-require('./Models');

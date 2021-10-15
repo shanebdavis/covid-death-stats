@@ -13,7 +13,9 @@ class GraphState extends ApplicationState
 
   @stateFields merge
     defaults
+    custom:       false
     preset:       0
+    presetData:   &Presets[0]
     numerator:    [] :covid19Deaths
     specialStatistic:
       value: 1/500000
@@ -22,7 +24,20 @@ class GraphState extends ApplicationState
 
   mergeInState: (f) ->
     @setState (state) ->
-      @myPreprocessState merge state, f state
+      @postprocessState merge state, f state
+
+  postprocessState: (state) ->
+    state =
+      # BUG: can't support stacked when more than one denominator right now
+      if state.denominator?.length > 1
+        log.warn "" Due to a bug, we can't show Stacked values with multiple denominators.
+        merge state, layout: [] :adjacent
+
+      else state
+
+    if state.custom != custom = find v, k in state.presetData?.graphState when neq v,state[k]
+      merge state, {} custom
+    else state
 
   select: (type, value) ->
     @mergeInState ->
@@ -32,14 +47,6 @@ class GraphState extends ApplicationState
     @mergeInState (state) ->
       numerator:    @denominator
       denominator:  @numerator
-
-  # BUG: can't support stacked when more than one denominator right now
-  myPreprocessState: (state) ->
-    if state.denominator?.length > 1
-      log.warn "" Due to a bug, we can't show Stacked values with multiple denominators.
-      merge state, layout: [] :adjacent
-
-    else state
 
   multiSelect: (type, value, order) ->
     @mergeInState (state) ->
@@ -69,5 +76,8 @@ class GraphState extends ApplicationState
 
   setPreset: (presetNumber) ->
     @mergeInState (state) -> merge
-      {} preset = presetNumber %% &Presets.length
-      &Presets[preset].graphState
+      {}
+        preset = presetNumber %% &Presets.length
+        presetData = &Presets[preset]
+
+      presetData.graphState

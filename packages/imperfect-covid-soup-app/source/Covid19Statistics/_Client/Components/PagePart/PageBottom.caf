@@ -3,8 +3,6 @@ import &StandardImport
 class PageBottom extends ViewStateComponent
   @subscriptions :graphState :covidData
 
-  @propFields :preset :custom
-
   @stateFields showOptionsFor: null
 
   getOptions: (optionsType) ->
@@ -17,6 +15,7 @@ class PageBottom extends ViewStateComponent
     when :age         then @covidData.ages
 
   render: ->
+    @graphState extract custom, presetData
     Element
       :row
       childrenMargins: @gridSize
@@ -65,7 +64,7 @@ class PageBottom extends ViewStateComponent
                         * Return to the presets by clicking advancing to the next or previous page
 
                     else
-                      @preset.description
+                      presetData.description
                       .replace /(%(\w+)%)/g, (a, b, c) ->
                         array v in @graphState[c] with humanLabel v
                         .join ", "

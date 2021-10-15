@@ -1,0 +1,96 @@
+import &StandardImport, &Widgets, &PagePart, &Partials
+
+class Graph extends ViewStateComponent
+
+  @subscriptions
+    :covidData
+    :graphState
+
+  @stateFields
+    selectedData: null
+    showOptionsFor: null
+    previousMaxValue: null
+
+  @propFields :animationOn
+
+  preprocessState: (newState) ->
+    merge
+      newState
+      selectedData: getSelectedData {} newState.covidData, newState.graphState
+
+  @getter
+    hasDenominator: ->
+      @graphState extract denominator
+      !(denominator.length == 1 && denominator[0] == "1")
+
+    data: ->
+      array rows, label in @selectedData
+        getGraphDataElement rows, label, @graphState
+
+    adjacent: -> @graphState.layout[0] == :adjacent
+
+    calculatedMaxValue: ->
+      getMaxNonInfiniteValues
+        array {nonInfiniteValueSum, nonInfiniteValueMax, label} from @data when !/All|Jan\n2020|Feb\n2020/.test label
+          if @adjacent
+            nonInfiniteValueMax
+          else
+            nonInfiniteValueSum
+
+    maxValue: ->
+      unless isInfinite maxValue = @calculatedMaxValue
+        if @previousMaxValue == bound maxValue, @previousMaxValue, 4 * maxValue
+          if maxValue != @previousMaxValue
+            log usePreviousMaxValue: formatNumber @previousMaxValue
+          @previousMaxValue
+        else
+          log updateMaxValue: formatNumber maxValue
+          @previousMaxValue = maxValue
+
+      else 1
+
+  invertEquation: ->
+    models.graphState.setState
+      numerator: @graphState.denominator
+      denominator: @graphState.numerator
+
+  render: ->
+    @graphState extract layout, presetData, custom
+
+    commonBarProps = {}
+      @maxValue
+      numBars:      @data.length
+      layout:       layout[0]
+      colorPalette: if hasDenominator(@graphState) && hasNumerator(@graphState) then :color else :grey
+      unit:         !custom && presetData?.graphState?.unit
+
+    Element
+      :column
+      childrenMargins: @gridSize * 4
+
+      animators:
+        if @animationOn
+          location:
+            duration: 2
+            f: :easeInQuad
+            from: xw: -1 y: 0
+        else {}
+
+      Element
+        Element
+          animators: opacity: toFrom: 0
+          padding: h: -@gridSize / 2
+          array row, i in @data
+            Bar row, commonBarProps, {}
+              key:      row.label
+              location: xw: i / @data.length
+              size:     ww: 1 / @data.length
+
+        Element
+          key:      :line
+          location: yh: 1 y: -@gridSize * 3
+          axis:     y: .5
+          size:     ww: 1 h: @gridSize / 2
+          draw:     TextPalette.black.primary
+
+      PageBottom()

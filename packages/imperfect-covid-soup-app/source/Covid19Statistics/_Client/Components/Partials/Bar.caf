@@ -34,7 +34,7 @@ oneColor = #aca8a8
 
 class Bar extends ViewStateComponent
 
-  @propFields :size :location :numBars :value :values :valueLabel :unit :label :maxValue :probabilityMode :colorPalette :layout
+  @propFields :size :location :numBars :value :values :valueLabel :unit :label :maxValue :colorPalette :layout
 
   @stateFields
     mouseIn: null
@@ -150,14 +150,10 @@ class Bar extends ViewStateComponent
               if @valueLabel is String
                 @valueLabel
               else if labelValue
-                switch @probabilityMode
-                when :relative :count then formatNumber labelValue, @unit
-                when :probability then formatProbability labelValue, @unit
-                else
-                  if isInfinite labelValue
-                    :infinity
-                  else
-                    labelValue + @unit
+                if labelValue >= labelValue
+                  formatNumber labelValue, @unit
+                else formatProbability labelValue, @unit
+
               else '' + labelValue
 
       Element

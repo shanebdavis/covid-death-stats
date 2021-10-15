@@ -6,5 +6,3 @@ module.exports = require('neptune-namespaces-runtime').addNamespace(
   (class Covid19Statistics extends Neptune.PackageNamespace {})
   ._configureNamespace(require('../../package.json'))
 );
-require('./Components/namespace');
-require('./Models/namespace');

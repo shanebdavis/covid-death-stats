@@ -1,26 +1,14 @@
-import &ArtStandardLib
+import &StandardImport, &DataLib
 
 {}
-  nullCheck = (obj, f) ->
-    if find v in obj when !v? with true
-      null
-    else if f is Function
-      f obj
-    else f
-
-  maxNonInfiniteValue: (values) ->
-    if values.length > 0
-      m = null
-      each value in values when !isInfinite value
-        m = if m? then max value, m else value
-      m ? Infinity
-
-  sumNonInfiniteValues: (values) ->
-    if values.length > 0
-      m = null
-      each value in values when !isInfinite value
-        m = if m? then m + value else value
-      m ? Infinity
+  formatPercent = (p) ->
+    100 * p
+    .toFixed
+      switch
+      when p < .010001 then 3
+      when p < .100001 then 2
+      else 1
+    + :%
 
   humanLabel = (p) ->
     if m = p?.match /(^\d+-\d+) years/i
@@ -31,20 +19,6 @@ import &ArtStandardLib
     else
       upperCamelCase p, ' '
       .replace /(\d+$)/, " $1"
-
-  maxDisplayValue = 999999999
-  isInfinite = (v) -> !(v < maxDisplayValue)
-
-  months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
-
-  formatPercent = (p) ->
-    100 * p
-    .toFixed
-      switch
-      when p < .010001 then 3
-      when p < .100001 then 2
-      else 1
-    + :%
 
   formatNumber = (p, unit) ->
     if isInfinite p

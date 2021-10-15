@@ -1,0 +1,242 @@
+import &StandardImport
+
+getEnv() extract showFullDetails
+
+{}
+  showFullDetails
+  maxDisplayValue = 999999999
+  minPrivValue = 1
+  maxPrivValue = 9
+  months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
+
+  covidDataAgeGroupsToIncludeRegEx =
+    ///
+      ^
+      (
+        All |
+        Under |
+        1-4 |
+        \d*5- |
+        85
+      )
+
+  isPublicValue = (b) -> b? && (b == 0 || b > 9)
+  isInfinite = (v) -> !(v < maxDisplayValue)
+
+  nullCheck = (obj, f) ->
+    if find v in obj when !v? with true
+      null
+    else if f is Function
+      f obj
+    else f
+
+  getMaxNonInfiniteValues = (values) ->
+    if values.length > 0
+      m = null
+      each value in values when !isInfinite value
+        m = if m? then max value, m else value
+      m ? Infinity
+
+  getSumNonInfiniteValues = (values) ->
+    if values.length > 0
+      m = null
+      each value in values when !isInfinite value
+        m = if m? then m + value else value
+      m ? Infinity
+
+  fullDetails = (b) ->
+    if b? then b else (maxPrivValue / minPrivValue) /2
+
+  valuesSum = (list, canShowAnyValue) ->
+    reduce a, b from list inject [0 0] with
+      if showFullDetails
+        []
+          a[0] + if b? then b else minPrivValue
+          a[1] + if b? then b else maxPrivValue
+
+      else if canShowAnyValue
+        []
+          v = a[0] + b
+          v
+
+      else
+        []
+          a[0] + if isPublicValue b then b else minPrivValue
+          a[1] + if isPublicValue b then b else maxPrivValue
+
+  valuesMax = (list, canShowAnyValue) ->
+    reduce a, b from list inject [0 0]
+      if showFullDetails
+        []
+          max a[0], if b? then b else minPrivValue
+          max a[1], if b? then b else maxPrivValue
+
+      else if canShowAnyValue
+        []
+          v = max a[0], b
+          v
+      else
+        []
+          max a[0], if isPublicValue b then b else minPrivValue
+          max a[1], if isPublicValue b then b else maxPrivValue
+
+  applyScale = (scale, obj) ->
+    if scale? && scale != 1
+      object v, k in obj with v * scale
+    else obj
+
+  createSelectedDataEntry = (covidDataRecord, region, age, intentData, mechanismData, scale) ->
+    merge
+      covidDataRecord
+      nonCovid19Deaths: covidDataRecord.totalDeaths - covidDataRecord.covid19Deaths
+      applyScale scale, {totalDeaths: totalDeaths2019, accident: accidentDeaths2019, homicide: homicides2019, suicide: suicides2019} = intentData?[region]?[age] ? {}
+      applyScale scale, {drowning: drownings2019, motorVehicle: carAccidents2019, disease: diseaseDeaths2019, firearm: firearmDeaths2019, poisoning: poisonings2019, suffocation: suffocationDeaths2019, fall: deathFromFalls2019} = mechanismData?[region]?[age] ? {}
+
+
+  valueCalc = (row, numerator, denominator) ->
+    n = if numerator == "1" then 1 else row[numerator]
+    d = if denominator == "1" then 1 else row[denominator]
+    if n? && d?
+      n / d
+    else null
+
+  equationElementHasNon1Value = (values) -> !(values.length == 1 && values[0] == "1")
+
+  hasNumerator    = ({numerator}) -> equationElementHasNon1Value numerator
+  hasDenominator  = ({denominator}) -> equationElementHasNon1Value denominator
+
+  getGraphDataElement: (rows, label, graphState) ->
+    graphState extract layout, numerator, denominator
+
+    [firstRow] = rows
+
+    values =
+      if numerator.length > 1
+        array n in numerator with valueCalc firstRow, n, denominator[0]
+      else if denominator.length > 1
+        array d in denominator with valueCalc firstRow, numerator[0], d
+      else
+        array row in rows with valueCalc row, numerator[0], denominator[0]
+
+    [lowValue, highValue] =
+      if layout[0] == :stacked
+        valuesSum values, hasDenominator graphState
+      else
+        valuesMax values, hasDenominator graphState
+
+    {}
+      label:
+        if m = label.match /(^\d+)-(\d+)$/
+          [_, year, month] = m
+          "#{months[month|0]}\n#{year}"
+        else
+          label
+          .replace /Under /g 'Under\n'
+          .replace /[ ]years/g '\nyears'
+
+      values
+      value: (lowValue + highValue) / 2
+      valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
+      nonInfiniteValueMax: getMaxNonInfiniteValues values
+      nonInfiniteValueSum: getSumNonInfiniteValues values
+
+  getSelectedData: ({covidData: _covidData, graphState}) ->
+      _covidData extract? covidData, intentData, mechanismData, times, ages
+      graphState extract? region, time, age, graphType
+      [aRegion] = region
+      [aTime] = time
+      [anAge] = age
+      [axis] = graphType
+
+      axisKeys = if axis == :time
+        switch aTime
+        when "All Time"
+          array v from times when !/^(All.*|202\d|last.*)$/i.test v
+        when "last12Months"
+          a = array v from times when !/^(All.*|202\d|last.*)$/i.test v
+          a.slice a.length - 13, a.length - 1
+        else time
+      else
+        if anAge == "All Ages"
+          array v from ages when !/^All/.test v
+        else age
+
+      unless covidData
+        {}
+      else
+        if axis == :time
+          object aTime from axisKeys
+            if region.length > 1
+              array aRegion in region
+                createSelectedDataEntry
+                  covidData[aRegion][aTime][anAge]
+                  aRegion
+                  anAge
+                  intentData
+                  mechanismData
+                  1/12
+
+            else
+              array anAge in age
+                createSelectedDataEntry
+                  covidData[aRegion][aTime][anAge]
+                  aRegion
+                  anAge
+                  intentData
+                  mechanismData
+                  1/12
+
+        else
+          object anAge from axisKeys
+            if region.length > 1
+              array aRegion in region
+                createSelectedDataEntry
+                  covidData[aRegion][aTime][anAge]
+                  aRegion
+                  anAge
+                  intentData
+                  mechanismData
+
+            else
+              array aTime in time
+                createSelectedDataEntry
+                  covidData[aRegion][aTime][anAge]
+                  aRegion
+                  anAge
+                  intentData
+                  mechanismData
+
+  loadCovidData: ->
+    covidData = null
+    merge
+      object d0, field from &covid-death-stats.getPreparedData()
+        if field == :covidData
+          covidData = object d1, region from d0
+            list = object d2, time from d1
+              object _, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age
+
+            last12MonthSet =
+              array d2, time from d1 when /^\d\d\d\d-\d\d/.test time
+                [] time, d2
+              .sort (a, b) -> a[0].localeCompare b[0]
+
+            l12m = list.last12Months = {}
+            array [_, ages] from last12MonthSet.slice last12MonthSet.length - 13, last12MonthSet.length - 1
+              each stats, age in ages
+                l12mSum = l12m[age] ?= {}
+                each v, stat in stats
+                  l12mSum[stat] = if stat == :population then v else (l12mSum[stat] ? 0) + v
+
+            list
+
+        else d0
+
+      regions:  Object.keys covidData
+      times:
+        compactFlatten []
+          "All Time"
+          arrayWithoutValue
+            Object.keys covidData.UnitedStates
+            "All Time"
+
+      ages:     Object.keys covidData.UnitedStates["2020"]

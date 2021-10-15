@@ -1,0 +1,14 @@
+import &StandardImport
+
+class CovidData extends ApplicationState
+  @stateFields
+    covidData: undefined
+    mechanismData: undefined
+    intentData: undefined
+    regions: undefined
+    updatedAt: undefined
+    times: undefined
+    ages: undefined
+
+  getInitialState: ->
+    loadCovidData()

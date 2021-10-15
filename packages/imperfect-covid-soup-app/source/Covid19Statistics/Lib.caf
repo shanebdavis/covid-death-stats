@@ -8,6 +8,20 @@ import &ArtStandardLib
       f obj
     else f
 
+  maxNonInfiniteValue: (values) ->
+    if values.length > 0
+      m = null
+      each value in values when !isInfinite value
+        m = if m? then max value, m else value
+      m ? Infinity
+
+  sumNonInfiniteValues: (values) ->
+    if values.length > 0
+      m = null
+      each value in values when !isInfinite value
+        m = if m? then m + value else value
+      m ? Infinity
+
   humanLabel = (p) ->
     if m = p?.match /(^\d+-\d+) years/i
       "#{m[1]} Years"
@@ -23,32 +37,39 @@ import &ArtStandardLib
 
   months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
 
-  formatNumber = (p) ->
+  formatPercent = (p) ->
+    100 * p
+    .toFixed
+      switch
+      when p < .010001 then 3
+      when p < .100001 then 2
+      else 1
+    + :%
+
+  formatNumber = (p, unit) ->
     if isInfinite p
       :Infinity
     else
-      switch
-      when p >= 99999999 then "#{Math.round(p / 1000000)}m"
-      when p >= 999999 then "#{(p / 1000000).toFixed 1}m"
-      when p >= 99999 then "#{Math.round(p / 1000)}k"
-      when p >= 9999 then "#{(p / 1000).toFixed 1}k"
-      when p >= 999 then commaize Math.round p
-      when p >= 100 then Math.round p
-      when float32Eq (p | 0), p then p | 0
-      when p >= 10 then p.toFixed 1
-      else p.toFixed 2
+      a =
+        switch
+        when p >= 99999999 then "#{Math.round(p / 1000000)}m"
+        when p >= 999999 then "#{(p / 1000000).toFixed 1}m"
+        when p >= 99999 then "#{Math.round(p / 1000)}k"
+        when p >= 9999 then "#{(p / 1000).toFixed 1}k"
+        when p >= 999 then commaize Math.round p
+        when p >= 100 then Math.round p
+        when float32Eq (p | 0), p then p | 0
+        when p >= 10 then p.toFixed 1
+        when p >= 1 then p.toFixed 2
+        else formatProbability p
+      if unit then "#{a} #{unit}"
+      else a
 
   formatProbability = (p) ->
     if p < .001001
       "1:#{formatNumber 1/p}"
     else
-      100 * p
-      .toFixed
-        switch
-        when p < .010001 then 3
-        when p < .100001 then 2
-        else 1
-      + :%
+      formatPercent p
 
   maxValues =
     compactFlatten

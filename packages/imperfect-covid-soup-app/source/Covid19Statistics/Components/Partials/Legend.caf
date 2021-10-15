@@ -6,24 +6,25 @@ class Legend extends PointerActionsMixin ViewStateComponent
 
   @propFields :showOptionsFor :setShowOptionsFor
 
-  invertEquation: ->
-    models.graphState.setState
-      numerator: @graphState.denominator
-      denominator: @graphState.numerator
+
+  action: -> models.graphState.invertEquation()
 
   render: ->
     Element
       :column childrenMargins: @gridSize
+      padding: h: -@gridSize
       draw:
         radius: 5
         padding: -@gridSize
         outline: TextPalette.black.quaternary
       TextElement
         TextStyles.smallBoldText
+        padding: h: @gridSize
         color: TextPalette.black.secondary
         text: :legend
       ScrollerWithBar
         :column :childrenTopCenter :clip
+        padding: h: @gridSize
 
         childrenMargins: @gridSize / 4
         array option in :graphType :layout :numerator :denominator :region :time :age
@@ -31,12 +32,17 @@ class Legend extends PointerActionsMixin ViewStateComponent
             if option == :denominator
               Element
                 size: ww: 1 h: @gridSize
-                on: pointerClick: @invertEquation
+                on: @buttonHandlers
                 :pointerCursor
                 Element
                   :centerCenter
-                  size: h: 1 ww: 1
-                  draw: TextPalette.black.tertiary
+                  animators: :size :draw
+                  if @hover
+                    size: ww: 1 h: 2
+                    draw: TextPalette.black.primary
+                  else
+                    size: ww: 1 h: 1
+                    draw: TextPalette.black.tertiary
 
             else
               TextElement

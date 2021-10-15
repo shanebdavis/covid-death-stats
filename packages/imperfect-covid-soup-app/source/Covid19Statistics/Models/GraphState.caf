@@ -15,43 +15,59 @@ class GraphState extends ApplicationState
     defaults
     preset:       0
     numerator:    [] :covid19Deaths
+    specialStatistic:
+      value: 1/500000
+      label: "" struck by lightning
     &Presets[0].graphState
 
-  select: (type, value) ->
+  mergeInState: (f) ->
+    @setState (state) ->
+      @myPreprocessState merge state, f state
 
-    @setState
+  select: (type, value) ->
+    @mergeInState ->
       [type]: [] value
 
+  invertEquation: ->
+    @mergeInState (state) ->
+      numerator:    @denominator
+      denominator:  @numerator
+
+  # BUG: can't support stacked when more than one denominator right now
+  myPreprocessState: (state) ->
+    if state.denominator?.length > 1
+      log.warn "" Due to a bug, we can't show Stacked values with multiple denominators.
+      merge state, layout: [] :adjacent
+
+    else state
+
   multiSelect: (type, value, order) ->
-    @setState (state) ->
-      merge
-        state
+    @mergeInState (state) ->
+      # only numerator or denominator can have > 1 selected
+      switch type
+      when :denominator then numerator:   [] state.numerator[0]
+      when :numerator   then denominator: [] state.denominator[0]
 
-        # only numerator or denominator can have > 1 selected
-        switch type
-        when :denominator then numerator: [] state.numerator[0]
-        when :numerator   then denominator: [] state.denominator[0]
-
-        [type]:
-          if value in currentSelected = state[type]
-            if state[type].length > 1
-              arrayWithoutValue currentSelected, value
-            else defaults[type]
+      [type]:
+        if value in currentSelected = state[type]
+          if state[type].length > 1
+            arrayWithoutValue currentSelected, value
+          else defaults[type]
+        else
+          arrayWith currentSelected, value
+        .sort (a, b) ->
+          if order
+            if 0 <= aIndex = order.indexOf a
+              if 0 <= bIndex = order.indexOf b
+                aIndex - bIndex
+              else
+                1
+            else if b in order
+              -1
           else
-            arrayWith currentSelected, value
-          .sort (a, b) ->
-            if order
-              if 0 <= aIndex = order.indexOf a
-                if 0 <= bIndex = order.indexOf b
-                  aIndex - bIndex
-                else
-                  1
-              else if b in order
-                -1
-            else
-              a.localeCompare b
+            a.localeCompare b
 
   setPreset: (presetNumber) ->
-    @setState merge
+    @mergeInState (state) -> merge
       {} preset = presetNumber %% &Presets.length
       &Presets[preset].graphState

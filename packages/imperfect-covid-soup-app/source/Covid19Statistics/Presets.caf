@@ -1,5 +1,6 @@
 
-youngAgeGroup = ['5-14 years', '15-24 years', '25-34 years']
+youngAgeGroup = ['1-4 years', '5-14 years', '15-24 years', '25-34 years']
+suicideAgeGroup = ['5-14 years', '15-24 years', '25-34 years']
 middleAgeGroup = ['35-44 years', '45-54 years', '55-64 years']
 olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
@@ -50,7 +51,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Statistics, Not Just Data
+        # Covid-19 Data is not Meaningful by Itself
 
         Above is a typical chart of Covid-19 the death counts over time.
         Unfortunately, this is just data. It has no meaning. It cannot be
@@ -66,6 +67,297 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :covid19Deaths
       denominator:  [] :1
       graphType:    [] :time
+
+
+  {}
+    description:
+      """
+        # Quantifying the Covid-19 Death Risk by Age Group
+
+        1. First comparable: by age
+        2. Covid risk goes up with age. This chart suggests it’s quite dramatic how much it goes up by age, but don’t rest on your scientific laurels. This data is still meaningless.
+        3. The data says there are a little over 1000 times more 85+ deaths compared to 5-14 year old deaths. That seams to imply that 5-14 year old are about 1000 times safer than people 85+. This is incorrect.
+
+        ### How to Interpret the Graph:
+
+        > This graph cannot be interpreted; it has no meaning.
+
+        * Covid-19 Death Count by age group for %region%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :covid19Deaths
+      denominator:  [] "1"
+      age:          [] "All Ages"
+
+  {}
+    description:
+      """
+        # Quantifying the Covid-19 Death Risk by Age Group
+
+        Covid-19 has dramatically different death-risks depending upon age group. To get a sense of actual Covid-19 death risk and how it impacts
+        daily lives, I think it's most useful to examine the risks for three different age groups: Older, middle and younger people.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the chance of dying from Covid 19 for each age group for the given period.
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :covid19Deaths
+      denominator:  [] :population
+      age:          [] "All Ages"
+
+  {}
+    description:
+      """
+        # Age 65+: Covid-19 Death Risk
+
+        We'll focus first on the most at-risk population: people 65 years old and older.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the chance of dying from Covid 19 for each age group.
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :covid19Deaths
+      denominator:  [] :population
+      age:          olderAgeGroup
+
+  {}
+    description:
+      """
+        # Practical Tool #1: 65+ Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+        This graph is simply the inverse of the previous page.
+
+        A surprizingly simple result of probability theory is that by inverting the probability
+        of an invent, you get the average number of times you must sample from that probability
+        before the event happens.
+
+        For example, if you wanted to know how many times you must roll a 6-side die before you
+        get a 5 (or any other specific number), all you have to do is take the probability of rolling
+        a 5, which is 1 in 6, and invert it to get 6. On average, you will have to roll the die 6 times to get
+        a 5.
+
+        These numbers tell a practical and intersting story. We need to be very careful with our
+        lanuage here, but we can make a very strong probablistic claim:
+
+        ##- If one avoids all other causes of death, and if one's Covid-19 death risk stays the same year after year, each age group
+        can expect to live, on average, the number of years stated above.
+
+        In other words, as-of this writing, people 85+ can expect to live 50+ years on average before they would die of Covid-19! Keep in
+        mind this means they would be facing the same death risk they've faced for the past year, year-over-year for 50 years before their
+        luck would give out.
+
+        Younger age groups face lower Covid-19 death risks and therefor have even longer life-expectancy based on their current risks.
+
+        > Note: This graph does not take account that after 10 years, all people in the 65-74 age group will
+        now be in the 75-84 age group and therefor their Covid-19 death risk will have changed. This simple graph
+        assumes their death risk remains in the 65-74 age group even as they live for another 275 years.
+
+        ### Quantifying Older Ages Death Risk
+
+        * The most at-risk population of all, 85+, could expect to live on average another 51 years (age 132) if Covid-19 was the sole death risk.
+        * In other words, if, year after year the covid death risk remained the same, and there were no other death risks, people 85+ would have to wait an average of 51 years before Covid-19's death risk catches up with them.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+        * %region%, %age%, %time%
+        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :population
+      denominator:  [] :covid19Deaths
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          olderAgeGroup
+
+  {}
+    description:
+      """
+        # Practical Tool #1: Ages 35-64 Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+        For ages 35-64, Additional Life Expectancy numbers are a little absurd.
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] :covid19Deaths
+      numerator:    [] :population
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          middleAgeGroup
+
+  {}
+    description:
+      """
+        # Practical Tool #1: Ages 1-34 Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+        For ages 1-34, Additional Life Expectancy numbers are a little absurd.
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] :covid19Deaths
+      numerator:    [] :population
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+  {}
+    description:
+      """
+        # Practical Tool #1: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+        Overall, this life-expectancy statistic is one useful way to think about Covid-19 Death Risk
+        in every-day terms.
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] :covid19Deaths
+      numerator:    [] :population
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          [] "All Ages"
+
+
+  {}
+    description:
+      """
+        # Practical Tool #2: Ages 5-34 Comparing Covid-19 Death-Risk with Other Death-Risks: Suicide
+
+        A sobering comparison. People ages 5 to 34 are
+        more at risk of comitting suicide than they are of dying of Covid-19.
+
+        ## Saving Lives
+
+        Saving lives means reducing overall death-risk, not just one kind of death-risk.
+
+        ##- In order to maximize our collective health and safety, we have
+        to invest our efforts proportionally to all risks.
+
+        If one death risk is 3x larger than another,
+        it should have 3x as much investment. To do anything else is at the very minimum a case of
+        trajically missplaced priorities, and can potentially cause more harm than good.
+
+        Even more importantly, we should be careful not to make any efforts to decrease the death-risk of a less common cause
+        at the expense of a more common death-risk. We must always be aware of tradeoffs and must make
+        a wholistic plan that takes into account all death causes if our goal is to save lives.
+
+        In the case of Covid-19, many of our interventions potentially increase depression and suicide rates:
+
+        * stay-at-home orders (isolation)
+        * masks (social anxiety)
+        * quarentine requirements
+        * vaccine requirements
+
+        The effectiveness of each intervention must be weighed across all its costs before deciding if it makes sense to do.
+
+        ### What to Try
+
+        Change the "Suicides 2019" part of the equation in the legent by tapping on it. Then select one of
+        the other, comparable 2019 death-risks such as "Car Accidents 2019" or "Disease Deaths 2019"
+
+        ### How to Interpret the Graph
+
+        * Numbers represent the number of times more likely each group might commit suicide compared to dying from Covid-19
+        * %region%, %age%, %time%
+
+        ### Notes
+
+        > The suicide risk data is from 2019.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :suicides2019
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          suicideAgeGroup
+
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+  ####################################################################################
+
+  {}
+    description:
+      """ # BREAK
+    graphState:
+      numerator: [] :1
+      denominator: [] :1
+
+
+  {}
+    description:
+      """
+        # Age 35-64: Non Covid-19 Deaths vs Covid-19 Deaths
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each group will die of something other than Covid-19
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :nonCovid19Deaths
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          middleAgeGroup
+
+  {}
+    description:
+      """
+        # Age 5-34: Average Additional Life Expectancy Due to Covid-19 Death Risk
+
+    graphState:
+      graphType:    [] :age
+      denominator:  [] :covid19Deaths
+      numerator:    [] :population
+      unit:         [] :years
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+
+  {}
+    description:
+      """
+        # Age 5-34: Suicide Risk vs Covid-19 Death Risk
+
+        > Note: The suicide risk data is from 2019.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the number of times more likely each group might commit suicide compared to dying from Covid-19
+        * %region%, %age%, %time%
+
+    graphState:
+      layout:       [] :stacked
+      graphType:    [] :age
+      numerator:    [] :suicides2019
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          youngAgeGroup
+
+
+  {}
+    description: "" # SCRATCH
 
   {}
     description:
@@ -110,200 +402,6 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :population
       graphType:    [] :time
 
-  {}
-    description:
-      """
-        # Quantifying the Covid-19 Death Risk by Age Group
-
-        Covid-19 has dramatically different death-risks depending upon age group. To get a sense of actual Covid-19 death risk and how it impacts
-        daily lives, I think it's most useful to examine the risks for three different age groups: Older, middle and younger people.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the chance of dying from Covid 19 for each age group for the given period.
-        * %region%, %age%, %time%
-
-    graphState:
-      graphType:    [] :age
-      numerator:    [] "covid19Deaths"
-      denominator:  [] "population"
-      age:          [] "All Ages"
-
-  {}
-    description:
-      """
-        # Age 65+: Covid-19 Death Risk
-
-        We'll focus first on the most at-risk population: people 65 years old and older.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the chance of dying from Covid 19 for each age group.
-        * %region%, %age%, %time%
-
-    graphState:
-      graphType:    [] :age
-      numerator:    [] "covid19Deaths"
-      denominator:  [] "population"
-      age:          olderAgeGroup
-
-  {}
-    description:
-      """
-        # Age 65+: Average Additional Life Expectancy Due to Covid-19 Death Risk
-
-        This graph is simply the inverse of the previous page.
-
-        A surprizingly simple result of probability theory is that by inverting the probability
-        of an invent, you get the average number of times you must sample from that probability
-        before the event happens.
-
-        For example, if you wanted to know how many times you must roll a 6-side die before you
-        get a 5 (or any other specific number), all you have to do is take the probability of rolling
-        a 5, which is 1 in 6, and invert it to get 6. On average, you will have to roll the die 6 times to get
-        a 5.
-
-        ### Quantifying Older Ages Death Risk
-
-        * The most at-risk population of all, 85+, could expect to live on average another 51 years (age 132) if Covid-19 was the sole death risk.
-        * In other words, if, year after year the covid death risk remained the same, and there were no other death risks, people 85+ would have to wait an average of 51 years before Covid-19's death risk catches up with them.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
-        * %region%, %age%, %time%
-        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] "covid19Deaths"
-      numerator:    [] "population"
-      unit:         [] :years
-      time:         [] :last12Months
-      age:          olderAgeGroup
-
-  {}
-    description:
-      """
-        # All Ages: Average Additional Life Expectancy Due to Covid-19 Death Risk
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] "covid19Deaths"
-      numerator:    [] "population"
-      unit:         [] :years
-      time:         [] :last12Months
-      age:          [] "All Ages"
-
-  {}
-    description:
-      """
-        # Age 35-64: Average Additional Life Expectancy Due to Covid-19 Death Risk
-
-        For ages 35-64, Additional Life Expectancy numbers are a little absurd.
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] :covid19Deaths
-      numerator:    [] :population
-      unit:         [] :years
-      time:         [] :last12Months
-      age:          middleAgeGroup
-
-  {}
-    description:
-      """
-        # Age 35-64: Non Covid-19 Deaths vs Covid-19 Deaths
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the number of times more likely each group will die of something other than Covid-19
-        * %region%, %age%, %time%
-
-    graphState:
-      graphType:    [] :age
-      numerator:    [] :nonCovid19Deaths
-      denominator:  [] :covid19Deaths
-      unit:         [] :x
-      time:         [] :last12Months
-      age:          middleAgeGroup
-
-  {}
-    description:
-      """
-        # Age 5-34: Average Additional Life Expectancy Due to Covid-19 Death Risk
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] "covid19Deaths"
-      numerator:    [] "population"
-      unit:         [] :years
-      time:         [] :last12Months
-      age:          youngAgeGroup
-
-  {}
-    description:
-      """
-        # Age 5-34: Average Additional Life Expectancy Due to Covid-19 Death Risk
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] "covid19Deaths"
-      numerator:    [] "population"
-      unit:         [] :years
-      time:         [] :last12Months
-      age:          youngAgeGroup
-
-  {}
-    description:
-      """
-        # Age 5-34: Suicide Risk vs Covid-19 Death Risk
-
-        A sobering comparison. People 34 years and younger, and in particular our youth are
-        significanly more at risk of comitting suicide compared to dying of Covid-19.
-
-        Purely based on the math, in order to maximize the health and safety of our kids, we have
-        to invest our efforts proportional to all risks. If one death risk is 3x larger than another,
-        it should have 3x as much investment. To do anything else is at the very minimum a case of
-        trajically missplaced priorities, and can potentially cause more harm than good.
-
-        > Note: The suicide risk data is from 2019.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the number of times more likely each group might commit suicide compared to dying from Covid-19
-        * %region%, %age%, %time%
-
-    graphState:
-      graphType:    [] :age
-      numerator:    [] :suicides2019
-      denominator:  [] :covid19Deaths
-      unit:         [] :x
-      time:         [] :last12Months
-      age:          youngAgeGroup
-
-  {}
-    description:
-      """
-        # Age 5-34: Suicide Risk vs Covid-19 Death Risk
-
-        > Note: The suicide risk data is from 2019.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the number of times more likely each group might commit suicide compared to dying from Covid-19
-        * %region%, %age%, %time%
-
-    graphState:
-      layout:       [] :stacked
-      graphType:    [] :age
-      numerator:    [] :suicides2019
-      denominator:  [] :covid19Deaths
-      unit:         [] :x
-      time:         [] :last12Months
-      age:          youngAgeGroup
-
-##
   {}
     description:
       """
@@ -391,3 +489,4 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
       time:         [] :last12Months
+

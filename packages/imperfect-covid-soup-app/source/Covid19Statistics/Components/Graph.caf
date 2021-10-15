@@ -152,60 +152,69 @@ class Graph extends ViewStateComponent
       n / d
     else null
 
+  getDataSelectedData: (rows, label) ->
+    @graphState extract layout, numerator, denominator
+    # log [label]: {} rows, numerator
+    [firstRow] = rows
+
+    values =
+      if numerator.length > 1
+        array n in numerator with @valueCalc firstRow, n, denominator[0]
+      else if denominator.length > 1
+        array d in denominator with @valueCalc firstRow, numerator[0], d
+      else
+        array row in rows with @valueCalc row, numerator[0], denominator[0]
+
+    [lowValue, highValue] =
+      if layout[0] == :stacked
+        valuesSum values, @haveDenominator
+      else
+        valuesMax values, @haveDenominator
+
+    {}
+      label:
+        if m = label.match /(^\d+)-(\d+)$/
+          [_, year, month] = m
+          "#{months[month|0]}\n#{year}"
+        else
+          label
+          .replace /Under /g 'Under\n'
+          .replace /[ ]years/g '\nyears'
+
+      values
+      value: (lowValue + highValue) / 2
+      valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
+
   @getter
+    haveDenominator: ->
+      @graphState extract denominator
+      !(denominator.length == 1 && denominator[0] == "1")
+
     data: ->
       @graphState extract layout, numerator, denominator
-      haveDenominator = !(denominator.length == 1 && denominator[0] == "1")
       array rows, label in @selectedData
-        [firstRow] = rows
+        @getDataSelectedData rows, label
 
-        values =
-          if numerator.length > 1
-            array n in numerator with @valueCalc firstRow, n, denominator[0]
-          else if denominator.length > 1
-            array d in denominator with @valueCalc firstRow, numerator[0], d
+    adjacent: -> @graphState.layout[0] == :adjacent
+
+    calculatedMaxValue: ->
+      maxNonInfiniteValue
+        array {value, values, label} from @data when !/All|Jan\n2020|Feb\n2020/.test label
+          if @adjacent
+            maxNonInfiniteValue values
           else
-            array row in rows with @valueCalc row, numerator[0], denominator[0]
-
-        [lowValue, highValue] =
-          if layout[0] == :stacked
-            valuesSum values, haveDenominator
-          else
-            valuesMax values, haveDenominator
-
-        {}
-          label:
-            if m = label.match /(^\d+)-(\d+)$/
-              [_, year, month] = m
-              "#{months[month|0]}\n#{year}"
-            else
-              label
-              .replace /Under /g 'Under\n'
-              .replace /[ ]years/g '\nyears'
-
-          values
-          value: (lowValue + highValue) / 2
-          valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
+            sumNonInfiniteValues values
 
     maxValue: ->
 
-      valuesCount = 0
-      base =
-        reduce a, {value, label}, k from @data inject 0 when !/All|Jan\n2020|Feb\n2020/.test label
-          if isInfinite(value)
-            a
-          else
-            valuesCount++
-            max a, value
-
-      if valuesCount > 0
-        log {}
-          @previousMaxValue, base, scaledBase: 4 * base
-          useItA: @previousMaxValue > base
-          useItB: @previousMaxValue < 4 * base
-        if @previousMaxValue > base && @previousMaxValue < 4 * base
+      unless isInfinite maxValue = @calculatedMaxValue
+        if @previousMaxValue == bound maxValue, @previousMaxValue, 4 * maxValue
+          if maxValue != @previousMaxValue
+            log usePreviousMaxValue: formatNumber @previousMaxValue
           @previousMaxValue
-        else @previousMaxValue = base # find v from maxValues when base < v
+        else
+          log updateMaxValue: formatNumber maxValue
+          @previousMaxValue = maxValue
 
       else 1
 

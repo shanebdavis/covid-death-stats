@@ -4,6 +4,7 @@
     "art-markdown": "^1.2.6",
     "art-suite": "^2.0.7",
     "art-suite-app": "^1.0.4",
+    "art-testbench": "^3.2.6",
     "crypto-browserify": "^3.12.0",
     "source-map-loader": "^3.0.0",
     "stream-browserify": "^3.0.0",
@@ -17,5 +18,8 @@
     "start": "nn -s --watch&\ncafSourceMaps=true webpack serve --hot --progress --open --static public&\nwait",
     "test": "nn -s; mocha -u tdd"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "mocha": "^7.2.0"
+  }
 }

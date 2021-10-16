@@ -1,0 +1,5 @@
+&StandardImport
+&art-testbench/testing
+.init
+  defineTests: ->
+    &tests

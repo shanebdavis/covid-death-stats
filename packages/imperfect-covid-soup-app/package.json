@@ -12,14 +12,14 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.3.0"
   },
+  "devDependencies": {
+    "mocha": "^7.2.0"
+  },
   "scripts": {
     "build": "webpack --progress",
     "build-assets": "cpf-tool asset-source/icons/*.svg -o assets/icons.cpf --camelCase",
     "start": "nn -s --watch&\ncafSourceMaps=true webpack serve --hot --progress --open --static public&\nwait",
     "test": "nn -s; mocha -u tdd"
   },
-  "version": "0.1.0",
-  "devDependencies": {
-    "mocha": "^7.2.0"
-  }
+  "version": "0.1.0"
 }

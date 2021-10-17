@@ -7,12 +7,12 @@ class PageBottom extends ViewStateComponent
 
   getOptions: (optionsType) ->
     switch optionsType
-    when :graphType then :time :age
-    when :layout    then :stacked :adjacent
-    when :numerator :denominator then :1 :population :totalDeaths :covid19Deaths :nonCovid19Deaths :totalDeaths2019 :accidentDeaths2019 :homicides2019 :suicides2019 :drownings2019 :carAccidents2019 :diseaseDeaths2019 :firearmDeaths2019 :poisonings2019 :suffocationDeaths2019 :deathFromFalls2019
-    when :time        then @covidData.times
-    when :region      then @covidData.regions
-    when :age         then @covidData.ages
+    when :graphType               then @_graphType ?= :time :age
+    when :layout                  then @_layouts ?= :stacked :adjacent
+    when :numerator :denominator  then @_valueFields ?= compactFlatten [] :1 @covidData.valueFields
+    when :time                    then @covidData.times
+    when :region                  then @covidData.regions
+    when :age                     then @covidData.ages
 
   render: ->
     @graphState extract custom, presetData

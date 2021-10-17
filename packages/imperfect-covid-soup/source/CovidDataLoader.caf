@@ -90,7 +90,7 @@ class CovidDataLoader extends BaseClass
     baselineDeathData: ->
       @rawBaselineUsDeaths.then (baselineDeathData) ->
         each {state,kind,age,deaths,population} from baselineDeathData into out = {} when age != "Not Stated"
-          ((out[upperCamelCase state]?={})[age]?={population})[lowerCamelCase(kind)+:2019] =
+          ((out[upperCamelCase state]?={})[age]?={population2019: population})[lowerCamelCase(kind)+:2019] =
             if deaths != :Suppressed && present deaths then deaths | 0 else null
 
         each d1, state in out

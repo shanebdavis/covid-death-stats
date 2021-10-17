@@ -82,9 +82,9 @@ class Bar extends ViewStateComponent
             timeout 5 -> @clearMouseIn()
 
         animators:
-          size:     {}
-          location: {}
-          opacity:  toFrom: 0
+          size:     duration: .25
+          location: duration: .25
+          opacity:  toFrom: 0 duration: .25
 
         childrenMargins: @gridSize * 2
 
@@ -142,7 +142,7 @@ class Bar extends ViewStateComponent
               TextStyles.xLargeBoldText.fontSize
 
             :childrenSize
-            animators: :fontSize
+            animators: fontSize: duration: .25
             axis: x: .5 y: 1
             location: xw: .5 y: -@gridSize / 2
             color: TextPalette.black.primary
@@ -160,6 +160,7 @@ class Bar extends ViewStateComponent
         size: h: @gridSize * 2
         TextElement
           TextStyles.smallBoldText
+          animators: fontSize: duration: .25
           fontSize: bound
             TextStyles.tinyBoldText.fontSize
             TextStyles.smallBoldText.fontSize * 10 / @numBars

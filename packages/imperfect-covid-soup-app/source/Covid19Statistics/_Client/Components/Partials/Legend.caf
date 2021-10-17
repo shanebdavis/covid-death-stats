@@ -55,7 +55,12 @@ class Legend extends PointerActionsMixin ViewStateComponent
               selected = @showOptionsFor == option
               text:
                 array o in @graphState[option]
-                  humanLabel o
+                  humanLabel
+                    if /^All/i.test o
+                      o
+                    else
+                      o.replace /Pneumonia|Diseases?|Accidents?|Clrd/g, ''
+
                 .join "\n"
                 + if selected then " ▸" else " ▹"
                 .trim()

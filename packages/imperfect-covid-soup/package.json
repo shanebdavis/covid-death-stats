@@ -18,5 +18,5 @@
     "prepare-json": "./covid-death-stats json --out data/preparedData.json",
     "update-data": "npm run download-latest-covid-data; npm run prepare-json"
   },
-  "version": "0.3.0"
+  "version": "0.4.0"
 }

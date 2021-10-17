@@ -85,13 +85,11 @@ getEnv() extract showFullDetails
       object v, k in obj with v * scale
     else obj
 
-  createSelectedDataEntry = (covidDataRecord, region, age, intentData, mechanismData, scale) ->
+  createSelectedDataEntry = (covidDataRecord, region, age, baselineDeathData, scale) ->
     merge
       covidDataRecord
       nonCovid19Deaths: covidDataRecord.totalDeaths - covidDataRecord.covid19Deaths
-      applyScale scale, {totalDeaths: totalDeaths2019, accident: accidentDeaths2019, homicide: homicides2019, suicide: suicides2019} = intentData?[region]?[age] ? {}
-      applyScale scale, {drowning: drownings2019, motorVehicle: carAccidents2019, disease: diseaseDeaths2019, firearm: firearmDeaths2019, poisoning: poisonings2019, suffocation: suffocationDeaths2019, fall: deathFromFalls2019} = mechanismData?[region]?[age] ? {}
-
+      applyScale scale, baselineDeathData?[region]?[age] ? {}
 
   valueCalc = (row, numerator, denominator) ->
     n = if numerator == "1" then 1 else row[numerator]
@@ -141,7 +139,7 @@ getEnv() extract showFullDetails
       nonInfiniteValueSum: getSumNonInfiniteValues values
 
   getSelectedData: ({covidData: _covidData, graphState}) ->
-      _covidData extract? covidData, intentData, mechanismData, times, ages
+      _covidData extract? covidData, intentData, mechanismData, baselineDeathData, times, ages
       graphState extract? region, time, age, graphType
       [aRegion] = region
       [aTime] = time
@@ -172,8 +170,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
-                  intentData
-                  mechanismData
+                  baselineDeathData
                   1/12
 
             else
@@ -182,8 +179,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
-                  intentData
-                  mechanismData
+                  baselineDeathData
                   1/12
 
         else
@@ -194,8 +190,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
-                  intentData
-                  mechanismData
+                  baselineDeathData
 
             else
               array aTime in time
@@ -203,8 +198,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
-                  intentData
-                  mechanismData
+                  baselineDeathData
 
   loadCovidData: ->
     covidData = null
@@ -240,3 +234,28 @@ getEnv() extract showFullDetails
             "All Time"
 
       ages:     Object.keys covidData.UnitedStates["2020"]
+      valueFields:
+        :population
+        :totalDeaths
+        :covid19Deaths
+        :nonCovid19Deaths
+
+        :population2019
+        :alzheimersDisease2019
+        :cancer2019
+        :carAccidents2019
+        :cerebrovascularDiseases2019
+        :diabetesDisease2019
+        :drowningAccidents2019
+        :heartDiseases2019
+        :homicides2019
+        :influenzaPneumonia2019
+        :liverDisease2019
+        :poisoningAccidents2019
+        :respiratoryClrdDisease2019
+        :suffocationAccidents2019
+        :suicides2019
+        :allAccidents2019
+        :allDeaths2019
+        :allDiseases2019
+        :allOtherDeaths2019

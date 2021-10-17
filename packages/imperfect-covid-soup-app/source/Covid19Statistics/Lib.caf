@@ -19,6 +19,7 @@ import &StandardImport, &DataLib
     else
       upperCamelCase p, ' '
       .replace /(\d+$)/, " $1"
+      .replace /Clrd/, "(CLRD)"
 
   formatNumber = (p, unit) ->
     if isInfinite p

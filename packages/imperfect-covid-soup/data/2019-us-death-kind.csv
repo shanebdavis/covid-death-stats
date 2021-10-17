@@ -38,19 +38,19 @@ United States,Car accidents,85+ years,1324,6604958
 United States,Car accidents,< 1 year,69,3783052
 United States,Car accidents,All Ages,37595,328239523
 United States,Car accidents,Not Stated,2,Not Applicable
-United States,Cerebrovascular Disease,1-4 years,52,15793631
-United States,Cerebrovascular Disease,15-24 years,158,42687510
-United States,Cerebrovascular Disease,25-34 years,585,45940321
-United States,Cerebrovascular Disease,35-44 years,1741,41659144
-United States,Cerebrovascular Disease,45-54 years,5153,40874902
-United States,Cerebrovascular Disease,5-14 years,85,40994163
-United States,Cerebrovascular Disease,55-64 years,12931,42448537
-United States,Cerebrovascular Disease,65-74 years,24051,31483433
-United States,Cerebrovascular Disease,75-84 years,40592,15969872
-United States,Cerebrovascular Disease,85+ years,64550,6604958
-United States,Cerebrovascular Disease,< 1 year,102,3783052
-United States,Cerebrovascular Disease,All Ages,150005,328239523
-United States,Cerebrovascular Disease,Not Stated,5,Not Applicable
+United States,Cerebrovascular Diseases,1-4 years,52,15793631
+United States,Cerebrovascular Diseases,15-24 years,158,42687510
+United States,Cerebrovascular Diseases,25-34 years,585,45940321
+United States,Cerebrovascular Diseases,35-44 years,1741,41659144
+United States,Cerebrovascular Diseases,45-54 years,5153,40874902
+United States,Cerebrovascular Diseases,5-14 years,85,40994163
+United States,Cerebrovascular Diseases,55-64 years,12931,42448537
+United States,Cerebrovascular Diseases,65-74 years,24051,31483433
+United States,Cerebrovascular Diseases,75-84 years,40592,15969872
+United States,Cerebrovascular Diseases,85+ years,64550,6604958
+United States,Cerebrovascular Diseases,< 1 year,102,3783052
+United States,Cerebrovascular Diseases,All Ages,150005,328239523
+United States,Cerebrovascular Diseases,Not Stated,5,Not Applicable
 United States,Diabetes Disease,1-4 years,2,15793631
 United States,Diabetes Disease,15-24 years,248,42687510
 United States,Diabetes Disease,25-34 years,887,45940321
@@ -258,19 +258,19 @@ Alabama,Car accidents,85+ years,26,91543
 Alabama,Car accidents,< 1 year,Suppressed,56901
 Alabama,Car accidents,All Ages,981,4903185
 Alabama,Car accidents,Not Stated,Suppressed,Not Applicable
-Alabama,Cerebrovascular Disease,1-4 years,Suppressed,237456
-Alabama,Cerebrovascular Disease,15-24 years,Suppressed,635707
-Alabama,Cerebrovascular Disease,25-34 years,Suppressed,647229
-Alabama,Cerebrovascular Disease,35-44 years,Suppressed,593306
-Alabama,Cerebrovascular Disease,45-54 years,Suppressed,616616
-Alabama,Cerebrovascular Disease,5-14 years,Suppressed,608466
-Alabama,Cerebrovascular Disease,55-64 years,Suppressed,657667
-Alabama,Cerebrovascular Disease,65-74 years,Suppressed,501447
-Alabama,Cerebrovascular Disease,75-84 years,Suppressed,256847
-Alabama,Cerebrovascular Disease,85+ years,Suppressed,91543
-Alabama,Cerebrovascular Disease,< 1 year,Suppressed,56901
-Alabama,Cerebrovascular Disease,All Ages,Suppressed,4903185
-Alabama,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Alabama,Cerebrovascular Diseases,1-4 years,Suppressed,237456
+Alabama,Cerebrovascular Diseases,15-24 years,Suppressed,635707
+Alabama,Cerebrovascular Diseases,25-34 years,Suppressed,647229
+Alabama,Cerebrovascular Diseases,35-44 years,Suppressed,593306
+Alabama,Cerebrovascular Diseases,45-54 years,Suppressed,616616
+Alabama,Cerebrovascular Diseases,5-14 years,Suppressed,608466
+Alabama,Cerebrovascular Diseases,55-64 years,Suppressed,657667
+Alabama,Cerebrovascular Diseases,65-74 years,Suppressed,501447
+Alabama,Cerebrovascular Diseases,75-84 years,Suppressed,256847
+Alabama,Cerebrovascular Diseases,85+ years,Suppressed,91543
+Alabama,Cerebrovascular Diseases,< 1 year,Suppressed,56901
+Alabama,Cerebrovascular Diseases,All Ages,Suppressed,4903185
+Alabama,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Alabama,Diabetes Disease,1-4 years,Suppressed,237456
 Alabama,Diabetes Disease,15-24 years,Suppressed,635707
 Alabama,Diabetes Disease,25-34 years,Suppressed,647229
@@ -477,19 +477,19 @@ Alaska,Car accidents,85+ years,Suppressed,7181
 Alaska,Car accidents,< 1 year,Suppressed,9978
 Alaska,Car accidents,All Ages,72,731545
 Alaska,Car accidents,Not Stated,Suppressed,Not Applicable
-Alaska,Cerebrovascular Disease,1-4 years,Suppressed,41102
-Alaska,Cerebrovascular Disease,15-24 years,Suppressed,96393
-Alaska,Cerebrovascular Disease,25-34 years,Suppressed,117588
-Alaska,Cerebrovascular Disease,35-44 years,Suppressed,95765
-Alaska,Cerebrovascular Disease,45-54 years,Suppressed,85130
-Alaska,Cerebrovascular Disease,5-14 years,Suppressed,100662
-Alaska,Cerebrovascular Disease,55-64 years,Suppressed,93339
-Alaska,Cerebrovascular Disease,65-74 years,Suppressed,61300
-Alaska,Cerebrovascular Disease,75-84 years,Suppressed,23107
-Alaska,Cerebrovascular Disease,85+ years,Suppressed,7181
-Alaska,Cerebrovascular Disease,< 1 year,Suppressed,9978
-Alaska,Cerebrovascular Disease,All Ages,Suppressed,731545
-Alaska,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Alaska,Cerebrovascular Diseases,1-4 years,Suppressed,41102
+Alaska,Cerebrovascular Diseases,15-24 years,Suppressed,96393
+Alaska,Cerebrovascular Diseases,25-34 years,Suppressed,117588
+Alaska,Cerebrovascular Diseases,35-44 years,Suppressed,95765
+Alaska,Cerebrovascular Diseases,45-54 years,Suppressed,85130
+Alaska,Cerebrovascular Diseases,5-14 years,Suppressed,100662
+Alaska,Cerebrovascular Diseases,55-64 years,Suppressed,93339
+Alaska,Cerebrovascular Diseases,65-74 years,Suppressed,61300
+Alaska,Cerebrovascular Diseases,75-84 years,Suppressed,23107
+Alaska,Cerebrovascular Diseases,85+ years,Suppressed,7181
+Alaska,Cerebrovascular Diseases,< 1 year,Suppressed,9978
+Alaska,Cerebrovascular Diseases,All Ages,Suppressed,731545
+Alaska,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Alaska,Diabetes Disease,1-4 years,Suppressed,41102
 Alaska,Diabetes Disease,15-24 years,Suppressed,96393
 Alaska,Diabetes Disease,25-34 years,Suppressed,117588
@@ -696,19 +696,19 @@ Arizona,Car accidents,85+ years,41,145737
 Arizona,Car accidents,< 1 year,Suppressed,81929
 Arizona,Car accidents,All Ages,945,7278717
 Arizona,Car accidents,Not Stated,Suppressed,Not Applicable
-Arizona,Cerebrovascular Disease,1-4 years,Suppressed,347859
-Arizona,Cerebrovascular Disease,15-24 years,Suppressed,973547
-Arizona,Cerebrovascular Disease,25-34 years,Suppressed,1007093
-Arizona,Cerebrovascular Disease,35-44 years,Suppressed,896027
-Arizona,Cerebrovascular Disease,45-54 years,Suppressed,852090
-Arizona,Cerebrovascular Disease,5-14 years,Suppressed,930745
-Arizona,Cerebrovascular Disease,55-64 years,Suppressed,880794
-Arizona,Cerebrovascular Disease,65-74 years,Suppressed,751699
-Arizona,Cerebrovascular Disease,75-84 years,Suppressed,411197
-Arizona,Cerebrovascular Disease,85+ years,Suppressed,145737
-Arizona,Cerebrovascular Disease,< 1 year,Suppressed,81929
-Arizona,Cerebrovascular Disease,All Ages,Suppressed,7278717
-Arizona,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Arizona,Cerebrovascular Diseases,1-4 years,Suppressed,347859
+Arizona,Cerebrovascular Diseases,15-24 years,Suppressed,973547
+Arizona,Cerebrovascular Diseases,25-34 years,Suppressed,1007093
+Arizona,Cerebrovascular Diseases,35-44 years,Suppressed,896027
+Arizona,Cerebrovascular Diseases,45-54 years,Suppressed,852090
+Arizona,Cerebrovascular Diseases,5-14 years,Suppressed,930745
+Arizona,Cerebrovascular Diseases,55-64 years,Suppressed,880794
+Arizona,Cerebrovascular Diseases,65-74 years,Suppressed,751699
+Arizona,Cerebrovascular Diseases,75-84 years,Suppressed,411197
+Arizona,Cerebrovascular Diseases,85+ years,Suppressed,145737
+Arizona,Cerebrovascular Diseases,< 1 year,Suppressed,81929
+Arizona,Cerebrovascular Diseases,All Ages,Suppressed,7278717
+Arizona,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Arizona,Diabetes Disease,1-4 years,Suppressed,347859
 Arizona,Diabetes Disease,15-24 years,Suppressed,973547
 Arizona,Diabetes Disease,25-34 years,Suppressed,1007093
@@ -915,19 +915,19 @@ Arkansas,Car accidents,85+ years,13,59912
 Arkansas,Car accidents,< 1 year,Suppressed,36355
 Arkansas,Car accidents,All Ages,534,3017804
 Arkansas,Car accidents,Not Stated,Suppressed,Not Applicable
-Arkansas,Cerebrovascular Disease,1-4 years,Suppressed,152109
-Arkansas,Cerebrovascular Disease,15-24 years,Suppressed,397538
-Arkansas,Cerebrovascular Disease,25-34 years,Suppressed,396868
-Arkansas,Cerebrovascular Disease,35-44 years,Suppressed,370263
-Arkansas,Cerebrovascular Disease,45-54 years,Suppressed,361582
-Arkansas,Cerebrovascular Disease,5-14 years,Suppressed,393213
-Arkansas,Cerebrovascular Disease,55-64 years,Suppressed,385994
-Arkansas,Cerebrovascular Disease,65-74 years,Suppressed,302829
-Arkansas,Cerebrovascular Disease,75-84 years,Suppressed,161141
-Arkansas,Cerebrovascular Disease,85+ years,Suppressed,59912
-Arkansas,Cerebrovascular Disease,< 1 year,Suppressed,36355
-Arkansas,Cerebrovascular Disease,All Ages,Suppressed,3017804
-Arkansas,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Arkansas,Cerebrovascular Diseases,1-4 years,Suppressed,152109
+Arkansas,Cerebrovascular Diseases,15-24 years,Suppressed,397538
+Arkansas,Cerebrovascular Diseases,25-34 years,Suppressed,396868
+Arkansas,Cerebrovascular Diseases,35-44 years,Suppressed,370263
+Arkansas,Cerebrovascular Diseases,45-54 years,Suppressed,361582
+Arkansas,Cerebrovascular Diseases,5-14 years,Suppressed,393213
+Arkansas,Cerebrovascular Diseases,55-64 years,Suppressed,385994
+Arkansas,Cerebrovascular Diseases,65-74 years,Suppressed,302829
+Arkansas,Cerebrovascular Diseases,75-84 years,Suppressed,161141
+Arkansas,Cerebrovascular Diseases,85+ years,Suppressed,59912
+Arkansas,Cerebrovascular Diseases,< 1 year,Suppressed,36355
+Arkansas,Cerebrovascular Diseases,All Ages,Suppressed,3017804
+Arkansas,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Arkansas,Diabetes Disease,1-4 years,Suppressed,152109
 Arkansas,Diabetes Disease,15-24 years,Suppressed,397538
 Arkansas,Diabetes Disease,25-34 years,Suppressed,396868
@@ -1134,19 +1134,19 @@ California,Car accidents,85+ years,110,749846
 California,Car accidents,< 1 year,Suppressed,462589
 California,Car accidents,All Ages,3885,39512223
 California,Car accidents,Not Stated,Suppressed,Not Applicable
-California,Cerebrovascular Disease,1-4 years,Suppressed,1921127
-California,Cerebrovascular Disease,15-24 years,Suppressed,5180973
-California,Cerebrovascular Disease,25-34 years,Suppressed,6052952
-California,Cerebrovascular Disease,35-44 years,Suppressed,5282100
-California,Cerebrovascular Disease,45-54 years,Suppressed,4979745
-California,Cerebrovascular Disease,5-14 years,Suppressed,5007987
-California,Cerebrovascular Disease,55-64 years,Suppressed,4786635
-California,Cerebrovascular Disease,65-74 years,Suppressed,3386670
-California,Cerebrovascular Disease,75-84 years,Suppressed,1701599
-California,Cerebrovascular Disease,85+ years,Suppressed,749846
-California,Cerebrovascular Disease,< 1 year,Suppressed,462589
-California,Cerebrovascular Disease,All Ages,Suppressed,39512223
-California,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+California,Cerebrovascular Diseases,1-4 years,Suppressed,1921127
+California,Cerebrovascular Diseases,15-24 years,Suppressed,5180973
+California,Cerebrovascular Diseases,25-34 years,Suppressed,6052952
+California,Cerebrovascular Diseases,35-44 years,Suppressed,5282100
+California,Cerebrovascular Diseases,45-54 years,Suppressed,4979745
+California,Cerebrovascular Diseases,5-14 years,Suppressed,5007987
+California,Cerebrovascular Diseases,55-64 years,Suppressed,4786635
+California,Cerebrovascular Diseases,65-74 years,Suppressed,3386670
+California,Cerebrovascular Diseases,75-84 years,Suppressed,1701599
+California,Cerebrovascular Diseases,85+ years,Suppressed,749846
+California,Cerebrovascular Diseases,< 1 year,Suppressed,462589
+California,Cerebrovascular Diseases,All Ages,Suppressed,39512223
+California,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 California,Diabetes Disease,1-4 years,Suppressed,1921127
 California,Diabetes Disease,15-24 years,Suppressed,5180973
 California,Diabetes Disease,25-34 years,Suppressed,6052952
@@ -1353,19 +1353,19 @@ Colorado,Car accidents,85+ years,18,89921
 Colorado,Car accidents,< 1 year,Suppressed,64561
 Colorado,Car accidents,All Ages,614,5758736
 Colorado,Car accidents,Not Stated,Suppressed,Not Applicable
-Colorado,Cerebrovascular Disease,1-4 years,Suppressed,267640
-Colorado,Cerebrovascular Disease,15-24 years,Suppressed,743213
-Colorado,Cerebrovascular Disease,25-34 years,Suppressed,913354
-Colorado,Cerebrovascular Disease,35-44 years,Suppressed,798071
-Colorado,Cerebrovascular Disease,45-54 years,Suppressed,706150
-Colorado,Cerebrovascular Disease,5-14 years,Suppressed,710322
-Colorado,Cerebrovascular Disease,55-64 years,Suppressed,713013
-Colorado,Cerebrovascular Disease,65-74 years,Suppressed,522131
-Colorado,Cerebrovascular Disease,75-84 years,Suppressed,230360
-Colorado,Cerebrovascular Disease,85+ years,Suppressed,89921
-Colorado,Cerebrovascular Disease,< 1 year,Suppressed,64561
-Colorado,Cerebrovascular Disease,All Ages,Suppressed,5758736
-Colorado,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Colorado,Cerebrovascular Diseases,1-4 years,Suppressed,267640
+Colorado,Cerebrovascular Diseases,15-24 years,Suppressed,743213
+Colorado,Cerebrovascular Diseases,25-34 years,Suppressed,913354
+Colorado,Cerebrovascular Diseases,35-44 years,Suppressed,798071
+Colorado,Cerebrovascular Diseases,45-54 years,Suppressed,706150
+Colorado,Cerebrovascular Diseases,5-14 years,Suppressed,710322
+Colorado,Cerebrovascular Diseases,55-64 years,Suppressed,713013
+Colorado,Cerebrovascular Diseases,65-74 years,Suppressed,522131
+Colorado,Cerebrovascular Diseases,75-84 years,Suppressed,230360
+Colorado,Cerebrovascular Diseases,85+ years,Suppressed,89921
+Colorado,Cerebrovascular Diseases,< 1 year,Suppressed,64561
+Colorado,Cerebrovascular Diseases,All Ages,Suppressed,5758736
+Colorado,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Colorado,Diabetes Disease,1-4 years,Suppressed,267640
 Colorado,Diabetes Disease,15-24 years,Suppressed,743213
 Colorado,Diabetes Disease,25-34 years,Suppressed,913354
@@ -1572,19 +1572,19 @@ Connecticut,Car accidents,85+ years,18,91330
 Connecticut,Car accidents,< 1 year,Suppressed,34625
 Connecticut,Car accidents,All Ages,255,3565287
 Connecticut,Car accidents,Not Stated,Suppressed,Not Applicable
-Connecticut,Cerebrovascular Disease,1-4 years,Suppressed,147085
-Connecticut,Cerebrovascular Disease,15-24 years,Suppressed,478803
-Connecticut,Cerebrovascular Disease,25-34 years,Suppressed,448029
-Connecticut,Cerebrovascular Disease,35-44 years,Suppressed,427141
-Connecticut,Cerebrovascular Disease,45-54 years,Suppressed,476905
-Connecticut,Cerebrovascular Disease,5-14 years,Suppressed,409000
-Connecticut,Cerebrovascular Disease,55-64 years,Suppressed,513455
-Connecticut,Cerebrovascular Disease,65-74 years,Suppressed,352819
-Connecticut,Cerebrovascular Disease,75-84 years,Suppressed,186095
-Connecticut,Cerebrovascular Disease,85+ years,Suppressed,91330
-Connecticut,Cerebrovascular Disease,< 1 year,Suppressed,34625
-Connecticut,Cerebrovascular Disease,All Ages,Suppressed,3565287
-Connecticut,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Connecticut,Cerebrovascular Diseases,1-4 years,Suppressed,147085
+Connecticut,Cerebrovascular Diseases,15-24 years,Suppressed,478803
+Connecticut,Cerebrovascular Diseases,25-34 years,Suppressed,448029
+Connecticut,Cerebrovascular Diseases,35-44 years,Suppressed,427141
+Connecticut,Cerebrovascular Diseases,45-54 years,Suppressed,476905
+Connecticut,Cerebrovascular Diseases,5-14 years,Suppressed,409000
+Connecticut,Cerebrovascular Diseases,55-64 years,Suppressed,513455
+Connecticut,Cerebrovascular Diseases,65-74 years,Suppressed,352819
+Connecticut,Cerebrovascular Diseases,75-84 years,Suppressed,186095
+Connecticut,Cerebrovascular Diseases,85+ years,Suppressed,91330
+Connecticut,Cerebrovascular Diseases,< 1 year,Suppressed,34625
+Connecticut,Cerebrovascular Diseases,All Ages,Suppressed,3565287
+Connecticut,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Connecticut,Diabetes Disease,1-4 years,Suppressed,147085
 Connecticut,Diabetes Disease,15-24 years,Suppressed,478803
 Connecticut,Diabetes Disease,25-34 years,Suppressed,448029
@@ -1791,19 +1791,19 @@ Delaware,Car accidents,85+ years,Suppressed,20254
 Delaware,Car accidents,< 1 year,Suppressed,10618
 Delaware,Car accidents,All Ages,131,973764
 Delaware,Car accidents,Not Stated,Suppressed,Not Applicable
-Delaware,Cerebrovascular Disease,1-4 years,Suppressed,44101
-Delaware,Cerebrovascular Disease,15-24 years,Suppressed,117372
-Delaware,Cerebrovascular Disease,25-34 years,Suppressed,129080
-Delaware,Cerebrovascular Disease,35-44 years,Suppressed,113101
-Delaware,Cerebrovascular Disease,45-54 years,Suppressed,118881
-Delaware,Cerebrovascular Disease,5-14 years,Suppressed,113975
-Delaware,Cerebrovascular Disease,55-64 years,Suppressed,137730
-Delaware,Cerebrovascular Disease,65-74 years,Suppressed,112858
-Delaware,Cerebrovascular Disease,75-84 years,Suppressed,55794
-Delaware,Cerebrovascular Disease,85+ years,Suppressed,20254
-Delaware,Cerebrovascular Disease,< 1 year,Suppressed,10618
-Delaware,Cerebrovascular Disease,All Ages,Suppressed,973764
-Delaware,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Delaware,Cerebrovascular Diseases,1-4 years,Suppressed,44101
+Delaware,Cerebrovascular Diseases,15-24 years,Suppressed,117372
+Delaware,Cerebrovascular Diseases,25-34 years,Suppressed,129080
+Delaware,Cerebrovascular Diseases,35-44 years,Suppressed,113101
+Delaware,Cerebrovascular Diseases,45-54 years,Suppressed,118881
+Delaware,Cerebrovascular Diseases,5-14 years,Suppressed,113975
+Delaware,Cerebrovascular Diseases,55-64 years,Suppressed,137730
+Delaware,Cerebrovascular Diseases,65-74 years,Suppressed,112858
+Delaware,Cerebrovascular Diseases,75-84 years,Suppressed,55794
+Delaware,Cerebrovascular Diseases,85+ years,Suppressed,20254
+Delaware,Cerebrovascular Diseases,< 1 year,Suppressed,10618
+Delaware,Cerebrovascular Diseases,All Ages,Suppressed,973764
+Delaware,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Delaware,Diabetes Disease,1-4 years,Suppressed,44101
 Delaware,Diabetes Disease,15-24 years,Suppressed,117372
 Delaware,Diabetes Disease,25-34 years,Suppressed,129080
@@ -2010,19 +2010,19 @@ District of Columbia,Car accidents,85+ years,Suppressed,12242
 District of Columbia,Car accidents,< 1 year,Suppressed,9552
 District of Columbia,Car accidents,All Ages,44,705749
 District of Columbia,Car accidents,Not Stated,Suppressed,Not Applicable
-District of Columbia,Cerebrovascular Disease,1-4 years,Suppressed,35816
-District of Columbia,Cerebrovascular Disease,15-24 years,Suppressed,87968
-District of Columbia,Cerebrovascular Disease,25-34 years,Suppressed,164541
-District of Columbia,Cerebrovascular Disease,35-44 years,Suppressed,108969
-District of Columbia,Cerebrovascular Disease,45-54 years,Suppressed,74286
-District of Columbia,Cerebrovascular Disease,5-14 years,Suppressed,67398
-District of Columbia,Cerebrovascular Disease,55-64 years,Suppressed,69876
-District of Columbia,Cerebrovascular Disease,65-74 years,Suppressed,50219
-District of Columbia,Cerebrovascular Disease,75-84 years,Suppressed,24882
-District of Columbia,Cerebrovascular Disease,85+ years,Suppressed,12242
-District of Columbia,Cerebrovascular Disease,< 1 year,Suppressed,9552
-District of Columbia,Cerebrovascular Disease,All Ages,Suppressed,705749
-District of Columbia,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+District of Columbia,Cerebrovascular Diseases,1-4 years,Suppressed,35816
+District of Columbia,Cerebrovascular Diseases,15-24 years,Suppressed,87968
+District of Columbia,Cerebrovascular Diseases,25-34 years,Suppressed,164541
+District of Columbia,Cerebrovascular Diseases,35-44 years,Suppressed,108969
+District of Columbia,Cerebrovascular Diseases,45-54 years,Suppressed,74286
+District of Columbia,Cerebrovascular Diseases,5-14 years,Suppressed,67398
+District of Columbia,Cerebrovascular Diseases,55-64 years,Suppressed,69876
+District of Columbia,Cerebrovascular Diseases,65-74 years,Suppressed,50219
+District of Columbia,Cerebrovascular Diseases,75-84 years,Suppressed,24882
+District of Columbia,Cerebrovascular Diseases,85+ years,Suppressed,12242
+District of Columbia,Cerebrovascular Diseases,< 1 year,Suppressed,9552
+District of Columbia,Cerebrovascular Diseases,All Ages,Suppressed,705749
+District of Columbia,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 District of Columbia,Diabetes Disease,1-4 years,Suppressed,35816
 District of Columbia,Diabetes Disease,15-24 years,Suppressed,87968
 District of Columbia,Diabetes Disease,25-34 years,Suppressed,164541
@@ -2229,19 +2229,19 @@ Florida,Car accidents,85+ years,135,581454
 Florida,Car accidents,< 1 year,Suppressed,221463
 Florida,Car accidents,All Ages,3206,21477737
 Florida,Car accidents,Not Stated,Suppressed,Not Applicable
-Florida,Cerebrovascular Disease,1-4 years,Suppressed,918279
-Florida,Cerebrovascular Disease,15-24 years,Suppressed,2460558
-Florida,Cerebrovascular Disease,25-34 years,Suppressed,2799422
-Florida,Cerebrovascular Disease,35-44 years,Suppressed,2600531
-Florida,Cerebrovascular Disease,45-54 years,Suppressed,2709395
-Florida,Cerebrovascular Disease,5-14 years,Suppressed,2372397
-Florida,Cerebrovascular Disease,55-64 years,Suppressed,2898355
-Florida,Cerebrovascular Disease,65-74 years,Suppressed,2465369
-Florida,Cerebrovascular Disease,75-84 years,Suppressed,1450514
-Florida,Cerebrovascular Disease,85+ years,Suppressed,581454
-Florida,Cerebrovascular Disease,< 1 year,Suppressed,221463
-Florida,Cerebrovascular Disease,All Ages,Suppressed,21477737
-Florida,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Florida,Cerebrovascular Diseases,1-4 years,Suppressed,918279
+Florida,Cerebrovascular Diseases,15-24 years,Suppressed,2460558
+Florida,Cerebrovascular Diseases,25-34 years,Suppressed,2799422
+Florida,Cerebrovascular Diseases,35-44 years,Suppressed,2600531
+Florida,Cerebrovascular Diseases,45-54 years,Suppressed,2709395
+Florida,Cerebrovascular Diseases,5-14 years,Suppressed,2372397
+Florida,Cerebrovascular Diseases,55-64 years,Suppressed,2898355
+Florida,Cerebrovascular Diseases,65-74 years,Suppressed,2465369
+Florida,Cerebrovascular Diseases,75-84 years,Suppressed,1450514
+Florida,Cerebrovascular Diseases,85+ years,Suppressed,581454
+Florida,Cerebrovascular Diseases,< 1 year,Suppressed,221463
+Florida,Cerebrovascular Diseases,All Ages,Suppressed,21477737
+Florida,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Florida,Diabetes Disease,1-4 years,Suppressed,918279
 Florida,Diabetes Disease,15-24 years,Suppressed,2460558
 Florida,Diabetes Disease,25-34 years,Suppressed,2799422
@@ -2448,19 +2448,19 @@ Georgia,Car accidents,85+ years,42,151069
 Georgia,Car accidents,< 1 year,Suppressed,127141
 Georgia,Car accidents,All Ages,1492,10617423
 Georgia,Car accidents,Not Stated,Suppressed,Not Applicable
-Georgia,Cerebrovascular Disease,1-4 years,Suppressed,529425
-Georgia,Cerebrovascular Disease,15-24 years,Suppressed,1449500
-Georgia,Cerebrovascular Disease,25-34 years,Suppressed,1493261
-Georgia,Cerebrovascular Disease,35-44 years,Suppressed,1380954
-Georgia,Cerebrovascular Disease,45-54 years,Suppressed,1399652
-Georgia,Cerebrovascular Disease,5-14 years,Suppressed,1413003
-Georgia,Cerebrovascular Disease,55-64 years,Suppressed,1307533
-Georgia,Cerebrovascular Disease,65-74 years,Suppressed,926001
-Georgia,Cerebrovascular Disease,75-84 years,Suppressed,439884
-Georgia,Cerebrovascular Disease,85+ years,Suppressed,151069
-Georgia,Cerebrovascular Disease,< 1 year,Suppressed,127141
-Georgia,Cerebrovascular Disease,All Ages,Suppressed,10617423
-Georgia,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Georgia,Cerebrovascular Diseases,1-4 years,Suppressed,529425
+Georgia,Cerebrovascular Diseases,15-24 years,Suppressed,1449500
+Georgia,Cerebrovascular Diseases,25-34 years,Suppressed,1493261
+Georgia,Cerebrovascular Diseases,35-44 years,Suppressed,1380954
+Georgia,Cerebrovascular Diseases,45-54 years,Suppressed,1399652
+Georgia,Cerebrovascular Diseases,5-14 years,Suppressed,1413003
+Georgia,Cerebrovascular Diseases,55-64 years,Suppressed,1307533
+Georgia,Cerebrovascular Diseases,65-74 years,Suppressed,926001
+Georgia,Cerebrovascular Diseases,75-84 years,Suppressed,439884
+Georgia,Cerebrovascular Diseases,85+ years,Suppressed,151069
+Georgia,Cerebrovascular Diseases,< 1 year,Suppressed,127141
+Georgia,Cerebrovascular Diseases,All Ages,Suppressed,10617423
+Georgia,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Georgia,Diabetes Disease,1-4 years,Suppressed,529425
 Georgia,Diabetes Disease,15-24 years,Suppressed,1449500
 Georgia,Diabetes Disease,25-34 years,Suppressed,1493261
@@ -2667,19 +2667,19 @@ Hawaii,Car accidents,85+ years,Suppressed,41668
 Hawaii,Car accidents,< 1 year,Suppressed,16800
 Hawaii,Car accidents,All Ages,118,1415872
 Hawaii,Car accidents,Not Stated,Suppressed,Not Applicable
-Hawaii,Cerebrovascular Disease,1-4 years,Suppressed,68419
-Hawaii,Cerebrovascular Disease,15-24 years,Suppressed,165937
-Hawaii,Cerebrovascular Disease,25-34 years,Suppressed,199995
-Hawaii,Cerebrovascular Disease,35-44 years,Suppressed,181803
-Hawaii,Cerebrovascular Disease,45-54 years,Suppressed,167747
-Hawaii,Cerebrovascular Disease,5-14 years,Suppressed,167586
-Hawaii,Cerebrovascular Disease,55-64 years,Suppressed,179137
-Hawaii,Cerebrovascular Disease,65-74 years,Suppressed,152092
-Hawaii,Cerebrovascular Disease,75-84 years,Suppressed,74688
-Hawaii,Cerebrovascular Disease,85+ years,Suppressed,41668
-Hawaii,Cerebrovascular Disease,< 1 year,Suppressed,16800
-Hawaii,Cerebrovascular Disease,All Ages,Suppressed,1415872
-Hawaii,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Hawaii,Cerebrovascular Diseases,1-4 years,Suppressed,68419
+Hawaii,Cerebrovascular Diseases,15-24 years,Suppressed,165937
+Hawaii,Cerebrovascular Diseases,25-34 years,Suppressed,199995
+Hawaii,Cerebrovascular Diseases,35-44 years,Suppressed,181803
+Hawaii,Cerebrovascular Diseases,45-54 years,Suppressed,167747
+Hawaii,Cerebrovascular Diseases,5-14 years,Suppressed,167586
+Hawaii,Cerebrovascular Diseases,55-64 years,Suppressed,179137
+Hawaii,Cerebrovascular Diseases,65-74 years,Suppressed,152092
+Hawaii,Cerebrovascular Diseases,75-84 years,Suppressed,74688
+Hawaii,Cerebrovascular Diseases,85+ years,Suppressed,41668
+Hawaii,Cerebrovascular Diseases,< 1 year,Suppressed,16800
+Hawaii,Cerebrovascular Diseases,All Ages,Suppressed,1415872
+Hawaii,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Hawaii,Diabetes Disease,1-4 years,Suppressed,68419
 Hawaii,Diabetes Disease,15-24 years,Suppressed,165937
 Hawaii,Diabetes Disease,25-34 years,Suppressed,199995
@@ -2886,19 +2886,19 @@ Idaho,Car accidents,85+ years,11,29774
 Idaho,Car accidents,< 1 year,Suppressed,22106
 Idaho,Car accidents,All Ages,241,1787065
 Idaho,Car accidents,Not Stated,Suppressed,Not Applicable
-Idaho,Cerebrovascular Disease,1-4 years,Suppressed,94094
-Idaho,Cerebrovascular Disease,15-24 years,Suppressed,241619
-Idaho,Cerebrovascular Disease,25-34 years,Suppressed,236490
-Idaho,Cerebrovascular Disease,35-44 years,Suppressed,227172
-Idaho,Cerebrovascular Disease,45-54 years,Suppressed,201766
-Idaho,Cerebrovascular Disease,5-14 years,Suppressed,254788
-Idaho,Cerebrovascular Disease,55-64 years,Suppressed,218360
-Idaho,Cerebrovascular Disease,65-74 years,Suppressed,175866
-Idaho,Cerebrovascular Disease,75-84 years,Suppressed,85030
-Idaho,Cerebrovascular Disease,85+ years,Suppressed,29774
-Idaho,Cerebrovascular Disease,< 1 year,Suppressed,22106
-Idaho,Cerebrovascular Disease,All Ages,Suppressed,1787065
-Idaho,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Idaho,Cerebrovascular Diseases,1-4 years,Suppressed,94094
+Idaho,Cerebrovascular Diseases,15-24 years,Suppressed,241619
+Idaho,Cerebrovascular Diseases,25-34 years,Suppressed,236490
+Idaho,Cerebrovascular Diseases,35-44 years,Suppressed,227172
+Idaho,Cerebrovascular Diseases,45-54 years,Suppressed,201766
+Idaho,Cerebrovascular Diseases,5-14 years,Suppressed,254788
+Idaho,Cerebrovascular Diseases,55-64 years,Suppressed,218360
+Idaho,Cerebrovascular Diseases,65-74 years,Suppressed,175866
+Idaho,Cerebrovascular Diseases,75-84 years,Suppressed,85030
+Idaho,Cerebrovascular Diseases,85+ years,Suppressed,29774
+Idaho,Cerebrovascular Diseases,< 1 year,Suppressed,22106
+Idaho,Cerebrovascular Diseases,All Ages,Suppressed,1787065
+Idaho,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Idaho,Diabetes Disease,1-4 years,Suppressed,94094
 Idaho,Diabetes Disease,15-24 years,Suppressed,241619
 Idaho,Diabetes Disease,25-34 years,Suppressed,236490
@@ -3105,19 +3105,19 @@ Illinois,Car accidents,85+ years,44,266969
 Illinois,Car accidents,< 1 year,Suppressed,143723
 Illinois,Car accidents,All Ages,1102,12671821
 Illinois,Car accidents,Not Stated,Suppressed,Not Applicable
-Illinois,Cerebrovascular Disease,1-4 years,Suppressed,603211
-Illinois,Cerebrovascular Disease,15-24 years,Suppressed,1652607
-Illinois,Cerebrovascular Disease,25-34 years,Suppressed,1758096
-Illinois,Cerebrovascular Disease,35-44 years,Suppressed,1637135
-Illinois,Cerebrovascular Disease,45-54 years,Suppressed,1599789
-Illinois,Cerebrovascular Disease,5-14 years,Suppressed,1575745
-Illinois,Cerebrovascular Disease,55-64 years,Suppressed,1658283
-Illinois,Cerebrovascular Disease,65-74 years,Suppressed,1176033
-Illinois,Cerebrovascular Disease,75-84 years,Suppressed,600230
-Illinois,Cerebrovascular Disease,85+ years,Suppressed,266969
-Illinois,Cerebrovascular Disease,< 1 year,Suppressed,143723
-Illinois,Cerebrovascular Disease,All Ages,Suppressed,12671821
-Illinois,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Illinois,Cerebrovascular Diseases,1-4 years,Suppressed,603211
+Illinois,Cerebrovascular Diseases,15-24 years,Suppressed,1652607
+Illinois,Cerebrovascular Diseases,25-34 years,Suppressed,1758096
+Illinois,Cerebrovascular Diseases,35-44 years,Suppressed,1637135
+Illinois,Cerebrovascular Diseases,45-54 years,Suppressed,1599789
+Illinois,Cerebrovascular Diseases,5-14 years,Suppressed,1575745
+Illinois,Cerebrovascular Diseases,55-64 years,Suppressed,1658283
+Illinois,Cerebrovascular Diseases,65-74 years,Suppressed,1176033
+Illinois,Cerebrovascular Diseases,75-84 years,Suppressed,600230
+Illinois,Cerebrovascular Diseases,85+ years,Suppressed,266969
+Illinois,Cerebrovascular Diseases,< 1 year,Suppressed,143723
+Illinois,Cerebrovascular Diseases,All Ages,Suppressed,12671821
+Illinois,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Illinois,Diabetes Disease,1-4 years,Suppressed,603211
 Illinois,Diabetes Disease,15-24 years,Suppressed,1652607
 Illinois,Diabetes Disease,25-34 years,Suppressed,1758096
@@ -3324,19 +3324,19 @@ Indiana,Car accidents,85+ years,29,131069
 Indiana,Car accidents,< 1 year,Suppressed,80356
 Indiana,Car accidents,All Ages,839,6732219
 Indiana,Car accidents,Not Stated,Suppressed,Not Applicable
-Indiana,Cerebrovascular Disease,1-4 years,Suppressed,337984
-Indiana,Cerebrovascular Disease,15-24 years,Suppressed,930398
-Indiana,Cerebrovascular Disease,25-34 years,Suppressed,890687
-Indiana,Cerebrovascular Disease,35-44 years,Suppressed,828959
-Indiana,Cerebrovascular Disease,45-54 years,Suppressed,824029
-Indiana,Cerebrovascular Disease,5-14 years,Suppressed,878981
-Indiana,Cerebrovascular Disease,55-64 years,Suppressed,875082
-Indiana,Cerebrovascular Disease,65-74 years,Suppressed,636737
-Indiana,Cerebrovascular Disease,75-84 years,Suppressed,317937
-Indiana,Cerebrovascular Disease,85+ years,Suppressed,131069
-Indiana,Cerebrovascular Disease,< 1 year,Suppressed,80356
-Indiana,Cerebrovascular Disease,All Ages,Suppressed,6732219
-Indiana,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Indiana,Cerebrovascular Diseases,1-4 years,Suppressed,337984
+Indiana,Cerebrovascular Diseases,15-24 years,Suppressed,930398
+Indiana,Cerebrovascular Diseases,25-34 years,Suppressed,890687
+Indiana,Cerebrovascular Diseases,35-44 years,Suppressed,828959
+Indiana,Cerebrovascular Diseases,45-54 years,Suppressed,824029
+Indiana,Cerebrovascular Diseases,5-14 years,Suppressed,878981
+Indiana,Cerebrovascular Diseases,55-64 years,Suppressed,875082
+Indiana,Cerebrovascular Diseases,65-74 years,Suppressed,636737
+Indiana,Cerebrovascular Diseases,75-84 years,Suppressed,317937
+Indiana,Cerebrovascular Diseases,85+ years,Suppressed,131069
+Indiana,Cerebrovascular Diseases,< 1 year,Suppressed,80356
+Indiana,Cerebrovascular Diseases,All Ages,Suppressed,6732219
+Indiana,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Indiana,Diabetes Disease,1-4 years,Suppressed,337984
 Indiana,Diabetes Disease,15-24 years,Suppressed,930398
 Indiana,Diabetes Disease,25-34 years,Suppressed,890687
@@ -3543,19 +3543,19 @@ Iowa,Car accidents,85+ years,Suppressed,78674
 Iowa,Car accidents,< 1 year,Suppressed,37540
 Iowa,Car accidents,All Ages,351,3155070
 Iowa,Car accidents,Not Stated,Suppressed,Not Applicable
-Iowa,Cerebrovascular Disease,1-4 years,Suppressed,158096
-Iowa,Cerebrovascular Disease,15-24 years,Suppressed,436415
-Iowa,Cerebrovascular Disease,25-34 years,Suppressed,398150
-Iowa,Cerebrovascular Disease,35-44 years,Suppressed,385215
-Iowa,Cerebrovascular Disease,45-54 years,Suppressed,362509
-Iowa,Cerebrovascular Disease,5-14 years,Suppressed,408495
-Iowa,Cerebrovascular Disease,55-64 years,Suppressed,415696
-Iowa,Cerebrovascular Disease,65-74 years,Suppressed,311447
-Iowa,Cerebrovascular Disease,75-84 years,Suppressed,162833
-Iowa,Cerebrovascular Disease,85+ years,Suppressed,78674
-Iowa,Cerebrovascular Disease,< 1 year,Suppressed,37540
-Iowa,Cerebrovascular Disease,All Ages,Suppressed,3155070
-Iowa,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Iowa,Cerebrovascular Diseases,1-4 years,Suppressed,158096
+Iowa,Cerebrovascular Diseases,15-24 years,Suppressed,436415
+Iowa,Cerebrovascular Diseases,25-34 years,Suppressed,398150
+Iowa,Cerebrovascular Diseases,35-44 years,Suppressed,385215
+Iowa,Cerebrovascular Diseases,45-54 years,Suppressed,362509
+Iowa,Cerebrovascular Diseases,5-14 years,Suppressed,408495
+Iowa,Cerebrovascular Diseases,55-64 years,Suppressed,415696
+Iowa,Cerebrovascular Diseases,65-74 years,Suppressed,311447
+Iowa,Cerebrovascular Diseases,75-84 years,Suppressed,162833
+Iowa,Cerebrovascular Diseases,85+ years,Suppressed,78674
+Iowa,Cerebrovascular Diseases,< 1 year,Suppressed,37540
+Iowa,Cerebrovascular Diseases,All Ages,Suppressed,3155070
+Iowa,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Iowa,Diabetes Disease,1-4 years,Suppressed,158096
 Iowa,Diabetes Disease,15-24 years,Suppressed,436415
 Iowa,Diabetes Disease,25-34 years,Suppressed,398150
@@ -3762,19 +3762,19 @@ Kansas,Car accidents,85+ years,15,65678
 Kansas,Car accidents,< 1 year,Suppressed,35325
 Kansas,Car accidents,All Ages,383,2913314
 Kansas,Car accidents,Not Stated,Suppressed,Not Applicable
-Kansas,Cerebrovascular Disease,1-4 years,Suppressed,150006
-Kansas,Cerebrovascular Disease,15-24 years,Suppressed,412813
-Kansas,Cerebrovascular Disease,25-34 years,Suppressed,382922
-Kansas,Cerebrovascular Disease,35-44 years,Suppressed,361029
-Kansas,Cerebrovascular Disease,45-54 years,Suppressed,327961
-Kansas,Cerebrovascular Disease,5-14 years,Suppressed,396266
-Kansas,Cerebrovascular Disease,55-64 years,Suppressed,371505
-Kansas,Cerebrovascular Disease,65-74 years,Suppressed,272236
-Kansas,Cerebrovascular Disease,75-84 years,Suppressed,137573
-Kansas,Cerebrovascular Disease,85+ years,Suppressed,65678
-Kansas,Cerebrovascular Disease,< 1 year,Suppressed,35325
-Kansas,Cerebrovascular Disease,All Ages,Suppressed,2913314
-Kansas,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Kansas,Cerebrovascular Diseases,1-4 years,Suppressed,150006
+Kansas,Cerebrovascular Diseases,15-24 years,Suppressed,412813
+Kansas,Cerebrovascular Diseases,25-34 years,Suppressed,382922
+Kansas,Cerebrovascular Diseases,35-44 years,Suppressed,361029
+Kansas,Cerebrovascular Diseases,45-54 years,Suppressed,327961
+Kansas,Cerebrovascular Diseases,5-14 years,Suppressed,396266
+Kansas,Cerebrovascular Diseases,55-64 years,Suppressed,371505
+Kansas,Cerebrovascular Diseases,65-74 years,Suppressed,272236
+Kansas,Cerebrovascular Diseases,75-84 years,Suppressed,137573
+Kansas,Cerebrovascular Diseases,85+ years,Suppressed,65678
+Kansas,Cerebrovascular Diseases,< 1 year,Suppressed,35325
+Kansas,Cerebrovascular Diseases,All Ages,Suppressed,2913314
+Kansas,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Kansas,Diabetes Disease,1-4 years,Suppressed,150006
 Kansas,Diabetes Disease,15-24 years,Suppressed,412813
 Kansas,Diabetes Disease,25-34 years,Suppressed,382922
@@ -3981,19 +3981,19 @@ Kentucky,Car accidents,85+ years,34,81868
 Kentucky,Car accidents,< 1 year,Suppressed,53154
 Kentucky,Car accidents,All Ages,735,4467673
 Kentucky,Car accidents,Not Stated,Suppressed,Not Applicable
-Kentucky,Cerebrovascular Disease,1-4 years,Suppressed,219456
-Kentucky,Cerebrovascular Disease,15-24 years,Suppressed,583798
-Kentucky,Cerebrovascular Disease,25-34 years,Suppressed,587380
-Kentucky,Cerebrovascular Disease,35-44 years,Suppressed,550953
-Kentucky,Cerebrovascular Disease,45-54 years,Suppressed,563662
-Kentucky,Cerebrovascular Disease,5-14 years,Suppressed,560417
-Kentucky,Cerebrovascular Disease,55-64 years,Suppressed,598289
-Kentucky,Cerebrovascular Disease,65-74 years,Suppressed,447876
-Kentucky,Cerebrovascular Disease,75-84 years,Suppressed,220820
-Kentucky,Cerebrovascular Disease,85+ years,Suppressed,81868
-Kentucky,Cerebrovascular Disease,< 1 year,Suppressed,53154
-Kentucky,Cerebrovascular Disease,All Ages,Suppressed,4467673
-Kentucky,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Kentucky,Cerebrovascular Diseases,1-4 years,Suppressed,219456
+Kentucky,Cerebrovascular Diseases,15-24 years,Suppressed,583798
+Kentucky,Cerebrovascular Diseases,25-34 years,Suppressed,587380
+Kentucky,Cerebrovascular Diseases,35-44 years,Suppressed,550953
+Kentucky,Cerebrovascular Diseases,45-54 years,Suppressed,563662
+Kentucky,Cerebrovascular Diseases,5-14 years,Suppressed,560417
+Kentucky,Cerebrovascular Diseases,55-64 years,Suppressed,598289
+Kentucky,Cerebrovascular Diseases,65-74 years,Suppressed,447876
+Kentucky,Cerebrovascular Diseases,75-84 years,Suppressed,220820
+Kentucky,Cerebrovascular Diseases,85+ years,Suppressed,81868
+Kentucky,Cerebrovascular Diseases,< 1 year,Suppressed,53154
+Kentucky,Cerebrovascular Diseases,All Ages,Suppressed,4467673
+Kentucky,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Kentucky,Diabetes Disease,1-4 years,Suppressed,219456
 Kentucky,Diabetes Disease,15-24 years,Suppressed,583798
 Kentucky,Diabetes Disease,25-34 years,Suppressed,587380
@@ -4200,19 +4200,19 @@ Louisiana,Car accidents,85+ years,25,82057
 Louisiana,Car accidents,< 1 year,Suppressed,58010
 Louisiana,Car accidents,All Ages,728,4648794
 Louisiana,Car accidents,Not Stated,Suppressed,Not Applicable
-Louisiana,Cerebrovascular Disease,1-4 years,Suppressed,243459
-Louisiana,Cerebrovascular Disease,15-24 years,Suppressed,597268
-Louisiana,Cerebrovascular Disease,25-34 years,Suppressed,658227
-Louisiana,Cerebrovascular Disease,35-44 years,Suppressed,589854
-Louisiana,Cerebrovascular Disease,45-54 years,Suppressed,548348
-Louisiana,Cerebrovascular Disease,5-14 years,Suppressed,607936
-Louisiana,Cerebrovascular Disease,55-64 years,Suppressed,604670
-Louisiana,Cerebrovascular Disease,65-74 years,Suppressed,442534
-Louisiana,Cerebrovascular Disease,75-84 years,Suppressed,216431
-Louisiana,Cerebrovascular Disease,85+ years,Suppressed,82057
-Louisiana,Cerebrovascular Disease,< 1 year,Suppressed,58010
-Louisiana,Cerebrovascular Disease,All Ages,Suppressed,4648794
-Louisiana,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Louisiana,Cerebrovascular Diseases,1-4 years,Suppressed,243459
+Louisiana,Cerebrovascular Diseases,15-24 years,Suppressed,597268
+Louisiana,Cerebrovascular Diseases,25-34 years,Suppressed,658227
+Louisiana,Cerebrovascular Diseases,35-44 years,Suppressed,589854
+Louisiana,Cerebrovascular Diseases,45-54 years,Suppressed,548348
+Louisiana,Cerebrovascular Diseases,5-14 years,Suppressed,607936
+Louisiana,Cerebrovascular Diseases,55-64 years,Suppressed,604670
+Louisiana,Cerebrovascular Diseases,65-74 years,Suppressed,442534
+Louisiana,Cerebrovascular Diseases,75-84 years,Suppressed,216431
+Louisiana,Cerebrovascular Diseases,85+ years,Suppressed,82057
+Louisiana,Cerebrovascular Diseases,< 1 year,Suppressed,58010
+Louisiana,Cerebrovascular Diseases,All Ages,Suppressed,4648794
+Louisiana,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Louisiana,Diabetes Disease,1-4 years,Suppressed,243459
 Louisiana,Diabetes Disease,15-24 years,Suppressed,597268
 Louisiana,Diabetes Disease,25-34 years,Suppressed,658227
@@ -4419,19 +4419,19 @@ Maine,Car accidents,85+ years,Suppressed,33800
 Maine,Car accidents,< 1 year,Suppressed,12035
 Maine,Car accidents,All Ages,159,1344212
 Maine,Car accidents,Not Stated,Suppressed,Not Applicable
-Maine,Cerebrovascular Disease,1-4 years,Suppressed,51502
-Maine,Cerebrovascular Disease,15-24 years,Suppressed,152137
-Maine,Cerebrovascular Disease,25-34 years,Suppressed,162808
-Maine,Cerebrovascular Disease,35-44 years,Suppressed,154075
-Maine,Cerebrovascular Disease,45-54 years,Suppressed,174730
-Maine,Cerebrovascular Disease,5-14 years,Suppressed,140100
-Maine,Cerebrovascular Disease,55-64 years,Suppressed,211560
-Maine,Cerebrovascular Disease,65-74 years,Suppressed,169079
-Maine,Cerebrovascular Disease,75-84 years,Suppressed,82386
-Maine,Cerebrovascular Disease,85+ years,Suppressed,33800
-Maine,Cerebrovascular Disease,< 1 year,Suppressed,12035
-Maine,Cerebrovascular Disease,All Ages,Suppressed,1344212
-Maine,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Maine,Cerebrovascular Diseases,1-4 years,Suppressed,51502
+Maine,Cerebrovascular Diseases,15-24 years,Suppressed,152137
+Maine,Cerebrovascular Diseases,25-34 years,Suppressed,162808
+Maine,Cerebrovascular Diseases,35-44 years,Suppressed,154075
+Maine,Cerebrovascular Diseases,45-54 years,Suppressed,174730
+Maine,Cerebrovascular Diseases,5-14 years,Suppressed,140100
+Maine,Cerebrovascular Diseases,55-64 years,Suppressed,211560
+Maine,Cerebrovascular Diseases,65-74 years,Suppressed,169079
+Maine,Cerebrovascular Diseases,75-84 years,Suppressed,82386
+Maine,Cerebrovascular Diseases,85+ years,Suppressed,33800
+Maine,Cerebrovascular Diseases,< 1 year,Suppressed,12035
+Maine,Cerebrovascular Diseases,All Ages,Suppressed,1344212
+Maine,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Maine,Diabetes Disease,1-4 years,Suppressed,51502
 Maine,Diabetes Disease,15-24 years,Suppressed,152137
 Maine,Diabetes Disease,25-34 years,Suppressed,162808
@@ -4638,19 +4638,19 @@ Maryland,Car accidents,85+ years,21,119393
 Maryland,Car accidents,< 1 year,Suppressed,69926
 Maryland,Car accidents,All Ages,537,6045680
 Maryland,Car accidents,Not Stated,Suppressed,Not Applicable
-Maryland,Cerebrovascular Disease,1-4 years,Suppressed,292011
-Maryland,Cerebrovascular Disease,15-24 years,Suppressed,751030
-Maryland,Cerebrovascular Disease,25-34 years,Suppressed,829249
-Maryland,Cerebrovascular Disease,35-44 years,Suppressed,782213
-Maryland,Cerebrovascular Disease,45-54 years,Suppressed,795467
-Maryland,Cerebrovascular Disease,5-14 years,Suppressed,747869
-Maryland,Cerebrovascular Disease,55-64 years,Suppressed,818519
-Maryland,Cerebrovascular Disease,65-74 years,Suppressed,561582
-Maryland,Cerebrovascular Disease,75-84 years,Suppressed,278421
-Maryland,Cerebrovascular Disease,85+ years,Suppressed,119393
-Maryland,Cerebrovascular Disease,< 1 year,Suppressed,69926
-Maryland,Cerebrovascular Disease,All Ages,Suppressed,6045680
-Maryland,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Maryland,Cerebrovascular Diseases,1-4 years,Suppressed,292011
+Maryland,Cerebrovascular Diseases,15-24 years,Suppressed,751030
+Maryland,Cerebrovascular Diseases,25-34 years,Suppressed,829249
+Maryland,Cerebrovascular Diseases,35-44 years,Suppressed,782213
+Maryland,Cerebrovascular Diseases,45-54 years,Suppressed,795467
+Maryland,Cerebrovascular Diseases,5-14 years,Suppressed,747869
+Maryland,Cerebrovascular Diseases,55-64 years,Suppressed,818519
+Maryland,Cerebrovascular Diseases,65-74 years,Suppressed,561582
+Maryland,Cerebrovascular Diseases,75-84 years,Suppressed,278421
+Maryland,Cerebrovascular Diseases,85+ years,Suppressed,119393
+Maryland,Cerebrovascular Diseases,< 1 year,Suppressed,69926
+Maryland,Cerebrovascular Diseases,All Ages,Suppressed,6045680
+Maryland,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Maryland,Diabetes Disease,1-4 years,Suppressed,292011
 Maryland,Diabetes Disease,15-24 years,Suppressed,751030
 Maryland,Diabetes Disease,25-34 years,Suppressed,829249
@@ -4857,19 +4857,19 @@ Massachusetts,Car accidents,85+ years,21,159523
 Massachusetts,Car accidents,< 1 year,Suppressed,70791
 Massachusetts,Car accidents,All Ages,378,6892503
 Massachusetts,Car accidents,Not Stated,Suppressed,Not Applicable
-Massachusetts,Cerebrovascular Disease,1-4 years,Suppressed,286571
-Massachusetts,Cerebrovascular Disease,15-24 years,Suppressed,935124
-Massachusetts,Cerebrovascular Disease,25-34 years,Suppressed,994454
-Massachusetts,Cerebrovascular Disease,35-44 years,Suppressed,848373
-Massachusetts,Cerebrovascular Disease,45-54 years,Suppressed,893633
-Massachusetts,Cerebrovascular Disease,5-14 years,Suppressed,751035
-Massachusetts,Cerebrovascular Disease,55-64 years,Suppressed,943190
-Massachusetts,Cerebrovascular Disease,65-74 years,Suppressed,673305
-Massachusetts,Cerebrovascular Disease,75-84 years,Suppressed,336504
-Massachusetts,Cerebrovascular Disease,85+ years,Suppressed,159523
-Massachusetts,Cerebrovascular Disease,< 1 year,Suppressed,70791
-Massachusetts,Cerebrovascular Disease,All Ages,Suppressed,6892503
-Massachusetts,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Massachusetts,Cerebrovascular Diseases,1-4 years,Suppressed,286571
+Massachusetts,Cerebrovascular Diseases,15-24 years,Suppressed,935124
+Massachusetts,Cerebrovascular Diseases,25-34 years,Suppressed,994454
+Massachusetts,Cerebrovascular Diseases,35-44 years,Suppressed,848373
+Massachusetts,Cerebrovascular Diseases,45-54 years,Suppressed,893633
+Massachusetts,Cerebrovascular Diseases,5-14 years,Suppressed,751035
+Massachusetts,Cerebrovascular Diseases,55-64 years,Suppressed,943190
+Massachusetts,Cerebrovascular Diseases,65-74 years,Suppressed,673305
+Massachusetts,Cerebrovascular Diseases,75-84 years,Suppressed,336504
+Massachusetts,Cerebrovascular Diseases,85+ years,Suppressed,159523
+Massachusetts,Cerebrovascular Diseases,< 1 year,Suppressed,70791
+Massachusetts,Cerebrovascular Diseases,All Ages,Suppressed,6892503
+Massachusetts,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Massachusetts,Diabetes Disease,1-4 years,Suppressed,286571
 Massachusetts,Diabetes Disease,15-24 years,Suppressed,935124
 Massachusetts,Diabetes Disease,25-34 years,Suppressed,994454
@@ -5076,19 +5076,19 @@ Michigan,Car accidents,85+ years,42,213136
 Michigan,Car accidents,< 1 year,Suppressed,109018
 Michigan,Car accidents,All Ages,1017,9986857
 Michigan,Car accidents,Not Stated,Suppressed,Not Applicable
-Michigan,Cerebrovascular Disease,1-4 years,Suppressed,457424
-Michigan,Cerebrovascular Disease,15-24 years,Suppressed,1326325
-Michigan,Cerebrovascular Disease,25-34 years,Suppressed,1311614
-Michigan,Cerebrovascular Disease,35-44 years,Suppressed,1166172
-Michigan,Cerebrovascular Disease,45-54 years,Suppressed,1254679
-Michigan,Cerebrovascular Disease,5-14 years,Suppressed,1196689
-Michigan,Cerebrovascular Disease,55-64 years,Suppressed,1399535
-Michigan,Cerebrovascular Disease,65-74 years,Suppressed,1037580
-Michigan,Cerebrovascular Disease,75-84 years,Suppressed,514685
-Michigan,Cerebrovascular Disease,85+ years,Suppressed,213136
-Michigan,Cerebrovascular Disease,< 1 year,Suppressed,109018
-Michigan,Cerebrovascular Disease,All Ages,Suppressed,9986857
-Michigan,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Michigan,Cerebrovascular Diseases,1-4 years,Suppressed,457424
+Michigan,Cerebrovascular Diseases,15-24 years,Suppressed,1326325
+Michigan,Cerebrovascular Diseases,25-34 years,Suppressed,1311614
+Michigan,Cerebrovascular Diseases,35-44 years,Suppressed,1166172
+Michigan,Cerebrovascular Diseases,45-54 years,Suppressed,1254679
+Michigan,Cerebrovascular Diseases,5-14 years,Suppressed,1196689
+Michigan,Cerebrovascular Diseases,55-64 years,Suppressed,1399535
+Michigan,Cerebrovascular Diseases,65-74 years,Suppressed,1037580
+Michigan,Cerebrovascular Diseases,75-84 years,Suppressed,514685
+Michigan,Cerebrovascular Diseases,85+ years,Suppressed,213136
+Michigan,Cerebrovascular Diseases,< 1 year,Suppressed,109018
+Michigan,Cerebrovascular Diseases,All Ages,Suppressed,9986857
+Michigan,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Michigan,Diabetes Disease,1-4 years,Suppressed,457424
 Michigan,Diabetes Disease,15-24 years,Suppressed,1326325
 Michigan,Diabetes Disease,25-34 years,Suppressed,1311614
@@ -5295,19 +5295,19 @@ Minnesota,Car accidents,85+ years,20,122610
 Minnesota,Car accidents,< 1 year,Suppressed,67629
 Minnesota,Car accidents,All Ages,421,5639632
 Minnesota,Car accidents,Not Stated,Suppressed,Not Applicable
-Minnesota,Cerebrovascular Disease,1-4 years,Suppressed,283993
-Minnesota,Cerebrovascular Disease,15-24 years,Suppressed,717060
-Minnesota,Cerebrovascular Disease,25-34 years,Suppressed,762616
-Minnesota,Cerebrovascular Disease,35-44 years,Suppressed,725577
-Minnesota,Cerebrovascular Disease,45-54 years,Suppressed,673361
-Minnesota,Cerebrovascular Disease,5-14 years,Suppressed,732593
-Minnesota,Cerebrovascular Disease,55-64 years,Suppressed,756421
-Minnesota,Cerebrovascular Disease,65-74 years,Suppressed,531059
-Minnesota,Cerebrovascular Disease,75-84 years,Suppressed,266713
-Minnesota,Cerebrovascular Disease,85+ years,Suppressed,122610
-Minnesota,Cerebrovascular Disease,< 1 year,Suppressed,67629
-Minnesota,Cerebrovascular Disease,All Ages,Suppressed,5639632
-Minnesota,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Minnesota,Cerebrovascular Diseases,1-4 years,Suppressed,283993
+Minnesota,Cerebrovascular Diseases,15-24 years,Suppressed,717060
+Minnesota,Cerebrovascular Diseases,25-34 years,Suppressed,762616
+Minnesota,Cerebrovascular Diseases,35-44 years,Suppressed,725577
+Minnesota,Cerebrovascular Diseases,45-54 years,Suppressed,673361
+Minnesota,Cerebrovascular Diseases,5-14 years,Suppressed,732593
+Minnesota,Cerebrovascular Diseases,55-64 years,Suppressed,756421
+Minnesota,Cerebrovascular Diseases,65-74 years,Suppressed,531059
+Minnesota,Cerebrovascular Diseases,75-84 years,Suppressed,266713
+Minnesota,Cerebrovascular Diseases,85+ years,Suppressed,122610
+Minnesota,Cerebrovascular Diseases,< 1 year,Suppressed,67629
+Minnesota,Cerebrovascular Diseases,All Ages,Suppressed,5639632
+Minnesota,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Minnesota,Diabetes Disease,1-4 years,Suppressed,283993
 Minnesota,Diabetes Disease,15-24 years,Suppressed,717060
 Minnesota,Diabetes Disease,25-34 years,Suppressed,762616
@@ -5514,19 +5514,19 @@ Mississippi,Car accidents,85+ years,17,52298
 Mississippi,Car accidents,< 1 year,Suppressed,35518
 Mississippi,Car accidents,All Ages,724,2976149
 Mississippi,Car accidents,Not Stated,Suppressed,Not Applicable
-Mississippi,Cerebrovascular Disease,1-4 years,Suppressed,147960
-Mississippi,Cerebrovascular Disease,15-24 years,Suppressed,402867
-Mississippi,Cerebrovascular Disease,25-34 years,Suppressed,393747
-Mississippi,Cerebrovascular Disease,35-44 years,Suppressed,365754
-Mississippi,Cerebrovascular Disease,45-54 years,Suppressed,362040
-Mississippi,Cerebrovascular Disease,5-14 years,Suppressed,395659
-Mississippi,Cerebrovascular Disease,55-64 years,Suppressed,385911
-Mississippi,Cerebrovascular Disease,65-74 years,Suppressed,288955
-Mississippi,Cerebrovascular Disease,75-84 years,Suppressed,145440
-Mississippi,Cerebrovascular Disease,85+ years,Suppressed,52298
-Mississippi,Cerebrovascular Disease,< 1 year,Suppressed,35518
-Mississippi,Cerebrovascular Disease,All Ages,Suppressed,2976149
-Mississippi,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Mississippi,Cerebrovascular Diseases,1-4 years,Suppressed,147960
+Mississippi,Cerebrovascular Diseases,15-24 years,Suppressed,402867
+Mississippi,Cerebrovascular Diseases,25-34 years,Suppressed,393747
+Mississippi,Cerebrovascular Diseases,35-44 years,Suppressed,365754
+Mississippi,Cerebrovascular Diseases,45-54 years,Suppressed,362040
+Mississippi,Cerebrovascular Diseases,5-14 years,Suppressed,395659
+Mississippi,Cerebrovascular Diseases,55-64 years,Suppressed,385911
+Mississippi,Cerebrovascular Diseases,65-74 years,Suppressed,288955
+Mississippi,Cerebrovascular Diseases,75-84 years,Suppressed,145440
+Mississippi,Cerebrovascular Diseases,85+ years,Suppressed,52298
+Mississippi,Cerebrovascular Diseases,< 1 year,Suppressed,35518
+Mississippi,Cerebrovascular Diseases,All Ages,Suppressed,2976149
+Mississippi,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Mississippi,Diabetes Disease,1-4 years,Suppressed,147960
 Mississippi,Diabetes Disease,15-24 years,Suppressed,402867
 Mississippi,Diabetes Disease,25-34 years,Suppressed,393747
@@ -5733,19 +5733,19 @@ Missouri,Car accidents,85+ years,24,133531
 Missouri,Car accidents,< 1 year,Suppressed,71012
 Missouri,Car accidents,All Ages,926,6137428
 Missouri,Car accidents,Not Stated,Suppressed,Not Applicable
-Missouri,Cerebrovascular Disease,1-4 years,Suppressed,297068
-Missouri,Cerebrovascular Disease,15-24 years,Suppressed,794469
-Missouri,Cerebrovascular Disease,25-34 years,Suppressed,825887
-Missouri,Cerebrovascular Disease,35-44 years,Suppressed,753739
-Missouri,Cerebrovascular Disease,45-54 years,Suppressed,732944
-Missouri,Cerebrovascular Disease,5-14 years,Suppressed,769540
-Missouri,Cerebrovascular Disease,55-64 years,Suppressed,830732
-Missouri,Cerebrovascular Disease,65-74 years,Suppressed,610165
-Missouri,Cerebrovascular Disease,75-84 years,Suppressed,318341
-Missouri,Cerebrovascular Disease,85+ years,Suppressed,133531
-Missouri,Cerebrovascular Disease,< 1 year,Suppressed,71012
-Missouri,Cerebrovascular Disease,All Ages,Suppressed,6137428
-Missouri,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Missouri,Cerebrovascular Diseases,1-4 years,Suppressed,297068
+Missouri,Cerebrovascular Diseases,15-24 years,Suppressed,794469
+Missouri,Cerebrovascular Diseases,25-34 years,Suppressed,825887
+Missouri,Cerebrovascular Diseases,35-44 years,Suppressed,753739
+Missouri,Cerebrovascular Diseases,45-54 years,Suppressed,732944
+Missouri,Cerebrovascular Diseases,5-14 years,Suppressed,769540
+Missouri,Cerebrovascular Diseases,55-64 years,Suppressed,830732
+Missouri,Cerebrovascular Diseases,65-74 years,Suppressed,610165
+Missouri,Cerebrovascular Diseases,75-84 years,Suppressed,318341
+Missouri,Cerebrovascular Diseases,85+ years,Suppressed,133531
+Missouri,Cerebrovascular Diseases,< 1 year,Suppressed,71012
+Missouri,Cerebrovascular Diseases,All Ages,Suppressed,6137428
+Missouri,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Missouri,Diabetes Disease,1-4 years,Suppressed,297068
 Missouri,Diabetes Disease,15-24 years,Suppressed,794469
 Missouri,Diabetes Disease,25-34 years,Suppressed,825887
@@ -5952,19 +5952,19 @@ Montana,Car accidents,85+ years,Suppressed,22855
 Montana,Car accidents,< 1 year,Suppressed,11659
 Montana,Car accidents,All Ages,174,1068778
 Montana,Car accidents,Not Stated,Suppressed,Not Applicable
-Montana,Cerebrovascular Disease,1-4 years,Suppressed,49497
-Montana,Cerebrovascular Disease,15-24 years,Suppressed,135891
-Montana,Cerebrovascular Disease,25-34 years,Suppressed,138386
-Montana,Cerebrovascular Disease,35-44 years,Suppressed,129795
-Montana,Cerebrovascular Disease,45-54 years,Suppressed,117800
-Montana,Cerebrovascular Disease,5-14 years,Suppressed,129305
-Montana,Cerebrovascular Disease,55-64 years,Suppressed,150008
-Montana,Cerebrovascular Disease,65-74 years,Suppressed,124631
-Montana,Cerebrovascular Disease,75-84 years,Suppressed,58951
-Montana,Cerebrovascular Disease,85+ years,Suppressed,22855
-Montana,Cerebrovascular Disease,< 1 year,Suppressed,11659
-Montana,Cerebrovascular Disease,All Ages,Suppressed,1068778
-Montana,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Montana,Cerebrovascular Diseases,1-4 years,Suppressed,49497
+Montana,Cerebrovascular Diseases,15-24 years,Suppressed,135891
+Montana,Cerebrovascular Diseases,25-34 years,Suppressed,138386
+Montana,Cerebrovascular Diseases,35-44 years,Suppressed,129795
+Montana,Cerebrovascular Diseases,45-54 years,Suppressed,117800
+Montana,Cerebrovascular Diseases,5-14 years,Suppressed,129305
+Montana,Cerebrovascular Diseases,55-64 years,Suppressed,150008
+Montana,Cerebrovascular Diseases,65-74 years,Suppressed,124631
+Montana,Cerebrovascular Diseases,75-84 years,Suppressed,58951
+Montana,Cerebrovascular Diseases,85+ years,Suppressed,22855
+Montana,Cerebrovascular Diseases,< 1 year,Suppressed,11659
+Montana,Cerebrovascular Diseases,All Ages,Suppressed,1068778
+Montana,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Montana,Diabetes Disease,1-4 years,Suppressed,49497
 Montana,Diabetes Disease,15-24 years,Suppressed,135891
 Montana,Diabetes Disease,25-34 years,Suppressed,138386
@@ -6171,19 +6171,19 @@ Nebraska,Car accidents,85+ years,Suppressed,43058
 Nebraska,Car accidents,< 1 year,Suppressed,25252
 Nebraska,Car accidents,All Ages,253,1934408
 Nebraska,Car accidents,Not Stated,Suppressed,Not Applicable
-Nebraska,Cerebrovascular Disease,1-4 years,Suppressed,105628
-Nebraska,Cerebrovascular Disease,15-24 years,Suppressed,268196
-Nebraska,Cerebrovascular Disease,25-34 years,Suppressed,255338
-Nebraska,Cerebrovascular Disease,35-44 years,Suppressed,243139
-Nebraska,Cerebrovascular Disease,45-54 years,Suppressed,215808
-Nebraska,Cerebrovascular Disease,5-14 years,Suppressed,266296
-Nebraska,Cerebrovascular Disease,55-64 years,Suppressed,242293
-Nebraska,Cerebrovascular Disease,65-74 years,Suppressed,178908
-Nebraska,Cerebrovascular Disease,75-84 years,Suppressed,90492
-Nebraska,Cerebrovascular Disease,85+ years,Suppressed,43058
-Nebraska,Cerebrovascular Disease,< 1 year,Suppressed,25252
-Nebraska,Cerebrovascular Disease,All Ages,Suppressed,1934408
-Nebraska,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Nebraska,Cerebrovascular Diseases,1-4 years,Suppressed,105628
+Nebraska,Cerebrovascular Diseases,15-24 years,Suppressed,268196
+Nebraska,Cerebrovascular Diseases,25-34 years,Suppressed,255338
+Nebraska,Cerebrovascular Diseases,35-44 years,Suppressed,243139
+Nebraska,Cerebrovascular Diseases,45-54 years,Suppressed,215808
+Nebraska,Cerebrovascular Diseases,5-14 years,Suppressed,266296
+Nebraska,Cerebrovascular Diseases,55-64 years,Suppressed,242293
+Nebraska,Cerebrovascular Diseases,65-74 years,Suppressed,178908
+Nebraska,Cerebrovascular Diseases,75-84 years,Suppressed,90492
+Nebraska,Cerebrovascular Diseases,85+ years,Suppressed,43058
+Nebraska,Cerebrovascular Diseases,< 1 year,Suppressed,25252
+Nebraska,Cerebrovascular Diseases,All Ages,Suppressed,1934408
+Nebraska,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Nebraska,Diabetes Disease,1-4 years,Suppressed,105628
 Nebraska,Diabetes Disease,15-24 years,Suppressed,268196
 Nebraska,Diabetes Disease,25-34 years,Suppressed,255338
@@ -6390,19 +6390,19 @@ Nevada,Car accidents,85+ years,14,44816
 Nevada,Car accidents,< 1 year,Suppressed,35701
 Nevada,Car accidents,All Ages,294,3080156
 Nevada,Car accidents,Not Stated,Suppressed,Not Applicable
-Nevada,Cerebrovascular Disease,1-4 years,Suppressed,149874
-Nevada,Cerebrovascular Disease,15-24 years,Suppressed,365218
-Nevada,Cerebrovascular Disease,25-34 years,Suppressed,453116
-Nevada,Cerebrovascular Disease,35-44 years,Suppressed,410505
-Nevada,Cerebrovascular Disease,45-54 years,Suppressed,394228
-Nevada,Cerebrovascular Disease,5-14 years,Suppressed,392066
-Nevada,Cerebrovascular Disease,55-64 years,Suppressed,383476
-Nevada,Cerebrovascular Disease,65-74 years,Suppressed,303363
-Nevada,Cerebrovascular Disease,75-84 years,Suppressed,147793
-Nevada,Cerebrovascular Disease,85+ years,Suppressed,44816
-Nevada,Cerebrovascular Disease,< 1 year,Suppressed,35701
-Nevada,Cerebrovascular Disease,All Ages,Suppressed,3080156
-Nevada,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Nevada,Cerebrovascular Diseases,1-4 years,Suppressed,149874
+Nevada,Cerebrovascular Diseases,15-24 years,Suppressed,365218
+Nevada,Cerebrovascular Diseases,25-34 years,Suppressed,453116
+Nevada,Cerebrovascular Diseases,35-44 years,Suppressed,410505
+Nevada,Cerebrovascular Diseases,45-54 years,Suppressed,394228
+Nevada,Cerebrovascular Diseases,5-14 years,Suppressed,392066
+Nevada,Cerebrovascular Diseases,55-64 years,Suppressed,383476
+Nevada,Cerebrovascular Diseases,65-74 years,Suppressed,303363
+Nevada,Cerebrovascular Diseases,75-84 years,Suppressed,147793
+Nevada,Cerebrovascular Diseases,85+ years,Suppressed,44816
+Nevada,Cerebrovascular Diseases,< 1 year,Suppressed,35701
+Nevada,Cerebrovascular Diseases,All Ages,Suppressed,3080156
+Nevada,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Nevada,Diabetes Disease,1-4 years,Suppressed,149874
 Nevada,Diabetes Disease,15-24 years,Suppressed,365218
 Nevada,Diabetes Disease,25-34 years,Suppressed,453116
@@ -6609,19 +6609,19 @@ New Hampshire,Car accidents,85+ years,Suppressed,30241
 New Hampshire,Car accidents,< 1 year,Suppressed,12052
 New Hampshire,Car accidents,All Ages,103,1359711
 New Hampshire,Car accidents,Not Stated,Suppressed,Not Applicable
-New Hampshire,Cerebrovascular Disease,1-4 years,Suppressed,51569
-New Hampshire,Cerebrovascular Disease,15-24 years,Suppressed,171874
-New Hampshire,Cerebrovascular Disease,25-34 years,Suppressed,172816
-New Hampshire,Cerebrovascular Disease,35-44 years,Suppressed,156500
-New Hampshire,Cerebrovascular Disease,45-54 years,Suppressed,183273
-New Hampshire,Cerebrovascular Disease,5-14 years,Suppressed,143449
-New Hampshire,Cerebrovascular Disease,55-64 years,Suppressed,214314
-New Hampshire,Cerebrovascular Disease,65-74 years,Suppressed,152669
-New Hampshire,Cerebrovascular Disease,75-84 years,Suppressed,70954
-New Hampshire,Cerebrovascular Disease,85+ years,Suppressed,30241
-New Hampshire,Cerebrovascular Disease,< 1 year,Suppressed,12052
-New Hampshire,Cerebrovascular Disease,All Ages,Suppressed,1359711
-New Hampshire,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+New Hampshire,Cerebrovascular Diseases,1-4 years,Suppressed,51569
+New Hampshire,Cerebrovascular Diseases,15-24 years,Suppressed,171874
+New Hampshire,Cerebrovascular Diseases,25-34 years,Suppressed,172816
+New Hampshire,Cerebrovascular Diseases,35-44 years,Suppressed,156500
+New Hampshire,Cerebrovascular Diseases,45-54 years,Suppressed,183273
+New Hampshire,Cerebrovascular Diseases,5-14 years,Suppressed,143449
+New Hampshire,Cerebrovascular Diseases,55-64 years,Suppressed,214314
+New Hampshire,Cerebrovascular Diseases,65-74 years,Suppressed,152669
+New Hampshire,Cerebrovascular Diseases,75-84 years,Suppressed,70954
+New Hampshire,Cerebrovascular Diseases,85+ years,Suppressed,30241
+New Hampshire,Cerebrovascular Diseases,< 1 year,Suppressed,12052
+New Hampshire,Cerebrovascular Diseases,All Ages,Suppressed,1359711
+New Hampshire,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 New Hampshire,Diabetes Disease,1-4 years,Suppressed,51569
 New Hampshire,Diabetes Disease,15-24 years,Suppressed,171874
 New Hampshire,Diabetes Disease,25-34 years,Suppressed,172816
@@ -6828,19 +6828,19 @@ New Jersey,Car accidents,85+ years,23,203104
 New Jersey,Car accidents,< 1 year,Suppressed,99459
 New Jersey,Car accidents,All Ages,584,8882190
 New Jersey,Car accidents,Not Stated,Suppressed,Not Applicable
-New Jersey,Cerebrovascular Disease,1-4 years,Suppressed,415231
-New Jersey,Cerebrovascular Disease,15-24 years,Suppressed,1093555
-New Jersey,Cerebrovascular Disease,25-34 years,Suppressed,1152278
-New Jersey,Cerebrovascular Disease,35-44 years,Suppressed,1137693
-New Jersey,Cerebrovascular Disease,45-54 years,Suppressed,1200823
-New Jersey,Cerebrovascular Disease,5-14 years,Suppressed,1083967
-New Jersey,Cerebrovascular Disease,55-64 years,Suppressed,1223649
-New Jersey,Cerebrovascular Disease,65-74 years,Suppressed,832866
-New Jersey,Cerebrovascular Disease,75-84 years,Suppressed,439565
-New Jersey,Cerebrovascular Disease,85+ years,Suppressed,203104
-New Jersey,Cerebrovascular Disease,< 1 year,Suppressed,99459
-New Jersey,Cerebrovascular Disease,All Ages,Suppressed,8882190
-New Jersey,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+New Jersey,Cerebrovascular Diseases,1-4 years,Suppressed,415231
+New Jersey,Cerebrovascular Diseases,15-24 years,Suppressed,1093555
+New Jersey,Cerebrovascular Diseases,25-34 years,Suppressed,1152278
+New Jersey,Cerebrovascular Diseases,35-44 years,Suppressed,1137693
+New Jersey,Cerebrovascular Diseases,45-54 years,Suppressed,1200823
+New Jersey,Cerebrovascular Diseases,5-14 years,Suppressed,1083967
+New Jersey,Cerebrovascular Diseases,55-64 years,Suppressed,1223649
+New Jersey,Cerebrovascular Diseases,65-74 years,Suppressed,832866
+New Jersey,Cerebrovascular Diseases,75-84 years,Suppressed,439565
+New Jersey,Cerebrovascular Diseases,85+ years,Suppressed,203104
+New Jersey,Cerebrovascular Diseases,< 1 year,Suppressed,99459
+New Jersey,Cerebrovascular Diseases,All Ages,Suppressed,8882190
+New Jersey,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 New Jersey,Diabetes Disease,1-4 years,Suppressed,415231
 New Jersey,Diabetes Disease,15-24 years,Suppressed,1093555
 New Jersey,Diabetes Disease,25-34 years,Suppressed,1152278
@@ -7047,19 +7047,19 @@ New Mexico,Car accidents,85+ years,Suppressed,41409
 New Mexico,Car accidents,< 1 year,Suppressed,23014
 New Mexico,Car accidents,All Ages,394,2096829
 New Mexico,Car accidents,Not Stated,Suppressed,Not Applicable
-New Mexico,Cerebrovascular Disease,1-4 years,Suppressed,97972
-New Mexico,Cerebrovascular Disease,15-24 years,Suppressed,278459
-New Mexico,Cerebrovascular Disease,25-34 years,Suppressed,284087
-New Mexico,Cerebrovascular Disease,35-44 years,Suppressed,254846
-New Mexico,Cerebrovascular Disease,45-54 years,Suppressed,235656
-New Mexico,Cerebrovascular Disease,5-14 years,Suppressed,272268
-New Mexico,Cerebrovascular Disease,55-64 years,Suppressed,272921
-New Mexico,Cerebrovascular Disease,65-74 years,Suppressed,224483
-New Mexico,Cerebrovascular Disease,75-84 years,Suppressed,111714
-New Mexico,Cerebrovascular Disease,85+ years,Suppressed,41409
-New Mexico,Cerebrovascular Disease,< 1 year,Suppressed,23014
-New Mexico,Cerebrovascular Disease,All Ages,Suppressed,2096829
-New Mexico,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+New Mexico,Cerebrovascular Diseases,1-4 years,Suppressed,97972
+New Mexico,Cerebrovascular Diseases,15-24 years,Suppressed,278459
+New Mexico,Cerebrovascular Diseases,25-34 years,Suppressed,284087
+New Mexico,Cerebrovascular Diseases,35-44 years,Suppressed,254846
+New Mexico,Cerebrovascular Diseases,45-54 years,Suppressed,235656
+New Mexico,Cerebrovascular Diseases,5-14 years,Suppressed,272268
+New Mexico,Cerebrovascular Diseases,55-64 years,Suppressed,272921
+New Mexico,Cerebrovascular Diseases,65-74 years,Suppressed,224483
+New Mexico,Cerebrovascular Diseases,75-84 years,Suppressed,111714
+New Mexico,Cerebrovascular Diseases,85+ years,Suppressed,41409
+New Mexico,Cerebrovascular Diseases,< 1 year,Suppressed,23014
+New Mexico,Cerebrovascular Diseases,All Ages,Suppressed,2096829
+New Mexico,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 New Mexico,Diabetes Disease,1-4 years,Suppressed,97972
 New Mexico,Diabetes Disease,15-24 years,Suppressed,278459
 New Mexico,Diabetes Disease,25-34 years,Suppressed,284087
@@ -7266,19 +7266,19 @@ New York,Car accidents,85+ years,54,460001
 New York,Car accidents,< 1 year,Suppressed,223930
 New York,Car accidents,All Ages,1072,19453561
 New York,Car accidents,Not Stated,Suppressed,Not Applicable
-New York,Cerebrovascular Disease,1-4 years,Suppressed,903071
-New York,Cerebrovascular Disease,15-24 years,Suppressed,2445246
-New York,Cerebrovascular Disease,25-34 years,Suppressed,2867651
-New York,Cerebrovascular Disease,35-44 years,Suppressed,2429961
-New York,Cerebrovascular Disease,45-54 years,Suppressed,2471804
-New York,Cerebrovascular Disease,5-14 years,Suppressed,2218596
-New York,Cerebrovascular Disease,55-64 years,Suppressed,2597156
-New York,Cerebrovascular Disease,65-74 years,Suppressed,1859922
-New York,Cerebrovascular Disease,75-84 years,Suppressed,976223
-New York,Cerebrovascular Disease,85+ years,Suppressed,460001
-New York,Cerebrovascular Disease,< 1 year,Suppressed,223930
-New York,Cerebrovascular Disease,All Ages,Suppressed,19453561
-New York,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+New York,Cerebrovascular Diseases,1-4 years,Suppressed,903071
+New York,Cerebrovascular Diseases,15-24 years,Suppressed,2445246
+New York,Cerebrovascular Diseases,25-34 years,Suppressed,2867651
+New York,Cerebrovascular Diseases,35-44 years,Suppressed,2429961
+New York,Cerebrovascular Diseases,45-54 years,Suppressed,2471804
+New York,Cerebrovascular Diseases,5-14 years,Suppressed,2218596
+New York,Cerebrovascular Diseases,55-64 years,Suppressed,2597156
+New York,Cerebrovascular Diseases,65-74 years,Suppressed,1859922
+New York,Cerebrovascular Diseases,75-84 years,Suppressed,976223
+New York,Cerebrovascular Diseases,85+ years,Suppressed,460001
+New York,Cerebrovascular Diseases,< 1 year,Suppressed,223930
+New York,Cerebrovascular Diseases,All Ages,Suppressed,19453561
+New York,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 New York,Diabetes Disease,1-4 years,Suppressed,903071
 New York,Diabetes Disease,15-24 years,Suppressed,2445246
 New York,Diabetes Disease,25-34 years,Suppressed,2867651
@@ -7485,19 +7485,19 @@ North Carolina,Car accidents,85+ years,55,189394
 North Carolina,Car accidents,< 1 year,Suppressed,118891
 North Carolina,Car accidents,All Ages,1561,10488084
 North Carolina,Car accidents,Not Stated,Suppressed,Not Applicable
-North Carolina,Cerebrovascular Disease,1-4 years,Suppressed,490879
-North Carolina,Cerebrovascular Disease,15-24 years,Suppressed,1387060
-North Carolina,Cerebrovascular Disease,25-34 years,Suppressed,1416069
-North Carolina,Cerebrovascular Disease,35-44 years,Suppressed,1303427
-North Carolina,Cerebrovascular Disease,45-54 years,Suppressed,1364067
-North Carolina,Cerebrovascular Disease,5-14 years,Suppressed,1294472
-North Carolina,Cerebrovascular Disease,55-64 years,Suppressed,1362125
-North Carolina,Cerebrovascular Disease,65-74 years,Suppressed,1046508
-North Carolina,Cerebrovascular Disease,75-84 years,Suppressed,515192
-North Carolina,Cerebrovascular Disease,85+ years,Suppressed,189394
-North Carolina,Cerebrovascular Disease,< 1 year,Suppressed,118891
-North Carolina,Cerebrovascular Disease,All Ages,Suppressed,10488084
-North Carolina,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+North Carolina,Cerebrovascular Diseases,1-4 years,Suppressed,490879
+North Carolina,Cerebrovascular Diseases,15-24 years,Suppressed,1387060
+North Carolina,Cerebrovascular Diseases,25-34 years,Suppressed,1416069
+North Carolina,Cerebrovascular Diseases,35-44 years,Suppressed,1303427
+North Carolina,Cerebrovascular Diseases,45-54 years,Suppressed,1364067
+North Carolina,Cerebrovascular Diseases,5-14 years,Suppressed,1294472
+North Carolina,Cerebrovascular Diseases,55-64 years,Suppressed,1362125
+North Carolina,Cerebrovascular Diseases,65-74 years,Suppressed,1046508
+North Carolina,Cerebrovascular Diseases,75-84 years,Suppressed,515192
+North Carolina,Cerebrovascular Diseases,85+ years,Suppressed,189394
+North Carolina,Cerebrovascular Diseases,< 1 year,Suppressed,118891
+North Carolina,Cerebrovascular Diseases,All Ages,Suppressed,10488084
+North Carolina,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 North Carolina,Diabetes Disease,1-4 years,Suppressed,490879
 North Carolina,Diabetes Disease,15-24 years,Suppressed,1387060
 North Carolina,Diabetes Disease,25-34 years,Suppressed,1416069
@@ -7704,19 +7704,19 @@ North Dakota,Car accidents,85+ years,Suppressed,18813
 North Dakota,Car accidents,< 1 year,Suppressed,10483
 North Dakota,Car accidents,All Ages,97,762062
 North Dakota,Car accidents,Not Stated,Suppressed,Not Applicable
-North Dakota,Cerebrovascular Disease,1-4 years,Suppressed,43618
-North Dakota,Cerebrovascular Disease,15-24 years,Suppressed,109397
-North Dakota,Cerebrovascular Disease,25-34 years,Suppressed,114571
-North Dakota,Cerebrovascular Disease,35-44 years,Suppressed,92576
-North Dakota,Cerebrovascular Disease,45-54 years,Suppressed,78199
-North Dakota,Cerebrovascular Disease,5-14 years,Suppressed,99495
-North Dakota,Cerebrovascular Disease,55-64 years,Suppressed,93878
-North Dakota,Cerebrovascular Disease,65-74 years,Suppressed,66664
-North Dakota,Cerebrovascular Disease,75-84 years,Suppressed,34368
-North Dakota,Cerebrovascular Disease,85+ years,Suppressed,18813
-North Dakota,Cerebrovascular Disease,< 1 year,Suppressed,10483
-North Dakota,Cerebrovascular Disease,All Ages,Suppressed,762062
-North Dakota,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+North Dakota,Cerebrovascular Diseases,1-4 years,Suppressed,43618
+North Dakota,Cerebrovascular Diseases,15-24 years,Suppressed,109397
+North Dakota,Cerebrovascular Diseases,25-34 years,Suppressed,114571
+North Dakota,Cerebrovascular Diseases,35-44 years,Suppressed,92576
+North Dakota,Cerebrovascular Diseases,45-54 years,Suppressed,78199
+North Dakota,Cerebrovascular Diseases,5-14 years,Suppressed,99495
+North Dakota,Cerebrovascular Diseases,55-64 years,Suppressed,93878
+North Dakota,Cerebrovascular Diseases,65-74 years,Suppressed,66664
+North Dakota,Cerebrovascular Diseases,75-84 years,Suppressed,34368
+North Dakota,Cerebrovascular Diseases,85+ years,Suppressed,18813
+North Dakota,Cerebrovascular Diseases,< 1 year,Suppressed,10483
+North Dakota,Cerebrovascular Diseases,All Ages,Suppressed,762062
+North Dakota,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 North Dakota,Diabetes Disease,1-4 years,Suppressed,43618
 North Dakota,Diabetes Disease,15-24 years,Suppressed,109397
 North Dakota,Diabetes Disease,25-34 years,Suppressed,114571
@@ -7923,19 +7923,19 @@ Ohio,Car accidents,85+ years,52,256272
 Ohio,Car accidents,< 1 year,Suppressed,133487
 Ohio,Car accidents,All Ages,1219,11689100
 Ohio,Car accidents,Not Stated,Suppressed,Not Applicable
-Ohio,Cerebrovascular Disease,1-4 years,Suppressed,557341
-Ohio,Cerebrovascular Disease,15-24 years,Suppressed,1507223
-Ohio,Cerebrovascular Disease,25-34 years,Suppressed,1554378
-Ohio,Cerebrovascular Disease,35-44 years,Suppressed,1397808
-Ohio,Cerebrovascular Disease,45-54 years,Suppressed,1447581
-Ohio,Cerebrovascular Disease,5-14 years,Suppressed,1440279
-Ohio,Cerebrovascular Disease,55-64 years,Suppressed,1604683
-Ohio,Cerebrovascular Disease,65-74 years,Suppressed,1189243
-Ohio,Cerebrovascular Disease,75-84 years,Suppressed,600805
-Ohio,Cerebrovascular Disease,85+ years,Suppressed,256272
-Ohio,Cerebrovascular Disease,< 1 year,Suppressed,133487
-Ohio,Cerebrovascular Disease,All Ages,Suppressed,11689100
-Ohio,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Ohio,Cerebrovascular Diseases,1-4 years,Suppressed,557341
+Ohio,Cerebrovascular Diseases,15-24 years,Suppressed,1507223
+Ohio,Cerebrovascular Diseases,25-34 years,Suppressed,1554378
+Ohio,Cerebrovascular Diseases,35-44 years,Suppressed,1397808
+Ohio,Cerebrovascular Diseases,45-54 years,Suppressed,1447581
+Ohio,Cerebrovascular Diseases,5-14 years,Suppressed,1440279
+Ohio,Cerebrovascular Diseases,55-64 years,Suppressed,1604683
+Ohio,Cerebrovascular Diseases,65-74 years,Suppressed,1189243
+Ohio,Cerebrovascular Diseases,75-84 years,Suppressed,600805
+Ohio,Cerebrovascular Diseases,85+ years,Suppressed,256272
+Ohio,Cerebrovascular Diseases,< 1 year,Suppressed,133487
+Ohio,Cerebrovascular Diseases,All Ages,Suppressed,11689100
+Ohio,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Ohio,Diabetes Disease,1-4 years,Suppressed,557341
 Ohio,Diabetes Disease,15-24 years,Suppressed,1507223
 Ohio,Diabetes Disease,25-34 years,Suppressed,1554378
@@ -8142,19 +8142,19 @@ Oklahoma,Car accidents,85+ years,18,74163
 Oklahoma,Car accidents,< 1 year,Suppressed,48442
 Oklahoma,Car accidents,All Ages,669,3956971
 Oklahoma,Car accidents,Not Stated,Suppressed,Not Applicable
-Oklahoma,Cerebrovascular Disease,1-4 years,Suppressed,207091
-Oklahoma,Cerebrovascular Disease,15-24 years,Suppressed,539562
-Oklahoma,Cerebrovascular Disease,25-34 years,Suppressed,543593
-Oklahoma,Cerebrovascular Disease,35-44 years,Suppressed,497873
-Oklahoma,Cerebrovascular Disease,45-54 years,Suppressed,453536
-Oklahoma,Cerebrovascular Disease,5-14 years,Suppressed,538048
-Oklahoma,Cerebrovascular Disease,55-64 years,Suppressed,493694
-Oklahoma,Cerebrovascular Disease,65-74 years,Suppressed,368050
-Oklahoma,Cerebrovascular Disease,75-84 years,Suppressed,192919
-Oklahoma,Cerebrovascular Disease,85+ years,Suppressed,74163
-Oklahoma,Cerebrovascular Disease,< 1 year,Suppressed,48442
-Oklahoma,Cerebrovascular Disease,All Ages,Suppressed,3956971
-Oklahoma,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Oklahoma,Cerebrovascular Diseases,1-4 years,Suppressed,207091
+Oklahoma,Cerebrovascular Diseases,15-24 years,Suppressed,539562
+Oklahoma,Cerebrovascular Diseases,25-34 years,Suppressed,543593
+Oklahoma,Cerebrovascular Diseases,35-44 years,Suppressed,497873
+Oklahoma,Cerebrovascular Diseases,45-54 years,Suppressed,453536
+Oklahoma,Cerebrovascular Diseases,5-14 years,Suppressed,538048
+Oklahoma,Cerebrovascular Diseases,55-64 years,Suppressed,493694
+Oklahoma,Cerebrovascular Diseases,65-74 years,Suppressed,368050
+Oklahoma,Cerebrovascular Diseases,75-84 years,Suppressed,192919
+Oklahoma,Cerebrovascular Diseases,85+ years,Suppressed,74163
+Oklahoma,Cerebrovascular Diseases,< 1 year,Suppressed,48442
+Oklahoma,Cerebrovascular Diseases,All Ages,Suppressed,3956971
+Oklahoma,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Oklahoma,Diabetes Disease,1-4 years,Suppressed,207091
 Oklahoma,Diabetes Disease,15-24 years,Suppressed,539562
 Oklahoma,Diabetes Disease,25-34 years,Suppressed,543593
@@ -8361,19 +8361,19 @@ Oregon,Car accidents,85+ years,15,84538
 Oregon,Car accidents,< 1 year,Suppressed,43312
 Oregon,Car accidents,All Ages,506,4217737
 Oregon,Car accidents,Not Stated,Suppressed,Not Applicable
-Oregon,Cerebrovascular Disease,1-4 years,Suppressed,184499
-Oregon,Cerebrovascular Disease,15-24 years,Suppressed,510237
-Oregon,Cerebrovascular Disease,25-34 years,Suppressed,604284
-Oregon,Cerebrovascular Disease,35-44 years,Suppressed,568712
-Oregon,Cerebrovascular Disease,45-54 years,Suppressed,510127
-Oregon,Cerebrovascular Disease,5-14 years,Suppressed,491536
-Oregon,Cerebrovascular Disease,55-64 years,Suppressed,538950
-Oregon,Cerebrovascular Disease,65-74 years,Suppressed,464598
-Oregon,Cerebrovascular Disease,75-84 years,Suppressed,216944
-Oregon,Cerebrovascular Disease,85+ years,Suppressed,84538
-Oregon,Cerebrovascular Disease,< 1 year,Suppressed,43312
-Oregon,Cerebrovascular Disease,All Ages,Suppressed,4217737
-Oregon,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Oregon,Cerebrovascular Diseases,1-4 years,Suppressed,184499
+Oregon,Cerebrovascular Diseases,15-24 years,Suppressed,510237
+Oregon,Cerebrovascular Diseases,25-34 years,Suppressed,604284
+Oregon,Cerebrovascular Diseases,35-44 years,Suppressed,568712
+Oregon,Cerebrovascular Diseases,45-54 years,Suppressed,510127
+Oregon,Cerebrovascular Diseases,5-14 years,Suppressed,491536
+Oregon,Cerebrovascular Diseases,55-64 years,Suppressed,538950
+Oregon,Cerebrovascular Diseases,65-74 years,Suppressed,464598
+Oregon,Cerebrovascular Diseases,75-84 years,Suppressed,216944
+Oregon,Cerebrovascular Diseases,85+ years,Suppressed,84538
+Oregon,Cerebrovascular Diseases,< 1 year,Suppressed,43312
+Oregon,Cerebrovascular Diseases,All Ages,Suppressed,4217737
+Oregon,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Oregon,Diabetes Disease,1-4 years,Suppressed,184499
 Oregon,Diabetes Disease,15-24 years,Suppressed,510237
 Oregon,Diabetes Disease,25-34 years,Suppressed,604284
@@ -8580,19 +8580,19 @@ Pennsylvania,Car accidents,85+ years,73,332112
 Pennsylvania,Car accidents,< 1 year,Suppressed,134712
 Pennsylvania,Car accidents,All Ages,1079,12801989
 Pennsylvania,Car accidents,Not Stated,Suppressed,Not Applicable
-Pennsylvania,Cerebrovascular Disease,1-4 years,Suppressed,563212
-Pennsylvania,Cerebrovascular Disease,15-24 years,Suppressed,1603208
-Pennsylvania,Cerebrovascular Disease,25-34 years,Suppressed,1709136
-Pennsylvania,Cerebrovascular Disease,35-44 years,Suppressed,1513739
-Pennsylvania,Cerebrovascular Disease,45-54 years,Suppressed,1604097
-Pennsylvania,Cerebrovascular Disease,5-14 years,Suppressed,1475640
-Pennsylvania,Cerebrovascular Disease,55-64 years,Suppressed,1804883
-Pennsylvania,Cerebrovascular Disease,65-74 years,Suppressed,1354093
-Pennsylvania,Cerebrovascular Disease,75-84 years,Suppressed,707157
-Pennsylvania,Cerebrovascular Disease,85+ years,Suppressed,332112
-Pennsylvania,Cerebrovascular Disease,< 1 year,Suppressed,134712
-Pennsylvania,Cerebrovascular Disease,All Ages,Suppressed,12801989
-Pennsylvania,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Pennsylvania,Cerebrovascular Diseases,1-4 years,Suppressed,563212
+Pennsylvania,Cerebrovascular Diseases,15-24 years,Suppressed,1603208
+Pennsylvania,Cerebrovascular Diseases,25-34 years,Suppressed,1709136
+Pennsylvania,Cerebrovascular Diseases,35-44 years,Suppressed,1513739
+Pennsylvania,Cerebrovascular Diseases,45-54 years,Suppressed,1604097
+Pennsylvania,Cerebrovascular Diseases,5-14 years,Suppressed,1475640
+Pennsylvania,Cerebrovascular Diseases,55-64 years,Suppressed,1804883
+Pennsylvania,Cerebrovascular Diseases,65-74 years,Suppressed,1354093
+Pennsylvania,Cerebrovascular Diseases,75-84 years,Suppressed,707157
+Pennsylvania,Cerebrovascular Diseases,85+ years,Suppressed,332112
+Pennsylvania,Cerebrovascular Diseases,< 1 year,Suppressed,134712
+Pennsylvania,Cerebrovascular Diseases,All Ages,Suppressed,12801989
+Pennsylvania,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Pennsylvania,Diabetes Disease,1-4 years,Suppressed,563212
 Pennsylvania,Diabetes Disease,15-24 years,Suppressed,1603208
 Pennsylvania,Diabetes Disease,25-34 years,Suppressed,1709136
@@ -8799,19 +8799,19 @@ Rhode Island,Car accidents,85+ years,Suppressed,27512
 Rhode Island,Car accidents,< 1 year,Suppressed,10518
 Rhode Island,Car accidents,All Ages,71,1059361
 Rhode Island,Car accidents,Not Stated,Suppressed,Not Applicable
-Rhode Island,Cerebrovascular Disease,1-4 years,Suppressed,44003
-Rhode Island,Cerebrovascular Disease,15-24 years,Suppressed,146657
-Rhode Island,Cerebrovascular Disease,25-34 years,Suppressed,148213
-Rhode Island,Cerebrovascular Disease,35-44 years,Suppressed,125335
-Rhode Island,Cerebrovascular Disease,45-54 years,Suppressed,135112
-Rhode Island,Cerebrovascular Disease,5-14 years,Suppressed,112868
-Rhode Island,Cerebrovascular Disease,55-64 years,Suppressed,149609
-Rhode Island,Cerebrovascular Disease,65-74 years,Suppressed,106159
-Rhode Island,Cerebrovascular Disease,75-84 years,Suppressed,53375
-Rhode Island,Cerebrovascular Disease,85+ years,Suppressed,27512
-Rhode Island,Cerebrovascular Disease,< 1 year,Suppressed,10518
-Rhode Island,Cerebrovascular Disease,All Ages,Suppressed,1059361
-Rhode Island,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Rhode Island,Cerebrovascular Diseases,1-4 years,Suppressed,44003
+Rhode Island,Cerebrovascular Diseases,15-24 years,Suppressed,146657
+Rhode Island,Cerebrovascular Diseases,25-34 years,Suppressed,148213
+Rhode Island,Cerebrovascular Diseases,35-44 years,Suppressed,125335
+Rhode Island,Cerebrovascular Diseases,45-54 years,Suppressed,135112
+Rhode Island,Cerebrovascular Diseases,5-14 years,Suppressed,112868
+Rhode Island,Cerebrovascular Diseases,55-64 years,Suppressed,149609
+Rhode Island,Cerebrovascular Diseases,65-74 years,Suppressed,106159
+Rhode Island,Cerebrovascular Diseases,75-84 years,Suppressed,53375
+Rhode Island,Cerebrovascular Diseases,85+ years,Suppressed,27512
+Rhode Island,Cerebrovascular Diseases,< 1 year,Suppressed,10518
+Rhode Island,Cerebrovascular Diseases,All Ages,Suppressed,1059361
+Rhode Island,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Rhode Island,Diabetes Disease,1-4 years,Suppressed,44003
 Rhode Island,Diabetes Disease,15-24 years,Suppressed,146657
 Rhode Island,Diabetes Disease,25-34 years,Suppressed,148213
@@ -9018,19 +9018,19 @@ South Carolina,Car accidents,85+ years,19,91410
 South Carolina,Car accidents,< 1 year,Suppressed,56122
 South Carolina,Car accidents,All Ages,983,5148714
 South Carolina,Car accidents,Not Stated,Suppressed,Not Applicable
-South Carolina,Cerebrovascular Disease,1-4 years,Suppressed,236342
-South Carolina,Cerebrovascular Disease,15-24 years,Suppressed,655402
-South Carolina,Cerebrovascular Disease,25-34 years,Suppressed,682854
-South Carolina,Cerebrovascular Disease,35-44 years,Suppressed,620504
-South Carolina,Cerebrovascular Disease,45-54 years,Suppressed,640607
-South Carolina,Cerebrovascular Disease,5-14 years,Suppressed,630716
-South Carolina,Cerebrovascular Disease,55-64 years,Suppressed,689144
-South Carolina,Cerebrovascular Disease,65-74 years,Suppressed,570600
-South Carolina,Cerebrovascular Disease,75-84 years,Suppressed,275013
-South Carolina,Cerebrovascular Disease,85+ years,Suppressed,91410
-South Carolina,Cerebrovascular Disease,< 1 year,Suppressed,56122
-South Carolina,Cerebrovascular Disease,All Ages,Suppressed,5148714
-South Carolina,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+South Carolina,Cerebrovascular Diseases,1-4 years,Suppressed,236342
+South Carolina,Cerebrovascular Diseases,15-24 years,Suppressed,655402
+South Carolina,Cerebrovascular Diseases,25-34 years,Suppressed,682854
+South Carolina,Cerebrovascular Diseases,35-44 years,Suppressed,620504
+South Carolina,Cerebrovascular Diseases,45-54 years,Suppressed,640607
+South Carolina,Cerebrovascular Diseases,5-14 years,Suppressed,630716
+South Carolina,Cerebrovascular Diseases,55-64 years,Suppressed,689144
+South Carolina,Cerebrovascular Diseases,65-74 years,Suppressed,570600
+South Carolina,Cerebrovascular Diseases,75-84 years,Suppressed,275013
+South Carolina,Cerebrovascular Diseases,85+ years,Suppressed,91410
+South Carolina,Cerebrovascular Diseases,< 1 year,Suppressed,56122
+South Carolina,Cerebrovascular Diseases,All Ages,Suppressed,5148714
+South Carolina,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 South Carolina,Diabetes Disease,1-4 years,Suppressed,236342
 South Carolina,Diabetes Disease,15-24 years,Suppressed,655402
 South Carolina,Diabetes Disease,25-34 years,Suppressed,682854
@@ -9237,19 +9237,19 @@ South Dakota,Car accidents,85+ years,Suppressed,20985
 South Dakota,Car accidents,< 1 year,Suppressed,11985
 South Dakota,Car accidents,All Ages,129,884659
 South Dakota,Car accidents,Not Stated,Suppressed,Not Applicable
-South Dakota,Cerebrovascular Disease,1-4 years,Suppressed,49182
-South Dakota,Cerebrovascular Disease,15-24 years,Suppressed,116664
-South Dakota,Cerebrovascular Disease,25-34 years,Suppressed,115064
-South Dakota,Cerebrovascular Disease,35-44 years,Suppressed,105864
-South Dakota,Cerebrovascular Disease,45-54 years,Suppressed,94865
-South Dakota,Cerebrovascular Disease,5-14 years,Suppressed,121666
-South Dakota,Cerebrovascular Disease,55-64 years,Suppressed,117498
-South Dakota,Cerebrovascular Disease,65-74 years,Suppressed,89216
-South Dakota,Cerebrovascular Disease,75-84 years,Suppressed,41670
-South Dakota,Cerebrovascular Disease,85+ years,Suppressed,20985
-South Dakota,Cerebrovascular Disease,< 1 year,Suppressed,11985
-South Dakota,Cerebrovascular Disease,All Ages,Suppressed,884659
-South Dakota,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+South Dakota,Cerebrovascular Diseases,1-4 years,Suppressed,49182
+South Dakota,Cerebrovascular Diseases,15-24 years,Suppressed,116664
+South Dakota,Cerebrovascular Diseases,25-34 years,Suppressed,115064
+South Dakota,Cerebrovascular Diseases,35-44 years,Suppressed,105864
+South Dakota,Cerebrovascular Diseases,45-54 years,Suppressed,94865
+South Dakota,Cerebrovascular Diseases,5-14 years,Suppressed,121666
+South Dakota,Cerebrovascular Diseases,55-64 years,Suppressed,117498
+South Dakota,Cerebrovascular Diseases,65-74 years,Suppressed,89216
+South Dakota,Cerebrovascular Diseases,75-84 years,Suppressed,41670
+South Dakota,Cerebrovascular Diseases,85+ years,Suppressed,20985
+South Dakota,Cerebrovascular Diseases,< 1 year,Suppressed,11985
+South Dakota,Cerebrovascular Diseases,All Ages,Suppressed,884659
+South Dakota,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 South Dakota,Diabetes Disease,1-4 years,Suppressed,49182
 South Dakota,Diabetes Disease,15-24 years,Suppressed,116664
 South Dakota,Diabetes Disease,25-34 years,Suppressed,115064
@@ -9456,19 +9456,19 @@ Tennessee,Car accidents,85+ years,31,121769
 Tennessee,Car accidents,< 1 year,Suppressed,79775
 Tennessee,Car accidents,All Ages,1138,6829174
 Tennessee,Car accidents,Not Stated,Suppressed,Not Applicable
-Tennessee,Cerebrovascular Disease,1-4 years,Suppressed,328830
-Tennessee,Cerebrovascular Disease,15-24 years,Suppressed,869205
-Tennessee,Cerebrovascular Disease,25-34 years,Suppressed,949656
-Tennessee,Cerebrovascular Disease,35-44 years,Suppressed,847658
-Tennessee,Cerebrovascular Disease,45-54 years,Suppressed,871279
-Tennessee,Cerebrovascular Disease,5-14 years,Suppressed,844681
-Tennessee,Cerebrovascular Disease,55-64 years,Suppressed,894697
-Tennessee,Cerebrovascular Disease,65-74 years,Suppressed,681396
-Tennessee,Cerebrovascular Disease,75-84 years,Suppressed,340228
-Tennessee,Cerebrovascular Disease,85+ years,Suppressed,121769
-Tennessee,Cerebrovascular Disease,< 1 year,Suppressed,79775
-Tennessee,Cerebrovascular Disease,All Ages,Suppressed,6829174
-Tennessee,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Tennessee,Cerebrovascular Diseases,1-4 years,Suppressed,328830
+Tennessee,Cerebrovascular Diseases,15-24 years,Suppressed,869205
+Tennessee,Cerebrovascular Diseases,25-34 years,Suppressed,949656
+Tennessee,Cerebrovascular Diseases,35-44 years,Suppressed,847658
+Tennessee,Cerebrovascular Diseases,45-54 years,Suppressed,871279
+Tennessee,Cerebrovascular Diseases,5-14 years,Suppressed,844681
+Tennessee,Cerebrovascular Diseases,55-64 years,Suppressed,894697
+Tennessee,Cerebrovascular Diseases,65-74 years,Suppressed,681396
+Tennessee,Cerebrovascular Diseases,75-84 years,Suppressed,340228
+Tennessee,Cerebrovascular Diseases,85+ years,Suppressed,121769
+Tennessee,Cerebrovascular Diseases,< 1 year,Suppressed,79775
+Tennessee,Cerebrovascular Diseases,All Ages,Suppressed,6829174
+Tennessee,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Tennessee,Diabetes Disease,1-4 years,Suppressed,328830
 Tennessee,Diabetes Disease,15-24 years,Suppressed,869205
 Tennessee,Diabetes Disease,25-34 years,Suppressed,949656
@@ -9675,19 +9675,19 @@ Texas,Car accidents,85+ years,85,408459
 Texas,Car accidents,< 1 year,Suppressed,377806
 Texas,Car accidents,All Ages,3727,28995881
 Texas,Car accidents,Not Stated,Suppressed,Not Applicable
-Texas,Cerebrovascular Disease,1-4 years,Suppressed,1613085
-Texas,Cerebrovascular Disease,15-24 years,Suppressed,4055517
-Texas,Cerebrovascular Disease,25-34 years,Suppressed,4276763
-Texas,Cerebrovascular Disease,35-44 years,Suppressed,3942439
-Texas,Cerebrovascular Disease,45-54 years,Suppressed,3554098
-Texas,Cerebrovascular Disease,5-14 years,Suppressed,4166702
-Texas,Cerebrovascular Disease,55-64 years,Suppressed,3275242
-Texas,Cerebrovascular Disease,65-74 years,Suppressed,2245028
-Texas,Cerebrovascular Disease,75-84 years,Suppressed,1080742
-Texas,Cerebrovascular Disease,85+ years,Suppressed,408459
-Texas,Cerebrovascular Disease,< 1 year,Suppressed,377806
-Texas,Cerebrovascular Disease,All Ages,Suppressed,28995881
-Texas,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Texas,Cerebrovascular Diseases,1-4 years,Suppressed,1613085
+Texas,Cerebrovascular Diseases,15-24 years,Suppressed,4055517
+Texas,Cerebrovascular Diseases,25-34 years,Suppressed,4276763
+Texas,Cerebrovascular Diseases,35-44 years,Suppressed,3942439
+Texas,Cerebrovascular Diseases,45-54 years,Suppressed,3554098
+Texas,Cerebrovascular Diseases,5-14 years,Suppressed,4166702
+Texas,Cerebrovascular Diseases,55-64 years,Suppressed,3275242
+Texas,Cerebrovascular Diseases,65-74 years,Suppressed,2245028
+Texas,Cerebrovascular Diseases,75-84 years,Suppressed,1080742
+Texas,Cerebrovascular Diseases,85+ years,Suppressed,408459
+Texas,Cerebrovascular Diseases,< 1 year,Suppressed,377806
+Texas,Cerebrovascular Diseases,All Ages,Suppressed,28995881
+Texas,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Texas,Diabetes Disease,1-4 years,Suppressed,1613085
 Texas,Diabetes Disease,15-24 years,Suppressed,4055517
 Texas,Diabetes Disease,25-34 years,Suppressed,4276763
@@ -9894,19 +9894,19 @@ Utah,Car accidents,85+ years,Suppressed,38574
 Utah,Car accidents,< 1 year,Suppressed,48566
 Utah,Car accidents,All Ages,231,3205958
 Utah,Car accidents,Not Stated,Suppressed,Not Applicable
-Utah,Cerebrovascular Disease,1-4 years,Suppressed,199237
-Utah,Cerebrovascular Disease,15-24 years,Suppressed,518499
-Utah,Cerebrovascular Disease,25-34 years,Suppressed,471806
-Utah,Cerebrovascular Disease,35-44 years,Suppressed,443453
-Utah,Cerebrovascular Disease,45-54 years,Suppressed,328430
-Utah,Cerebrovascular Disease,5-14 years,Suppressed,526961
-Utah,Cerebrovascular Disease,55-64 years,Suppressed,303134
-Utah,Cerebrovascular Disease,65-74 years,Suppressed,219466
-Utah,Cerebrovascular Disease,75-84 years,Suppressed,107832
-Utah,Cerebrovascular Disease,85+ years,Suppressed,38574
-Utah,Cerebrovascular Disease,< 1 year,Suppressed,48566
-Utah,Cerebrovascular Disease,All Ages,Suppressed,3205958
-Utah,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Utah,Cerebrovascular Diseases,1-4 years,Suppressed,199237
+Utah,Cerebrovascular Diseases,15-24 years,Suppressed,518499
+Utah,Cerebrovascular Diseases,25-34 years,Suppressed,471806
+Utah,Cerebrovascular Diseases,35-44 years,Suppressed,443453
+Utah,Cerebrovascular Diseases,45-54 years,Suppressed,328430
+Utah,Cerebrovascular Diseases,5-14 years,Suppressed,526961
+Utah,Cerebrovascular Diseases,55-64 years,Suppressed,303134
+Utah,Cerebrovascular Diseases,65-74 years,Suppressed,219466
+Utah,Cerebrovascular Diseases,75-84 years,Suppressed,107832
+Utah,Cerebrovascular Diseases,85+ years,Suppressed,38574
+Utah,Cerebrovascular Diseases,< 1 year,Suppressed,48566
+Utah,Cerebrovascular Diseases,All Ages,Suppressed,3205958
+Utah,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Utah,Diabetes Disease,1-4 years,Suppressed,199237
 Utah,Diabetes Disease,15-24 years,Suppressed,518499
 Utah,Diabetes Disease,25-34 years,Suppressed,471806
@@ -10113,19 +10113,19 @@ Vermont,Car accidents,85+ years,Suppressed,14437
 Vermont,Car accidents,< 1 year,Suppressed,5579
 Vermont,Car accidents,All Ages,51,623989
 Vermont,Car accidents,Not Stated,Suppressed,Not Applicable
-Vermont,Cerebrovascular Disease,1-4 years,Suppressed,23464
-Vermont,Cerebrovascular Disease,15-24 years,Suppressed,86646
-Vermont,Cerebrovascular Disease,25-34 years,Suppressed,74408
-Vermont,Cerebrovascular Disease,35-44 years,Suppressed,71267
-Vermont,Cerebrovascular Disease,45-54 years,Suppressed,78051
-Vermont,Cerebrovascular Disease,5-14 years,Suppressed,64156
-Vermont,Cerebrovascular Disease,55-64 years,Suppressed,95379
-Vermont,Cerebrovascular Disease,65-74 years,Suppressed,75206
-Vermont,Cerebrovascular Disease,75-84 years,Suppressed,35396
-Vermont,Cerebrovascular Disease,85+ years,Suppressed,14437
-Vermont,Cerebrovascular Disease,< 1 year,Suppressed,5579
-Vermont,Cerebrovascular Disease,All Ages,Suppressed,623989
-Vermont,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Vermont,Cerebrovascular Diseases,1-4 years,Suppressed,23464
+Vermont,Cerebrovascular Diseases,15-24 years,Suppressed,86646
+Vermont,Cerebrovascular Diseases,25-34 years,Suppressed,74408
+Vermont,Cerebrovascular Diseases,35-44 years,Suppressed,71267
+Vermont,Cerebrovascular Diseases,45-54 years,Suppressed,78051
+Vermont,Cerebrovascular Diseases,5-14 years,Suppressed,64156
+Vermont,Cerebrovascular Diseases,55-64 years,Suppressed,95379
+Vermont,Cerebrovascular Diseases,65-74 years,Suppressed,75206
+Vermont,Cerebrovascular Diseases,75-84 years,Suppressed,35396
+Vermont,Cerebrovascular Diseases,85+ years,Suppressed,14437
+Vermont,Cerebrovascular Diseases,< 1 year,Suppressed,5579
+Vermont,Cerebrovascular Diseases,All Ages,Suppressed,623989
+Vermont,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Vermont,Diabetes Disease,1-4 years,Suppressed,23464
 Vermont,Diabetes Disease,15-24 years,Suppressed,86646
 Vermont,Diabetes Disease,25-34 years,Suppressed,74408
@@ -10332,19 +10332,19 @@ Virginia,Car accidents,85+ years,34,154485
 Virginia,Car accidents,< 1 year,Suppressed,97864
 Virginia,Car accidents,All Ages,870,8535519
 Virginia,Car accidents,Not Stated,Suppressed,Not Applicable
-Virginia,Cerebrovascular Disease,1-4 years,Suppressed,407613
-Virginia,Cerebrovascular Disease,15-24 years,Suppressed,1113447
-Virginia,Cerebrovascular Disease,25-34 years,Suppressed,1190381
-Virginia,Cerebrovascular Disease,35-44 years,Suppressed,1112496
-Virginia,Cerebrovascular Disease,45-54 years,Suppressed,1100274
-Virginia,Cerebrovascular Disease,5-14 years,Suppressed,1040121
-Virginia,Cerebrovascular Disease,55-64 years,Suppressed,1114417
-Virginia,Cerebrovascular Disease,65-74 years,Suppressed,802291
-Virginia,Cerebrovascular Disease,75-84 years,Suppressed,402130
-Virginia,Cerebrovascular Disease,85+ years,Suppressed,154485
-Virginia,Cerebrovascular Disease,< 1 year,Suppressed,97864
-Virginia,Cerebrovascular Disease,All Ages,Suppressed,8535519
-Virginia,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Virginia,Cerebrovascular Diseases,1-4 years,Suppressed,407613
+Virginia,Cerebrovascular Diseases,15-24 years,Suppressed,1113447
+Virginia,Cerebrovascular Diseases,25-34 years,Suppressed,1190381
+Virginia,Cerebrovascular Diseases,35-44 years,Suppressed,1112496
+Virginia,Cerebrovascular Diseases,45-54 years,Suppressed,1100274
+Virginia,Cerebrovascular Diseases,5-14 years,Suppressed,1040121
+Virginia,Cerebrovascular Diseases,55-64 years,Suppressed,1114417
+Virginia,Cerebrovascular Diseases,65-74 years,Suppressed,802291
+Virginia,Cerebrovascular Diseases,75-84 years,Suppressed,402130
+Virginia,Cerebrovascular Diseases,85+ years,Suppressed,154485
+Virginia,Cerebrovascular Diseases,< 1 year,Suppressed,97864
+Virginia,Cerebrovascular Diseases,All Ages,Suppressed,8535519
+Virginia,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Virginia,Diabetes Disease,1-4 years,Suppressed,407613
 Virginia,Diabetes Disease,15-24 years,Suppressed,1113447
 Virginia,Diabetes Disease,25-34 years,Suppressed,1190381
@@ -10551,19 +10551,19 @@ Washington,Car accidents,85+ years,21,134578
 Washington,Car accidents,< 1 year,Suppressed,88095
 Washington,Car accidents,All Ages,604,7614893
 Washington,Car accidents,Not Stated,Suppressed,Not Applicable
-Washington,Cerebrovascular Disease,1-4 years,Suppressed,368381
-Washington,Cerebrovascular Disease,15-24 years,Suppressed,929322
-Washington,Cerebrovascular Disease,25-34 years,Suppressed,1172075
-Washington,Cerebrovascular Disease,35-44 years,Suppressed,1028141
-Washington,Cerebrovascular Disease,45-54 years,Suppressed,923777
-Washington,Cerebrovascular Disease,5-14 years,Suppressed,935771
-Washington,Cerebrovascular Disease,55-64 years,Suppressed,959608
-Washington,Cerebrovascular Disease,65-74 years,Suppressed,735524
-Washington,Cerebrovascular Disease,75-84 years,Suppressed,339621
-Washington,Cerebrovascular Disease,85+ years,Suppressed,134578
-Washington,Cerebrovascular Disease,< 1 year,Suppressed,88095
-Washington,Cerebrovascular Disease,All Ages,Suppressed,7614893
-Washington,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Washington,Cerebrovascular Diseases,1-4 years,Suppressed,368381
+Washington,Cerebrovascular Diseases,15-24 years,Suppressed,929322
+Washington,Cerebrovascular Diseases,25-34 years,Suppressed,1172075
+Washington,Cerebrovascular Diseases,35-44 years,Suppressed,1028141
+Washington,Cerebrovascular Diseases,45-54 years,Suppressed,923777
+Washington,Cerebrovascular Diseases,5-14 years,Suppressed,935771
+Washington,Cerebrovascular Diseases,55-64 years,Suppressed,959608
+Washington,Cerebrovascular Diseases,65-74 years,Suppressed,735524
+Washington,Cerebrovascular Diseases,75-84 years,Suppressed,339621
+Washington,Cerebrovascular Diseases,85+ years,Suppressed,134578
+Washington,Cerebrovascular Diseases,< 1 year,Suppressed,88095
+Washington,Cerebrovascular Diseases,All Ages,Suppressed,7614893
+Washington,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Washington,Diabetes Disease,1-4 years,Suppressed,368381
 Washington,Diabetes Disease,15-24 years,Suppressed,929322
 Washington,Diabetes Disease,25-34 years,Suppressed,1172075
@@ -10770,19 +10770,19 @@ West Virginia,Car accidents,85+ years,15,40136
 West Virginia,Car accidents,< 1 year,Suppressed,17755
 West Virginia,Car accidents,All Ages,296,1792147
 West Virginia,Car accidents,Not Stated,Suppressed,Not Applicable
-West Virginia,Cerebrovascular Disease,1-4 years,Suppressed,75270
-West Virginia,Cerebrovascular Disease,15-24 years,Suppressed,216856
-West Virginia,Cerebrovascular Disease,25-34 years,Suppressed,214004
-West Virginia,Cerebrovascular Disease,35-44 years,Suppressed,213802
-West Virginia,Cerebrovascular Disease,45-54 years,Suppressed,229251
-West Virginia,Cerebrovascular Disease,5-14 years,Suppressed,203472
-West Virginia,Cerebrovascular Disease,55-64 years,Suppressed,254726
-West Virginia,Cerebrovascular Disease,65-74 years,Suppressed,217323
-West Virginia,Cerebrovascular Disease,75-84 years,Suppressed,109552
-West Virginia,Cerebrovascular Disease,85+ years,Suppressed,40136
-West Virginia,Cerebrovascular Disease,< 1 year,Suppressed,17755
-West Virginia,Cerebrovascular Disease,All Ages,Suppressed,1792147
-West Virginia,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+West Virginia,Cerebrovascular Diseases,1-4 years,Suppressed,75270
+West Virginia,Cerebrovascular Diseases,15-24 years,Suppressed,216856
+West Virginia,Cerebrovascular Diseases,25-34 years,Suppressed,214004
+West Virginia,Cerebrovascular Diseases,35-44 years,Suppressed,213802
+West Virginia,Cerebrovascular Diseases,45-54 years,Suppressed,229251
+West Virginia,Cerebrovascular Diseases,5-14 years,Suppressed,203472
+West Virginia,Cerebrovascular Diseases,55-64 years,Suppressed,254726
+West Virginia,Cerebrovascular Diseases,65-74 years,Suppressed,217323
+West Virginia,Cerebrovascular Diseases,75-84 years,Suppressed,109552
+West Virginia,Cerebrovascular Diseases,85+ years,Suppressed,40136
+West Virginia,Cerebrovascular Diseases,< 1 year,Suppressed,17755
+West Virginia,Cerebrovascular Diseases,All Ages,Suppressed,1792147
+West Virginia,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 West Virginia,Diabetes Disease,1-4 years,Suppressed,75270
 West Virginia,Diabetes Disease,15-24 years,Suppressed,216856
 West Virginia,Diabetes Disease,25-34 years,Suppressed,214004
@@ -10989,19 +10989,19 @@ Wisconsin,Car accidents,85+ years,24,128309
 Wisconsin,Car accidents,< 1 year,Suppressed,63366
 Wisconsin,Car accidents,All Ages,567,5822434
 Wisconsin,Car accidents,Not Stated,Suppressed,Not Applicable
-Wisconsin,Cerebrovascular Disease,1-4 years,Suppressed,267130
-Wisconsin,Cerebrovascular Disease,15-24 years,Suppressed,768140
-Wisconsin,Cerebrovascular Disease,25-34 years,Suppressed,741222
-Wisconsin,Cerebrovascular Disease,35-44 years,Suppressed,713075
-Wisconsin,Cerebrovascular Disease,45-54 years,Suppressed,715209
-Wisconsin,Cerebrovascular Disease,5-14 years,Suppressed,714031
-Wisconsin,Cerebrovascular Disease,55-64 years,Suppressed,823018
-Wisconsin,Cerebrovascular Disease,65-74 years,Suppressed,594748
-Wisconsin,Cerebrovascular Disease,75-84 years,Suppressed,294186
-Wisconsin,Cerebrovascular Disease,85+ years,Suppressed,128309
-Wisconsin,Cerebrovascular Disease,< 1 year,Suppressed,63366
-Wisconsin,Cerebrovascular Disease,All Ages,Suppressed,5822434
-Wisconsin,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Wisconsin,Cerebrovascular Diseases,1-4 years,Suppressed,267130
+Wisconsin,Cerebrovascular Diseases,15-24 years,Suppressed,768140
+Wisconsin,Cerebrovascular Diseases,25-34 years,Suppressed,741222
+Wisconsin,Cerebrovascular Diseases,35-44 years,Suppressed,713075
+Wisconsin,Cerebrovascular Diseases,45-54 years,Suppressed,715209
+Wisconsin,Cerebrovascular Diseases,5-14 years,Suppressed,714031
+Wisconsin,Cerebrovascular Diseases,55-64 years,Suppressed,823018
+Wisconsin,Cerebrovascular Diseases,65-74 years,Suppressed,594748
+Wisconsin,Cerebrovascular Diseases,75-84 years,Suppressed,294186
+Wisconsin,Cerebrovascular Diseases,85+ years,Suppressed,128309
+Wisconsin,Cerebrovascular Diseases,< 1 year,Suppressed,63366
+Wisconsin,Cerebrovascular Diseases,All Ages,Suppressed,5822434
+Wisconsin,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Wisconsin,Diabetes Disease,1-4 years,Suppressed,267130
 Wisconsin,Diabetes Disease,15-24 years,Suppressed,768140
 Wisconsin,Diabetes Disease,25-34 years,Suppressed,741222
@@ -11208,19 +11208,19 @@ Wyoming,Car accidents,85+ years,Suppressed,10991
 Wyoming,Car accidents,< 1 year,Suppressed,6572
 Wyoming,Car accidents,All Ages,105,578759
 Wyoming,Car accidents,Not Stated,Suppressed,Not Applicable
-Wyoming,Cerebrovascular Disease,1-4 years,Suppressed,28359
-Wyoming,Cerebrovascular Disease,15-24 years,Suppressed,74590
-Wyoming,Cerebrovascular Disease,25-34 years,Suppressed,76433
-Wyoming,Cerebrovascular Disease,35-44 years,Suppressed,74285
-Wyoming,Cerebrovascular Disease,45-54 years,Suppressed,63853
-Wyoming,Cerebrovascular Disease,5-14 years,Suppressed,76734
-Wyoming,Cerebrovascular Disease,55-64 years,Suppressed,78754
-Wyoming,Cerebrovascular Disease,65-74 years,Suppressed,60590
-Wyoming,Cerebrovascular Disease,75-84 years,Suppressed,27598
-Wyoming,Cerebrovascular Disease,85+ years,Suppressed,10991
-Wyoming,Cerebrovascular Disease,< 1 year,Suppressed,6572
-Wyoming,Cerebrovascular Disease,All Ages,Suppressed,578759
-Wyoming,Cerebrovascular Disease,Not Stated,Suppressed,Not Applicable
+Wyoming,Cerebrovascular Diseases,1-4 years,Suppressed,28359
+Wyoming,Cerebrovascular Diseases,15-24 years,Suppressed,74590
+Wyoming,Cerebrovascular Diseases,25-34 years,Suppressed,76433
+Wyoming,Cerebrovascular Diseases,35-44 years,Suppressed,74285
+Wyoming,Cerebrovascular Diseases,45-54 years,Suppressed,63853
+Wyoming,Cerebrovascular Diseases,5-14 years,Suppressed,76734
+Wyoming,Cerebrovascular Diseases,55-64 years,Suppressed,78754
+Wyoming,Cerebrovascular Diseases,65-74 years,Suppressed,60590
+Wyoming,Cerebrovascular Diseases,75-84 years,Suppressed,27598
+Wyoming,Cerebrovascular Diseases,85+ years,Suppressed,10991
+Wyoming,Cerebrovascular Diseases,< 1 year,Suppressed,6572
+Wyoming,Cerebrovascular Diseases,All Ages,Suppressed,578759
+Wyoming,Cerebrovascular Diseases,Not Stated,Suppressed,Not Applicable
 Wyoming,Diabetes Disease,1-4 years,Suppressed,28359
 Wyoming,Diabetes Disease,15-24 years,Suppressed,74590
 Wyoming,Diabetes Disease,25-34 years,Suppressed,76433

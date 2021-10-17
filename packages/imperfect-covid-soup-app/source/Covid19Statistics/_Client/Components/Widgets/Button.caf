@@ -35,9 +35,7 @@ class Button extends ViewStateComponent
           :childrenCenterCenter
           padding: @gridSize / 2
           TextElement
-            if @selected
-              TextStyles.smallBoldText
-            else
-              TextStyles.smallText
+            TextStyles.smallText
+            color: TextPalette.black.primary
             :childrenSize
             @props

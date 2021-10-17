@@ -79,12 +79,28 @@ class CovidDataLoader extends BaseClass
     rawUsPopulation:      -> @_rawUsPopulation      ?= loadCsv :data/us-population.csv
     rawUsDeathIntent:     -> @_rawUsDeathIntent     ?= loadCsv :data/2019-us-death-intent.csv
     rawUsDeathMechanism:  -> @_rawUsDeathMechanism  ?= loadCsv :data/2019-us-death-mechanism.csv
+    rawBaselineUsDeaths:  -> @_rawBaselineUsDeaths  ?= loadCsv :data/2019-us-death-kind.csv
     intentData:           -> @_intentData           ?= @rawUsDeathIntent.then deathTypeHelper
     mechanismData:        -> @_mechanismData        ?= @rawUsDeathMechanism.then deathTypeHelper
 
     updatedAt: -> @_updatedAt ?= @rawUsDeaths.then (rows) ->
       toDate reduce a, {dataAsOf} from rows inject 0
         max a, Date.parse dataAsOf
+
+    baselineDeathData: ->
+      @rawBaselineUsDeaths.then (baselineDeathData) ->
+        each {state,kind,age,deaths,population} from baselineDeathData into out = {} when age != "Not Stated"
+          ((out[upperCamelCase state]?={})[age]?={population})[lowerCamelCase(kind)+:2019] =
+            if deaths != :Suppressed && present deaths then deaths | 0 else null
+
+        each d1, state in out
+          each d2, age in d1
+            d2.allOtherDeaths2019 =
+              d2.allDeaths2019
+              - d2.allAccidents2019
+              - d2.allDiseases2019
+              - d2.suicides2019
+              - d2.homicides2019
 
     populationData: ->
       @_populationData ?=
@@ -151,3 +167,4 @@ class CovidDataLoader extends BaseClass
           @covidData
           @intentData
           @mechanismData
+          @baselineDeathData

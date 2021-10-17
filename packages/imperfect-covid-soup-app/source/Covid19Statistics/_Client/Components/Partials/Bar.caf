@@ -10,31 +10,20 @@ add = (a, b) ->
     Infinity
   else a + b
 
-c1 = rgbColor #0f71ed
-c2 = rgbColor #ffb270
-c3 = rgbColor #ffe96b
-
-barColors =
-  grey:
-    grey = rgbColor #c
-    grey.blend :black, 1 - .85
-    grey.blend :black, 1 - .7
-    grey.blend :black, 1 - .55
-    grey.blend :black, 1 - .40
-
-  color:
-    []
-      c1
-      c1.blend :black, 1 - .85
-      c1.blend :black, 1 - .7
-      c1.blend :black, 1 - .55
-      c1.blend :black, 1 - .40
-
 oneColor = #aca8a8
 
 class Bar extends ViewStateComponent
 
-  @propFields :size :location :numBars :value :values :valueLabel :unit :label :maxValue :colorPalette :layout
+  @propFields
+    :size :location :numBars
+    :value :values
+    :valueLabel
+    :unit
+    :label
+    :maxValue
+    :colorPalette
+    :layout
+    :setHoveredBar
 
   @stateFields
     mouseIn: null
@@ -45,7 +34,7 @@ class Bar extends ViewStateComponent
       bound 0, location.y / target.currentSize.y, 1
 
   render: ->
-    @ extract value, values, layout, label, maxValue
+    @ extract value, values, layout, label, maxValue, colorPalette
 
     labelValue = value
 
@@ -57,8 +46,6 @@ class Bar extends ViewStateComponent
 
     if isInfinite value
       value = maxValue
-
-    colorPalette = barColors[@colorPalette] || barColors.grey
 
     barWidth = 1 / bars.length
     barTotal = reduce a, b from bars inject 0 with add a, b
@@ -75,11 +62,8 @@ class Bar extends ViewStateComponent
         @location
         padding: h: @gridSize / 2
         on:
-          mouseIn: @setMouseIn
-
-          mouseOut: ({target, location}) ->
-            @setMouseIn {target, location}
-            timeout 5 -> @clearMouseIn()
+          mouseIn: -> @setHoveredBar @props
+          mouseOut: -> @setHoveredBar null
 
         animators:
           size:     duration: .25
@@ -100,7 +84,7 @@ class Bar extends ViewStateComponent
           draw:
             :clip
 
-            array bar, i in bars
+            array bar, i in bars by -1
               rectangle:
                 if layout == :stacked
                   bar = if barTotal > 0
@@ -149,12 +133,7 @@ class Bar extends ViewStateComponent
             text:
               if @valueLabel is String
                 @valueLabel
-              else if labelValue
-                if labelValue >= labelValue
-                  formatNumber labelValue, @unit
-                else formatProbability labelValue, @unit
-
-              else '' + labelValue
+              else formatNumber labelValue, @unit
 
       Element
         size: h: @gridSize * 2

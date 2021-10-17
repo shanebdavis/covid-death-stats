@@ -1,0 +1,79 @@
+import &StandardImport
+
+class HoverLegend extends ViewStateComponent
+
+  @subscriptions :graphState.layout
+
+  @propFields
+    :size :location :numBars
+    :value :values :valueLegendLabels
+    :valueLabel
+    :unit
+    :label
+    :maxValue
+    :colorPalette
+    :layout
+    :setHoveredBar
+    :right
+
+  render: ->
+    @ extract colorPalette
+
+    commonSize = size: wcw: 1 h: TextStyles.smallText.fontSize * 2
+    Element
+      if @right then :topRight :childrenTopRight
+      :childrenSize
+      :column
+      animators:
+        :location :axis
+        opacity: toFrom: 0
+
+      inFlow: false
+      childrenMargins: @gridSize / 2
+      # padding: @gridSize / 2
+      draw:
+        padding: -@gridSize / 2
+        radius: @gridSize / 2
+        fill: :white
+        outline: TextPalette.black.secondary
+      TextElement
+        TextStyles.smallText
+        :childrenSize
+        color: TextPalette.black.secondary
+        text:
+          """
+            #{} @label.replace /\n/, ' '
+
+      Element
+        :row :childrenSize childrenMargins: @gridSize
+
+        if @valueLegendLabels?[0]
+          Element
+            :column :childrenCenterRight :childrenSize
+            array label, i in compactFlattenAll @valueLegendLabels, if @layout == :stacked && @values.length > 1 then :total
+              TextElement
+                TextStyles.smallText
+                :textCenterCenter :childrenSize commonSize
+                color:  TextPalette.black.secondary
+                text:   label
+
+        Element
+          :column :childrenCenterRight :childrenSize
+          array value, i in compactFlattenAll @values, if @layout == :stacked && @values.length > 1 then @value
+            TextElement
+              TextStyles.smallBoldText
+              :textCenterCenter :childrenSize commonSize
+              color: TextPalette.black.primary
+              text:
+                if !value? || value == "null"
+                then "" 1-9
+                else formatNumber value, @unit, true
+
+        Element
+          :column :childrenCenterRight :childrenSize
+          array value, i in @values
+            Element
+              :row :childrenCenterCenter :childrenSize commonSize
+              Element
+                size: @gridSize
+                draw: fill: colorPalette[i % colorPalette.length]

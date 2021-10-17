@@ -1,53 +1,74 @@
-import &StandardImport, &DataLib
+import &StandardImport, &ArtAtomic, &DataLib
+
+c1 = rgbColor #0f71ed
+c2 = rgbColor #ffb270
+c3 = rgbColor #ffe96b
 
 {}
-  formatPercent = (p) ->
+  toFixedWithTrim = (v, precision) ->
+    v
+    .toFixed precision
+    .replace /([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1'
+
+  formatPercent = (p, highPrecision) ->
     100 * p
     .toFixed
       switch
-      when p < .010001 then 3
+      # when p < .010001 then 3
       when p < .100001 then 2
       else 1
+      + if highPrecision then 1 else 0
     + :%
 
-  humanLabel = (p) ->
-    if m = p?.match /(^\d+-\d+) years/i
-      "#{m[1]} Years"
-    else if m = p?.match /^(\d\d\d\d)-(\d\d)$/
-      [_, year, month] = m
-      "" #{months[month|0]}, #{year}
-    else
-      upperCamelCase p, ' '
-      .replace /(\d+$)/, " $1"
-      .replace /Clrd/, "(CLRD)"
-
-  formatNumber = (p, unit) ->
+  formatNumber = (p, unit, highPrecision = false) ->
     if isInfinite p
       :Infinity
     else
+      addFixed = if highPrecision then 1 else 0
       a =
         switch
-        when p >= 99999999 then "#{Math.round(p / 1000000)}m"
-        when p >= 999999 then "#{(p / 1000000).toFixed 1}m"
-        when p >= 99999 then "#{Math.round(p / 1000)}k"
-        when p >= 9999 then "#{(p / 1000).toFixed 1}k"
-        when p >= 999 then commaize Math.round p
+        when p >= 99999999 then "#{commaize Math.round(p / 1000000)}m"
+        when p >= 999999 then "#{toFixedWithTrim p / 1000000, 1 + addFixed}m"
+        when p >= 99999 then "#{toFixedWithTrim p / 1000, 0 + addFixed}k"
+        when p >= 9999 then "#{toFixedWithTrim p / 1000, 1 + addFixed}k"
+        when p >= 999 then toFixedWithTrim p, 0 + addFixed
         when p >= 100 then Math.round p
         when float32Eq (p | 0), p then p | 0
-        when p >= 10 then p.toFixed 1
-        when p >= 1 then p.toFixed 2
-        else formatProbability p
-      if unit then "#{a} #{unit}"
+        when p >= 10 then toFixedWithTrim p, 1 + addFixed
+        when p >= 1 then toFixedWithTrim p, 2 + addFixed
+        else formatProbability p, highPrecision
+
+      if unit
+        if unit == "x"
+          "#{a}#{unit}"
+        else
+          "#{a} #{unit}"
       else a
 
-  formatProbability = (p) ->
+  formatProbability = (p, highPrecision = false) ->
     if p < .001001
-      "1:#{formatNumber 1/p}"
+      "1:#{formatNumber 1/p, null, highPrecision}"
     else
-      formatPercent p
+      formatPercent p, highPrecision
 
   maxValues =
     compactFlatten
       array s from -7 til 12
         array m in 1 2.5 5
           m * Math.pow 10, s
+
+  barColors =
+    grey:
+      grey = rgbColor #c
+      grey.blend :black, 1 - .85
+      grey.blend :black, 1 - .7
+      grey.blend :black, 1 - .55
+      grey.blend :black, 1 - .40
+
+    color:
+      []
+        c1
+        c1.blend :black, 1 - .85
+        c1.blend :black, 1 - .7
+        c1.blend :black, 1 - .55
+        c1.blend :black, 1 - .40

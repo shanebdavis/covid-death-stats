@@ -10,6 +10,7 @@ class Graph extends ViewStateComponent
     selectedData: null
     showOptionsFor: null
     previousMaxValue: null
+    hoveredBar: null
 
   @propFields :animationOn
 
@@ -40,8 +41,6 @@ class Graph extends ViewStateComponent
     maxValue: ->
       unless isInfinite maxValue = @calculatedMaxValue
         if @previousMaxValue == bound maxValue, @previousMaxValue, 4 * maxValue
-          if maxValue != @previousMaxValue
-            log usePreviousMaxValue: formatNumber @previousMaxValue
           @previousMaxValue
         else
           log updateMaxValue: formatNumber maxValue
@@ -57,11 +56,14 @@ class Graph extends ViewStateComponent
   render: ->
     @graphState extract layout, presetData, custom
 
+    maxRowValue = reduce _max, row from @data inject 0
+      max _max, row.value
+
     commonBarProps = {}
       @maxValue
       numBars:      @data.length
       layout:       layout[0]
-      colorPalette: if hasDenominator(@graphState) && hasNumerator(@graphState) then :color else :grey
+      colorPalette: if hasDenominator(@graphState) && hasNumerator(@graphState) then barColors.color else barColors.grey
       unit:         !custom && presetData?.graphState?.unit
 
     Element
@@ -83,8 +85,10 @@ class Graph extends ViewStateComponent
           array row, i in @data
             Bar row, commonBarProps, {}
               key:      row.label
+              centerX: (i + .5) / @data.length
               location: xw: i / @data.length
               size:     ww: 1 / @data.length
+              @setHoveredBar
 
         Element
           key:      :line
@@ -94,3 +98,11 @@ class Graph extends ViewStateComponent
           draw:     TextPalette.black.primary
 
       PageBottom()
+
+      if @hoveredBar
+        HoverLegend commonBarProps, @hoveredBar,
+          key: :hoverLegend
+          right:
+            find row, i in @data when row.value == maxRowValue with i
+            < @data.length / 2
+

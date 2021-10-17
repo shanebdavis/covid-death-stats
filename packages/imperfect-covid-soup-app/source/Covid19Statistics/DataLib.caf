@@ -20,6 +20,18 @@ getEnv() extract showFullDetails
         85
       )
 
+
+  humanLabel = (p) ->
+    if m = p?.match /(^\d+-\d+) years/i
+      "#{m[1]} Years"
+    else if m = p?.match /^(\d\d\d\d)-(\d\d)$/
+      [_, year, month] = m
+      "" #{months[month|0]}, #{year}
+    else
+      upperCamelCase p, ' '
+      .replace /(\d+$)/, " $1"
+      .replace /Clrd/, "(CLRD)"
+
   isPublicValue = (b) -> b? && (b == 0 || b > 9)
   isInfinite = (v) -> !(v < maxDisplayValue)
 
@@ -88,6 +100,7 @@ getEnv() extract showFullDetails
   createSelectedDataEntry = (covidDataRecord, region, age, baselineDeathData, scale) ->
     merge
       covidDataRecord
+      {} region, age
       nonCovid19Deaths: covidDataRecord.totalDeaths - covidDataRecord.covid19Deaths
       applyScale scale, baselineDeathData?[region]?[age] ? {}
 
@@ -104,16 +117,27 @@ getEnv() extract showFullDetails
   hasDenominator  = ({denominator}) -> equationElementHasNon1Value denominator
 
   getGraphDataElement: (rows, label, graphState) ->
-    graphState extract layout, numerator, denominator
+    graphState extract layout, numerator, denominator, age, region
 
     [firstRow] = rows
 
     values =
       if numerator.length > 1
+        valueLegendLabels = array n in numerator with humanLabel n
         array n in numerator with valueCalc firstRow, n, denominator[0]
       else if denominator.length > 1
+        valueLegendLabels = array l in denominator with humanLabel l
         array d in denominator with valueCalc firstRow, numerator[0], d
       else
+        valueLegendLabels = array {region, age} in rows
+          if graphState.age.length > 1 && graphState.region.length > 1
+            "" #{upperCamelCase region, ' '}, #{age}
+          else if graphState.age.length > 1
+            "" #{age}
+          else if graphState.region.length > 1
+            upperCamelCase region, ' '
+          else null
+
         array row in rows with valueCalc row, numerator[0], denominator[0]
 
     [lowValue, highValue] =
@@ -133,6 +157,7 @@ getEnv() extract showFullDetails
           .replace /[ ]years/g '\nyears'
 
       values
+      valueLegendLabels
       value: (lowValue + highValue) / 2
       valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
       nonInfiniteValueMax: getMaxNonInfiniteValues values

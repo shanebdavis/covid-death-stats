@@ -5,7 +5,9 @@
 
 .addModules({
   Bar:              require('./Bar'),
+  BarLib:           require('./BarLib'),
   GraphStatePicker: require('./GraphStatePicker'),
+  HoverLegend:      require('./HoverLegend'),
   Legend:           require('./Legend'),
   PageSelector:     require('./PageSelector'),
   StandardImport:   require('./StandardImport')

@@ -30,7 +30,6 @@ class HoverLegend extends ViewStateComponent
 
       inFlow: false
       childrenMargins: @gridSize / 2
-      # padding: @gridSize / 2
       draw:
         padding: -@gridSize / 2
         radius: @gridSize / 2
@@ -61,7 +60,7 @@ class HoverLegend extends ViewStateComponent
           :column :childrenCenterRight :childrenSize
           array value, i in compactFlattenAll @values, if @layout == :stacked && @values.length > 1 then @value
             TextElement
-              TextStyles.smallBoldText
+              TextStyles.mediumBoldText
               :textCenterCenter :childrenSize commonSize
               color: TextPalette.black.primary
               text:
@@ -75,5 +74,7 @@ class HoverLegend extends ViewStateComponent
             Element
               :row :childrenCenterCenter :childrenSize commonSize
               Element
-                size: @gridSize
-                draw: fill: colorPalette[i % colorPalette.length]
+                size: TextStyles.smallText.fontSize * 1.5
+                draw:
+                  radius: 5
+                  fill: colorPalette[i % colorPalette.length]

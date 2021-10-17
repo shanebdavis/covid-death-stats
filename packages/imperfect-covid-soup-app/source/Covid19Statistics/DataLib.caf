@@ -32,6 +32,14 @@ getEnv() extract showFullDetails
       .replace /(\d+$)/, " $1"
       .replace /Clrd/, "(CLRD)"
 
+  shortHumanLabel = (p) ->
+    humanLabel
+      if /^All/i.test p
+        p
+      else
+        p.replace /Pneumonia|Diseases?|Accidents?|Clrd/g, ''
+
+
   isPublicValue = (b) -> b? && (b == 0 || b > 9)
   isInfinite = (v) -> !(v < maxDisplayValue)
 
@@ -123,20 +131,23 @@ getEnv() extract showFullDetails
 
     values =
       if numerator.length > 1
-        valueLegendLabels = array n in numerator with humanLabel n
+        valueLegendLabels = array n in numerator with shortHumanLabel n
         array n in numerator with valueCalc firstRow, n, denominator[0]
       else if denominator.length > 1
-        valueLegendLabels = array l in denominator with humanLabel l
+        valueLegendLabels = array l in denominator with shortHumanLabel l
         array d in denominator with valueCalc firstRow, numerator[0], d
       else
-        valueLegendLabels = array {region, age} in rows
-          if graphState.age.length > 1 && graphState.region.length > 1
-            "" #{upperCamelCase region, ' '}, #{age}
-          else if graphState.age.length > 1
-            "" #{age}
-          else if graphState.region.length > 1
-            upperCamelCase region, ' '
-          else null
+        valueLegendLabels =
+          if graphState.age.length == 1 && graphState.region.length == 1
+            valueLegendLabels = array n in numerator with shortHumanLabel n
+          else
+            array {region, age} in rows
+              if graphState.age.length > 1 && graphState.region.length > 1
+                "" #{upperCamelCase region, ' '}, #{age}
+              else if graphState.age.length > 1
+                "" #{age}
+              else
+                upperCamelCase region, ' '
 
         array row in rows with valueCalc row, numerator[0], denominator[0]
 
@@ -265,22 +276,25 @@ getEnv() extract showFullDetails
         :covid19Deaths
         :nonCovid19Deaths
 
-        :population2019
+        :carAccidents2019
+        :drowningAccidents2019
+        :poisoningAccidents2019
+        :suffocationAccidents2019
+
         :alzheimersDisease2019
         :cancer2019
-        :carAccidents2019
         :cerebrovascularDiseases2019
         :diabetesDisease2019
-        :drowningAccidents2019
         :heartDiseases2019
-        :homicides2019
         :influenzaPneumonia2019
         :liverDisease2019
-        :poisoningAccidents2019
         :respiratoryClrdDisease2019
-        :suffocationAccidents2019
+        :homicides2019
         :suicides2019
+
         :allAccidents2019
         :allDeaths2019
         :allDiseases2019
         :allOtherDeaths2019
+
+        :population2019

@@ -66,8 +66,7 @@ class PageBottom extends ViewStateComponent
                     else
                       presetData.description
                       .replace /(%(\w+)%)/g, (a, b, c) ->
-                        array v in @graphState[c] with humanLabel v
-                        .join ", "
+                        commaAnd array v in @graphState[c] with humanLabel v
 
             Element
               size: w: @gridSize * 10

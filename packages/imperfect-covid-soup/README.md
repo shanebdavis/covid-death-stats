@@ -176,7 +176,7 @@ data:
 
 - Population data: https://www.census.gov/data/tables/time-series/demo/popest/2010s-state-detail.html
 - Covid Deaths data: https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku
-- Non-Covid Death Data (2019): https://wonder.cdc.gov/controller/datarequest/D77
+- Non-Covid Death Data (2019): https://wonder.cdc.gov/mcd-icd10.html
 
 
 ### Other Data of Note (not used in this app, though)

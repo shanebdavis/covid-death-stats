@@ -1,6 +1,6 @@
 import &StandardImport, &ArtAtomic, &DataLib
 
-c1 = rgbColor #0f71ed
+c1 = rgbColor #107aff
 c2 = rgbColor #ffb270
 c3 = rgbColor #ffe96b
 
@@ -57,18 +57,26 @@ c3 = rgbColor #ffe96b
         array m in 1 2.5 5
           m * Math.pow 10, s
 
+  commaAnd = (list) ->
+    if list.length > 1
+      last = peek list
+      list.slice 0, list.length - 1
+      .join ', '
+      + " and #{last}"
+    else list.join ', '
+
   barColors =
     grey:
       grey = rgbColor #c
       grey.blend :black, 1 - .85
-      grey.blend :black, 1 - .7
-      grey.blend :black, 1 - .55
-      grey.blend :black, 1 - .40
+      grey.blend :black, 1 - .60
+      grey.blend :black, 1 - .5
+      # grey.blend :black, 1 - .40
 
     color:
       []
         c1
         c1.blend :black, 1 - .85
-        c1.blend :black, 1 - .7
-        c1.blend :black, 1 - .55
-        c1.blend :black, 1 - .40
+        c1.blend :black, 1 - .60
+        c1.blend :black, 1 - .35
+        # c1.blend :black, 1 - .25

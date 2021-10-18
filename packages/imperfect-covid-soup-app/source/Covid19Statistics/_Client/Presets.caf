@@ -47,11 +47,12 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :1
       graphType:    [] :time
       age:          [] "All Ages"
+      region:       [] :UnitedStates
 
   {}
     description:
       """
-        # Covid-19 Data is not Meaningful by Itself
+        # Covid-19 Data Is Not Meaningful By Itself
 
         Above is a typical chart of Covid-19 the death counts over time.
         Unfortunately, this is just data. It has no meaning. It cannot be
@@ -130,7 +131,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Practical Tool #1: 65+ Average Additional Life Expectancy Due to Covid-19 Death Risk
+        # Practical Tool #1: Life Expectancy
+        # 65+ Average Additional Life Expectancy Due to Covid-19 Death Risk
 
         This graph is simply the inverse of the previous page.
 
@@ -181,7 +183,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Practical Tool #1: Ages 35-64 Average Additional Life Expectancy Due to Covid-19 Death Risk
+        # Practical Tool #1: Life Expectancy
+        # Ages 35 to 64
 
         For ages 35-64, Additional Life Expectancy numbers are a little absurd.
 
@@ -196,7 +199,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Practical Tool #1: Ages 1-34 Average Additional Life Expectancy Due to Covid-19 Death Risk
+        # Practical Tool #1: Life Expectancy
+        # Ages 1 to 34
 
         For ages 1-34, Additional Life Expectancy numbers are a little absurd.
 
@@ -211,7 +215,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Practical Tool #1: Average Additional Life Expectancy Due to Covid-19 Death Risk
+        # Practical Tool #1: Life Expectancy
+        # All Ages
 
         Overall, this life-expectancy statistic is one useful way to think about Covid-19 Death Risk
         in every-day terms.
@@ -228,7 +233,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Practical Tool #2: Ages 5-34 Comparing Covid-19 Death-Risk with Other Death-Risks: Suicide
+        # Practical Tool #2: Relative Risks
+        # Ages 5-34 Comparing Covid-19 Death-Risk With Suicide
 
         A sobering comparison. People ages 5 to 34 are
         more at risk of comitting suicide than they are of dying of Covid-19.
@@ -259,7 +265,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Change the "Suicides 2019" part of the equation in the legent by tapping on it. Then select one of
+        Change the "Suicides 2019" part of the equation in the legend by tapping on it. Then select one of
         the other, comparable 2019 death-risks such as "Car Accidents 2019" or "Disease Deaths 2019"
 
         ### How to Interpret the Graph
@@ -278,6 +284,141 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       unit:         [] :x
       time:         [] :last12Months
       age:          suicideAgeGroup
+  {}
+    description:
+      """
+        # Practical Tool #2: Relative Risks
+        # Ages 5-34 Comparing Covid-19 Death-Risk With Deaths Caused By Car Accidents
+
+        ### What to Try
+
+        Change the "Car 2019" part of the equation in the legend by tapping on it. Then select one of
+        the other, comparable 2019 accident death-risks such as "Poisoning Accidents 2019" or "Suffocation Accidents 2019"
+
+        ### How to Interpret the Graph
+
+        * Numbers represent the number of times more likely each group might die of a car accident compared to dying from Covid-19
+        * %region%, %age%, %time%
+
+        ### Notes
+
+        > The Car Accident Death risk data is from 2019.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :carAccidents2019
+      denominator:  [] :covid19Deaths
+      layout:       [] :adjacent
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          suicideAgeGroup
+
+  {}
+    description:
+      """
+        # Practical Tool #2: Relative Risks
+        # Ages 65+ Comparing Covid-19 Death-Risk with All Other Death-Risks
+
+        ### What to Try
+
+        Change the "Non Covid 19 Death" part of the equation in the legend by tapping on it. Then select one of
+        the other, comparable 2019 death-risks such as "Heart Diseases 2019" or "Cancer 2019."
+
+        ### How to Interpret the Graph
+
+        * Numbers represent the number of times more likely each age group is likely to die of some other, non-covid cause compared to dying of covid-19.
+        * Colors show the relative chance of a Covid-19 death (ligher color) vs all other, Non-Covid-19 deaths (darker color)
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      layout:       [] :stacked
+      numerator:    [] :nonCovid19Deaths
+      denominator:  [] :covid19Deaths
+      unit:         [] :x
+      time:         [] :last12Months
+      age:          olderAgeGroup
+
+  {}
+    description:
+      """
+        # Practical Tool #2: Relative Risks
+        # Ages 65+ Comparing Covid-19 Death-Risk with All Other Death-Risks
+
+        ### How to Interpret the Graph
+
+        * Numbers represent the overall chance of death.
+        * Colors show the relative chance of a Covid-19 death (ligher color) vs all other, Non-Covid-19 deaths (darker color)
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      layout:       [] :stacked
+      numerator:    [] :covid19Deaths :nonCovid19Deaths
+      denominator:  [] :population
+      time:         [] :last12Months
+      age:          olderAgeGroup
+      region:       [] "" UnitedStates
+
+  {}
+    description:
+      """
+        # Practical Tool #3: Comparing States Correctly
+        # State Covid-19 Death Counts
+
+        It appears, just looking at the Covid-19 death counts, that Idaho is the safest of the three states
+        and Washington is the least safe. However, these are only death counts with no denominator.
+
+        #- This graph is misleading. It does not show a meaningful comparison between %region%.
+
+        Go to the next page to see a meaningful graph.
+
+        ### How to Interpret the Graph
+
+        * Numbers show the number of Covid-19 deaths in %region% for %time%
+
+        > This graph cannot be interpreted because the covid-19 death counts have not been controlled for population.
+
+    graphState:
+      graphType:    [] :time
+      layout:       [] :adjacent
+      numerator:    [] :covid19Deaths
+      denominator:  [] :1
+      region:       [] :Idaho :Oregon :Washington
+      time:         [] :last12Months
+      age:          [] "All Ages"
+
+  {}
+    description:
+      """
+        # Practical Tool #3: Comparing States Correctly
+        # States Covid-19 Death Risk Requires Controlling For Each States Population
+
+        Since States vary in population quite widely, merely looking at the Covid-19 death count
+        tells you nothing about the actual Covid-19 death risk of each state.
+
+        As you can see, once we control for population, we see an entirely different picture
+        of actual Covid-19 risk in each state. In actually, Idaho has the higest risk and Washington
+        has the lowest.
+
+        ### What to Try
+
+        Select the "region" on the left, and then Shift-click to add or remove states from the comparison. Try adding California, Florida or Hawaii.
+
+        ### How to Interpret the Graph
+
+        * Numbers show the chance of dying each month due to Covid 19. Lower is safer.
+        * Each state is represented by a different colored bar, light to dark.
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :time
+      layout:       [] :adjacent
+      numerator:    [] :covid19Deaths
+      denominator:  [] :population
+      region:       [] :Idaho :Oregon :Washington
+      time:         [] :last12Months
+      age:          [] "All Ages"
 
   ####################################################################################
   ####################################################################################

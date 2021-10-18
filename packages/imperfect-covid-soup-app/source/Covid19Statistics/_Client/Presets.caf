@@ -9,7 +9,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
     description:
       """
         #- Understanding Covid-19 with Data
-        ##- How to Make Evidence Based Decisions About Safety
+        #- How to Make Evidence Based Decisions About Safety
 
         Statistics and probability are hard to understand. Our biological hardware isn't good
         at assessing probabilities that didn't help us survive in the past - e.g. any probability less
@@ -27,6 +27,10 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Fully interactive graph: Change all the graph settings at any time by using the buttons in the legend.
 
         ### Slide Show Contents
+
+        1. Understanding Life Expectancy Impact Due to Covid-19
+        1. Comparing Covid-19 to Other Death Risks
+        1. Comparing Risks by State Correctly
 
         * Statistics, Not Just Data
 
@@ -159,12 +163,18 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         > Note: This graph does not take account that after 10 years, all people in the 65-74 age group will
         now be in the 75-84 age group and therefor their Covid-19 death risk will have changed. This simple graph
-        assumes their death risk remains in the 65-74 age group even as they live for another 275 years.
+        assumes their death risk remains in the 65-74 age group even as they live for another 275 years (as-of this writing).
 
         ### Quantifying Older Ages Death Risk
 
         * The most at-risk population of all, 85+, could expect to live on average another 51 years (age 132) if Covid-19 was the sole death risk.
         * In other words, if, year after year the covid death risk remained the same, and there were no other death risks, people 85+ would have to wait an average of 51 years before Covid-19's death risk catches up with them.
+
+        ### What to Try
+
+        Change the "Covid 19 Deaths" in the legend first to "Non-Covid 19 Deaths" to see the life expectancy if Covid-19 was not present.
+        Then select "Total Deaths" to see the total life expectancy including Covid-19 and all other death risks. Toggle between
+        "Total" and "Non-Covid 19" deaths to compare how covid-16 impacts effective life expectancy.
 
         ### How to Interpret the Graph:
 
@@ -202,7 +212,15 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Practical Tool #1: Life Expectancy
         # Ages 1 to 34
 
-        For ages 1-34, Additional Life Expectancy numbers are a little absurd.
+        For comparison, the odds of dying of lightning in the US is about 1 in 500,000 on a yearly basis. Children ages 1 to 14 are only slightly more likely to die of Covid-19 than they are of dying by being struck by lightning.
+
+        #- The chance of dying of lightning on a yearly basis in the United States is 1:500k.
+
+        In otherwords, on average, an American can expect to live 500k years before they'd die by lightening strike.
+
+        ### What To Try
+
+        Change the "time" on the left from "Last 12 months" to "2020". In all of 2020, children ages 1 to 14 are actually more likely to be struck and die of lightning than they are to die of Covid 19.
 
     graphState:
       graphType:    [] :age
@@ -418,6 +436,48 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :population
       region:       [] :Idaho :Oregon :Washington
       time:         [] :last12Months
+      age:          [] "All Ages"
+
+  {}
+    description:
+      """
+        # Conclusions
+
+        # Caveots and Acknoledgments
+
+        * Everyone must choose their only tolerence for risk.
+        * The quailty of that death data is in constant debate.
+        * Covid-19 related death risks shown here are based on historical death data.
+        ** As is the nature of a pandemic, past data may not be an indication of future risks. That said, with over 18 months of trend in this pandemic where there have been
+        surges and relief multiple times, it's not unreasonable to guess that past data may be indicitive of
+        future risks.
+        ** We assume people continue to act more-or-less the same as they did
+        during the sample period.
+        ** We assume the virus doesn't mutate into a radically more dangrous form.
+
+        # A few Principles
+
+        * In general, causes of death less likely than 1 in 100 on a yearly basis are not worth worrying much about.
+        The reason is because, on average, you'd have to wait a least 100 years before you'd die of that cause.
+        "Just don't do anything too crazy, and you'll be fine."
+        * To save lives, we must invest effort PROPORTIONALLY for each death risk. Overinvesting in a less likely death-risk at the expense of a more-likely death risk will increase overall deaths.
+
+        # A Few Inescapable Conlusions
+
+        * Children ages 1 to 14 are as likely to be struck by lighting as die of Covid-19. Children are completely safe from Covid-19.
+        However, children are significantly more at risk of comitting suicide.
+        Children don't need any special covid-19 response, and worse,
+        many of the Covid-19 responses we have put children through increases depression, anxiety and stress and may result in net more
+        childhood deaths.
+
+        * Anyone under the age of 1 or between 15 and 85 has an extremely low Covid-19 death risk. As long as they continue to take
+        actions at least as safe as the median person, they have nothing to worry about.
+        * For people 85+, perhaps a little more precaution is justified, though chances are, 86 times out of 100, the ultimate cause of death will not be Covid-19.
+
+    graphState:
+      graphType:    [] :age
+      numerator:    [] :covid19Deaths
+      denominator:  [] :population
       age:          [] "All Ages"
 
   ####################################################################################

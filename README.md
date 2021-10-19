@@ -4,13 +4,14 @@
 
 Statistics and probability are hard to understand. Our biological hardware isn't good at assessing probabilities that didn't help us survive in the past. In order to understand Covid-19, we need math to translate the data into something meaningful to help us make important decisions.
 
+* [Launch the Covid-19 Death Stats App](https://shanebdavis.github.io/covid-death-stats/)
 # Source Data
 
 - Population data: https://www.census.gov/data/tables/time-series/demo/popest/2010s-state-detail.html
 - Covid Deaths data: https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku
 - Non-Covid Death Data (2019): https://wonder.cdc.gov/mcd-icd10.html
 
-# Collated Data
+### Collated Data
 
 The data sources above were ingested and collated into a standardized format for this app to use:
 

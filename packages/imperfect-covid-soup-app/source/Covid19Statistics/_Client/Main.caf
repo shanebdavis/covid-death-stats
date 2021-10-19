@@ -1,3 +1,11 @@
+# the normal getCacheSafeUrl uses an absolute path rather than a relative path
+# This is a monkeypatch that should be...fixed at the source.
+&ArtAppKit/Client.ClientLib extract Assets
+.getCacheSafeUrl = (path) ->
+    if /#/.test path
+      [path, anchor] = path.split "#"
+    "" #{path}?#{Assets.getAppVersion()}#{if anchor then '#' + anchor else ''}
+
 &ArtAppKit/Client.init {}
   title:  "" Covid-19 Death Stats - How to Make Evidence Based Decisions About Safety
   App:    &Components.Home

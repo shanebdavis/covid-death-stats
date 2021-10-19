@@ -17,31 +17,24 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         than about 1 in 100. In order to understand Covid-19, we need math to translate
         the data into something meaningful to help us make important decisions.
 
+        ### Get Started
+
+        On your first visit, I recommend going through the short slide-show. Scroll to the bottom of each page,
+        then select the next-page button (right-facing triangle on the right) to advance.
+
+        On subsequent visits, or at any time really, I invite you to expore the data by selecting
+        various options on the legend on the left.
+
         ### About This App
 
         This app uses the latest CDC Covid-19 death data, pre-pandemic CDC death data from 2019 and population data from the US Cencus. This app is United-States focused mostly
         because of the challenges of getting comparable data sets across nations.
 
+
         ### Features
 
         * Multi-page slide-show: Explains some basics statistics, demos how to use the app, and shares a few significant, evidence-based results with everyday implications.
         * Fully interactive graph: Change all the graph settings at any time by using the buttons in the legend.
-
-        ### Slide Show Contents
-
-        1. Understanding Life Expectancy Impact Due to Covid-19
-        1. Comparing Covid-19 to Other Death Risks
-        1. Comparing Risks by State Correctly
-
-        * Statistics, Not Just Data
-
-        * Covid-19 Death Risk over Time
-
-        * Quantifying the Covid-19 Death Risk by Age Group
-
-        ** Older ages - Covid-19 & Life Expectancy
-        ** Middle ages - Covid-19 vs other, current death risks
-        ** Younger ages
 
         ### Disclaimer
 
@@ -100,6 +93,11 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
     description:
       """
         # Covid-19 Death Risk by Age
+
+        To give data meaning, it must be compared. Take the Covid-19 death count and divide it by the total population, and now we have
+        statistics: the probably of death due to Covid-19.
+
+        > “Everything is relative.” -Einstein
 
         On the previous page we saw the raw death-count numbers by age group suggested 5-14 year olds where about 1,000x safer than those 85+.
         That data wasn't controlled for population, so it was meaningless to compare the two age groups. Dividing each count by the population
@@ -501,6 +499,41 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       """
         # Conclusions
 
+        I hope you found this app useful. It is my sincerest hope that this helps you think about
+        the Covid-16 related death risks for yourself, your family and your communities in a new,
+        scientifically and statistically objective way.
+
+        I have done my best to make this app accurate and statistically valid. It is entirely possible I've
+        missed something. If so, my apiologies. You can click the "sources" button on the right and feel free
+        to file an issue on GitHub.
+
+        Last, a note about my bias. I attempted to minimize my bias, but I'm sure it has bled through somewhat.
+        I'm an optimistic person, and I believe, based on data, that the reaction to the Covid-19 pandemic
+        in the United States has been blown way out of proportion with reality. I think it is essential
+        that we don't let fear rule us. Instead, we must use objective, skeptical, critical thinking
+        to find the best solutions taking into account all aspects of life, not just Covid-19.
+
+        > “I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear. I will permit it to pass over me and through me. And when it has gone past I will turn the inner eye to see its path. Where the fear has gone there will be nothing. Only I will remain.” - Frank Herbert, Dune
+
+        I've summarized below some of the interesting results presented throughout this slide-show for quick reference.
+
+        ### Invitation to Explore the Data
+
+        I'd like to invite you now to explore the data by changing the options on the left:
+
+        * Look at how your state compares to the national average.
+        * Compare Covid-19 against many other death risks
+        * Look at how different states have had different Covid-19 patterns over time (e.g. compare California to Florid over time)
+        * Attempted to find the state with the least risk and the state with the most risk.
+        * Compare 2020 to the Last 12 Months (note, the first 2 months of 2020 might fairly be called 'pre-pandemic' in the US)
+
+        ### Tips
+
+        1. You can use shift-click to select multiple items for each legend-section;
+        1. Move your cursor over the bars at the top to see detailed info about each set of bars.
+        1. Use the export-csv button to download and look at the filtered, raw source data used for the graph. To see all the source data, click the data-sources button.
+
+
         # Discoveries
 
         * People 85+ can expect to live 50+ years on average before they would die of Covid-19
@@ -534,7 +567,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Death data is based on death certificates and ultimately up to the physician filling out the form.
         * Different states report data at different rates. There can be between 2 and 4 weeks delay between when a death occurs and when it is counted.
         * Not all deaths have properly filled out death certificates. Therefor there is a chance the Covid-19 death counts are low. One attempt to estimate suggests it could be low by a factor of 2. Read more at the sources link on the right.
-        * The definition of a Covid-19 death is debated. Some argue it includes any disease death where Covid-19 was also diagnoised as present. Others argue it only includes deaths caused by Covid-19. Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15 minutes. Read more sources links.
+        * The definition of a Covid-19 death is debated. Some argue it includes any disease death where Covid-19 was also diagnoised as present. Others argue it only includes deaths caused by Covid-19. Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15 minutes. To find out more, click the data-sources button on the right.
         * There is no distinction in the death-data between people with so-called co-morbidities and people who are otherwise extremely healthy.
         * There is no indication in the death-data if an existing fatal disease situation was present.
 

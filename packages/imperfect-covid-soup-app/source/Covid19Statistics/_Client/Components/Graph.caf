@@ -68,7 +68,7 @@ class Graph extends ViewStateComponent
 
     Element
       :column
-      childrenMargins: @gridSize * 4
+      childrenMargins: @gridSize * 2
 
       animators:
         if @animationOn

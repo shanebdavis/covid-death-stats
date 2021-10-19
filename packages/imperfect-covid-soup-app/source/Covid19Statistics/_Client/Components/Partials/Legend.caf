@@ -12,10 +12,9 @@ class Legend extends PointerActionsMixin ViewStateComponent
   render: ->
     Element
       :column childrenMargins: @gridSize
-      padding: h: -@gridSize
+      padding: v: @gridSize
       draw:
         radius: 5
-        padding: -@gridSize
         outline: TextPalette.black.quaternary
       TextElement
         TextStyles.smallBoldText

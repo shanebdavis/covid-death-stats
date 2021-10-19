@@ -181,4 +181,7 @@ data:
 
 ### Other Data of Note (not used in this app, though)
 - https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm
+- [Lightning Victim Data](https://www.cdc.gov/disasters/lightning/victimdata.html)
+- [How Are Covid-19 Deaths Counted - It's Complicated](https://www.aamc.org/news-insights/how-are-covid-19-deaths-counted-it-s-complicated)
 - [Minnesota Suicide Mortality, Preliminary 2020 Report](https://www.health.state.mn.us/communities/suicide/documents/2020prelimsuicidedata.pdf)
+- [Excess Deaths Associated with COVID-19, by Age and Race and Ethnicity — United States, January 26–October 3, 2020](https://www.cdc.gov/mmwr/volumes/69/wr/mm6942e2.htm) (i.e. trying to estimate Covid-19 deaths missed in the main, death-certificate-based data)

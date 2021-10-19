@@ -2,7 +2,7 @@ import &StandardImport, &ArtBrowserTools
 
 class PageSelector extends ViewStateComponent
 
-  @subscriptions :graphState
+  @subscriptions :graphState :covidData
 
   render: ->
     numPresets = &Presets.length
@@ -51,3 +51,11 @@ class PageSelector extends ViewStateComponent
           log {} rows, columns
           logPromise
             Promise.then -> &downloadCsv(rows, columns)
+
+      Element()
+
+      TextElement
+        TextStyles.tinyText
+        :childrenSize
+        color: TextPalette.black.secondary
+        text: "" updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy

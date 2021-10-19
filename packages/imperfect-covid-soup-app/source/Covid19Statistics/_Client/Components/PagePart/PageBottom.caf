@@ -21,7 +21,7 @@ class PageBottom extends ViewStateComponent
       childrenMargins: @gridSize
 
       Element
-        size: w: @gridSize * 10
+        size: w: @gridSize * 12
         Legend {} @showOptionsFor, @setShowOptionsFor
 
       Element
@@ -69,5 +69,5 @@ class PageBottom extends ViewStateComponent
                         commaAnd array v in @graphState[c] with humanLabel v
 
             Element
-              size: w: @gridSize * 10
+              size: w: @gridSize * 12
               PageSelector {} @props.selectedData

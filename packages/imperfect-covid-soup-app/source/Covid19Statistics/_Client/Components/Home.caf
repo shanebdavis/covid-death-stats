@@ -13,20 +13,10 @@ class Home extends ViewStateComponent
     Element
       draw: #f
 
-      TextElement
-        TextStyles.tinyText
-        padding: @gridSize
-        color: TextPalette.black.secondary
-        :childrenSize
-        :bottomRight
-        text:
-          """
-            updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
-
       Element
         :column
         childrenMargins: @gridSize * 2
-        padding: @gridSize * 2
+        padding: @gridSize
         TextElement
           TextStyles.xLargeText
           :childrenSize

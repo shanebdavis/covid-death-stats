@@ -499,6 +499,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Conclusions
+
         # Discoveries
 
         * Ages 85+ would need to live, on average, over 50 more before they die of Covid-19.
@@ -521,6 +523,22 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         against a less-likely death-risk at the expense of a more-likely death-risk resulting in more deaths overall.
         1. When comparing risks of different groups or regions, make sure you are comparing apples to apples
         ** e.g. When comparing Covid-19 death risk across states, you cannot just use the death-count. You must take into account the fact that states have very different population counts.
+
+        # About the Data
+
+        Only data from the CDC and US Census is used. CDC Death-data is probably the most reliable data
+        we have in the United States, but it has many challenges:
+
+        - Death data is based on death certificates and ultimately up to the physician filling out the form.
+        - Different states report data at different rates. There can be between 2 and 4 weeks delay between when a death occurs and when it is counted.
+        - Not all deaths have properly filled out death certificates. Therefor there is a chance the Covid-19 death counts are low. One attempt to estimate suggests it could be low by a factor of 2. Read more at the sources link on the right.
+        - The definition of a Covid-19 death is debated. Some argue it includes any disease death where Covid-19 was also diagnoised as present. Others argue it only includes deaths caused by Covid-19. Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15 minutes. Read more sources links.
+        - There is no distinction in the death-data between people with so-called co-morbidities and people who are otherwise extremely healthy.
+        - There is no indication in the death-data if an existing fatal disease situation was present.
+
+        All other causes of death represented here are from CDC numbers for 2019, the nearest pre-pandemic comparison year.
+
+        Population data is taken from the latest US Census numbers.
 
     graphState:
       graphType:    [] :age

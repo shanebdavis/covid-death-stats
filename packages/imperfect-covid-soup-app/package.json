@@ -17,10 +17,11 @@
     "mocha": "^7.2.0"
   },
   "scripts": {
-    "build": "webpack --progress",
+    "build": "webpack --progress;npm run uglify-client",
     "build-assets": "cpf-tool asset-source/icons/*.svg -o assets/icons.cpf --camelCase",
     "start": "nn -s --watch&\ncafSourceMaps=true webpack serve --hot --progress --open --static public&\nwait",
-    "test": "nn -s; mocha -u tdd"
+    "test": "nn -s; mocha -u tdd",
+    "uglify-client": "echo 'uglifyjs Client'\nnpx uglify-js build/Client.js -c --keep-fnames -o build/Client.min.js"
   },
-  "version": "0.3.1"
+  "version": "0.3.2"
 }

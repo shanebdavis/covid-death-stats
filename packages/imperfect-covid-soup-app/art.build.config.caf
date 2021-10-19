@@ -3,7 +3,8 @@ import &ArtStandardLib
 package: -> merge
   &package
   scripts:
-    build:            "" webpack --progress
+    build:            "" webpack --progress;npm run uglify-client
+    uglify-client:    "" echo 'uglifyjs Client'\nnpx uglify-js build/Client.js -c --keep-fnames -o build/Client.min.js
     test:             "" nn -s; mocha -u tdd
 
     start:

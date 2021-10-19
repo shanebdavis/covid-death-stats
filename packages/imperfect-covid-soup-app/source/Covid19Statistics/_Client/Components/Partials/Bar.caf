@@ -24,6 +24,7 @@ class Bar extends ViewStateComponent
     :colorPalette
     :layout
     :setHoveredBar
+    :barXPadding
 
   @stateFields
     mouseIn: null
@@ -60,7 +61,6 @@ class Bar extends ViewStateComponent
       {}
         @size
         @location
-        padding: h: @gridSize / 2
         on:
           mouseIn: -> @setHoveredBar @props
           mouseOut: -> @setHoveredBar null
@@ -75,6 +75,7 @@ class Bar extends ViewStateComponent
       :column :childrenBottomCenter
 
       Element
+        padding: h: @barXPadding
         Element
           :bottomLeft
           animators:

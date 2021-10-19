@@ -9,6 +9,9 @@ getEnv() extract showFullDetails
   maxPrivValue = 9
   months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
 
+  sourcesUrl: :https://github.com/shanebdavis/covid-death-stats/#source-data
+  repoUrl: :https://github.com/shanebdavis/covid-death-stats/
+
   covidDataAgeGroupsToIncludeRegEx =
     ///
       ^

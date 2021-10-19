@@ -81,10 +81,12 @@ class Graph extends ViewStateComponent
       Element
         Element
           animators: opacity: toFrom: 0
-          padding: h: -@gridSize / 2
+          padding: h: -barXPadding = @gridSize /
+            if @viewSize.x < 1024 then 4 else 2
           array row, i in @data
             Bar row, commonBarProps, {}
               key:      row.label
+              barXPadding
               centerX: (i + .5) / @data.length
               location: xw: i / @data.length
               size:     ww: 1 / @data.length

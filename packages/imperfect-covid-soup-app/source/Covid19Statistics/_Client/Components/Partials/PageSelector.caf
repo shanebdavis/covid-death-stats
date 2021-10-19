@@ -35,7 +35,7 @@ class PageSelector extends ViewStateComponent
             Icon icon: :caretRight
 
       Button
-        action: -> openLink :https://github.com/shanebdavis/covid-death-stats/#source-data
+        action: -> openLink sourcesUrl
         text: "" data sources
 
       Button

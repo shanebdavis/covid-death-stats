@@ -30,7 +30,11 @@ class Button extends ViewStateComponent
 
       @props.children ?
         Element
-          :childrenSize
+          size:
+            if @isDesktop
+              cs: 1
+            else
+              wcw: 1 h: (ps, {y}) -> max y, @reducedButtonSize
           :row
           :childrenCenterCenter
           padding: @gridSize / 2

@@ -238,7 +238,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         The odds of dying of lightning in the US is about 1 in 500,000 on a yearly basis. Children ages 1 to 14 are only slightly more likely to die of Covid-19 than they are of dying by being struck by lightning.
 
-        #- Children dying of Covid-19 is about as likely as getting struck by lighting.
+        #- A child dying of Covid-19 is about as likely as getting struck by lighting.
 
         ### What To Try
 
@@ -503,13 +503,15 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         # Discoveries
 
-        * Ages 85+ would need to live, on average, over 50 more before they die of Covid-19.
-        * Children
-        ** In 2020, Children ages 1 to 14 were less likely to die of Covid-19 than the national average, pre-pandemic chance
-        of being struck by lightning.
-        ** Children and young adults 5-24 are significantly more likely to commit suicide than die of Covid-19
-        ** Children and young adults 1-24 are significantly more likely to be murdered than die of Covid-19
-        ** Children and young adults 1-24 are significantly more likely to die in car accidents than die of Covid-19
+        * People 85+ can expect to live 50+ years on average before they would die of Covid-19
+        * 35-44 year olds could have been born before the Roman Empire over 2000 years ago and still have a good thousand more years to live.
+        * Children born at the dawn of homosapiens over 200,000 years ago would still have to wait
+        another 100,000 years before they are likely to die of Covid 19.
+        * A child dying of Covid-19 is about as likely as getting struck by lighting.
+        * Children and young adults ages 5 to 24 are 5x more at risk of committing suicide than they are of dying of Covid-19.
+        * The ride to school is more dangerous than Covid-19 for all children and young adults.
+        * Anyone over the age of 65 are more than 5x more likely to die of something other
+        than Covid-19.
 
         # Practical Statistic Tools
 
@@ -529,12 +531,12 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         Only data from the CDC and US Census is used. CDC Death-data is probably the most reliable data
         we have in the United States, but it has many challenges:
 
-        - Death data is based on death certificates and ultimately up to the physician filling out the form.
-        - Different states report data at different rates. There can be between 2 and 4 weeks delay between when a death occurs and when it is counted.
-        - Not all deaths have properly filled out death certificates. Therefor there is a chance the Covid-19 death counts are low. One attempt to estimate suggests it could be low by a factor of 2. Read more at the sources link on the right.
-        - The definition of a Covid-19 death is debated. Some argue it includes any disease death where Covid-19 was also diagnoised as present. Others argue it only includes deaths caused by Covid-19. Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15 minutes. Read more sources links.
-        - There is no distinction in the death-data between people with so-called co-morbidities and people who are otherwise extremely healthy.
-        - There is no indication in the death-data if an existing fatal disease situation was present.
+        * Death data is based on death certificates and ultimately up to the physician filling out the form.
+        * Different states report data at different rates. There can be between 2 and 4 weeks delay between when a death occurs and when it is counted.
+        * Not all deaths have properly filled out death certificates. Therefor there is a chance the Covid-19 death counts are low. One attempt to estimate suggests it could be low by a factor of 2. Read more at the sources link on the right.
+        * The definition of a Covid-19 death is debated. Some argue it includes any disease death where Covid-19 was also diagnoised as present. Others argue it only includes deaths caused by Covid-19. Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15 minutes. Read more sources links.
+        * There is no distinction in the death-data between people with so-called co-morbidities and people who are otherwise extremely healthy.
+        * There is no indication in the death-data if an existing fatal disease situation was present.
 
         All other causes of death represented here are from CDC numbers for 2019, the nearest pre-pandemic comparison year.
 

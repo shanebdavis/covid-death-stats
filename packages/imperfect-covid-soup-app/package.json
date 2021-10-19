@@ -22,5 +22,5 @@
     "start": "nn -s --watch&\ncafSourceMaps=true webpack serve --hot --progress --open --static public&\nwait",
     "test": "nn -s; mocha -u tdd"
   },
-  "version": "0.3.0"
+  "version": "0.3.1"
 }

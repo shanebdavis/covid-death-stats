@@ -178,7 +178,11 @@ data:
 - Covid Deaths data: https://data.cdc.gov/NCHS/Provisional-COVID-19-Deaths-by-Sex-and-Age/9bhg-hcku
 - Non-Covid Death Data (2019): https://wonder.cdc.gov/mcd-icd10.html
 
+# Collated Data
 
+The data sources above were ingested and collated into a standardized format for this app to use:
+
+- [Collated Data used in the Covid-19 Statistics App (json)](data/preparedData.json)
 ### Other Data of Note (not used in this app, though)
 - https://www.cdc.gov/nchs/nvss/vsrr/covid19/index.htm
 - [Lightning Victim Data](https://www.cdc.gov/disasters/lightning/victimdata.html)

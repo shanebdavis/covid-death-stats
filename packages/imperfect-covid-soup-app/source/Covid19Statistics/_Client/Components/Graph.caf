@@ -97,7 +97,7 @@ class Graph extends ViewStateComponent
           size:     ww: 1 h: @gridSize / 2
           draw:     TextPalette.black.primary
 
-      PageBottom()
+      PageBottom {} @selectedData
 
       if @hoveredBar
         HoverLegend commonBarProps, @hoveredBar,

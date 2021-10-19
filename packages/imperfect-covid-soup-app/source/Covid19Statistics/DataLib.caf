@@ -105,10 +105,10 @@ getEnv() extract showFullDetails
       object v, k in obj with v * scale
     else obj
 
-  createSelectedDataEntry = (covidDataRecord, region, age, baselineDeathData, scale) ->
+  createSelectedDataEntry = (covidDataRecord, region, age, time, baselineDeathData, scale) ->
     merge
+      {} region, age, time
       covidDataRecord
-      {} region, age
       nonCovid19Deaths: covidDataRecord.totalDeaths - covidDataRecord.covid19Deaths
       applyScale scale, baselineDeathData?[region]?[age] ? {}
 
@@ -206,6 +206,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
+                  aTime
                   baselineDeathData
                   1/12
 
@@ -215,6 +216,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
+                  aTime
                   baselineDeathData
                   1/12
 
@@ -226,6 +228,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
+                  aTime
                   baselineDeathData
 
             else
@@ -234,6 +237,7 @@ getEnv() extract showFullDetails
                   covidData[aRegion][aTime][anAge]
                   aRegion
                   anAge
+                  aTime
                   baselineDeathData
 
   loadCovidData: ->

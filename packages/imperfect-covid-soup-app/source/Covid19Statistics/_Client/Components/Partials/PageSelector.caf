@@ -37,3 +37,17 @@ class PageSelector extends ViewStateComponent
       Button
         action: -> openLink :https://github.com/shanebdavis/covid-death-stats/tree/main/packages/imperfect-covid-soup#source-data
         text: "" data sources
+
+      Button
+        text: "" export csv
+        action: ->
+          rows = compactFlatten array items from @props.selectedData
+            array item in items
+              object v from item
+                if v is Number
+                  Math.round v
+                else v
+          columns = object Object.keys rows[0]
+          log {} rows, columns
+          logPromise
+            Promise.then -> &downloadCsv(rows, columns)

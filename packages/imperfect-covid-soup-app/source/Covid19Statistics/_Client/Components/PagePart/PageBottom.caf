@@ -70,4 +70,4 @@ class PageBottom extends ViewStateComponent
 
             Element
               size: w: @gridSize * 10
-              PageSelector()
+              PageSelector {} @props.selectedData

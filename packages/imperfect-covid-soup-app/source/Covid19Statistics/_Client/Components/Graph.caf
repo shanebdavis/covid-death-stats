@@ -11,6 +11,12 @@ class Graph extends ViewStateComponent
     showOptionsFor: null
     previousMaxValue: null
     hoveredBar: null
+    manualMode: false
+
+  timer = new ReschedulableTimer
+  setHoveredBarWithTimeout: (hoverBar) ->
+    @setHoveredBar hoverBar
+    timer.timeout 5000 @clearHoveredBar
 
   @propFields :animationOn
 
@@ -56,6 +62,12 @@ class Graph extends ViewStateComponent
   render: ->
     @graphState extract layout, presetData, custom
 
+    skipLabel = if 30 > barSize = @viewSize.x / @data.length
+      3
+    else if barSize <= 45
+      2
+    else 1
+
     maxRowValue = reduce _max, row from @data inject 0
       max _max, row.value
 
@@ -64,11 +76,68 @@ class Graph extends ViewStateComponent
       numBars:      @data.length
       layout:       layout[0]
       colorPalette: if hasDenominator(@graphState) && hasNumerator(@graphState) then barColors.color else barColors.grey
-      unit:         !custom && presetData?.graphState?.unit
+      unit:         !@isPhone && !custom && presetData?.graphState?.unit
+
+    mainContent = []
+      Element
+        :parentWidthChildrenHeight
+        # draw: :red
+        TextElement
+          if @isPhone then TextStyles.smallBoldText
+          else TextStyles.xLargeText
+          :parentWidthChildrenHeight :textCenterCenter
+          padding: @gridSize / 4
+          color: TextPalette.black.secondary
+          text: "" Covid-19 Death Statistics (United States)
+
+      Element
+        if @phonePortraitLayout
+          size: ww: 1, hw: 1
+        unless @phoneLandscapeLayout
+          padding: bottom: @gridSize
+        Element
+          animators: opacity: toFrom: 0
+          padding:
+            h: -barXPadding = @gridSize /
+              if @viewSize.x < 768 then 8
+              else if @viewSize.x < 1024 then 4
+              else 2
+            top: TextStyles.mediumText.fontSize
+          array row, i in @data
+            Bar row, commonBarProps, {}
+              key:      row.label
+              hideLabels = skipLabel > 1 && i % skipLabel != 0
+              hideValueLabel:
+                barSize < 30 || hideLabels
+                && !((@data[i-1]?.value ? 0) < row.value && row.value > (@data[i+1]?.value ? 0))
+
+              barXPadding
+              noValueLable: barSize <
+              centerX: (i + .5) / @data.length
+              location: xw: i / @data.length
+              size:     ww: 1 / @data.length
+              @setHoveredBar
+              @setHoveredBarWithTimeout
+
+        Element
+          key:      :line
+          location: yh: 1 y: -@gridSize * 3
+          axis:     y: .5
+          size:     ww: 1 h: @gridSize / 2
+          draw:     TextPalette.black.primary
+
+      if @isPhone
+        if @phonePortraitLayout
+          PhoneBottom {} @selectedData, @manualMode
+      else
+        PageBottom {} @selectedData
+
 
     Element
       :column
-      childrenMargins: @gridSize * 2
+      childrenMargins:
+        unless @isPhone
+          @gridSize * 2
 
       animators:
         if @animationOn
@@ -78,33 +147,62 @@ class Graph extends ViewStateComponent
             from: xw: -1 y: 0
         else {}
 
+      if @phonePortraitLayout
+        ScrollerWithBar
+          :clip
+          key: scrollerKey = :phoneScrollElement
+          childrenMargins: @gridSize
+          padding:
+            h: @gridSize
+            bottom: @gridSize * 2
+          mainContent
+      else
+        Element
+          padding: @gridSize
+          childrenMargins: @gridSize
+          :column
+          mainContent
+
       Element
-        Element
-          animators: opacity: toFrom: 0
-          padding: h: -barXPadding = @gridSize /
-            if @viewSize.x < 1024 then 4 else 2
-          array row, i in @data
-            Bar row, commonBarProps, {}
-              key:      row.label
-              barXPadding
-              centerX: (i + .5) / @data.length
-              location: xw: i / @data.length
-              size:     ww: 1 / @data.length
-              @setHoveredBar
+        receivePointerEvents: :never
+        padding: h: @gridSize, v: @gridSize * 2
+        inFlow: false
+        if @hoveredBar
+          HoverLegend commonBarProps, @hoveredBar,
+            key: :hoverLegend
+            right:
+              find row, i in @data when row.value == maxRowValue with i
+              < @data.length / 2
+
+      if @phonePortraitLayout
 
         Element
-          key:      :line
-          location: yh: 1 y: -@gridSize * 3
-          axis:     y: .5
-          size:     ww: 1 h: @gridSize / 2
-          draw:     TextPalette.black.primary
+          :row :parentWidthChildrenHeight
+          :parentWidthChildrenHeight
+          :childrenCenterCenter
+          padding: @gridSize / 2
+          draw: #e
+          childrenMargins: @gridSize
+          Button
+            action: @toggleManualMode
+            text: if @manualMode then "return to slideshow" else "" edit graph
 
-      PageBottom {} @selectedData
+          !@manualMode && TextElement
+            TextStyles.mediumText
+            :parentSize
+            :textCenterCenter
+            text: "Page #{@graphState.preset + 1} / #{&Presets.length}"
 
-      if @hoveredBar
-        HoverLegend commonBarProps, @hoveredBar,
-          key: :hoverLegend
-          right:
-            find row, i in @data when row.value == maxRowValue with i
-            < @data.length / 2
+          !@manualMode && Button
+            action: ->
+              models.graphState.setPreset @graphState.preset - 1
+              timeout 50 -> @refs.phoneScrollElement.scrollElement.scrollToTop()
 
+            Element :row :childrenSize Icon icon: :caretLeft
+
+          !@manualMode && Button
+            action: ->
+              models.graphState.setPreset @graphState.preset + 1
+              timeout 50 -> @refs.phoneScrollElement.scrollElement.scrollToTop()
+
+            Element :row :childrenSize Icon icon: :caretRight

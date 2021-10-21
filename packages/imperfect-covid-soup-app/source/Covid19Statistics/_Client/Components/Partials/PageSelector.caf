@@ -2,11 +2,9 @@ import &StandardImport, &ArtBrowserTools
 
 class PageSelector extends ViewStateComponent
 
-  @subscriptions :graphState :covidData
+  @subscriptions :graphState
 
   render: ->
-    numPresets = &Presets.length
-
     Element
       :column
       :childrenTopCenter
@@ -15,7 +13,7 @@ class PageSelector extends ViewStateComponent
       TextElement
         TextStyles.mediumText
         :childrenSize
-        text: "Page #{@graphState.preset + 1} / #{numPresets}"
+        text: "Page #{@graphState.preset + 1} / #{&Presets.length}"
 
       Element
         :row :parentWidthChildrenHeight
@@ -24,15 +22,11 @@ class PageSelector extends ViewStateComponent
         :childrenCenterRight
         Button
           action: -> models.graphState.setPreset @graphState.preset - 1
-          Element
-            :row :childrenSize
-            Icon icon: :caretLeft
+          Element :row :childrenSize Icon icon: :caretLeft
 
         Button
           action: -> models.graphState.setPreset @graphState.preset + 1
-          Element
-            :row :childrenSize
-            Icon icon: :caretRight
+          Element :row :childrenSize Icon icon: :caretRight
 
       Button
         action: -> openLink sourcesUrl
@@ -40,23 +34,8 @@ class PageSelector extends ViewStateComponent
 
       Button
         text: "" export csv
-        action: ->
-          rows = compactFlatten array items from @props.selectedData
-            array item in items
-              object v from item
-                if v is Number
-                  Math.round v
-                else v
-          columns = object Object.keys rows[0]
-          log {} rows, columns
-          logPromise
-            Promise.then -> &downloadCsv(rows, columns)
+        action: -> exportCsv @props.selectedData
 
       Element()
 
-      TextElement
-        TextStyles.tinyText
-        :childrenSize
-        :textBottomRight
-        color: TextPalette.black.secondary
-        text: "" Covid-19 Statistics v#{&package.version}\ndata updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
+      VersionInfo()

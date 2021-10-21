@@ -1,0 +1,63 @@
+import &StandardImport, &ArtBrowserTools
+
+class PhoneBottom extends ViewStateComponent
+  @subscriptions :graphState :covidData
+
+  @stateFields showOptionsFor: null
+
+  @propFields :manualMode
+
+  render: ->
+    @graphState extract custom, presetData
+    Element
+      :column
+      :childrenTopCenter
+      :parentWidthChildrenHeight
+      childrenMargins: @gridSize
+
+      if @showOptionsFor
+        GraphStatePicker
+          closeAction: @clearShowOptionsFor
+          label: @showOptionsFor
+          items: array a in order = @covidData.graphStateOptions[@showOptionsFor]
+            text: humanLabel a
+            selected: a in @graphState[@showOptionsFor]
+            action:   (event) ->
+              if event.props.shiftKey
+                models.graphState.multiSelect @showOptionsFor, a, order
+              else
+                models.graphState.select @showOptionsFor, a
+
+      else if @manualMode
+        Legend {} @showOptionsFor, @setShowOptionsFor
+      else
+        MarkdownView
+          textStyle: :small
+          text:
+            if @custom
+              """
+                # Custom
+
+                * Explore the dataset via the legend on the left
+                * Return to the presets by clicking advancing to the next or previous page
+
+            else
+              presetData.description
+              .replace /(%(\w+)%)/g, (a, b, c) ->
+                commaAnd array v in @graphState[c] with humanLabel v
+
+      Element
+        :row :childrenCenterCenter
+        :parentWidthChildrenHeight
+        padding: v: @gridSize * 2
+        childrenMargins: @gridSize
+
+        Button
+          action: -> openLink sourcesUrl
+          text: "" data sources
+
+        Button
+          text: "" export csv
+          action: -> exportCsv @props.selectedData
+
+      VersionInfo :textCenterCenter

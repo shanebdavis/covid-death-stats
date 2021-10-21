@@ -5,5 +5,6 @@
 
 .addModules({
   PageBottom:     require('./PageBottom'),
+  PhoneBottom:    require('./PhoneBottom'),
   StandardImport: require('./StandardImport')
 });

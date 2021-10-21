@@ -10,25 +10,12 @@ class Home extends ViewStateComponent
 
   render: ->
 
-    hide = @viewSize.x < 768 || @viewSize.y < 500
+    hide = false # @viewSize.x < 768 || @viewSize.y < 500
     Element
       draw: #f
 
       Element
-        :column
         visible: !hide
-        childrenMargins: @gridSize * 2
-        padding: @gridSize
-        TextElement
-          TextStyles.xLargeText
-          :childrenSize
-          color: TextPalette.black.secondary
-          axis: .5
-          location: xw: .5 yh: 0
-
-          text:
-            "" Covid-19 Death Statistics (United States)
-
         &Graph()
 
       if hide

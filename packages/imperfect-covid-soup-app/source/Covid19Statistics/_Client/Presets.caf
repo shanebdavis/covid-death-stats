@@ -53,6 +53,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Covid-19 Death Counts by Month
         # Covid-19 Data Is Not Meaningful By Itself
 
         Above is a typical chart of Covid-19 the death counts over time.
@@ -146,6 +147,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Average Years of Life Due to Covid-19
         # Practical Tool #1: Life Expectancy
 
         Our first tool for understanding Covid-19 death risks is to determine how long people
@@ -203,6 +205,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Average Years of Life Due to Covid-19
         # Practical Tool #1: Life Expectancy
         # Ages 35 to 64 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
@@ -226,6 +229,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Average Years of Life Due to Covid-19
         # Practical Tool #1: Life Expectancy
         # Ages 1 to 34 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
@@ -263,6 +267,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Average Years of Life Due to Covid-19
         # Practical Tool #1: Life Expectancy
         # All Ages
 
@@ -290,6 +295,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Suicides / Covid-19 Deaths
+        > Numbers greater than 1 mean the number of times higher the suicide risk is over Covid-19
         # Practical Tool #2: Relative Risks
 
         The next tool we can use to assess Covid-19 death risks is to compare the risks to other, known risks.
@@ -350,6 +357,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Fatal Car Accidents / Covid-19 Deaths
+        > Numbers greater than 1 mean the number of times higher the car-accident risk is over Covid-19
         # Practical Tool #2: Relative Risks
         # Ages 5-34 Comparing Covid-19 Death-Risk With Deaths Caused By Car Accidents
 
@@ -381,6 +390,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # All Non-Covid-19 Deaths / Covid-19 Deaths
+        > Numbers greater than 1 mean the number of times more likely someone is to die of something other than covid-19
         # Practical Tool #2: Relative Risks
         # Ages 65+ Comparing Covid-19 Death-Risk with All Other Death-Risks
 
@@ -407,7 +418,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       time:         [] :latestYearWindow
       age:          olderAgeGroup
 
-  {}
+  ## {}
     description:
       """
         # Practical Tool #2: Relative Risks
@@ -434,6 +445,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Cancer, Covid-19 and Heart-Disease Death Risks
+        > Light blue to Dark blue respectively
         # Practical Tool #2: Relative Risks
         # Ages 65+ Comparing Covid-19 Death-Risk with Cancer and Heart Disesase
 
@@ -471,6 +484,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Covid-19 Death Counts for %region%
         # Practical Tool #3: Comparing States Correctly
 
         Our last tool for improving our understanding of Covid-19 death risks involves how
@@ -503,6 +517,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
+        # Covid-19 Death Risk for %region%
         # Practical Tool #3: Comparing States Correctly
         # States Covid-19 Death Risk Requires Controlling For Each States Population
 
@@ -640,6 +655,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       age:          [] "All Ages"
+      time:         [] :latestYearWindow
+      region:       [] :UnitedState
 
     ##
         # Conclusions

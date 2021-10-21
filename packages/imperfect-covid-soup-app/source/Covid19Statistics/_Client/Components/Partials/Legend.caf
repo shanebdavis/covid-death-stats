@@ -6,12 +6,51 @@ class Legend extends PointerActionsMixin ViewStateComponent
 
   @propFields :showOptionsFor :setShowOptionsFor
 
-
   action: -> models.graphState.invertEquation()
 
   render: ->
+    mainContent =
+      array option in :graphType :layout :numerator :denominator :region :time :age
+        []
+          if option == :denominator
+            Element
+              size: ww: 1 h: @gridSize
+              on: @buttonHandlers
+              :pointerCursor
+              Element
+                :centerCenter
+                animators: :size :draw
+                if @hover
+                  size: ww: 1 h: 2
+                  draw: TextPalette.black.primary
+                else
+                  size: ww: 1 h: 1
+                  draw: TextPalette.black.tertiary
+
+          else
+            TextElement
+              TextStyles.tinyText
+              padding: v: @gridSize / 2
+              color: TextPalette.black.secondary
+              text: if option == :numerator then :equation else dashCase option
+
+          Button {}
+            selected = @showOptionsFor == option
+            text:
+              array o in @graphState[option]
+                shortHumanLabel o
+
+              .join "\n"
+              + if selected then " ▸" else " ▹"
+              .trim()
+            action: ->
+              @setShowOptionsFor if selected
+                null
+              else option
+
     Element
       :column childrenMargins: @gridSize
+      if @isPhone then :parentWidthChildrenHeight
       padding: v: @gridSize
       draw:
         radius: 5
@@ -21,45 +60,18 @@ class Legend extends PointerActionsMixin ViewStateComponent
         padding: h: @gridSize
         color: TextPalette.black.secondary
         text: :legend
-      ScrollerWithBar
-        :column :childrenTopCenter :clip
-        padding: h: @gridSize
 
-        childrenMargins: @gridSize / 4
-        array option in :graphType :layout :numerator :denominator :region :time :age
-          []
-            if option == :denominator
-              Element
-                size: ww: 1 h: @gridSize
-                on: @buttonHandlers
-                :pointerCursor
-                Element
-                  :centerCenter
-                  animators: :size :draw
-                  if @hover
-                    size: ww: 1 h: 2
-                    draw: TextPalette.black.primary
-                  else
-                    size: ww: 1 h: 1
-                    draw: TextPalette.black.tertiary
+      if @isPhone
+        Element
+          :column :childrenTopCenter
+          :parentWidthChildrenHeight
+          padding: h: @gridSize
+          childrenMargins: @gridSize / 4
+          mainContent
+      else
+        ScrollerWithBar
+          :column :childrenTopCenter :clip
+          padding: h: @gridSize
+          childrenMargins: @gridSize / 4
 
-            else
-              TextElement
-                TextStyles.tinyText
-                padding: v: @gridSize / 2
-                color: TextPalette.black.secondary
-                text: if option == :numerator then :equation else dashCase option
-
-            Button {}
-              selected = @showOptionsFor == option
-              text:
-                array o in @graphState[option]
-                  shortHumanLabel o
-
-                .join "\n"
-                + if selected then " ▸" else " ▹"
-                .trim()
-              action: ->
-                @setShowOptionsFor if selected
-                  null
-                else option
+          mainContent

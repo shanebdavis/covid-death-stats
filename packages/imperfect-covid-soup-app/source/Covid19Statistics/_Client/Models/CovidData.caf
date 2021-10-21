@@ -10,6 +10,7 @@ class CovidData extends ApplicationState
     updatedAt: undefined
     times: undefined
     ages: undefined
+    graphStateOptions: undefined
 
   getInitialState: ->
     loadCovidData()

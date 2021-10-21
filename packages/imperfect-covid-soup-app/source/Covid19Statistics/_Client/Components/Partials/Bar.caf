@@ -24,7 +24,10 @@ class Bar extends ViewStateComponent
     :colorPalette
     :layout
     :setHoveredBar
+    :setHoveredBarWithTimeout
     :barXPadding
+    :hideLabels
+    :hideValueLabel
 
   @stateFields
     mouseIn: null
@@ -62,7 +65,9 @@ class Bar extends ViewStateComponent
         @size
         @location
         on:
-          mouseIn: -> @setHoveredBar @props
+          pointerClick: -> @setHoveredBarWithTimeout @props
+
+          mouseIn:  -> @setHoveredBar @props
           mouseOut: -> @setHoveredBar null
 
         animators:
@@ -119,12 +124,15 @@ class Bar extends ViewStateComponent
 
             :reset
 
-          TextElement
+          !@hideValueLabel && TextElement
             TextStyles.mediumBoldText
             fontSize: bound
-              TextStyles.tinyBoldText.fontSize
-              TextStyles.mediumBoldText.fontSize * 9 / @numBars
-              TextStyles.xLargeBoldText.fontSize
+              TextStyles.bittyBoldText.fontSize
+              TextStyles.mediumBoldText.fontSize * 7 / @numBars
+              if @isPhone
+                TextStyles.mediumBoldText.fontSize
+              else
+                TextStyles.xLargeBoldText.fontSize
 
             :childrenSize
             animators: fontSize: duration: .25
@@ -138,14 +146,15 @@ class Bar extends ViewStateComponent
 
       Element
         size: h: @gridSize * 2
-        TextElement
+        !@hideLabels && TextElement
           TextStyles.smallBoldText
           animators: fontSize: duration: .25
           fontSize: bound
-            TextStyles.tinyBoldText.fontSize
-            TextStyles.smallBoldText.fontSize * 10 / @numBars
+            TextStyles.bittyBoldText.fontSize
+            TextStyles.mediumBoldText.fontSize * 7 / @numBars
             TextStyles.mediumBoldText.fontSize
-          :parentWidthChildrenHeight
+          :childrenSize
           :textCenterCenter
+          :topCenter
           color: TextPalette.black.secondary
           text: label

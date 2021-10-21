@@ -4,5 +4,6 @@
 (module.exports = require('./namespace'))
 
 .addModules({
-  Button: require('./Button')
+  Button:      require('./Button'),
+  VersionInfo: require('./VersionInfo')
 });

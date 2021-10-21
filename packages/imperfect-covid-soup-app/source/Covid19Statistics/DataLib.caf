@@ -298,16 +298,17 @@ getEnv() extract showFullDetails
 
         else d0
 
-      regions:  Object.keys covidData
-      times:
+      regions:  regions = Object.keys covidData
+      times: times =
         compactFlatten []
           "All Time"
           arrayWithoutValue
             Object.keys covidData.UnitedStates
             "All Time"
 
-      ages:     Object.keys covidData.UnitedStates["2020"]
-      valueFields:
+      ages:  ages = Object.keys covidData.UnitedStates["2020"]
+
+      valueFields: valueFields =
         :population
         :totalDeaths
         :covid19Deaths
@@ -335,3 +336,23 @@ getEnv() extract showFullDetails
         :allOtherDeaths2019
 
         :population2019
+
+      graphStateOptions:
+        graphType:    :time :age
+        layout:       :stacked :adjacent
+        numerator:    numerator = compactFlatten [] :1 valueFields
+        denominator:  numerator
+        time:         times
+        region:       regions
+        age:          ages
+
+  exportCsv: (selectedData) ->
+    rows = compactFlatten array items from selectedData
+      array item in items
+        object v from item
+          if v is Number
+            Math.round v
+          else v
+    columns = object Object.keys rows[0]
+    logPromise
+      Promise.then -> &downloadCsv(rows, columns)

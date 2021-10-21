@@ -19,7 +19,7 @@ class Button extends ViewStateComponent
         radius: radius ? gridSize / 2
         fill:
           if @selected then TextPalette.black.barely
-          else TextPalette.black.barely.withAlpha 0
+          else :white
         outline:
           lineWidth: if hover then 2 else .15
           color: TextPalette.black.primary
@@ -37,7 +37,7 @@ class Button extends ViewStateComponent
               wcw: 1 h: (ps, {y}) -> max y, @reducedButtonSize
           :row
           :childrenCenterCenter
-          padding: @gridSize / 2
+          padding: v: @gridSize / 2, h: @gridSize
           TextElement
             TextStyles.smallText
             color: TextPalette.black.primary

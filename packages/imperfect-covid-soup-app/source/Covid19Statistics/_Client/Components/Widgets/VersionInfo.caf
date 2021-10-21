@@ -1,0 +1,13 @@
+import &StandardImport
+
+class VersionInfo extends ViewStateComponent
+  @subscriptions :covidData
+
+  render: ->
+    TextElement
+      TextStyles.tinyText
+      :childrenSize
+      :textBottomRight
+      color: TextPalette.black.secondary
+      text: "" Covid-19 Statistics v#{&package.version}\ndata updated #{} formatDate @covidData.updatedAt, "" mmmm d, yyyy
+      @props

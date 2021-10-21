@@ -23,7 +23,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         then select the next-page button (right-facing triangle on the right) to advance.
 
         On subsequent visits, or at any time really, I invite you to expore the data by selecting
-        various options on the legend on the left.
+        various options under "edit graph".
 
         > Quick Note: The data in this dataset can lag by as much as 4 weeks. Therefor the "Latest Year Window" time option
         is the most recent window of 12 full months with "stable" data. It includes the 12 months up to and including the month before last. For more recent results, you can select "Latest 12 Months" which
@@ -37,7 +37,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         ### Features
 
         * Multi-page slide-show: Explains some basics statistics, demos how to use the app, and shares a few significant, evidence-based results with everyday implications.
-        * Fully interactive graph: Change all the graph settings at any time by using the buttons in the legend.
+        * Fully interactive graph: Change all the graph settings at any time by using the buttons in under "edit graph".
 
         ### Disclaimer
 
@@ -184,7 +184,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Change the "Covid-19 Deaths" in the legend first to "Non-Covid-19 Deaths" to see the life expectancy if Covid-19 was not present.
+        Go to "edit graph" and change the "Covid-19 Deaths" first to "Non-Covid-19 Deaths" to see the life expectancy if Covid-19 was not present.
         Then select "Total Deaths" to see the total life expectancy including Covid-19 and all other death risks. Toggle between
         "Total" and "Non-Covid 19" deaths to compare how covid-16 impacts effective life expectancy.
 
@@ -248,7 +248,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What To Try
 
-        Change the "time" on the left from "Last 12 months" to "2020". In all of 2020, children ages 1 to 14 are actually more likely to be struck and die of lightning than they are to die of Covid 19.
+        Go to "edit graph" then change the "time" from "Last 12 months" to "2020". In all of 2020, children ages 1 to 14 are actually more likely to be struck and die of lightning than they are to die of Covid 19.
 
         ### How to Interpret the Graph:
 
@@ -335,7 +335,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Change the "Suicides 2019" part of the equation in the legend by tapping on it. Then select one of
+        Go to "edit graph" and change the "Suicides 2019" part of the equation by tapping on it. Then select one of
         the other, comparable 2019 death-risks such as "Car Accidents 2019" or "Disease Deaths 2019"
 
         ### How to Interpret the Graph
@@ -366,7 +366,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Change the "Car 2019" part of the equation in the legend by tapping on it. Then select one of
+        Go to "edit graph" change the "Car 2019" part of the equation by tapping on it. Then select one of
         the other, comparable 2019 accident death-risks such as "Poisoning Accidents 2019" or "Suffocation Accidents 2019"
 
         ### How to Interpret the Graph
@@ -400,7 +400,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Change the "Non Covid 19 Death" part of the equation in the legend by tapping on it. Then select one of
+        Go to "edit graph" change the "Non Covid 19 Death" part of the equation by tapping on it. Then select one of
         the other, comparable 2019 death-risks such as "Heart Diseases 2019" or "Cancer 2019."
 
         ### How to Interpret the Graph
@@ -530,7 +530,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Select the "region" on the left, and then Shift-click to add or remove states from the comparison. Try adding California, Florida or Hawaii.
+        Go to "edit graph" then select the "region" and then shift-click to add or remove states from the comparison (multi-select is a desktop only feature). Try adding California, Florida or Hawaii.
 
         Also try toggling between this page and the previous page to see how the graph is corrected
         once we control for population.
@@ -575,7 +575,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### Invitation to Explore the Data
 
-        I'd like to invite you now to explore the data by changing the options on the left:
+        I'd like to invite you now to explore the data by changing the options under "edit graph":
 
         * Look at how your state compares to the national average.
         * Compare Covid-19 against many other death risks
@@ -585,7 +585,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### Tips
 
-        1. You can use shift-click to select multiple items for each legend-section;
+        1. You can use shift-click to select multiple items for options under "edit graph" (desktop only)
         1. Move your cursor over the bars at the top to see detailed info about each set of bars.
         1. Use the export-csv button to download and look at the filtered, raw source data used for the graph. To see all the source data, click the data-sources button.
 

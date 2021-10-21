@@ -59,7 +59,7 @@ class Legend extends PointerActionsMixin ViewStateComponent
         TextStyles.smallBoldText
         padding: h: @gridSize
         color: TextPalette.black.secondary
-        text: :legend
+        text: "" edit graph
 
       if @isPhone
         Element

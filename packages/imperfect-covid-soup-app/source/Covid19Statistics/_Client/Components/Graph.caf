@@ -182,7 +182,7 @@ class Graph extends ViewStateComponent
           :childrenCenterCenter
           padding: @gridSize / 2
           draw: #e
-          childrenMargins: @gridSize
+          childrenMargins: @gridSize / 2
           Button
             action: @toggleManualMode
             text: if @manualMode then "◀︎ return to slideshow" else "" edit graph
@@ -190,21 +190,27 @@ class Graph extends ViewStateComponent
           @manualMode && Element()
 
           !@manualMode && TextElement
-            TextStyles.mediumText
+            TextStyles.smallText
             :parentSize
             :textCenterCenter
-            text: "Page #{@graphState.preset + 1} / #{&Presets.length}"
+            text: "page #{@graphState.preset + 1} / #{&Presets.length}"
 
           !@manualMode && Button
             action: ->
               models.graphState.setPreset @graphState.preset - 1
               timeout 50 -> @refs.phoneScrollElement.scrollElement.scrollToTop()
 
-            Element :row :childrenSize Icon size: @reducedButtonSize, icon: :caretLeft
+            Element
+              :row :childrenSize
+              padding: h: @gridSize / 2
+              Icon size: @reducedButtonSize, icon: :caretLeft
 
           !@manualMode && Button
             action: ->
               models.graphState.setPreset @graphState.preset + 1
               timeout 50 -> @refs.phoneScrollElement.scrollElement.scrollToTop()
 
-            Element :row :childrenSize Icon size: @reducedButtonSize, icon: :caretRight
+            Element
+              :row :childrenSize
+              padding: h: @gridSize / 2
+              Icon size: @reducedButtonSize, icon: :caretRight

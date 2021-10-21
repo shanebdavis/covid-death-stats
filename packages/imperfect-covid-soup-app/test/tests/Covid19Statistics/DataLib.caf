@@ -1,31 +1,117 @@
 import &StandardImport, &source.DataLib
 
-suite: ->
-  chainedTest "loadCovidData" ->
-    loadCovidData()
+suite:
+  loadCovidData: ->
+    chainedTest "loadCovidData" ->
+      loadCovidData()
 
-  .thenTest "getSelectedData" (covidData) ->
-    assert.eq
-      Object.keys getSelectedData {}
-        covidData
-        graphState:
-          region:       [] :UnitedStates
-          time:         [] :2020
-          numerator:    [] :covid19Deaths
-          denominator:  [] :1
-          age:          [] "All Ages"
-          graphType:    [] :Age
-          layout:       [] :adjacent
+    .thenTest "getSelectedData" (covidData) ->
+      assert.eq
+        covidData.last12MonthTimes.length
+        12
 
-      []
-        "Under 1 year"
-        "1-4 years"
-        "5-14 years"
-        "15-24 years"
-        "25-34 years"
-        "35-44 years"
-        "45-54 years"
-        "55-64 years"
-        "65-74 years"
-        "75-84 years"
-        "85+ years"
+      assert.eq
+        Object.keys getSelectedData {}
+          covidData
+          graphState:
+            region:       [] :UnitedStates
+            time:         [] :2020
+            numerator:    [] :covid19Deaths
+            denominator:  [] :1
+            age:          [] "All Ages"
+            graphType:    [] :Age
+            layout:       [] :adjacent
+
+        []
+          "Under 1 year"
+          "1-4 years"
+          "5-14 years"
+          "15-24 years"
+          "25-34 years"
+          "35-44 years"
+          "45-54 years"
+          "55-64 years"
+          "65-74 years"
+          "75-84 years"
+          "85+ years"
+
+  getMonthSequence: ->
+    test "basic without monthsAgo totalMonths: 1 starting 10/5" ->
+      assert.eq
+        getMonthSequence totalMonths: 1 date: new Date Date.parse "2021/10/5"
+        []
+          :2021-10
+
+    test "basic without monthsAgo totalMonths: 1 starting 1/1" ->
+      assert.eq
+        getMonthSequence totalMonths: 1 date: new Date Date.parse "2021/1/1"
+        []
+          :2021-01
+
+    test "basic without monthsAgo totalMonths: 12" ->
+      assert.eq
+        getMonthSequence totalMonths: 12 date: new Date Date.parse "2021/10/5"
+        []
+          :2021-10
+          :2021-11
+          :2021-12
+          :2022-01
+          :2022-02
+          :2022-03
+          :2022-04
+          :2022-05
+          :2022-06
+          :2022-07
+          :2022-08
+          :2022-09
+
+    test "with monthsAgo small" ->
+      assert.eq
+        getMonthSequence monthsAgo: 5 totalMonths: 12 date: new Date Date.parse "2021/10/5"
+        []
+          :2021-05
+          :2021-06
+          :2021-07
+          :2021-08
+          :2021-09
+          :2021-10
+          :2021-11
+          :2021-12
+          :2022-01
+          :2022-02
+          :2022-03
+          :2022-04
+
+    test "with monthsAgo medium" ->
+      assert.eq
+        getMonthSequence monthsAgo: 11 totalMonths: 12 date: new Date Date.parse "2021/10/5"
+        []
+          :2020-11
+          :2020-12
+          :2021-01
+          :2021-02
+          :2021-03
+          :2021-04
+          :2021-05
+          :2021-06
+          :2021-07
+          :2021-08
+          :2021-09
+          :2021-10
+
+    test "with monthsAgo large" ->
+      assert.eq
+        getMonthSequence monthsAgo: 37 totalMonths: 12 date: new Date Date.parse "2021/10/5"
+        []
+          :2018-09
+          :2018-10
+          :2018-11
+          :2018-12
+          :2019-01
+          :2019-02
+          :2019-03
+          :2019-04
+          :2019-05
+          :2019-06
+          :2019-07
+          :2019-08

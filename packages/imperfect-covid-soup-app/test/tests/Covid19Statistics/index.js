@@ -4,5 +4,6 @@
 (module.exports = require('./namespace'))
 
 .addModules({
-  DataLib: require('./DataLib')
+  DataLib: require('./DataLib'),
+  Lib:     require('./Lib')
 });

@@ -27,7 +27,7 @@ class Home extends ViewStateComponent
           location: xw: .5 yh: 0
 
           text:
-            "" Covid-19 Death Statistics
+            "" Covid-19 Death Statistics (United States)
 
         &Graph()
 
@@ -50,7 +50,7 @@ class Home extends ViewStateComponent
                 this app requires a larger screen. Please make your browser window bigger or try
                 on another device.
 
-                >- minimum size: 768px wide, 500px tall
+                >- tablet or desktop recommended; minimum size: 768px wide, 500px tall
 
           &Widgets.Button
             action: -> &ArtBrowserTools.openLink repoUrl

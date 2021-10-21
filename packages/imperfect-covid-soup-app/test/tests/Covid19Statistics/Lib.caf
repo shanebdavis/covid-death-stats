@@ -1,0 +1,9 @@
+import &StandardImport, &source.Lib
+
+suite: ->
+  test "toFixedWithTrim" ->
+    assert.eq :5.5, toFixedWithTrim 5.5, 5
+  test "formatNumber 379575" ->
+    assert.eq
+      formatNumber 379575
+      "" 380k

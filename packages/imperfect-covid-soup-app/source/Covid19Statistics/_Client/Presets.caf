@@ -25,11 +25,14 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         On subsequent visits, or at any time really, I invite you to expore the data by selecting
         various options on the legend on the left.
 
+        > Quick Note: The data in this dataset can lag by as much as 4 weeks. Therefor the "Latest Year Window" time option
+        is the most recent window of 12 full months with "stable" data. It includes the 12 months up to and including the month before last. For more recent results, you can select "Latest 12 Months" which
+        includes last month. Note that last month's data may still be being updated. Finally, you can select "All Time" to include this month's initial data as well.
+
         ### About This App
 
         This app uses the latest CDC Covid-19 death data, pre-pandemic CDC death data from 2019 and population data from the US Cencus. This app is United-States focused mostly
         because of the challenges of getting comparable data sets across nations.
-
 
         ### Features
 
@@ -194,7 +197,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :population
       denominator:  [] :covid19Deaths
       unit:         [] :years
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          olderAgeGroup
 
   {}
@@ -203,7 +206,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Practical Tool #1: Life Expectancy
         # Ages 35 to 64 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
-        Based on Covid-19 death risk alone, 35-44 year olds could have been born before the Roman Empire over 2000 years ago and still have a good thousand more years to live.
+        Based on Covid-19 death risk alone, 35-44 year olds could have been born before the Roman Empire over
+        2000 years ago and still have a hundreds more years to live.
 
         ### How to Interpret the Graph:
 
@@ -216,7 +220,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :covid19Deaths
       numerator:    [] :population
       unit:         [] :years
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          middleAgeGroup
 
   {}
@@ -226,7 +230,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Ages 1 to 34 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
         Children born at the dawn of homosapiens over 200,000 years ago would still have to wait
-        another 100,000 years before they are likely to die of Covid 19.
+        almost another 200,000 years before they are likely to die of Covid 19.
 
         # Getting Struck By Lightning
 
@@ -253,7 +257,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :covid19Deaths
       numerator:    [] :population
       unit:         [] :years
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          youngAgeGroup
 
   {}
@@ -280,7 +284,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :covid19Deaths
       numerator:    [] :population
       unit:         [] :years
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          [] "All Ages"
 
   {}
@@ -341,7 +345,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths
       unit:         [] :x
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          suicideAgeGroup
   {}
     description:
@@ -371,7 +375,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :covid19Deaths
       layout:       [] :adjacent
       unit:         [] :x
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          schoolAgeGroup
 
   {}
@@ -400,7 +404,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
       unit:         [] :x
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          olderAgeGroup
 
   {}
@@ -423,7 +427,44 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       layout:       [] :stacked
       numerator:    [] :covid19Deaths :nonCovid19Deaths
       denominator:  [] :population
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
+      age:          olderAgeGroup
+      region:       [] "" UnitedStates
+
+  {}
+    description:
+      """
+        # Practical Tool #2: Relative Risks
+        # Ages 65+ Comparing Covid-19 Death-Risk with Cancer and Heart Disesase
+
+        This final slide compares Covid-19 for 65+ populations with other leading
+        casues of death due to mitigatable disease. Both cancer and heart-disease
+        are mitigatable through life-style changes including nutrion and physical activity
+        among other options. Covid-19 and cancer death risks are close to the same, and in
+        the 85+ population, heart-disease is more than twice as likely.
+
+        To maximize life, we should
+        be investing the same amount of capital and making the same level of sacrifices for all three risks.
+        Furhter, many of our Covid-19
+        preventions, like work-at-home, negatively impact activity and increase poor
+        eating.
+        Ironically, lower physical activity and eating poorly due not only increase cancer
+        and heart-disease, but they also increase Covid-19 death-risk.
+
+        > Lack of physical activity and eating poorly increase cancer, heart-dease and Covid-19 death risks.
+
+        ### How to Interpret the Graph
+
+        * Numbers represent the overall chance of death.
+        * Colors show the relative chance of a Covid-19 death (lighter color) vs all cancer (medium color) and heart-releated deaths (darkest color)
+        * %region%, %age%, %time%
+
+    graphState:
+      graphType:    [] :age
+      layout:       [] :adjacent
+      numerator:    [] :covid19Deaths :cancer2019 :heartDiseases2019
+      denominator:  [] :population
+      time:         [] :latestYearWindow
       age:          olderAgeGroup
       region:       [] "" UnitedStates
 
@@ -456,7 +497,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :covid19Deaths
       denominator:  [] :1
       region:       [] :Idaho :Oregon :Washington
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          [] "All Ages"
 
   {}
@@ -491,7 +532,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       region:       [] :Idaho :Oregon :Washington
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          [] "All Ages"
 
   {}
@@ -558,6 +599,25 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         against a less-likely death-risk at the expense of a more-likely death-risk resulting in more deaths overall.
         1. When comparing risks of different groups or regions, make sure you are comparing apples to apples
         ** e.g. When comparing Covid-19 death risk across states, you cannot just use the death-count. You must take into account the fact that states have very different population counts.
+
+        # How to Think about Any Population Statistics
+
+        The problem with any population study, even the gold-standard of randomized-control trials (which this data is not),
+        is that for the study to have any meaning, the new population you want to apply your findings to must have the same causal factors as the original population.
+        Unfortunately this is never 100% possible. If nothing else, the world changes over time; the studied population was at one time-slice, and any population we apply it to will necessarily be at some later date.
+
+        For the Covid-19 death data in particular, there are a few things to keep in mind:
+
+        * We assume the virus's transmission and mortality rate doesn't change over time (it does, but how much we don't know).
+        ** One big caveot is the virus could potentially have conceivably have a surge much larger than anything we've seen to date, particularly if people radically change their safety behaviors. This seems unlikely, but it is always a possibility.
+        * We assume people will be have identically in the future to how they have in the past specifically with respect to anything that affectives the chance of contracting Covid-19 AND their body's overall ability to survice an infection. (These things will change.)
+        ** People can improve their health and reduce their Covid-19 risk.
+        ** People who get and survive covid-19 will get a degree of natural immunity.
+        ** Vaccines have some affect on both transmission and mortality.
+        ** People's risk-related behavior changes over time based on how safe they feel and other factors.
+
+        As a general guideline, when thinking about personal risk or risk of our loved ones, if
+        our behavior is at least as safe as the median Amertican's covid-19 safety behavior, the statisics presented in the app are probably a good indicator of future safety.
 
         # About the Data
 
@@ -660,7 +720,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
       unit:         [] :x
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          middleAgeGroup
 
   {}
@@ -673,7 +733,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :covid19Deaths
       numerator:    [] :population
       unit:         [] :years
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          youngAgeGroup
 
 
@@ -695,7 +755,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths
       unit:         [] :x
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
       age:          youngAgeGroup
 
 
@@ -770,7 +830,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :population
       denominator:  [] :covid19Deaths
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
 
 
   {}
@@ -794,7 +854,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
 
   {}
     description:
@@ -813,7 +873,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :carAccidents2019
       denominator:  [] :covid19Deaths
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
 
   {}
     description:
@@ -831,5 +891,5 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
-      time:         [] :last12Months
+      time:         [] :latestYearWindow
 

@@ -2,7 +2,7 @@ import &ArtSuite
 
 defaults =
   region:       [] :UnitedStates
-  time:         [] :last12Months
+  time:         [] :latestYearWindow
   numerator:    [] :1
   denominator:  [] :1
   age:          [] "All Ages"

@@ -187,14 +187,14 @@ getEnv() extract showFullDetails
 
       axisKeys = if axis == :time
         switch aTime
-        when "All Time"
-          array v from times when !/^(All.*|202\d|l.*)$/i.test v
+        when :allTime
+          array v from times when !/^(all.*|202\d|l.*)$/i.test v
         when :latestYearWindow then latestYearWindowTimes
         when :latest12Months then latest12MonthTimes
         else time
       else
-        if anAge == "All Ages"
-          array v from ages when !/^All/.test v
+        if anAge == :allAges
+          array v from ages when !/^all/i.test v
         else age
 
       unless covidData
@@ -288,8 +288,8 @@ getEnv() extract showFullDetails
       object d0, field from &covid-death-stats.getPreparedData()
         if field == :covidData
           covidData = object d1, region from d0
-            list = object d2, time from d1
-              object _, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age
+            list = object d2, time from d1 with-key if time == "All Time" then :allTime else time
+              object _, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age with-key if age == "All Ages" then :allAges else age
 
             list.latest12Months = populateMonthSetAges d1, latest12MonthTimes
             list.latestYearWindow = populateMonthSetAges d1, latestYearWindowTimes
@@ -301,10 +301,10 @@ getEnv() extract showFullDetails
       regions:  regions = Object.keys covidData
       times: times =
         compactFlatten []
-          "All Time"
+          :allTime
           arrayWithoutValue
             Object.keys covidData.UnitedStates
-            "All Time"
+            :allTime
 
       ages:  ages = Object.keys covidData.UnitedStates["2020"]
 

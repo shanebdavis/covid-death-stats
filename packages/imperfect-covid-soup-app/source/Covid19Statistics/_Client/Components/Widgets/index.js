@@ -5,5 +5,6 @@
 
 .addModules({
   Button:      require('./Button'),
-  VersionInfo: require('./VersionInfo')
+  VersionInfo: require('./VersionInfo'),
+  VinculumBar: require('./VinculumBar')
 });

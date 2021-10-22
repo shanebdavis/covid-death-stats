@@ -1,18 +1,24 @@
-import &ArtSuite
+import &ArtSuite, &DataLib
 
 defaults =
   region:       [] :UnitedStates
   time:         [] :latestYearWindow
   numerator:    [] :1
   denominator:  [] :1
-  age:          [] "All Ages"
-  graphType:    [] :Age
+  age:          [] :allAges
+  graphType:    [] :age
   layout:       [] :adjacent
+
+envProps = getEnv()
 
 class GraphState extends ApplicationState
 
   @stateFields merge
     defaults
+    each v, k in defaults when envProps[k]
+      v.split ","
+
+    inColor:      false
     custom:       false
     preset:       0
     presetData:   &Presets[0]
@@ -35,9 +41,9 @@ class GraphState extends ApplicationState
 
       else state
 
-    if state.custom != custom = find v, k in state.presetData?.graphState when neq v,state[k]
-      merge state, {} custom
-    else state
+    merge state, {}
+      custom = find v, k in state.presetData?.graphState when neq v,state[k]
+      inColor: hasDenominator(state) && hasNumerator(state)
 
   select: (type, value) ->
     @mergeInState ->

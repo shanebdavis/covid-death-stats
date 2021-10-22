@@ -1,9 +1,5 @@
 import &StandardImport, &ArtAtomic, &DataLib
 
-c1 = rgbColor #107aff
-c2 = rgbColor #ffb270
-c3 = rgbColor #ffe96b
-
 {}
   toFixedWithTrim = (v, precision) ->
     v = v.toFixed precision
@@ -73,6 +69,8 @@ c3 = rgbColor #ffe96b
       + " and #{last}"
     else list.join ', '
 
+  primaryColor = rgbColor #107aff
+
   barColors =
     grey:
       grey = rgbColor #c
@@ -83,8 +81,7 @@ c3 = rgbColor #ffe96b
 
     color:
       []
-        c1
-        c1.blend :black, 1 - .85
-        c1.blend :black, 1 - .60
-        c1.blend :black, 1 - .35
-        # c1.blend :black, 1 - .25
+        primaryColor
+        primaryColor.blend :black, 1 - .85
+        primaryColor.blend :black, 1 - .60
+        primaryColor.blend :black, 1 - .35

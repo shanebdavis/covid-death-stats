@@ -2,7 +2,7 @@ import &StandardImport, &ArtAppKit/Client.MenuSupportWidgets
 
 class Button extends ViewStateComponent
 
-  @propFields :selected
+  @propFields :selected :parentWidth
 
   render: ->
     AppKitButtonWrapper
@@ -31,10 +31,18 @@ class Button extends ViewStateComponent
       @props.children ?
         Element
           size:
-            if @isDesktop
-              cs: 1
+            if @parentWidth
+              if @isDesktop
+                ww: 1, hch: 1
+              else
+                ww: 1 h: (ps, {y}) -> max y, @reducedButtonSize
+
             else
-              wcw: 1 h: (ps, {y}) -> max y, @reducedButtonSize
+              if @isDesktop
+                cs: 1
+              else
+                wcw: 1 h: (ps, {y}) -> max y, @reducedButtonSize
+
           :row
           :childrenCenterCenter
           padding: v: @gridSize / 2, h: @gridSize

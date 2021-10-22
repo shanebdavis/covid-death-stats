@@ -32,7 +32,7 @@ class PhoneBottom extends ViewStateComponent
         Legend {} @showOptionsFor, @setShowOptionsFor
       else
         MarkdownView
-          textStyle: :small
+          textStyle: :smallWithSmallTitles
           text:
             if @custom
               """

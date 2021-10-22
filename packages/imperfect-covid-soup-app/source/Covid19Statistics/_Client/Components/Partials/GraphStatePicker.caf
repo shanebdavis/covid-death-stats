@@ -42,26 +42,33 @@ class GraphStatePicker extends ViewStateComponent
       Element
         :column
         padding: left: @gridSize
+        childrenMargins: @gridSize
+
         Element
           :row
+          :parentWidthChildrenHeight
+          :childrenCenterLeft
           animators: opacity: toFrom: 0
-          Element
-            :column
-            childrenMargins: @gridSize * 2
-            TextElement
-              TextStyles.xLargeBoldText
-              :childrenHeightParentWidth
-              text: upperCamelCase label, ' '
-
-            ScrollerWithBar
-              :clip
-              mainContent
+          TextElement
+            TextStyles.xLargeBoldText
+            :childrenHeightParentWidth
+            text: upperCamelCase label, ' '
 
           Button
             action: @closeAction
             Icon size: @reducedButtonSize, icon: :close iconScale: .5
 
-        TextElement
+        ScrollerWithBar
+          draw:
+            padding:
+              h: -@gridSize
+              top: -@gridSize
+            :clip
+
+          mainContent
+
+
+        !@isPhone && TextElement
           TextStyles.tinyText
           color: TextPalette.black.secondary
           text: "" shift-click to pick more than one

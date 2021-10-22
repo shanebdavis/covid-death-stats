@@ -26,6 +26,7 @@ class Graph extends ViewStateComponent
       selectedData: getSelectedData {} newState.covidData, newState.graphState
 
   @getter
+    inColor: -> @graphState.inColor
     hasDenominator: ->
       @graphState extract denominator
       !(denominator.length == 1 && denominator[0] == "1")
@@ -75,7 +76,7 @@ class Graph extends ViewStateComponent
       @maxValue
       numBars:      @data.length
       layout:       layout[0]
-      colorPalette: if hasDenominator(@graphState) && hasNumerator(@graphState) then barColors.color else barColors.grey
+      colorPalette: if @inColor then barColors.color else barColors.grey
       unit:         !@isPhone && !custom && presetData?.graphState?.unit
 
     mainContent = []

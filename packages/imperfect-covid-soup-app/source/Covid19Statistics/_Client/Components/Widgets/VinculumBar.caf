@@ -1,0 +1,24 @@
+import &StandardImport
+
+class VinculumBar extends PointerActionsMixin ViewStateComponent
+
+  @subscriptions :graphState.inColor
+
+  render: ->
+    Element
+      size: ww: 1 h: @gridSize
+      on: @buttonHandlers
+      :pointerCursor
+      Element
+        :centerCenter
+        animators: :size :draw
+        if @hover
+          size: ww: 1 h: 3.5
+          draw:
+            if @inColor then primaryColor
+            else TextPalette.black.primary
+        else
+          size: ww: 1 h: 2
+          draw:
+            if @inColor then primaryColor
+            else TextPalette.black.tertiary

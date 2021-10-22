@@ -22,32 +22,37 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         On your first visit, I recommend going through the short slide-show. Scroll to the bottom of each page,
         then select the next-page button (right-facing triangle on the right) to advance.
 
-        On subsequent visits, or at any time really, I invite you to expore the data by selecting
+        On subsequent visits, or at any time really, I invite you to explore the data by selecting
         various options under "edit graph".
 
         > Quick Note: The data in this dataset can lag by as much as 4 weeks. Therefor the "Latest Year Window" time option
-        is the most recent window of 12 full months with "stable" data. It includes the 12 months up to and including the month before last. For more recent results, you can select "Latest 12 Months" which
-        includes last month. Note that last month's data may still be being updated. Finally, you can select "All Time" to include this month's initial data as well.
+        is the most recent window of 12 full months with "stable" data. It includes the 12 months up to and including the
+        month before last. For more recent results, you can select "Latest 12 Months" which
+        includes last month. Note that last month's data may still be being updated. Finally, you can select "All Time"
+        to include this month's initial data as well.
 
         ### About This App
 
-        This app uses the latest CDC Covid-19 death data, pre-pandemic CDC death data from 2019 and population data from the US Cencus. This app is United-States focused mostly
+        This app uses the latest CDC Covid-19 death data, pre-pandemic CDC death data from 2019 and population data from the
+        US Census. This app is United-States focused mostly
         because of the challenges of getting comparable data sets across nations.
 
         ### Features
 
-        * Multi-page slide-show: Explains some basics statistics, demos how to use the app, and shares a few significant, evidence-based results with everyday implications.
+        * Multi-page slide-show: Explains some basics statistics, demos how to use the app, and shares a few significant,
+        evidence-based results with everyday implications.
         * Fully interactive graph: Change all the graph settings at any time by using the buttons in under "edit graph".
 
         ### Disclaimer
 
-        * This app does not prevent you from making non-sense statistics. In particular, make sure you are comparing apples to apples in terms of time ranges.
+        * This app does not prevent you from making non-sense statistics. In particular, make sure you are comparing
+        apples to apples in terms of time ranges.
 
     graphState:
       numerator:    [] :covid19Deaths
       denominator:  [] :1
       graphType:    [] :time
-      age:          [] "All Ages"
+      age:          [] :allAges
       region:       [] :UnitedStates
 
   {}
@@ -77,9 +82,11 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       """
         # Covid-19 Death Counts by Age
 
-        Covid risk goes up with age. This chart suggests it’s quite dramatic how much it goes up by age, but don’t rest on your scientific laurels. This data is still meaningless.
+        Covid risk goes up with age. This chart suggests it’s quite dramatic how much it goes up by age, but don’t rest
+        on your scientific laurels. This data is still meaningless.
 
-        The data says there are a little over 1000 times more 85+ deaths compared to 5-14 year old deaths. That seams to imply that 5-14 year old are about 1000 times safer than people 85+. This is incorrect.
+        The data says there are a little over 1000 times more 85+ deaths compared to 5-14 year old deaths. That seams
+        to imply that 5-14 year old are about 1000 times safer than people 85+. This is incorrect.
 
         ### How to Interpret the Graph:
 
@@ -91,7 +98,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] "1"
-      age:          [] "All Ages"
+      age:          [] :allAges
 
   {}
     description:
@@ -105,7 +112,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         On the previous page we saw the raw death-count numbers by age group suggested 5-14 year olds where about 1,000x safer than those 85+.
         That data wasn't controlled for population, so it was meaningless to compare the two age groups. Dividing each count by the population
-        of each age-group provides probabilities. Now we can compare 5-14 year old Covid-19 death risk with those 85+ and we see they are actualy
+        of each age-group provides probabilities. Now we can compare 5-14 year old Covid-19 death risk with those 85+ and we see they are actually
         about 6,600x safer.
 
         This shows the dangerous misconceptions the raw Covid-19 death count data can create.
@@ -124,7 +131,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
-      age:          [] "All Ages"
+      age:          [] :allAges
 
   {}
     description:
@@ -233,7 +240,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Practical Tool #1: Life Expectancy
         # Ages 1 to 34 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
-        Children born at the dawn of homosapiens over 200,000 years ago would still have to wait
+        Children born at the dawn of homo sapiens over 200,000 years ago would still have to wait
         almost another 200,000 years before they are likely to die of Covid 19.
 
         # Getting Struck By Lightning
@@ -242,13 +249,15 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         about 1 in 350,000, is to compare them with another favorite ultra rare event: getting
         struck by lightning.
 
-        The odds of dying of lightning in the US is about 1 in 500,000 on a yearly basis. Children ages 1 to 14 are only slightly more likely to die of Covid-19 than they are of dying by being struck by lightning.
+        The odds of dying of lightning in the US is about 1 in 500,000 on a yearly basis. Children ages 1 to
+        14 are only slightly more likely to die of Covid-19 than they are of dying by being struck by lightning.
 
         #- A child dying of Covid-19 is about as likely as getting struck by lighting.
 
         ### What To Try
 
-        Go to "edit graph" then change the "time" from "Last 12 months" to "2020". In all of 2020, children ages 1 to 14 are actually more likely to be struck and die of lightning than they are to die of Covid 19.
+        Go to "edit graph" then change the "time" from "Last 12 months" to "2020". In all of 2020, children
+        ages 1 to 14 are actually more likely to be struck and die of lightning than they are to die of Covid 19.
 
         ### How to Interpret the Graph:
 
@@ -290,7 +299,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       numerator:    [] :population
       unit:         [] :years
       time:         [] :latestYearWindow
-      age:          [] "All Ages"
+      age:          [] :allAges
 
   {}
     description:
@@ -405,7 +414,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph
 
-        * Numbers represent the number of times more likely each age group is likely to die of some other, non-covid cause compared to dying of covid-19.
+        * Numbers represent the number of times more likely each age group is likely to die of some other,
+        non-covid cause compared to dying of covid-19.
         * Colors show the relative chance of a Covid-19 death (lighter color) vs all other, Non-Covid-19 deaths (darker color)
         * %region%, %age%, %time%
 
@@ -448,28 +458,28 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Cancer, Covid-19 and Heart-Disease Death Risks
         > Light blue to Dark blue respectively
         # Practical Tool #2: Relative Risks
-        # Ages 65+ Comparing Covid-19 Death-Risk with Cancer and Heart Disesase
+        # Ages 65+ Comparing Covid-19 Death-Risk with Cancer and Heart Disease
 
         This final slide compares Covid-19 for 65+ populations with other leading
-        casues of death due to mitigatable disease. Both cancer and heart-disease
-        are mitigatable through life-style changes including nutrion and physical activity
+        causes of death due to mitigable disease. Both cancer and heart-disease
+        are mitigable through life-style changes including nutrition and physical activity
         among other options. Covid-19 and cancer death risks are close to the same, and in
         the 85+ population, heart-disease is more than twice as likely.
 
         To maximize life, we should
         be investing the same amount of capital and making the same level of sacrifices for all three risks.
-        Furhter, many of our Covid-19
+        Further, many of our Covid-19
         preventions, like work-at-home, negatively impact activity and increase poor
         eating.
         Ironically, lower physical activity and eating poorly due not only increase cancer
         and heart-disease, but they also increase Covid-19 death-risk.
 
-        > Lack of physical activity and eating poorly increase cancer, heart-dease and Covid-19 death risks.
+        > Lack of physical activity and eating poorly increase cancer, heart-disease and Covid-19 death risks.
 
         ### How to Interpret the Graph
 
         * Numbers represent the overall chance of death.
-        * Colors show the relative chance of a Covid-19 death (lighter color) vs all cancer (medium color) and heart-releated deaths (darkest color)
+        * Colors show the relative chance of a Covid-19 death (lighter color) vs all cancer (medium color) and heart-related deaths (darkest color)
         * %region%, %age%, %time%
 
     graphState:
@@ -512,7 +522,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :1
       region:       [] :Idaho :Oregon :Washington
       time:         [] :latestYearWindow
-      age:          [] "All Ages"
+      age:          [] :allAges
 
   {}
     description:
@@ -530,7 +540,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### What to Try
 
-        Go to "edit graph" then select the "region" and then shift-click to add or remove states from the comparison (multi-select is a desktop only feature). Try adding California, Florida or Hawaii.
+        Go to "edit graph" then select the "region" and then shift-click to add or remove states
+        from the comparison (multi-select is a desktop only feature). Try adding California, Florida or Hawaii.
 
         Also try toggling between this page and the previous page to see how the graph is corrected
         once we control for population.
@@ -548,7 +559,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       denominator:  [] :population
       region:       [] :Idaho :Oregon :Washington
       time:         [] :latestYearWindow
-      age:          [] "All Ages"
+      age:          [] :allAges
 
   {}
     description:
@@ -560,16 +571,18 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         scientifically and statistically objective way.
 
         I have done my best to make this app accurate and statistically valid. It is entirely possible I've
-        missed something. If so, my apiologies. You can click the "sources" button on the right and feel free
+        missed something. If so, my apiologies. You can click the "sources" button and feel free
         to file an issue on GitHub.
 
         Last, a note about my bias. I attempted to minimize my bias, but I'm sure it has bled through somewhat.
-        I'm an optimistic person, and I believe, based on data, that the reaction to the Covid-19 pandemic
-        in the United States has been blown way out of proportion with reality. I think it is essential
+        I'm an optimistic person, and I think the data shows that the reaction to the Covid-19 pandemic
+        in the United States and continues to be much more extreme than the science supports. I think it is essential
         that we don't let fear rule us. Instead, we must use objective, skeptical, critical thinking
-        to find the best solutions taking into account all aspects of life, not just Covid-19.
+        to find the best solutions. We must taking into account all aspects of life, not just Covid-19.
 
-        > “I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear. I will permit it to pass over me and through me. And when it has gone past I will turn the inner eye to see its path. Where the fear has gone there will be nothing. Only I will remain.” - Frank Herbert, Dune
+        > “I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration.
+        I will face my fear. I will permit it to pass over me and through me. And when it has gone past I will
+        turn the inner eye to see its path. Where the fear has gone there will be nothing. Only I will remain.” - Frank Herbert, Dune
 
         I've summarized below some of the interesting results presented throughout this slide-show for quick reference.
 
@@ -587,20 +600,23 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         1. You can use shift-click to select multiple items for options under "edit graph" (desktop only)
         1. Move your cursor over the bars at the top to see detailed info about each set of bars.
-        1. Use the export-csv button to download and look at the filtered, raw source data used for the graph. To see all the source data, click the data-sources button.
+        1. Use the export-csv button to download and look at the filtered, raw source data used for the graph.
+        To see all the source data, click the data-sources button.
 
 
         # Discoveries
 
         * People 85+ can expect to live 50+ years on average before they would die of Covid-19
-        * 35-44 year olds could have been born before the Roman Empire over 2000 years ago and still have a good thousand more years to live.
-        * Children born at the dawn of homosapiens over 200,000 years ago would still have to wait
-        another 100,000 years before they are likely to die of Covid 19.
+        * 35-44 year olds could have been born before the Roman Empire over 2000 years ago and still have a hundreds more years to live.
+        * Children born at the dawn of homo sapiens over 200,000 years ago would still have to wait
+        more than another 100,000 years before they are likely to die of Covid 19.
         * A child dying of Covid-19 is about as likely as getting struck by lighting.
         * Children and young adults ages 5 to 24 are 5x more at risk of committing suicide than they are of dying of Covid-19.
         * The ride to school is more dangerous than Covid-19 for all children and young adults.
         * Anyone over the age of 65 are more than 5x more likely to die of something other
         than Covid-19.
+        * Anyone over the age of 65, deaths due to cancer and heart-disease are each on par or more likely than Covid-19.
+        Together they are more than twice as likely.
 
         # Practical Statistic Tools
 
@@ -613,26 +629,33 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         ** The only way to maximize safety is to balance our efforts proportionally to each death-risks. Otherwise we may end up protecting
         against a less-likely death-risk at the expense of a more-likely death-risk resulting in more deaths overall.
         1. When comparing risks of different groups or regions, make sure you are comparing apples to apples
-        ** e.g. When comparing Covid-19 death risk across states, you cannot just use the death-count. You must take into account the fact that states have very different population counts.
+        ** e.g. When comparing Covid-19 death risk across states, you cannot just use the death-count. You must take into
+        account the fact that states have very different population counts.
 
         # How to Think about Any Population Statistics
 
         The problem with any population study, even the gold-standard of randomized-control trials (which this data is not),
-        is that for the study to have any meaning, the new population you want to apply your findings to must have the same causal factors as the original population.
-        Unfortunately this is never 100% possible. If nothing else, the world changes over time; the studied population was at one time-slice, and any population we apply it to will necessarily be at some later date.
+        is that for the study to have any meaning, the new population you want to apply your findings to must have the same
+        causal factors as the original population.
+        Unfortunately this is never 100% possible. If nothing else, the world changes over time; the studied population was
+        at one time-slice, and any population we apply it to will necessarily be at some later date.
 
         For the Covid-19 death data in particular, there are a few things to keep in mind:
 
         * We assume the virus's transmission and mortality rate doesn't change over time (it does, but how much we don't know).
-        ** One big caveot is the virus could potentially have conceivably have a surge much larger than anything we've seen to date, particularly if people radically change their safety behaviors. This seems unlikely, but it is always a possibility.
-        * We assume people will be have identically in the future to how they have in the past specifically with respect to anything that affectives the chance of contracting Covid-19 AND their body's overall ability to survice an infection. (These things will change.)
+        ** One potential concern is the virus could have a surge much larger than anything we've seen to date, particularly if
+        people radically change their safety behaviors. Given the mountains of global data we have at this point, this seems
+        unlikely, but it is always a possibility.
+        * We assume people will be have identically in the future to how they have in the past specifically with respect to
+        anything that affects the chance of contracting Covid-19 AND their body's overall ability to survive an infection. (These things will change.)
         ** People can improve their health and reduce their Covid-19 risk.
         ** People who get and survive covid-19 will get a degree of natural immunity.
         ** Vaccines have some affect on both transmission and mortality.
         ** People's risk-related behavior changes over time based on how safe they feel and other factors.
 
         As a general guideline, when thinking about personal risk or risk of our loved ones, if
-        our behavior is at least as safe as the median Amertican's covid-19 safety behavior, the statisics presented in the app are probably a good indicator of future safety.
+        our behavior is at least as safe as the median Americans's covid-19 safety behavior, the statistics presented
+        in the app are probably a good indicator of future safety.
 
         # About the Data
 
@@ -640,10 +663,17 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         we have in the United States, but it has many challenges:
 
         * Death data is based on death certificates and ultimately up to the physician filling out the form.
-        * Different states report data at different rates. There can be between 2 and 4 weeks delay between when a death occurs and when it is counted.
-        * Not all deaths have properly filled out death certificates. Therefor there is a chance the Covid-19 death counts are low. One attempt to estimate suggests it could be low by a factor of 2. Read more at the sources link on the right.
-        * The definition of a Covid-19 death is debated. Some argue it includes any disease death where Covid-19 was also diagnoised as present. Others argue it only includes deaths caused by Covid-19. Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15 minutes. To find out more, click the data-sources button on the right.
-        * There is no distinction in the death-data between people with so-called co-morbidities and people who are otherwise extremely healthy.
+        * Different states report data at different rates. There can be between 2 and 4 weeks delay
+        between when a death occurs and when it is counted.
+        * Not all deaths have properly filled out death certificates. Therefor there is a chance the
+        Covid-19 death counts are low. One attempt to estimate suggests it could be low by a factor of 2.
+        Read more at the sources link on the right.
+        * The definition of a Covid-19 death is debated. Some argue it includes any disease death where
+        Covid-19 was also diagnosed as present. Others argue it only includes deaths caused by Covid-19.
+        Yet others argue it is counted as a Covid-19 death even if Covid-19 only accelerated death by 15
+        minutes. To find out more, click the data-sources button on the right.
+        * There is no distinction in the death-data between people with so-called co-morbidities and
+        people who are otherwise extremely healthy.
         * There is no indication in the death-data if an existing fatal disease situation was present.
 
         All other causes of death represented here are from CDC numbers for 2019, the nearest pre-pandemic comparison year.
@@ -654,7 +684,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphType:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
-      age:          [] "All Ages"
+      age:          [] :allAges
       time:         [] :latestYearWindow
       region:       [] :UnitedState
 
@@ -666,7 +696,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Everyone must choose their only tolerance for risk.
         * The quality of that death data is in constant debate.
         * Covid-19 related death risks shown here are based on historical death data.
-        ** As is the nature of a pandemic, past data may not be an indication of future risks. That said, with over 18 months of trend in this pandemic where there have been
+        ** As is the nature of a pandemic, past data may not be an indication of future risks. That said, with over 18
+        months of trend in this pandemic where there have been
         surges and relief multiple times, it's not unreasonable to guess that past data may be indicative of
         future risks.
         ** We assume people continue to act more-or-less the same as they did
@@ -678,7 +709,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * In general, causes of death less likely than 1 in 100 on a yearly basis are not worth worrying much about.
         The reason is because, on average, you'd have to wait a least 100 years before you'd die of that cause.
         "Just don't do anything too crazy, and you'll be fine."
-        * To save lives, we must invest effort PROPORTIONALLY for each death risk. Overinvesting in a less likely death-risk at the expense of a more-likely death risk will increase overall deaths.
+        * To save lives, we must invest effort PROPORTIONALLY for each death risk. Overinvesting in a less likely
+        death-risk at the expense of a more-likely death risk will increase overall deaths.
 
         # A Few Inescapable Conclusions
 
@@ -690,13 +722,14 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         * Anyone under the age of 1 or between 15 and 85 has an extremely low Covid-19 death risk. As long as they continue to take
         actions at least as safe as the median person, they have nothing to worry about.
-        * For people 85+, perhaps a little more precaution is justified, though chances are, 86 times out of 100, the ultimate cause of death will not be Covid-19.
+        * For people 85+, perhaps a little more precaution is justified, though chances are, 86 times out of 100, the
+        ultimate cause of death will not be Covid-19.
 
     graphState:
       graphType:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
-      age:          [] "All Ages"
+      age:          [] :allAges
 
   ####################################################################################
   ####################################################################################
@@ -725,7 +758,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Age 35-64: Non Covid-19 Deaths vs Covid-19 Deaths
+        # Age 35-64: Deaths Not Attributed to Covid-19 vs Deaths Attributed to Covid-19
 
         ### How to Interpret the Graph:
 
@@ -807,15 +840,19 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * It's very hard to get reliable Covid-19 data.
         * Death data is perhaps the most reliable (each death is unlikely to be counted twice), but it is still troubled data.
         * Death counts between 1 and 9 cannot be reported due to CDC privacy guidelines. If you see "nulls" or number-ranges, this is why.
-        * Covid-19 deaths are hard to define, but the definitions by the CDC and the WHO more-or-less translate to any death where Covid-19 might have been a contributing factor in any way. This rules out some deaths such as accidental deaths, suicides, murders and a few others, but it still leaves a lot of questions about how to actually assess the Covid-19 risk.
+        * Deaths attributed to Covid-19 are hard to define, but the definitions by the CDC and the WHO more-or-less translate
+        to any death where Covid-19 might have been a contributing factor in any way. This rules out some deaths such as
+        accidental deaths, suicides, murders and a few others, but it still leaves a lot of questions about how to actually assess the Covid-19 risk.
 
-        It is important for each person to assess whether they think the Covid-19 Death Data from the CDC. Below is my best attempt at an unbiased interpretation, take it with a grain of salt:
+        It is important for each person to assess whether they think the Covid-19 Death Data from the CDC. Below is my
+        best attempt at an unbiased interpretation, take it with a grain of salt:
 
         * At worst actual Covid-19 deaths are no more than twice the numbers expressed here.
         * Most likely, the CDC death counts are a good worst-case number.
         * Actual risk is probably less than the risks presented here.
 
-        > Note: none of this data separates out co-morbidities. People who have no co-morbidities will have less Covid-19 death risk than the numbers presented here. People with co-morbidities may have higher risk.
+        > Note: none of this data separates out co-morbidities. People who have no co-morbidities will have less Covid-19
+        death risk than the numbers presented here. People with co-morbidities may have higher risk.
 
     graphState:
       numerator:    [] :covid19Deaths
@@ -827,7 +864,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       """
         # Life Expectancy due to Covid-19 Death Risk
 
-        A surprizingly simple result of probability theory is that by inverting the probability
+        A surprisingly simple result of probability theory is that by inverting the probability
         of an invent, you get the average number of times you must sample from that probability
         before the event happens.
 
@@ -856,15 +893,18 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Comparing Suicides (2019) and Covid-19 Death Risks (%time%)
         >-- Suicides: 2019, Covid-19 Death Risks: %time%
 
-        Another useful way to understand probabilities is to compare them with other, known probabilities. In this graph we find a startling comparision. Our youth are many times more likely to commit suicide than they are to die of Covid-19.
+        Another useful way to understand probabilities is to compare them with other, known probabilities. In this graph we find a startling
+        comparison. Our youth are many times more likely to commit suicide than they are to die of Covid-19.
 
-        In order to minimize deaths and maximize life, we logically should invest proportionally in each death-risk. Over investing in one risk inceases the chance of overall death by neglecting the other death-risk probabilities.
+        In order to minimize deaths and maximize life, we logically should invest proportionally in each death-risk. Over investing in one risk
+        increases the chance of overall death by neglecting the other death-risk probabilities.
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities) vs chance of dying during the time period from Covid-19.
+        * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities)
+        vs chance of dying during the time period from Covid-19.
         * %region%, %age%, %time%
-        * Note: this comparision is only meaningful if the selected time (currently: %time%) is also exactly one year.
+        * Note: this comparison is only meaningful if the selected time (currently: %time%) is also exactly one year.
         * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
 
     graphState:
@@ -881,9 +921,10 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities) vs chance of dying during the time period from Covid-19.
+        * Numbers represent the number of times more likely each cohort is to commit suicide (2019 full-year probabilities)
+        vs chance of dying during the time period from Covid-19.
         * %region%, %age%, %time%
-        * Note: this comparision is only meaningful if the selected time (currently: %time%) is also exactly one year.
+        * Note: this comparison is only meaningful if the selected time (currently: %time%) is also exactly one year.
         * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
 
     graphState:
@@ -900,7 +941,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the likelyhood of dying of anything else compared to Covid 19.
+        * Numbers represent the likelihood of dying of anything else compared to Covid 19.
         * e.g. 45 means "45 times more likely to die of something else other than Covid 19"
         * %region%, %age%, %time%
 

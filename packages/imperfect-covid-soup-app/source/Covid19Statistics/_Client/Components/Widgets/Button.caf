@@ -6,7 +6,7 @@ class Button extends ViewStateComponent
 
   render: ->
     AppKitButtonWrapper
-      size: cs: 1
+      size: if @parentWidth then ww: 1 hch: 1 else cs: 1
       animators: :draw :size
       draw: (state, props) ->
         state extract hover, disabled, gridSize

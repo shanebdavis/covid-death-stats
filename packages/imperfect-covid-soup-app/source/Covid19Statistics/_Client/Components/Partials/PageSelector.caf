@@ -17,22 +17,26 @@ class PageSelector extends ViewStateComponent
 
       Element
         :row :parentWidthChildrenHeight
-        :childrenSize
+        :parentWidthChildrenHeight
         childrenMargins: @gridSize
         :childrenCenterRight
         Button
+          parentWidth: true
           action: -> models.graphState.setPreset @graphState.preset - 1
-          Element :row :childrenSize Icon icon: :caretLeft
+          Element :row :parentWidthChildrenHeight :childrenCenterCenter Icon icon: :caretLeft
 
         Button
+          parentWidth: true
           action: -> models.graphState.setPreset @graphState.preset + 1
-          Element :row :childrenSize Icon icon: :caretRight
+          Element :row :parentWidthChildrenHeight :childrenCenterCenter Icon icon: :caretRight
 
       Button
+        parentWidth: true
         action: -> openLink sourcesUrl
         text: "" data sources
 
       Button
+        parentWidth: true
         text: "" export csv
         action: -> exportCsv @props.selectedData
 

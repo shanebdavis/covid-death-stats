@@ -23,7 +23,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         then select the next-page button (right-facing triangle on the right) to advance.
 
         On subsequent visits, or at any time really, I invite you to explore the data by selecting
-        various options under "edit graph".
+        various options under "edit graph". For example, at any time you can change the region from "United States" to your specific states for more local information.
 
         > Quick Note: The data in this dataset can lag by as much as 4 weeks. Therefor the "Latest Year Window" time option
         is the most recent window of 12 full months with "stable" data. It includes the 12 months up to and including the
@@ -31,11 +31,21 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         includes last month. Note that last month's data may still be being updated. Finally, you can select "All Time"
         to include this month's initial data as well.
 
-        ### About This App
+        ## About This App
 
         This app uses the latest CDC Covid-19 death data, pre-pandemic CDC death data from 2019 and population data from the
         US Census. This app is United-States focused mostly
         because of the challenges of getting comparable data sets across nations.
+
+        ### Data
+
+        * The CDC's Provisional COVID-19 Deathsprovides Covid-19-attributed-death counts as well as total death counts by age, state and month.
+        ** This data is updated weekly, on Wednesdays, and has varying degrees of lag of up to 4 weeks.
+        ** All CDC death data groups counts below 10 and above 1 into a single "1-9" range for privacy reasons.
+        * The CDC Wonder database provides death counts by a wide range of causes by type, age and state for all of 2019.
+        * The US Census provides population counts by age and state for 2019.
+
+        All sources are linked via the "data sources" button. You can also download the raw, collated JSON data this app uses from there.
 
         ### Features
 
@@ -61,7 +71,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Covid-19 Death Counts by Month
         # Covid-19 Data Is Not Meaningful By Itself
 
-        Above is a typical chart of Covid-19 the death counts over time.
+        Above is a typical chart of Covid-19 attributed death counts over time.
         Unfortunately, this is just data. It has no meaning. It cannot be
         used for any useful purpose in itself.
 
@@ -85,14 +95,15 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         Covid risk goes up with age. This chart suggests it’s quite dramatic how much it goes up by age, but don’t rest
         on your scientific laurels. This data is still meaningless.
 
-        The data says there are a little over 1000 times more 85+ deaths compared to 5-14 year old deaths. That seams
-        to imply that 5-14 year old are about 1000 times safer than people 85+. This is incorrect.
+        The data seams
+        to imply that 5-14 year old are about 1000 times safer than people 85+. This is incorrect. It shows
+        how misleading raw data can be. Advance to the next slide to see why.
 
         ### How to Interpret the Graph:
 
         > This graph cannot be interpreted; it has no meaning.
 
-        * Covid-19 Death Count by age group for %region%, %time%
+        * Covid-19 Death Count by age-group for %region%, %time%
 
     graphState:
       graphType:    [] :age
@@ -110,10 +121,12 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         > “Everything is relative.” -Einstein
 
-        On the previous page we saw the raw death-count numbers by age group suggested 5-14 year olds where about 1,000x safer than those 85+.
-        That data wasn't controlled for population, so it was meaningless to compare the two age groups. Dividing each count by the population
+        On the previous page we saw the raw death-count numbers by age-group suggested 5-14 year olds where about 1,000x safer than those 85+.
+        That data wasn't controlled for population, so it was meaningless to compare the two age-groups. Dividing each count by the population
         of each age-group provides probabilities. Now we can compare 5-14 year old Covid-19 death risk with those 85+ and we see they are actually
         about 6,600x safer.
+
+        ###- All though there are about 1000x less deaths in the 5-14 range compared to 85+, children in the 5-14 range are actually closer to 6,600x safer than people 85+.
 
         This shows the dangerous misconceptions the raw Covid-19 death count data can create.
 
@@ -124,7 +137,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the chance of dying from Covid 19 for each age group for the given period.
+        * Numbers represent the chance of dying from Covid 19 for each age-group for the given period.
         * %region%, %age%, %time%
 
     graphState:
@@ -142,7 +155,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the chance of dying from Covid 19 for each age group.
+        * Numbers represent the chance of dying from Covid 19 for each age-group.
         * %region%, %age%, %time%
 
     graphState:
@@ -154,18 +167,17 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Average Years of Life Due to Covid-19
-        # Practical Tool #1: Life Expectancy
+        # Average Years of Life Due to Covid-19, Age 65+
 
         Our first tool for understanding Covid-19 death risks is to determine how long people
         of various ages can expect to live under their Covid-19 death risk.
 
-        # 65+ Average Additional Life Expectancy Due to Covid-19 Death Risk
-
         This graph is simply the inverse of the previous page.
 
-        Using a surprisingly simple result of probability theory we can inverting the probability
-        of an invent and get the average number of times you must sample from that probability
+        ### Statistics 101
+
+        Using a surprisingly simple result of probability theory, we can invert the probability
+        of an event and get the average number of times you must sample from that probability
         before the event happens.
 
         > For example, if you wanted to know how many times you must roll a 6-side die before you
@@ -173,21 +185,23 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         a 5, which is 1 in 6, and invert it to get 6. On average, you will have to roll the die 6 times to get
         a 5.
 
+        ### Basic Statistics Applied to Covid-19 Attributed Deaths
+
         These numbers tell a practical and interesting story. We need to be very careful with our
         language here, but we can make a very strong probabilistic claim:
 
-        ##- If one avoids all other causes of death, and if one's Covid-19 death risk stays the same year after year, each age group
+        ##- If one avoids all other causes of death, and if one's Covid-19 death risk stays the same year after year, each age-group
         can expect to live, on average, the number of years stated above.
 
-        In other words, as-of this writing, people 85+ can expect to live 50+ years on average before they would die of Covid-19! Keep in
+        In other words, as-of this writing, people 85+ can expect to live 50+ years on average before they would die of Covid-19. Keep in
         mind this means they would be facing the same death risk they've faced for the past year, year-over-year for 50 years before their
         luck would give out.
 
-        Younger age groups face lower Covid-19 death risks and therefor have even longer life-expectancy based on their current risks.
+        Younger age-groups face lower Covid-19 death risks and therefor have even longer life-expectancy based on their current risks.
 
-        > Note: This graph does not take account that after 10 years, all people in the 65-74 age group will
-        now be in the 75-84 age group and therefor their Covid-19 death risk will have changed. This simple graph
-        assumes their death risk remains in the 65-74 age group even as they live for another 275 years (as-of this writing).
+        > Note: This graph does not take account that after 10 years, all people in the 65-74 age-group will
+        now be in the 75-84 age-group and therefor their Covid-19 death risk will have changed. This simple graph
+        assumes their death risk remains in the 65-74 age-group even as they live for another 275 years (as-of this writing).
 
         ### What to Try
 
@@ -212,11 +226,10 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Average Years of Life Due to Covid-19
+        # Average Years of Life Due to Covid-19, Ages 35-64
         # Practical Tool #1: Life Expectancy
-        # Ages 35 to 64 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
-        Based on Covid-19 death risk alone, 35-44 year olds could have been born before the Roman Empire over
+        Based on Covid-19 attributed death risk alone, 35-44 year olds could have been born before the Roman Empire over
         2000 years ago and still have a hundreds more years to live.
 
         ### How to Interpret the Graph:
@@ -236,9 +249,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Average Years of Life Due to Covid-19
+        # Average Years of Life Due to Covid-19, Ages 1-34
         # Practical Tool #1: Life Expectancy
-        # Ages 1 to 34 Average Additional Life Expectancy Due to Covid-19 Death Risk
 
         Children born at the dawn of homo sapiens over 200,000 years ago would still have to wait
         almost another 200,000 years before they are likely to die of Covid 19.
@@ -280,7 +292,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Practical Tool #1: Life Expectancy
         # All Ages
 
-        Overall, this life-expectancy statistic is one useful way to think about Covid-19 Death Risk
+        Overall, this life-expectancy statistic is one useful way to think about Covid-19 attributed death risk
         in every-day terms.
 
         Everyone has to pick their own risk tolerance, but events rarer than 1 in 100 can
@@ -304,19 +316,17 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Suicides / Covid-19 Deaths
+        # Suicides / Covid-19 Attributed Deaths, Ages 5-34
         > Numbers greater than 1 mean the number of times higher the suicide risk is over Covid-19
         # Practical Tool #2: Relative Risks
 
-        The next tool we can use to assess Covid-19 death risks is to compare the risks to other, known risks.
+        The next tool we can use to assess Covid-19 attributed death risks is to compare the risks to other, known risks.
 
-        # Ages 5-34 Comparing Covid-19 Death-Risk With Suicides in 2019
+        A sobering comparison reveals oeople ages 5 to 34 are
+        more at risk of committing suicide than they are of their death being attributed to Covid-19.
 
-        A sobering comparison. People ages 5 to 34 are
-        more at risk of committing suicide than they are of dying of Covid-19.
-
-        We should be 5x more concerned about suicide prevention for children and young adults
-        ages 5-24 over any concerns we have of Covid-19 death risks for these ages.
+        In other words, in service of the goal of saving lives, we should be 5x more concerned about suicide prevention for children and young adults
+        than we are about Covid-19 attributed deaths.
 
         # Saving Lives With Proportional Response
 
@@ -326,11 +336,12 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         to invest our efforts proportionally to all risks.
 
         If one death risk is 3x larger than another,
-        it should have 3x as much investment. To do anything else is at the very minimum a case of
-        tragically misplaced priorities, and can potentially cause more harm than good.
+        it should have 3x as much investment. To do anything else is, at the very minimum, a case of
+        tragically misplaced priorities. In the worst case, mis-prioritized
+        interventions can potentially cause more deaths than they save.
 
-        Even more importantly, we should be careful not to make any efforts to decrease the death-risk of a less common cause
-        at the expense of a more common death-risk. We must always be aware of tradeoffs and must make
+        We should be careful not to make any efforts to decrease the death-risk of a less common cause
+        at the expense of a more common one. We must always be aware of tradeoffs. We must make
         a wholistic plan that takes into account all death causes if our goal is to save lives.
 
         In the case of Covid-19, many of our interventions potentially increase depression and suicide rates:
@@ -340,7 +351,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * quarantine requirements
         * vaccine requirements
 
-        The effectiveness of each intervention must be weighed across all its costs before deciding if it makes sense to do.
+        The effectiveness of each intervention must be weighed across all its costs and benefits before deciding if it makes sense to do.
 
         ### What to Try
 
@@ -366,12 +377,14 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   {}
     description:
       """
-        # Fatal Car Accidents / Covid-19 Deaths
+        # Fatal Car Accidents / Covid-19 Deaths, Ages 5-24
         > Numbers greater than 1 mean the number of times higher the car-accident risk is over Covid-19
         # Practical Tool #2: Relative Risks
-        # Ages 5-34 Comparing Covid-19 Death-Risk With Deaths Caused By Car Accidents
 
-        The ride to school is more dangerous than Covid-19 for all children and young adults.
+        There are 6 to 7 times more car accident deaths for children and young adults when compared to
+        Covid-19 attributed deaths.
+
+        ###- The ride to school is more dangerous than Covid-19 for all children and young adults.
 
         ### What to Try
 
@@ -414,7 +427,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### How to Interpret the Graph
 
-        * Numbers represent the number of times more likely each age group is likely to die of some other,
+        * Numbers represent the number of times more likely each age-group is likely to die of some other,
         non-covid cause compared to dying of covid-19.
         * Colors show the relative chance of a Covid-19 death (lighter color) vs all other, Non-Covid-19 deaths (darker color)
         * %region%, %age%, %time%

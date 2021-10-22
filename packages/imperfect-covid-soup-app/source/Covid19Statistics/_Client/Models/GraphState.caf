@@ -11,26 +11,61 @@ defaults =
 
 envProps = getEnv()
 
+log {} envProps
+
 class GraphState extends ApplicationState
+
+  constructor: ->
+    global.onpopstate = ({state}) -> @setState merge
+      if state.preset?
+        presetData: &Presets[0]
+      state
+
+    @onNextReady ->
+      @mergeInState ->
+        object _, k in defaults when envProps[k]
+          envProps[k].split ","
 
   @stateFields merge
     defaults
-    each v, k in defaults when envProps[k]
-      v.split ","
 
     inColor:      false
     custom:       false
-    preset:       0
-    presetData:   &Presets[0]
+    preset:       preset = if envProps.page? then (envProps.page | 0) - 1 else 0
+    presetData:   &Presets[preset]
     numerator:    [] :covid19Deaths
     specialStatistic:
       value: 1/500000
       label: "" struck by lightning
-    &Presets[0].graphState
 
-  mergeInState: (f) ->
+    &Presets[preset].graphState
+
+
+  createParams = (state) ->
+    state extract preset
+    presetGraphState = &Presets[preset].graphState
+    log {} presetGraphState, state
+    global.document.location.origin
+    + global.document.location.pathname + "?" +
+      compactFlattenAll
+        "page=#{state.preset + 1}"
+        array key in Object.keys defaults when neq state[key], presetGraphState[key] ? defaults[key]
+          "" #{key}=#{state[key].join(",").replace(/[ ]/g, "%20")}
+      .join :&
+
+  resetPreset: ->
+    if @presetData extract? graphState
+      @mergeInState graphState
+
+  mergeInState: (f, first) ->
+    unless f is Function
+      newState = f
+      f = -> newState
     @setState (state) ->
-      @postprocessState merge state, f state
+      state = @postprocessState merge state, f state
+      unless first
+        global.history.pushState state, "Covid-19 Death Statistics", createParams state
+      state
 
   postprocessState: (state) ->
     state =
@@ -42,7 +77,7 @@ class GraphState extends ApplicationState
       else state
 
     merge state, {}
-      custom = find v, k in state.presetData?.graphState when neq v,state[k]
+      custom = !!find v, k in state.presetData?.graphState when neq v, state[k]
       inColor: hasDenominator(state) && hasNumerator(state)
 
   select: (type, value) ->

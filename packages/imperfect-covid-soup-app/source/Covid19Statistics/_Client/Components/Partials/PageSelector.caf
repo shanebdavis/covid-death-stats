@@ -20,6 +20,7 @@ class PageSelector extends ViewStateComponent
         :parentWidthChildrenHeight
         childrenMargins: @gridSize
         :childrenCenterRight
+
         Button
           parentWidth: true
           action: -> models.graphState.setPreset @graphState.preset - 1

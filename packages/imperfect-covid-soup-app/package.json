@@ -23,5 +23,5 @@
     "test": "nn -s; mocha -u tdd",
     "uglify-client": "echo 'uglifyjs Client'\nnpx uglify-js build/Client.js -c --keep-fnames -o build/Client.min.js"
   },
-  "version": "0.4.4"
+  "version": "0.5.0"
 }

@@ -39,10 +39,12 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ### Data
 
-        * The CDC's Provisional COVID-19 Deathsprovides Covid-19-attributed-death counts as well as total death counts by age, state and month.
-        ** This data is updated weekly, on Wednesdays, and has varying degrees of lag of up to 4 weeks.
+        About the data:
+
+        * The CDC's "Provisional COVID-19 Deaths" data provides Covid-19-attributed-death counts as well as total death counts by age, state and month.
+        ** This data is updated weekly, on Wednesdays, and has varying degrees of lag of up to 4 weeks. Different States report at different intervals.
         ** All CDC death data groups counts below 10 and above 1 into a single "1-9" range for privacy reasons.
-        * The CDC Wonder database provides death counts by a wide range of causes by type, age and state for all of 2019.
+        * The CDC Wonder database provides death counts by type, age and state for all of 2019.
         * The US Census provides population counts by age and state for 2019.
 
         All sources are linked via the "data sources" button. You can also download the raw, collated JSON data this app uses from there.

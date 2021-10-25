@@ -68,13 +68,20 @@ class GraphState extends ApplicationState
       state
 
   postprocessState: (state) ->
-    state =
-      # BUG: can't support stacked when more than one denominator right now
-      if state.denominator?.length > 1
-        log.warn "" Due to a bug, we can't show Stacked values with multiple denominators.
-        merge state, layout: [] :adjacent
 
-      else state
+    # BUG: can't support stacked when more than one denominator right now
+    if state.denominator?.length > 1
+      log.warn "" Due to a bug, we can't show Stacked values with multiple denominators.
+      state = merge state, layout: [] :adjacent
+
+    if find field in compactFlattenAll state.numerator, state.denominator when /2019/.test field
+      time =
+        array time in state.time when /^(latestYearWindow|latest12Months|2020)$/.test time
+      if time.length == 0 then time = [] :latestYearWindow
+
+      state = log state, merge state,
+        graphType: [] :age
+        time: time
 
     merge state, {}
       custom = !!find v, k in state.presetData?.graphState when neq v, state[k]

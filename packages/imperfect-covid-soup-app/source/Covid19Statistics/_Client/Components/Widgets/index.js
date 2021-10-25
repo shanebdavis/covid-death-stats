@@ -4,7 +4,8 @@
 (module.exports = require('./namespace'))
 
 .addModules({
-  Button:      require('./Button'),
-  VersionInfo: require('./VersionInfo'),
-  VinculumBar: require('./VinculumBar')
+  Button:           require('./Button'),
+  ScrollerWithBar2: require('./ScrollerWithBar2'),
+  VersionInfo:      require('./VersionInfo'),
+  VinculumBar:      require('./VinculumBar')
 });

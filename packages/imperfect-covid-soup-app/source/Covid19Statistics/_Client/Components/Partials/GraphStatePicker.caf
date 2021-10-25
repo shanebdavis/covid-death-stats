@@ -58,7 +58,8 @@ class GraphStatePicker extends ViewStateComponent
             action: @closeAction
             Icon size: @reducedButtonSize, icon: :close iconScale: .5
 
-        ScrollerWithBar
+        ScrollerWithBar2
+          alwaysShowBarIfNeeded: true
           draw:
             padding:
               h: -@gridSize

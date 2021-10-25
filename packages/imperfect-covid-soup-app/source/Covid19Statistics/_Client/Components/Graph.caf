@@ -149,8 +149,9 @@ class Graph extends ViewStateComponent
         else {}
 
       if @phonePortraitLayout
-        ScrollerWithBar
+        ScrollerWithBar2
           :clip
+          alwaysShowBarIfNeeded: true
           key: scrollerKey = :phoneScrollElement
           childrenMargins: @gridSize
           padding:

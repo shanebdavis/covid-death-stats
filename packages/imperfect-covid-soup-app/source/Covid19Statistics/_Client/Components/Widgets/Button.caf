@@ -21,7 +21,7 @@ class Button extends ViewStateComponent
           if @selected then TextPalette.black.barely
           else :white
         outline:
-          lineWidth: if hover then 2 else .15
+          lineWidth: if hover then 2 else .5
           color: TextPalette.black.primary
 
       noFocus: true

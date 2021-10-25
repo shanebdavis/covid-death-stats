@@ -225,93 +225,144 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       time:         [] :latestYearWindow
       age:          olderAgeGroup
 
+  # {}
+  #   description:
+  #     """
+  #       # Average Years of Life Due to Covid-19, All Ages
+  #       # Practical Tool #1: Life Expectancy
+
+  #       Overall, this life-expectancy statistic is one useful way to think about Covid-19 attributed death risk
+  #       in every-day terms.
+
+  #       Everyone has to pick their own risk tolerance, but events rarer than 1 in 100 can
+  #       reasonably expected to never happen in a normal human lifespan (75-85 years). For anyone younger
+  #       than 85, there personal covid-19 risk is less than this threshold.
+
+  #       # Statistics 101: Yearly Chance of Death
+
+  #       Implications for individuals for various yearly chances of death:
+
+  #       * 1:100: 100 years of life on average, 69 years is the median (50% of people would die before 69, 50% after)
+  #       * 1:1000: 90% of the population will live for at least 100 years (95%, > 50 years; 99%, > 10 years)
+  #       * 1:10,000: 99% of the population will live for at least 100 years.
+
+  #       Communities for communities for various yearly chances of death:
+
+  #       * 1:1000: Family of 10 has a 50% chance of no-one dying in 69 years
+  #       * 1:10,000: Family of 10 has a 90% chance of no-one dying in 100 years; Community of 100 has a 50% chance of no-one dying in 69 years.
+  #       * 1:100,000: Community of 100 has a 90% chance of no-one dying in 100 years.
+  #       * 1:1,000,000: Community of 100 has a 99% chance of no-one dying in 100 years.
+
+  #       ### How to Interpret the Graph:
+
+  #       * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+  #       * %region%, %age%, %time%
+  #       * Note: this assumes the death risk stays the same year after year after year ad infinitum.
+
+  #   graphState:
+  #     graphType:    [] :age
+  #     denominator:  [] :covid19Deaths
+  #     numerator:    [] :population
+  #     unit:         [] :years
+  #     time:         [] :latestYearWindow
+  #     age:          [] :allAges
+
+
   {}
     description:
       """
-        # Average Years of Life Due to Covid-19, Ages 35-64
-        # Practical Tool #1: Life Expectancy
+        # Statistics 101: Yearly Chance of Death Risk Guidelines
 
-        Based on Covid-19 attributed death risk alone, 35-44 year olds could have been born before the Roman Empire over
-        2000 years ago and still have a hundreds more years to live.
+        Here are some general guidelines to help think about yearly chances of death and how
+        they affect individuals, families and communities.
+
+        If we assume a worst case scenario that the pandemic continues as it has for 5 total years,
+        here are some basic ways of thinking about different yearly-death-risks and how they
+        affect individuals, families and communities.
+
+        ### Individuals
+
+        For any yearly death-risk, not just Covid-19, if the risk is "one in one-hundred" we would write it as "1:100."
+
+        The bullets below show, for several different example risk-levels, what individuals can expect in 5 years.
+
+        * 1:100 risk: 95% chance of surviving 5 years
+        * 1:500 risk: 99% chance of surviving 5 years
+        * 1:1000 risk: 99.5% chance of surviving 5 years
+        * 1:5000 risk: 99.9% chance of surviving 5 years
+
+        ### Families (10 people)
+
+        The bullets below show, for several different example risk-levels, what groups of 10 people can expect in 5 years.
+
+        * 1:100 risk: 60% chance of everyone surviving 5 years
+        * 1:500 risk: 90% chance of everyone surviving 5 years
+        * 1:1000 risk: 95% chance of everyone surviving 5 years
+        * 1:5000 risk: 99% chance of everyone surviving 5 years
+        * 1:10k risk: 99.5% chance of everyone surviving 5 years
+        * 1:50k risk: 99.9% chance of everyone surviving 5 years
+
+        ### Communities (100 people)
+
+        The bullets below show, for several different example risk-levels, what groups of 100 people can expect in 5 years.
+
+        * 1:1000 risk: 60% chance of everyone surviving 5 years
+        * 1:5000 risk: 90% chance of everyone surviving 5 years
+        * 1:10k risk: 95% chance of everyone surviving 5 years
+        * 1:50k risk: 99% chance of everyone surviving 5 years
+        * 1:100k risk: 99.5% chance of everyone surviving 5 years
+        * 1:500k risk: 99.9% chance of everyone surviving 5 years
+
+        ### 2019 Yearly Chance of Death by Causes (rounded)
+
+        Hear are a few comparable, yearly death risks from the 2019 data:
+
+        * Drowning Accidents: 1:50,000 to 1:150k
+        * Car Accidents: 1:5000 to 1:50k
+        * Poisoning Accidents: 1:2500 to 1:900k
+        * Suffocation Accidents: 1:3000 (<1y) to 1:500k (5-14)
+        * Alzheimer's: 1:100 (85+), 1:35k (55-65), N/A (<45)
+        * Cancer: 1:50 (85+) to 1:75k (<1y)
+        * Heart Disease: 1:25 (85+) to 1:250k (5-14)
+
+        ### About the Math
+
+        In statistics, in order to determine the chance of an event NOT HAPPENING several times in a row, we must take the
+        probability's complement. If we take a probability (p) to be 1/100, then the complement is (1-p) or 99/100. If we
+        want to determine the chance of (p) not happening 5 times in a row, as shown above for individual's, we must multiple
+        (q) times itself 5 times: q*q*q*q*q. For q=99/100, (q^5) is approximately 0.95099. Therefor, if the chance of death
+        is 1:100 per year, the chance of NOT DYING for 5 years is 95.099%.
+
+        When determining the chance of survival of any entire group, all we have to do is multiple in more "qs". If there are 10 people
+        over 5 years, we need to multiply (q) by itself 50 times - 50 people-years. If the yearly odds of death are 1:100, then
+        the odds of 10 people surviving for 5 years is (q^50) which is approximately 0.605 or 60.5%.
+
+        Last, if you want to achieve a certain probability of success over a certain number of years for a certain sized group, you
+        can use the following equation, derived directly from the equations above. The result is the number of years a group
+        of the given size is likely to fully survive with the desired_odds_of_success.
+
+        ```
+        # The number of years the group can fully survive
+        # with the desired_odds_of_success:
+
+        (log(desired_odds_of_success) / log(1 - p))
+        /
+        (number_of_years * number_of_people)
+        ```
+
+        * desired_odds_of_success: if the desired odds are 95%, then this should be .95
+        * p: the yearly odds of death. e.g. if it is 1 in 100, then this should be .01
 
         ### How to Interpret the Graph:
 
-        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+        * Numbers represent the chance of death attributed to covid-19
         * %region%, %age%, %time%
         * Note: this assumes the death risk stays the same year after year after year ad infinitum.
 
     graphState:
       graphType:    [] :age
-      denominator:  [] :covid19Deaths
-      numerator:    [] :population
-      unit:         [] :years
-      time:         [] :latestYearWindow
-      age:          middleAgeGroup
-
-  {}
-    description:
-      """
-        # Average Years of Life Due to Covid-19, Ages 1-34
-        # Practical Tool #1: Life Expectancy
-
-        Children born at the dawn of homo sapiens over 200,000 years ago would still have to wait
-        almost another 200,000 years before they are likely to die of Covid 19.
-
-        # Getting Struck By Lightning
-
-        Another way to think about the exceedingly low death risk to children due to Covid-19,
-        about 1 in 350,000, is to compare them with another favorite ultra rare event: getting
-        struck by lightning.
-
-        The odds of dying of lightning in the US is about 1 in 500,000 on a yearly basis. Children ages 1 to
-        14 are only slightly more likely to die of Covid-19 than they are of dying by being struck by lightning.
-
-        #- A child dying of Covid-19 is about as likely as getting struck by lighting.
-
-        ### What To Try
-
-        Go to "edit graph" then change the "time" from "Last 12 months" to "2020". In all of 2020, children
-        ages 1 to 14 are actually more likely to be struck and die of lightning than they are to die of Covid 19.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
-        * %region%, %age%, %time%
-        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] :covid19Deaths
-      numerator:    [] :population
-      unit:         [] :years
-      time:         [] :latestYearWindow
-      age:          youngAgeGroup
-
-  {}
-    description:
-      """
-        # Average Years of Life Due to Covid-19
-        # Practical Tool #1: Life Expectancy
-        # All Ages
-
-        Overall, this life-expectancy statistic is one useful way to think about Covid-19 attributed death risk
-        in every-day terms.
-
-        Everyone has to pick their own risk tolerance, but events rarer than 1 in 100 can
-        reasonably expected to never happen in a normal human lifespan (75-85 years). For anyone younger
-        than 85, there personal covid-19 risk is less than this threshold.
-
-        ### How to Interpret the Graph:
-
-        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
-        * %region%, %age%, %time%
-        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
-
-    graphState:
-      graphType:    [] :age
-      denominator:  [] :covid19Deaths
-      numerator:    [] :population
-      unit:         [] :years
+      denominator:  [] :population
+      numerator:    [] :covid19Deaths
       time:         [] :latestYearWindow
       age:          [] :allAges
 

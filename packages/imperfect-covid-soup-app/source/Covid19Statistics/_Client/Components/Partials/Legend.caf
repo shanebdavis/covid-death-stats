@@ -37,16 +37,17 @@ class Legend extends ViewStateComponent
 
   render: ->
     Element
-      :column childrenMargins: @gridSize
+      :column
       if @isPhone then :parentWidthChildrenHeight
       else
-        padding: @gridSize
+        # padding: v: @gridSize
         draw:
           radius: 5
           outline: TextPalette.black.quaternary
 
       TextElement
         TextStyles.smallBoldText
+        padding: @gridSize
         color: TextPalette.black.secondary
         text: "" edit graph
 
@@ -70,10 +71,11 @@ class Legend extends ViewStateComponent
 
       else
         Element
-          padding: h: -@gridSize, bottom: -@gridSize
-          ScrollerWithBar
+          # padding: h: -@gridSize, bottom: -@gridSize
+          ScrollerWithBar2
             :column :childrenTopCenter
             :clip
+            alwaysShowBarIfNeeded: true
             padding: h: @gridSize, bottom: @gridSize
             childrenMargins: @gridSize / 4
 

@@ -39,8 +39,9 @@ class PageBottom extends ViewStateComponent
               :clip
               :row :childrenTopCenter
 
-              ScrollerWithBar
+              ScrollerWithBar2
                 :centerCenter
+                alwaysShowBarIfNeeded: true
                 size: w: @gridSize * 48 max: ww: 1
                 childrenMargins: @gridSize * 2
                 padding:

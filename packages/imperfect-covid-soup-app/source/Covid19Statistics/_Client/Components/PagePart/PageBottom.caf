@@ -6,7 +6,7 @@ class PageBottom extends ViewStateComponent
   @stateFields showOptionsFor: null
 
   render: ->
-    @graphState extract custom, presetData
+    @graphState extract custom, presetData, preset
     Element
       :row
       childrenMargins: @gridSize
@@ -41,6 +41,7 @@ class PageBottom extends ViewStateComponent
 
               ScrollerWithBar2
                 :centerCenter
+                key: "" page-#{} if @custom then :custom else preset
                 alwaysShowBarIfNeeded: true
                 size: w: @gridSize * 48 max: ww: 1
                 childrenMargins: @gridSize * 2

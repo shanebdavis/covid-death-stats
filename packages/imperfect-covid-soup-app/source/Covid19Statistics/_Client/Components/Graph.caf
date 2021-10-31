@@ -136,6 +136,8 @@ class Graph extends ViewStateComponent
 
     Element
       :column
+
+      padding: {top, left, right} = @safePadding
       childrenMargins:
         unless @isPhone
           @gridSize * 2
@@ -160,7 +162,7 @@ class Graph extends ViewStateComponent
           mainContent
       else
         Element
-          padding: @gridSize
+          padding: {top, bottom} = @safePadding
           childrenMargins: @gridSize
           :column
           mainContent
@@ -170,19 +172,24 @@ class Graph extends ViewStateComponent
         padding: h: @gridSize, v: @gridSize * 2
         inFlow: false
         if @hoveredBar
-          HoverLegend commonBarProps, @hoveredBar,
+          HoverLegend
+            commonBarProps
+            @hoveredBar
             key: :hoverLegend
             right:
               find row, i in @data when row.value == maxRowValue with i
               < @data.length / 2
 
       if @phonePortraitLayout
-
         Element
           :row :parentWidthChildrenHeight
           :parentWidthChildrenHeight
           :childrenCenterCenter
-          padding: @gridSize / 2
+          padding:
+            left: @gridSize / 2
+            right: @gridSize / 2
+            top: @gridSize / 2
+            bottom: @gridSize / 2 + @safePadding.bottom
           draw: #e
           childrenMargins: @gridSize / 2
           Button

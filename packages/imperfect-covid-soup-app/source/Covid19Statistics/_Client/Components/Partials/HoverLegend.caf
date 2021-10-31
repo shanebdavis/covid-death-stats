@@ -7,19 +7,45 @@ class HoverLegend extends ViewStateComponent
   @propFields
     :size :location :numBars
     :value :values :valueLegendLabels
-    :valueLabel
     :unit
     :label
-    :maxValue
     :colorPalette
-    :layout
-    :setHoveredBar
     :right
+
+  commonSize = size: wcw: 1 h: TextStyles.smallText.fontSize * 2
+
+  renderRow: (label, value, index) ->
+    Element
+      :row :childrenSize childrenMargins: @gridSize
+      TextElement
+        TextStyles.smallText
+        :textCenterCenter :childrenSize commonSize
+        color:  TextPalette.black.secondary
+        text:   label
+
+      TextElement
+        TextStyles.mediumBoldText
+        :textCenterCenter :childrenSize commonSize
+        color: TextPalette.black.primary
+        text:
+          if !value? || value == "null"
+          then "" 1-9
+          else formatNumber value, @unit, true
+
+      Element
+        :row :childrenCenterCenter :childrenSize commonSize
+        Element
+          size: TextStyles.smallText.fontSize * 1.5
+          draw: if index?
+            radius: 5
+            fill: @colorPalette[index % @colorPalette.length]
 
   render: ->
     @ extract colorPalette
 
-    commonSize = size: wcw: 1 h: TextStyles.smallText.fontSize * 2
+    labels = compactFlattenAll @valueLegendLabels, if @layout == :stacked && @values.length > 1 then :total
+    values = compactFlattenAll @values, if @layout == :stacked && @values.length > 1 then @value
+
     Element
       if @right then :topRight :childrenTopRight
       :childrenSize
@@ -43,38 +69,9 @@ class HoverLegend extends ViewStateComponent
           """
             #{} @label.replace /\n/, ' '
 
-      Element
-        :row :childrenSize childrenMargins: @gridSize
+      array value, i in values
+        @renderRow labels[i], value, i
 
-        if @valueLegendLabels?[0]
-          Element
-            :column :childrenCenterRight :childrenSize
-            array label, i in compactFlattenAll @valueLegendLabels, if @layout == :stacked && @values.length > 1 then :total
-              TextElement
-                TextStyles.smallText
-                :textCenterCenter :childrenSize commonSize
-                color:  TextPalette.black.secondary
-                text:   label
-
-        Element
-          :column :childrenCenterRight :childrenSize
-          array value, i in compactFlattenAll @values, if @layout == :stacked && @values.length > 1 then @value
-            TextElement
-              TextStyles.mediumBoldText
-              :textCenterCenter :childrenSize commonSize
-              color: TextPalette.black.primary
-              text:
-                if !value? || value == "null"
-                then "" 1-9
-                else formatNumber value, @unit, true
-
-        Element
-          :column :childrenCenterRight :childrenSize
-          array value, i in @values
-            Element
-              :row :childrenCenterCenter :childrenSize commonSize
-              Element
-                size: TextStyles.smallText.fontSize * 1.5
-                draw:
-                  radius: 5
-                  fill: colorPalette[i % colorPalette.length]
+      if values.length > 1
+        @renderRow :total,
+          reduce a, b from values inject 0 with a + b

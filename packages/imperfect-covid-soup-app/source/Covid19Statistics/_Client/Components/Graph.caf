@@ -167,7 +167,6 @@ class Graph extends ViewStateComponent
           mainContent
       else
         Element
-          # padding: {top, bottom} = @suggestedPadding
           childrenMargins: @gridSize
           :column
           mainContent

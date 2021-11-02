@@ -27,10 +27,15 @@ class GraphStatePicker extends ViewStateComponent
           :row
           :parentWidthChildrenHeight
           :childrenCenterLeft
+          childrenMargins: @gridSize
           TextElement
             TextStyles.xLargeBoldText
             :childrenHeightParentWidth
             text: upperCamelCase label, ' '
+
+          Button
+            # action: @closeAction
+            text: :sum
 
           Button
             action: @closeAction

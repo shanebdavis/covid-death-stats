@@ -63,7 +63,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
     graphState:
       numerator:    [] :covid19Deaths
       denominator:  [] :1
-      graphType:    [] :time
+      graphBy:    [] :time
       age:          [] :allAges
       region:       [] :UnitedStates
 
@@ -86,7 +86,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
     graphState:
       numerator:    [] :covid19Deaths
       denominator:  [] :1
-      graphType:    [] :time
+      graphBy:    [] :time
 
 
   {}
@@ -108,7 +108,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Covid-19 Death Count by age-group for %region%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] "1"
       age:          [] :allAges
@@ -143,7 +143,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       age:          [] :allAges
@@ -161,7 +161,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       age:          olderAgeGroup
@@ -218,7 +218,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Note: this assumes the death risk stays the same year after year after year ad infinitum.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :population
       denominator:  [] :covid19Deaths
       unit:         [] :years
@@ -260,7 +260,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
   #       * Note: this assumes the death risk stays the same year after year after year ad infinitum.
 
   #   graphState:
-  #     graphType:    [] :age
+  #     graphBy:    [] :age
   #     denominator:  [] :covid19Deaths
   #     numerator:    [] :population
   #     unit:         [] :years
@@ -360,7 +360,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Note: this assumes the death risk stays the same year after year after year ad infinitum.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       denominator:  [] :population
       numerator:    [] :covid19Deaths
       time:         [] :latestYearWindow
@@ -421,7 +421,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         > The suicide risk data is from 2019.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths
       unit:         [] :x
@@ -454,7 +454,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         > The Car Accident Death risk data is from 2019.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :carAccidents2019
       denominator:  [] :covid19Deaths
       layout:       [] :adjacent
@@ -486,7 +486,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       layout:       [] :stacked
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
@@ -510,7 +510,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       layout:       [] :stacked
       numerator:    [] :covid19Deaths :nonCovid19Deaths
       denominator:  [] :population
@@ -549,7 +549,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       layout:       [] :adjacent
       numerator:    [] :covid19Deaths :cancer2019 :heartDiseases2019
       denominator:  [] :population
@@ -582,7 +582,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         > This graph cannot be interpreted because the covid-19 death counts have not been controlled for population.
 
     graphState:
-      graphType:    [] :time
+      graphBy:    [] :time
       layout:       [] :adjacent
       numerator:    [] :covid19Deaths
       denominator:  [] :1
@@ -619,7 +619,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :time
+      graphBy:    [] :time
       layout:       [] :adjacent
       numerator:    [] :covid19Deaths
       denominator:  [] :population
@@ -747,7 +747,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         Population data is taken from the latest US Census numbers.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       age:          [] :allAges
@@ -792,7 +792,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         ultimate cause of death will not be Covid-19.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       age:          [] :allAges
@@ -832,7 +832,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
       unit:         [] :x
@@ -845,7 +845,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Age 5-34: Average Additional Life Expectancy Due to Covid-19 Death Risk
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       denominator:  [] :covid19Deaths
       numerator:    [] :population
       unit:         [] :years
@@ -867,7 +867,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
     graphState:
       layout:       [] :stacked
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths
       unit:         [] :x
@@ -923,7 +923,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
     graphState:
       numerator:    [] :covid19Deaths
       denominator:  [] :population
-      graphType:    [] :time
+      graphBy:    [] :time
 
   {}
     description:
@@ -947,7 +947,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :population
       denominator:  [] :covid19Deaths
       time:         [] :latestYearWindow
@@ -974,7 +974,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths
       time:         [] :latestYearWindow
@@ -994,7 +994,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * Note: Suicide probabilities are based on 2019 data. 2020 data is not available yet.
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :carAccidents2019
       denominator:  [] :covid19Deaths
       time:         [] :latestYearWindow
@@ -1012,7 +1012,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      graphType:    [] :age
+      graphBy:    [] :age
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
       time:         [] :latestYearWindow

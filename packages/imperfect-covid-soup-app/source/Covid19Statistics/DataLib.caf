@@ -179,11 +179,11 @@ getEnv() extract showFullDetails
 
   getSelectedData: ({covidData: _covidData, graphState}) ->
       _covidData extract? covidData, intentData, mechanismData, baselineDeathData, times, ages, latestYearWindowTimes, latest12MonthTimes
-      graphState extract? region, time, age, graphType
+      graphState extract? region, time, age, graphBy
       [aRegion] = region
       [aTime] = time
       [anAge] = age
-      [axis] = graphType
+      [axis] = graphBy
 
       axisKeys = if axis == :time
         switch aTime
@@ -338,7 +338,7 @@ getEnv() extract showFullDetails
         :population2019
 
       graphStateOptions:
-        graphType:    :time :age
+        graphBy:    :time :age
         layout:       :stacked :adjacent
         numerator:    numerator = compactFlatten [] :1 valueFields
         denominator:  numerator

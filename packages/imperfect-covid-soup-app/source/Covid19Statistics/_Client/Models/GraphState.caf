@@ -6,7 +6,7 @@ defaults =
   numerator:    [] :1
   denominator:  [] :1
   age:          [] :allAges
-  graphType:    [] :age
+  graphBy:    [] :age
   layout:       [] :adjacent
 
 envProps = getEnv()
@@ -80,7 +80,7 @@ class GraphState extends ApplicationState
       if time.length == 0 then time = [] :latestYearWindow
 
       state = log state, merge state,
-        graphType: [] :age
+        graphBy: [] :age
         time: time
 
     merge state, {}

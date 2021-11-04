@@ -74,8 +74,14 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         # Covid-19 Data Is Not Meaningful By Itself
 
         Above is a typical chart of Covid-19 attributed death counts over time.
-        Unfortunately, this is just data. It has no meaning. It cannot be
-        used for any useful purpose in itself.
+        Unfortunately, this is just data. It has no meaning. Though you can see
+        if one month has a higher or lower count than another month, you can't tell
+        what the numbers mean. Are the numbers "good"?
+        Are the numbers "bad"? It's impossible to tell
+        from this data alone what any month's numbers mean.
+
+        This kind of graph is dangerous. It seems like it's telling you something when in fact
+        it is statistically meaningless. This graph cannot be used for ANY USEFUL PURPOSE in itself.
 
         ### How to Interpret the Graph:
 
@@ -134,8 +140,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
         ##- Covid-19 death and case counts alone are meaningless for understanding Covid-19 risk.
 
-        We now have probabilities, but these probabilities are hard to intuitively understand. We'll take a closer look at three sections
-        of this graph.
+        We now have probabilities, but these probabilities are hard to intuitively understand.
+        In the following sections we'll bring these numbers into focus and attempt to make them more understandable.
 
         ### How to Interpret the Graph:
 
@@ -225,6 +231,28 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       time:         [] :latestYearWindow
       age:          olderAgeGroup
 
+  {}
+    description:
+      """
+        # Average Years of Life Due to Covid-19, All Ages
+
+        Younger age groups have exceptionally long times to live, on average, under the Covid-19 death risk. The
+        Covid-19 death risk is incredibly low for most people.
+
+        ### How to Interpret the Graph:
+
+        * Numbers represent the average number of years each cohort can expect to live if Covid-19 was the only death risk.
+        * %region%, %age%, %time%
+        * Note: this assumes the death risk stays the same year after year after year ad infinitum.
+
+    graphState:
+      graphBy:    [] :age
+      numerator:    [] :population
+      denominator:  [] :covid19Deaths
+      unit:         [] :years
+      time:         [] :latestYearWindow
+      age:          [] :allAges
+
   # {}
   #   description:
   #     """
@@ -273,7 +301,8 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       """
         # Statistics 101: Yearly Chance of Death Risk Guidelines
 
-        Here are some general guidelines to help think about yearly chances of death and how
+        So far we've talked about the risk to individuals. Another thing we care about is risk to
+        our overall community. Below are some simple guidelines to help think about yearly chances of death and how
         they affect individuals, families and communities.
 
         If we assume a worst case scenario that the pandemic continues as it has for 5 total years,

@@ -11,8 +11,6 @@ defaults =
 
 envProps = getEnv()
 
-log {} envProps
-
 class GraphState extends ApplicationState
 
   constructor: ->
@@ -44,7 +42,6 @@ class GraphState extends ApplicationState
   createParams = (state) ->
     state extract preset
     presetGraphState = &Presets[preset].graphState
-    log {} presetGraphState, state
     global.document.location.origin
     + global.document.location.pathname + "?" +
       compactFlattenAll
@@ -79,7 +76,7 @@ class GraphState extends ApplicationState
         array time in state.time when /^(latestYearWindow|latest12Months|2020)$/.test time
       if time.length == 0 then time = [] :latestYearWindow
 
-      state = log state, merge state,
+      state = merge state,
         graphBy: [] :age
         time: time
 

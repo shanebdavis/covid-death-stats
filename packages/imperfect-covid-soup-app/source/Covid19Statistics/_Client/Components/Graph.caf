@@ -70,7 +70,7 @@ class Graph extends ViewStateComponent
     else 1
 
     maxRowValue = reduce _max, row from @data inject 0
-      max _max, row.value
+      pairMax _max, row.value
 
     commonBarProps = {}
       @maxValue
@@ -181,7 +181,7 @@ class Graph extends ViewStateComponent
             @hoveredBar
             key: :hoverLegend
             right:
-              find row, i in @data when row.value == maxRowValue with i
+              find row, i in @data when pairEqual row.value, maxRowValue with i
               < @data.length / 2
 
       if @phonePortraitLayout

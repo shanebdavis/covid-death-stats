@@ -9,6 +9,57 @@ getEnv() extract showFullDetails
   maxPrivValue = 9
   months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
 
+  denormalizePairValue = (a) =>
+    if float32Eq a[0], a[1] then a[0] else a
+
+  normalizePairValue = (v) ->
+    if v?
+      if v is Number then [v, v]
+      else if (v is Array) && v.length == 2 then v
+      else
+        log.error invalidValue: v
+        [0, 0]
+    else [] minPrivValue, maxPrivValue
+
+  pairAdd = (a, b) ->
+    [a1, a2] = normalizePairValue a
+    [b1, b2] = normalizePairValue b
+    denormalizePairValue [] a1 + b1, a2 + b2
+
+  pairEqual = (a, b) ->
+    [a1, a2] = normalizePairValue a
+    [b1, b2] = normalizePairValue b
+    float32Eq a1, b1
+    && float32Eq a2, b2
+
+  maxOfPair = (a) ->
+    [a1, a2] = normalizePairValue a
+    max a1, a2
+
+  pairMax = (a, b) ->
+    [a1, a2] = normalizePairValue a
+    [b1, b2] = normalizePairValue b
+    denormalizePairValue [] max(a1, b1), max(a2, b2)
+
+  pairIsInvinite = (a) ->
+    [a1, a2] = normalizePairValue a
+    isInfinite(a1) || isInfinite(a2)
+
+  averagePair = (a) ->
+    [a1, a2] = normalizePairValue a
+    a1 + a2
+    / 2
+
+  pairDiv = (a, b) ->
+    [a1, a2] = normalizePairValue a
+    [b1, b2] = normalizePairValue b
+    c1 = a1 / b2
+    c2 = a2 / b1
+    if c1 < c2
+      [] c1, c2
+    else
+      [] c2, c1
+
   sourcesUrl: :https://github.com/shanebdavis/covid-death-stats/#source-data
   repoUrl: :https://github.com/shanebdavis/covid-death-stats/
 
@@ -22,7 +73,6 @@ getEnv() extract showFullDetails
         \d*5- |
         85
       )
-
 
   humanLabel = (p) ->
     if m = p?.match /(^\d+-\d+) years/i
@@ -42,7 +92,6 @@ getEnv() extract showFullDetails
       else
         p.replace /Pneumonia|Diseases?|Accidents?|Clrd/g, ''
 
-
   isPublicValue = (b) -> b? && (b == 0 || b > 9)
   isInfinite = (v) -> !(v < maxDisplayValue)
 
@@ -56,52 +105,19 @@ getEnv() extract showFullDetails
   getMaxNonInfiniteValues = (values) ->
     if values.length > 0
       m = null
-      each value in values when !isInfinite value
-        m = if m? then max value, m else value
-      m ? Infinity
+      each value in values when !pairIsInvinite value
+        m = if m? then pairMax value, m else value
+      if m? then maxOfPair m else Infinity
 
   getSumNonInfiniteValues = (values) ->
     if values.length > 0
       m = null
-      each value in values when !isInfinite value
-        m = if m? then m + value else value
-      m ? Infinity
+      each value in values when !pairIsInvinite value
+        m = if m? then pairAdd value, m else normalizePairValue value
+      if m? then m else Infinity
 
-  fullDetails = (b) ->
-    if b? then b else (maxPrivValue / minPrivValue) /2
-
-  valuesSum = (list, canShowAnyValue) ->
-    reduce a, b from list inject [0 0] with
-      if showFullDetails
-        []
-          a[0] + if b? then b else minPrivValue
-          a[1] + if b? then b else maxPrivValue
-
-      else if canShowAnyValue
-        []
-          v = a[0] + b
-          v
-
-      else
-        []
-          a[0] + if isPublicValue b then b else minPrivValue
-          a[1] + if isPublicValue b then b else maxPrivValue
-
-  valuesMax = (list, canShowAnyValue) ->
-    reduce a, b from list inject [0 0]
-      if showFullDetails
-        []
-          max a[0], if b? then b else minPrivValue
-          max a[1], if b? then b else maxPrivValue
-
-      else if canShowAnyValue
-        []
-          v = max a[0], b
-          v
-      else
-        []
-          max a[0], if isPublicValue b then b else minPrivValue
-          max a[1], if isPublicValue b then b else maxPrivValue
+  valuesSum = (list) -> reduce a, b from list inject [0 0] with pairAdd a, b
+  valuesMax = (list) -> reduce a, b from list inject [0 0] with pairMax a, b
 
   applyScale = (scale, obj) ->
     if scale? && scale != 1
@@ -119,13 +135,21 @@ getEnv() extract showFullDetails
     n = if numerator == "1" then 1 else row[numerator]
     d = if denominator == "1" then 1 else row[denominator]
     if n? && d?
-      n / d
+      pairDiv n, d
     else null
 
   equationElementHasNon1Value = (values) -> !(values.length == 1 && values[0] == "1")
 
   hasNumerator    = ({numerator}) -> equationElementHasNon1Value numerator
   hasDenominator  = ({denominator}) -> equationElementHasNon1Value denominator
+
+  presentValuePair = (v) ->
+    [lowValue, highValue] = normalizePairValue v
+    valuesAreIntegers =
+      float32Eq (lowValue | 0), lowValue
+      && float32Eq (highValue | 0), highValue
+
+    if float32Eq(lowValue, highValue) || (lowValue / highValue) > .9 || !valuesAreIntegers then highValue else "#{lowValue} - #{highValue}"
 
   getGraphDataElement: (rows, label, graphState) ->
     graphState extract layout, numerator, denominator, age, region
@@ -154,11 +178,11 @@ getEnv() extract showFullDetails
 
         array row in rows with valueCalc row, numerator[0], denominator[0]
 
-    [lowValue, highValue] =
+    value =
       if layout[0] == :stacked
-        valuesSum values, hasDenominator graphState
+        normalizePairValue valuesSum values, hasDenominator graphState
       else
-        valuesMax values, hasDenominator graphState
+        normalizePairValue valuesMax values, hasDenominator graphState
 
     {}
       label:
@@ -172,8 +196,8 @@ getEnv() extract showFullDetails
 
       values
       valueLegendLabels
-      value: (lowValue + highValue) / 2
-      valueLabel: if lowValue == highValue then highValue else "#{lowValue} - #{highValue}"
+      value: averagePair value
+      valueLabel: presentValuePair value
       nonInfiniteValueMax: getMaxNonInfiniteValues values
       nonInfiniteValueSum: getSumNonInfiniteValues values
 
@@ -276,7 +300,7 @@ getEnv() extract showFullDetails
         each stats, age in ages
           ageSum = out[age] ?= {}
           each v, stat in stats
-            ageSum[stat] = if stat == :population then v else (ageSum[stat] ? 0) + v
+            ageSum[stat] = if stat == :population then v else pairAdd (ageSum[stat] ? 0), v
 
 
     covidData = null

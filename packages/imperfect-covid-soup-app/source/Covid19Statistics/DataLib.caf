@@ -209,17 +209,18 @@ getEnv() extract showFullDetails
       [anAge] = age
       [axis] = graphBy
 
-      axisKeys = if axis == :time
-        switch aTime
-        when :allTime
-          array v from times when !/^(all.*|202\d|l.*)$/i.test v
-        when :latestYearWindow then latestYearWindowTimes
-        when :latest12Months then latest12MonthTimes
-        else time
-      else
-        if anAge == :allAges
-          array v from ages when !/^all/i.test v
-        else age
+      axisKeys =
+        if axis == :time
+          switch aTime
+          when :allTime           then array v from times when !/^(all.*|202\d|l.*)$/i.test v
+          when :latestYearWindow  then latestYearWindowTimes
+          when :latest12Months    then latest12MonthTimes
+          else time
+
+        else
+          if anAge == :allAges
+            array v from ages when !/^all/i.test v
+          else age
 
       unless covidData
         {}
@@ -266,7 +267,7 @@ getEnv() extract showFullDetails
                   aTime
                   baselineDeathData
 
-  getMonthSequence = ({monthsAgo = 0, totalMonths, date = new Date()}) ->
+  getMonthSequence = ({monthsAgo = 0, totalMonths = 12, date = new Date()}) ->
     month = date.getMonth()
     year  = date.getYear() + 1900
     m = monthsAgo
@@ -275,12 +276,14 @@ getEnv() extract showFullDetails
       year -= 1
       m -= 12
 
-    month = if month < m
-      year--
-      m -= month
-      12 - m
-    else
-      month - m
+    month =
+      if month < m
+        year--
+        m -= month
+        12 - m
+
+      else
+        month - m
 
     array til totalMonths
       out = "#{year}-#{if month < 9 then '0' else ''}#{month + 1}"
@@ -288,6 +291,7 @@ getEnv() extract showFullDetails
       if month >= 12
         month = 0
         year++
+
       out
 
   loadCovidData: ->
@@ -302,12 +306,11 @@ getEnv() extract showFullDetails
           each v, stat in stats
             ageSum[stat] = if stat == :population then v else pairAdd (ageSum[stat] ? 0), v
 
-
     covidData = null
     merge
       {}
-        latestYearWindowTimes = getMonthSequence {} monthsAgo: 13, totalMonths: 12
-        latest12MonthTimes = getMonthSequence {} monthsAgo: 12, totalMonths: 12
+        latestYearWindowTimes = getMonthSequence {} monthsAgo: 13
+        latest12MonthTimes    = getMonthSequence {} monthsAgo: 12
 
       object d0, field from &covid-death-stats.getPreparedData()
         if field == :covidData
@@ -315,7 +318,7 @@ getEnv() extract showFullDetails
             list = object d2, time from d1 with-key if time == "All Time" then :allTime else time
               object _, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age with-key if age == "All Ages" then :allAges else age
 
-            list.latest12Months = populateMonthSetAges d1, latest12MonthTimes
+            list.latest12Months   = populateMonthSetAges d1, latest12MonthTimes
             list.latestYearWindow = populateMonthSetAges d1, latestYearWindowTimes
 
             list

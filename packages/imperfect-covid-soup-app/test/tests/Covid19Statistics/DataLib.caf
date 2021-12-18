@@ -7,20 +7,21 @@ suite:
 
     .thenTest "getSelectedData" (covidData) ->
       assert.eq
-        covidData.last12MonthTimes.length
+        covidData.latest12MonthTimes.length
         12
 
       assert.eq
         Object.keys getSelectedData {}
           covidData
           graphState:
-            region:       [] :UnitedStates
-            time:         [] :2020
-            numerator:    [] :covid19Deaths
+            age:          [] :allAges
             denominator:  [] :1
-            age:          [] "All Ages"
+            graphBy:      [] :age
             graphType:    [] :Age
             layout:       [] :adjacent
+            numerator:    [] :covid19Deaths
+            region:       [] :UnitedStates
+            time:         [] :2020
 
         []
           "Under 1 year"

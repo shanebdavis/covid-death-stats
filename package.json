@@ -28,6 +28,6 @@
   "scripts": {
     "sync": "art-monorepo sync",
     "test": "art-monorepo test",
-    "weekly-update": "cd packages/imperfect-covid-soup;npm run update-data;cd ../imperfect-covid-soup-app;npm run build"
+    "update-build": "cd packages/imperfect-covid-soup;npm run update-data;cd ../imperfect-covid-soup-app;npm run build"
   }
 }

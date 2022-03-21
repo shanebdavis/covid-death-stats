@@ -6,7 +6,7 @@ defaults =
   numerator:    [] :1
   denominator:  [] :1
   age:          [] :allAges
-  graphBy:    [] :age
+  graphBy:      [] :age
   layout:       [] :adjacent
 
 envProps = getEnv()
@@ -73,7 +73,7 @@ class GraphState extends ApplicationState
 
     if find field in compactFlattenAll state.numerator, state.denominator when /2019/.test field
       time =
-        array time in state.time when /^(latestYearWindow|latest12Months|2020)$/.test time
+        array time in state.time when /^(latestYearWindow|latest12Months|2020|2021)$/.test time
       if time.length == 0 then time = [] :latestYearWindow
 
       state = merge state,

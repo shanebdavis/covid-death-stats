@@ -15,7 +15,7 @@
     "chalk": "^4.1.2",
     "covid-death-stats": "file:packages/imperfect-covid-soup",
     "crypto-browserify": "^3.12.0",
-    "csv-parse": "^4.16.0",
+    "csv-parse": "^5.0.4",
     "download-csv": "^1.1.1",
     "mocha": "^7.2.0",
     "source-map-loader": "^3.0.0",

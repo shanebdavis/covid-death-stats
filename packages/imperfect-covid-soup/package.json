@@ -1,4 +1,7 @@
 {
+  "bin": {
+    "covid-death-stats": "covid-death-stats"
+  },
   "dependencies": {
     "@art-suite/cli": "^1.4.0",
     "@art-suite/pointer-actions-mixin": "^1.0.3",
@@ -7,12 +10,9 @@
     "asciichart": "^1.5.25",
     "caffeine-script": "^0.74.1",
     "chalk": "^4.1.2",
-    "csv-parse": "^4.16.0"
+    "csv-parse": "^5.0.4"
   },
   "name": "covid-death-stats",
-  "bin": {
-    "covid-death-stats": "covid-death-stats"
-  },
   "scripts": {
     "download-latest-covid-data": "curl https://data.cdc.gov/api/views/9bhg-hcku/rows.csv?accessType=DOWNLOAD > data/Provisional_COVID-19_Deaths_by_Sex_and_Age.csv",
     "prepare-json": "./covid-death-stats json --out data/preparedData.json",

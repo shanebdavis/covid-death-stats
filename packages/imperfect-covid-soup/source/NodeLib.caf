@@ -1,6 +1,6 @@
 import &ArtStandardLib
 
-parse = &csvParse
+{parse} = &csvParse
 
 {}
   loadCsv = (filename) ->

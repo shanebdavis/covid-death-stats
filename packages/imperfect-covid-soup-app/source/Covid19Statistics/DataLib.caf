@@ -9,57 +9,6 @@ getEnv() extract showFullDetails
   maxPrivValue = 9
   months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
 
-  denormalizePairValue = (a) =>
-    if float32Eq a[0], a[1] then a[0] else a
-
-  normalizePairValue = (v) ->
-    if v?
-      if v is Number then [v, v]
-      else if (v is Array) && v.length == 2 then v
-      else
-        log.error invalidValue: v
-        [0, 0]
-    else [] minPrivValue, maxPrivValue
-
-  pairAdd = (a, b) ->
-    [a1, a2] = normalizePairValue a
-    [b1, b2] = normalizePairValue b
-    denormalizePairValue [] a1 + b1, a2 + b2
-
-  pairEqual = (a, b) ->
-    [a1, a2] = normalizePairValue a
-    [b1, b2] = normalizePairValue b
-    float32Eq a1, b1
-    && float32Eq a2, b2
-
-  maxOfPair = (a) ->
-    [a1, a2] = normalizePairValue a
-    max a1, a2
-
-  pairMax = (a, b) ->
-    [a1, a2] = normalizePairValue a
-    [b1, b2] = normalizePairValue b
-    denormalizePairValue [] max(a1, b1), max(a2, b2)
-
-  pairIsInvinite = (a) ->
-    [a1, a2] = normalizePairValue a
-    isInfinite(a1) || isInfinite(a2)
-
-  averagePair = (a) ->
-    [a1, a2] = normalizePairValue a
-    a1 + a2
-    / 2
-
-  pairDiv = (a, b) ->
-    [a1, a2] = normalizePairValue a
-    [b1, b2] = normalizePairValue b
-    c1 = a1 / b2
-    c2 = a2 / b1
-    if c1 < c2
-      [] c1, c2
-    else
-      [] c2, c1
-
   sourcesUrl: :https://github.com/shanebdavis/covid-death-stats/#source-data
   repoUrl: :https://github.com/shanebdavis/covid-death-stats/
 
@@ -105,19 +54,19 @@ getEnv() extract showFullDetails
   getMaxNonInfiniteValues = (values) ->
     if values.length > 0
       m = null
-      each value in values when !pairIsInvinite value
-        m = if m? then pairMax value, m else value
-      if m? then maxOfPair m else Infinity
+      each value in values when !isInfinite value
+        m = if m? then max value, m else value
+      if m? then m else Infinity
 
   getSumNonInfiniteValues = (values) ->
     if values.length > 0
       m = null
-      each value in values when !pairIsInvinite value
-        m = if m? then pairAdd value, m else normalizePairValue value
+      each value in values when !isInfinite value
+        m = if m? then value + m else value
       if m? then m else Infinity
 
-  valuesSum = (list) -> reduce a, b from list inject [0 0] with pairAdd a, b
-  valuesMax = (list) -> reduce a, b from list inject [0 0] with pairMax a, b
+  valuesSum = (list) -> reduce a, b from list inject 0 with a + b
+  valuesMax = (list) -> reduce a, b from list inject 0 with max a, b
 
   applyScale = (scale, obj) ->
     if scale? && scale != 1
@@ -135,21 +84,13 @@ getEnv() extract showFullDetails
     n = if numerator == "1" then 1 else row[numerator]
     d = if denominator == "1" then 1 else row[denominator]
     if n? && d?
-      pairDiv n, d
+      n / d
     else null
 
   equationElementHasNon1Value = (values) -> !(values.length == 1 && values[0] == "1")
 
   hasNumerator    = ({numerator}) -> equationElementHasNon1Value numerator
   hasDenominator  = ({denominator}) -> equationElementHasNon1Value denominator
-
-  presentValuePair = (v) ->
-    [lowValue, highValue] = normalizePairValue v
-    valuesAreIntegers =
-      float32Eq (lowValue | 0), lowValue
-      && float32Eq (highValue | 0), highValue
-
-    if float32Eq(lowValue, highValue) || (lowValue / highValue) > .9 || !valuesAreIntegers then highValue else "#{lowValue} - #{highValue}"
 
   getGraphDataElement: (rows, label, graphState) ->
     graphState extract layout, numerator, denominator, age, region
@@ -180,9 +121,9 @@ getEnv() extract showFullDetails
 
     value =
       if layout[0] == :stacked
-        normalizePairValue valuesSum values, hasDenominator graphState
+        valuesSum values
       else
-        normalizePairValue valuesMax values, hasDenominator graphState
+        valuesMax values
 
     {}
       label:
@@ -196,8 +137,8 @@ getEnv() extract showFullDetails
 
       values
       valueLegendLabels
-      value: averagePair value
-      valueLabel: presentValuePair value
+      value
+      valueLabel: if value? then value else 'wyh'
       nonInfiniteValueMax: getMaxNonInfiniteValues values
       nonInfiniteValueSum: getSumNonInfiniteValues values
 
@@ -304,7 +245,7 @@ getEnv() extract showFullDetails
         each stats, age in ages
           ageSum = out[age] ?= {}
           each v, stat in stats
-            ageSum[stat] = if stat == :population then v else pairAdd (ageSum[stat] ? 0), v
+            ageSum[stat] = if stat == :population then v else (ageSum[stat] ? 0) + v
 
     covidData = null
     merge
@@ -316,7 +257,8 @@ getEnv() extract showFullDetails
         if field == :covidData
           covidData = object d1, region from d0
             list = object d2, time from d1 with-key if time == "All Time" then :allTime else time
-              object _, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age with-key if age == "All Ages" then :allAges else age
+              object values, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age with-key if age == "All Ages" then :allAges else age
+                object v from values with if v? then v else minPrivValue # nulls mean 1-9, and we are going to assume 1 (minPrivValue)
 
             list.latest12Months   = populateMonthSetAges d1, latest12MonthTimes
             list.latestYearWindow = populateMonthSetAges d1, latestYearWindowTimes

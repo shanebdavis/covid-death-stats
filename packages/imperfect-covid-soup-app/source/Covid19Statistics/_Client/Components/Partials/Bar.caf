@@ -45,7 +45,6 @@ class Bar extends ViewStateComponent
     divisor = if isInfinite value then maxValue else value
 
     bars = array v in values ? [] value
-      v = averagePair v
       if isInfinite v then 1
       else bound 0, v / divisor, 1
 

@@ -15,8 +15,6 @@ class HoverLegend extends ViewStateComponent
   commonSize = size: wcw: 1 h: TextStyles.smallText.fontSize * 2
 
   renderRow: (label, value, index) ->
-    value = presentValuePair value
-
     Element
       :row :childrenSize childrenMargins: @gridSize
       TextElement
@@ -76,4 +74,4 @@ class HoverLegend extends ViewStateComponent
 
       if values.length > 1
         @renderRow :total,
-          reduce a, b from values inject 0 with pairAdd a, b
+          reduce a, b from values inject 0 with a + b

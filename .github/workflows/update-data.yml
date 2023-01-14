@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  commit:
+  update-data:
     runs-on: ubuntu-latest
     container:
       image: node:16

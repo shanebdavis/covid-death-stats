@@ -1,0 +1,36 @@
+name: Update Data
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    container:
+      image: node:16
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update Data
+        run: npm run update
+
+      - name: Add changes
+        run: |
+          git add .
+
+      - name: Commit changes
+        uses: actions/git@v2
+        with:
+          args: commit -am "updated data in GithubAction"
+
+      - name: Push changes
+        uses: actions/git@v2
+        with:
+          args: push

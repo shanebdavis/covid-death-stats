@@ -1,10 +1,5 @@
 name: Update Data
 
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   commit:
     runs-on: ubuntu-latest
@@ -21,16 +16,15 @@ jobs:
       - name: Update Data
         run: npm run update
 
-      - name: Add changes
+      - name: Git Commit Push
         run: |
-          git add .
+          git commit . -m "Update data via GitHub Action"
+          git push
 
-      - name: Commit changes
-        uses: actions/git@v2
-        with:
-          args: commit -am "updated data in GithubAction"
-
-      - name: Push changes
-        uses: actions/git@v2
-        with:
-          args: push
+      # - name: Commit changes
+      #   uses: EndBug/add-and-commit@v9
+      #   with:
+      #     author_name: Shane Brinkman-Davis Delamore
+      #     author_email: shanebdavis@gmail.com
+      #     message: "Update data via GitHub Action"
+      #     add: "."

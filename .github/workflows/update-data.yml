@@ -19,7 +19,7 @@ jobs:
         run: npm ci
 
       - name: Update Data
-        run: npm run update
+        run: sudo npm run update
 
       - name: Git Commit Push
         run: |

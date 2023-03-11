@@ -2,7 +2,7 @@ import &StandardImport
 
 class HoverLegend extends ViewStateComponent
 
-  @subscriptions :graphState.layout
+  @subscriptions :graphState.graphType
 
   @propFields
     :size :location :numBars
@@ -42,8 +42,8 @@ class HoverLegend extends ViewStateComponent
   render: ->
     @ extract colorPalette
 
-    labels = compact @valueLegendLabels.concat [] if @layout == :stacked && @values.length > 1 then :total
-    values = compact @values.concat [] if @layout == :stacked && @values.length > 1 then @value
+    labels = compact @valueLegendLabels.concat [] if @graphType == :stacked && @values.length > 1 then :total
+    values = compact @values.concat [] if @graphType == :stacked && @values.length > 1 then @value
 
     Element
       if @right then :topRight

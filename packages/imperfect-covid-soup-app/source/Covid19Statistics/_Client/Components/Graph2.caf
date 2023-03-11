@@ -1,0 +1,6 @@
+import &StandardImport
+
+class Graph2 extends ViewStateComponent
+
+  render: ->
+    Element()

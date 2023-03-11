@@ -22,7 +22,7 @@ class Bar extends ViewStateComponent
     :label
     :maxValue
     :colorPalette
-    :layout
+    :graphType
     :setHoveredBar
     :setHoveredBarWithTimeout
     :barXPadding
@@ -38,7 +38,7 @@ class Bar extends ViewStateComponent
       bound 0, location.y / target.currentSize.y, 1
 
   render: ->
-    @ extract value, values, layout, label, maxValue, colorPalette
+    @ extract value, values, graphType, label, maxValue, colorPalette
 
     labelValue = value
 
@@ -92,7 +92,7 @@ class Bar extends ViewStateComponent
 
             array bar, i in bars by -1
               rectangle:
-                if layout == :stacked
+                if graphType == :stacked
                   bar = if barTotal > 0
                     if isInfinite bar
                       maxValue

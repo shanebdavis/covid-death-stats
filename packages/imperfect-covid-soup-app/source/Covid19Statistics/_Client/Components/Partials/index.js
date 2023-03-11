@@ -5,10 +5,12 @@
 
 .addModules({
   Bar:              require('./Bar'),
+  BarGraph:         require('./BarGraph'),
   BarLib:           require('./BarLib'),
   GraphStatePicker: require('./GraphStatePicker'),
   HoverLegend:      require('./HoverLegend'),
   Legend:           require('./Legend'),
+  OneBarGraph:      require('./OneBarGraph'),
   PageSelector:     require('./PageSelector'),
   StandardImport:   require('./StandardImport')
 });

@@ -60,7 +60,7 @@ class Legend extends ViewStateComponent
             :column :childrenTopCenter
             :parentWidthChildrenHeight
             childrenMargins: @gridSize / 4
-            array option in :numerator :denominator :graphBy :layout
+            array option in :numerator :denominator :graphBy :graphType
               @renderOption option
           Element
             :column :childrenTopCenter
@@ -79,5 +79,5 @@ class Legend extends ViewStateComponent
             padding: h: @gridSize, bottom: @gridSize
             childrenMargins: @gridSize / 4
 
-            array option in :numerator :denominator :region :time :age :graphBy :layout
+            array option in :numerator :denominator :region :time :age :graphBy :graphType
               @renderOption option

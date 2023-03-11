@@ -93,7 +93,7 @@ getEnv() extract showFullDetails
   hasDenominator  = ({denominator}) -> equationElementHasNon1Value denominator
 
   getGraphDataElement: (rows, label, graphState) ->
-    graphState extract layout, numerator, denominator, age, region
+    graphState extract graphType, numerator, denominator, age, region
 
     [firstRow] = rows
 
@@ -120,7 +120,7 @@ getEnv() extract showFullDetails
         array row in rows with valueCalc row, numerator[0], denominator[0]
 
     value =
-      if layout[0] == :stacked
+      if graphType[0] == :stacked
         valuesSum values
       else
         valuesMax values
@@ -307,8 +307,8 @@ getEnv() extract showFullDetails
         :population2019
 
       graphStateOptions:
-        graphBy:    :time :age
-        layout:       :stacked :adjacent
+        graphBy:      :time :age
+        graphType:    :stacked :adjacent :oneBar
         numerator:    numerator = compactFlatten [] :1 valueFields
         denominator:  numerator
         time:         times

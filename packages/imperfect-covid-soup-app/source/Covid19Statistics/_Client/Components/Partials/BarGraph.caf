@@ -1,0 +1,98 @@
+import &StandardImport, &Widgets, {} &Bar
+
+class BarGraph extends ViewStateComponent
+  @propFields
+    :data
+    :graphType     # :stacked :adjacent
+    :unit       # string
+    :inColor    # boolean
+
+  @stateFields
+    previousMaxValue: null
+    hoveredBar: null
+    manualMode: false
+
+  timer = new ReschedulableTimer
+  setHoveredBarWithTimeout: (hoverBar) ->
+    @setHoveredBar hoverBar
+    timer.timeout 5000 @clearHoveredBar
+
+  @getter
+    calculatedMaxValue: ->
+      getMaxNonInfiniteValues
+        array {nonInfiniteValueSum, nonInfiniteValueMax, label} from @data when !/All|Jan\n2020|Feb\n2020/.test label
+          if @adjacent
+            nonInfiniteValueMax
+          else
+            nonInfiniteValueSum
+
+    maxValue: ->
+      unless isInfinite maxValue = @calculatedMaxValue
+        if @previousMaxValue == bound maxValue, @previousMaxValue, 4 * maxValue
+          @previousMaxValue
+        else
+          @previousMaxValue = maxValue
+
+      else 1
+
+    maxRowValue: -> reduce _max, row from @data inject 0
+      max _max, row.value
+
+  render: ->
+    skipLabel = if 30 > barSize = @viewSize.x / @data.length
+      3
+    else if barSize <= 45
+      2
+    else 1
+
+    commonBarProps = {}
+      @maxValue
+      @graphType
+      @unit
+      numBars:      @data.length
+      colorPalette: if @inColor then barColors.color else barColors.grey
+
+    Element
+      Element
+        animators: opacity: toFrom: 0
+        padding:
+          h: -barXPadding = @gridSize /
+            if @viewSize.x < 768 then 8
+            else if @viewSize.x < 1024 then 4
+            else 2
+          top: TextStyles.mediumText.fontSize
+        array row, i in @data
+          Bar row, commonBarProps, {}
+            key:      row.label
+            hideLabels = skipLabel > 1 && i % skipLabel != 0
+            hideValueLabel:
+              barSize < 30 || hideLabels
+              && !((@data[i-1]?.value ? 0) < row.value && row.value > (@data[i+1]?.value ? 0))
+
+            barXPadding
+            noValueLable: barSize <
+            centerX: (i + .5) / @data.length
+            location: xw: i / @data.length
+            size:     ww: 1 / @data.length
+            @setHoveredBar
+            @setHoveredBarWithTimeout
+
+      Element
+        key:      :line
+        location: yh: 1 y: -@gridSize * 3
+        axis:     y: .5
+        size:     ww: 1 h: @gridSize / 2
+        draw:     TextPalette.black.primary
+
+      Element
+        receivePointerEvents: :never
+        padding: h: @gridSize
+        inFlow: false
+        if @hoveredBar
+          &HoverLegend
+            commonBarProps
+            @hoveredBar
+            key: :hoverLegend
+            right:
+              find row, i in @data when float32Eq row.value, @maxRowValue with i
+              < @data.length / 2

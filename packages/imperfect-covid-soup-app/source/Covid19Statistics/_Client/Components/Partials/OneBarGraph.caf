@@ -1,0 +1,83 @@
+import &StandardImport, &Widgets, {} &Bar
+
+class OneBarGraph extends ViewStateComponent
+  @propFields
+    :data
+    :graphType     # :stacked :adjacent
+    :unit       # string
+    :inColor    # boolean
+
+  render: ->
+    total = 0
+    minValue = undefined
+    maxValue = undefined
+    values = array row, i in @data
+
+      total += v = reduce sum, v from row.values inject 0 with sum + v
+      minValue = min v, minValue ? v
+      maxValue = max v, maxValue ? v
+      v
+    valueRange = maxValue - minValue
+
+    palette = barColors.color
+    c1 = palette[0]
+    c2 = peek palette
+
+    Element
+      :column
+      # draw: :red
+      Element
+        size: hh: .25
+      Element
+        :row
+        size: hh: .25
+        array row, i in @data
+          Element
+            animators: :size
+            size: ww: value = values[i]
+            draw:
+              c1.blend c2, (value - minValue) / valueRange
+              outline: #0001
+
+      Element
+        size: h: @gridSize * 5
+        draw:
+          {} shape: (context, {w, h}) ->
+            xFrom = 0
+            xTo = 0.5 * xToWidth = w / values.length
+
+            context.beginPath()
+            each value in values
+              xFromWidth = w * value / total
+              xFromNow = xFrom + xFromWidth * .5
+              context.moveTo xFromNow, 0
+              # context.lineTo xFromNow, h * .1
+              context.lineTo xTo, h * .9
+              context.lineTo xTo, h
+              xFrom += xFromWidth
+              xTo += xToWidth
+
+          outline: TextPalette.black.disabled
+
+      Element
+        :row
+        size: hh: .25
+        padding: top: @gridSize
+        array row, i in @data
+          Element
+            :column
+            childrenMargins: @gridSize
+            TextElement
+              smallBoldText
+              :textTopCenter
+              text: formatPercent values[i] / total
+            TextElement
+              smallText
+              :textTopCenter
+              text: row.label
+            TextElement
+              :textTopCenter
+              tinyText
+              color: TextPalette.black.secondary
+              text: "" (#{formatNumber values[i]})
+

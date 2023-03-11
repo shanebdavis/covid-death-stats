@@ -486,7 +486,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
       graphBy:    [] :age
       numerator:    [] :carAccidents2019
       denominator:  [] :covid19Deaths
-      layout:       [] :adjacent
+      graphType:       [] :adjacent
       unit:         [] :x
       time:         [] :latestYearWindow
       age:          schoolAgeGroup
@@ -516,7 +516,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
     graphState:
       graphBy:    [] :age
-      layout:       [] :stacked
+      graphType:       [] :stacked
       numerator:    [] :nonCovid19Deaths
       denominator:  [] :covid19Deaths
       unit:         [] :x
@@ -540,7 +540,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
     graphState:
       graphBy:    [] :age
-      layout:       [] :stacked
+      graphType:       [] :stacked
       numerator:    [] :covid19Deaths :nonCovid19Deaths
       denominator:  [] :population
       time:         [] :latestYearWindow
@@ -579,7 +579,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
     graphState:
       graphBy:    [] :age
-      layout:       [] :adjacent
+      graphType:       [] :adjacent
       numerator:    [] :covid19Deaths :cancer2019 :heartDiseases2019
       denominator:  [] :population
       time:         [] :latestYearWindow
@@ -612,7 +612,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
     graphState:
       graphBy:    [] :time
-      layout:       [] :adjacent
+      graphType:       [] :adjacent
       numerator:    [] :covid19Deaths
       denominator:  [] :1
       region:       [] :Idaho :Oregon :Washington
@@ -649,7 +649,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
 
     graphState:
       graphBy:    [] :time
-      layout:       [] :adjacent
+      graphType:       [] :adjacent
       numerator:    [] :covid19Deaths
       denominator:  [] :population
       region:       [] :Idaho :Oregon :Washington
@@ -895,7 +895,7 @@ olderAgeGroup = ['65-74 years', '75-84 years', '85+ years']
         * %region%, %age%, %time%
 
     graphState:
-      layout:       [] :stacked
+      graphType:       [] :stacked
       graphBy:    [] :age
       numerator:    [] :suicides2019
       denominator:  [] :covid19Deaths

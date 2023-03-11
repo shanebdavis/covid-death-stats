@@ -8,15 +8,8 @@ class Graph extends ViewStateComponent
 
   @stateFields
     selectedData: null
-    showOptionsFor: null
     previousMaxValue: null
-    hoveredBar: null
     manualMode: false
-
-  timer = new ReschedulableTimer
-  setHoveredBarWithTimeout: (hoverBar) ->
-    @setHoveredBar hoverBar
-    timer.timeout 5000 @clearHoveredBar
 
   @propFields :animationOn
 
@@ -26,33 +19,18 @@ class Graph extends ViewStateComponent
       selectedData: getSelectedData {} newState.covidData, newState.graphState
 
   @getter
-    inColor: -> @graphState.inColor
-    hasDenominator: ->
-      @graphState extract denominator
-      !(denominator.length == 1 && denominator[0] == "1")
-
+    graphType: -> @graphState.graphType[0]
+    unit:      -> !@isPhone && !@graphState.custom && @graphState.presetData?.graphState?.unit
+    inColor:   -> @graphState.inColor
     data: ->
       array rows, label in @selectedData
         getGraphDataElement rows, label, @graphState
-
-    adjacent: -> @graphState.layout[0] == :adjacent
-
-    calculatedMaxValue: ->
-      getMaxNonInfiniteValues
-        array {nonInfiniteValueSum, nonInfiniteValueMax, label} from @data when !/All|Jan\n2020|Feb\n2020/.test label
-          if @adjacent
-            nonInfiniteValueMax
-          else
-            nonInfiniteValueSum
-
-    maxValue: ->
-      unless isInfinite maxValue = @calculatedMaxValue
-        if @previousMaxValue == bound maxValue, @previousMaxValue, 4 * maxValue
-          @previousMaxValue
-        else
-          @previousMaxValue = maxValue
-
-      else 1
+    graphProps: -> {}
+      @data
+      @inColor
+      @graphState.inColor
+      @unit
+      @graphType
 
   invertEquation: ->
     models.graphState.setState
@@ -60,23 +38,7 @@ class Graph extends ViewStateComponent
       denominator: @graphState.numerator
 
   render: ->
-    @graphState extract layout, presetData, custom
-
-    skipLabel = if 30 > barSize = @viewSize.x / @data.length
-      3
-    else if barSize <= 45
-      2
-    else 1
-
-    maxRowValue = reduce _max, row from @data inject 0
-      max _max, row.value
-
-    commonBarProps = {}
-      @maxValue
-      numBars:      @data.length
-      layout:       layout[0]
-      colorPalette: if @inColor then barColors.color else barColors.grey
-      unit:         !@isPhone && !custom && presetData?.graphState?.unit
+    log {} @covidData
 
     mainContent = []
       Element
@@ -95,43 +57,17 @@ class Graph extends ViewStateComponent
           size: ww: 1, hw: 1
         unless @phoneLandscapeLayout
           padding: bottom: @gridSize
-        Element
-          animators: opacity: toFrom: 0
-          padding:
-            h: -barXPadding = @gridSize /
-              if @viewSize.x < 768 then 8
-              else if @viewSize.x < 1024 then 4
-              else 2
-            top: TextStyles.mediumText.fontSize
-          array row, i in @data
-            Bar row, commonBarProps, {}
-              key:      row.label
-              hideLabels = skipLabel > 1 && i % skipLabel != 0
-              hideValueLabel:
-                barSize < 30 || hideLabels
-                && !((@data[i-1]?.value ? 0) < row.value && row.value > (@data[i+1]?.value ? 0))
 
-              barXPadding
-              noValueLable: barSize <
-              centerX: (i + .5) / @data.length
-              location: xw: i / @data.length
-              size:     ww: 1 / @data.length
-              @setHoveredBar
-              @setHoveredBarWithTimeout
-
-        Element
-          key:      :line
-          location: yh: 1 y: -@gridSize * 3
-          axis:     y: .5
-          size:     ww: 1 h: @gridSize / 2
-          draw:     TextPalette.black.primary
+        if @graphType == :oneBar
+          OneBarGraph @graphProps
+        else
+          BarGraph @graphProps
 
       if @isPhone
         if @phonePortraitLayout
           PhoneBottom {} @selectedData, @manualMode
       else
         PageBottom {} @selectedData
-
 
     Element
       :column
@@ -169,19 +105,6 @@ class Graph extends ViewStateComponent
           childrenMargins: @gridSize
           :column
           mainContent
-
-      Element
-        receivePointerEvents: :never
-        padding: h: @gridSize, v: @gridSize * 2
-        inFlow: false
-        if @hoveredBar
-          HoverLegend
-            commonBarProps
-            @hoveredBar
-            key: :hoverLegend
-            right:
-              find row, i in @data when float32Eq row.value, maxRowValue with i
-              < @data.length / 2
 
       if @phonePortraitLayout
         Element

@@ -4,8 +4,9 @@
 (module.exports = require('./namespace'))
 
 .addModules({
-  Graph: require('./Graph'),
-  Home:  require('./Home')
+  Graph:  require('./Graph'),
+  Graph2: require('./Graph2'),
+  Home:   require('./Home')
 });
 require('./PagePart');
 require('./Partials');

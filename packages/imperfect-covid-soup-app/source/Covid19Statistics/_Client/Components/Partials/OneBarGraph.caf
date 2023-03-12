@@ -33,7 +33,7 @@ class OneBarGraph extends ViewStateComponent
         size: hh: .25
         array row, i in @data
           Element
-            animators: :size
+            animators: :size :draw
             size: ww: value = values[i]
             draw:
               c1.blend c2, v = bound 0, (value - minValue) / valueRange, 1

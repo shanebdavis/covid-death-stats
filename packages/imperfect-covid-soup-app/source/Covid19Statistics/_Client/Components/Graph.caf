@@ -38,9 +38,9 @@ class Graph extends ViewStateComponent
       denominator: @graphState.numerator
 
   render: ->
-    log {} @covidData
-    log {} @selectedData
-    log unitedStates: @covidData.covidData.UnitedStates.allTime.allAges
+    # log {} @covidData
+    # log {} @selectedData
+    # log unitedStates: @covidData.covidData.UnitedStates.allTime.allAges
 
     mainContent = []
       Element

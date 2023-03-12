@@ -15,14 +15,16 @@ import &StandardImport, &ArtAtomic, &DataLib
       '$1'
 
   formatPercent = (p, highPrecision) ->
-    100 * p
-    .toFixed
-      switch
-      # when p < .010001 then 3
-      when p < .100001 then 2
-      else 1
-      + if highPrecision then 1 else 0
-    + :%
+    if float32Eq0 p then 0
+    else
+      100 * p
+      .toFixed
+        switch
+        # when p < .010001 then 3
+        when p < .100001 then 2
+        else 1
+        + if highPrecision then 1 else 0
+      + :%
 
   formatNumber = (p, unit, highPrecision = false) ->
     if isInfinite p

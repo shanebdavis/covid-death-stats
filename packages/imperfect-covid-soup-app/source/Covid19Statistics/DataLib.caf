@@ -2,12 +2,64 @@ import &StandardImport
 
 getEnv() extract showFullDetails
 
+isMonthKey = (key) -> /^\d\d\d\d[-]\d\d$/.test key
+
 {}
   showFullDetails
   maxDisplayValue = 999999999
   minPrivValue = 1
   maxPrivValue = 9
   months = :_ :Jan :Feb :Mar :Apr :May :Jun :Jul :Aug :Sep :Oct :Nov :Dec
+
+  causesOfDeathKeys =
+    :covid19Deaths
+
+    :carAccidents2019
+    :drowningAccidents2019
+    :poisoningAccidents2019
+    :suffocationAccidents2019
+
+    :alzheimersDisease2019
+    :cancer2019
+    :cerebrovascularDiseases2019
+    :diabetesDisease2019
+    :heartDiseases2019
+    :influenzaPneumonia2019
+    :liverDisease2019
+    :respiratoryClrdDisease2019
+
+    :homicides2019
+    :suicides2019
+
+    :allOtherAccidents2019
+    :allOtherDiseases2019
+
+    :allOtherDeaths2019
+
+  humanCausesOfDeathKeys =
+    covid19Deaths: :covid19
+
+    carAccidents2019:         :car
+    drowningAccidents2019:    :drowned
+    poisoningAccidents2019:   :poison
+    suffocationAccidents2019: :suffocation
+
+    alzheimersDisease2019:    :alzeimers
+    cancer2019:               :cancer
+    cerebrovascularDiseases2019:  :cerebrovascular
+    diabetesDisease2019:      :diabetes
+    heartDiseases2019:        :heart
+    influenzaPneumonia2019:   :influenza
+    liverDisease2019:         :liver
+    respiratoryClrdDisease2019: :respiratory
+
+    homicides2019:            :homicide
+    suicides2019:             :suicide
+
+    allOtherAccidents2019:    "" other accident
+    allOtherDiseases2019:     "" other disease
+
+    allOtherDeaths2019:       "" other death
 
   sourcesUrl: :https://github.com/shanebdavis/covid-death-stats/#source-data
   repoUrl: :https://github.com/shanebdavis/covid-death-stats/
@@ -24,7 +76,8 @@ getEnv() extract showFullDetails
       )
 
   humanLabel = (p) ->
-    if m = p?.match /(^\d+-\d+) years/i
+    if humanCausesOfDeathKeys[p] then humanCausesOfDeathKeys[p]
+    else if m = p?.match /(^\d+-\d+) years/i
       "#{m[1]} Years"
     else if m = p?.match /^(\d\d\d\d)-(\d\d)$/
       [_, year, month] = m
@@ -36,8 +89,9 @@ getEnv() extract showFullDetails
 
   shortHumanLabel = (p) ->
     humanLabel
-      if /^All/i.test p
-        p
+      if /^all\s*(time|age)/i.test p then p
+      else if /^All/i.test p
+        p.replace /^All\s*/i, ''
       else
         p.replace /Pneumonia|Diseases?|Accidents?|Clrd/g, ''
 
@@ -73,12 +127,10 @@ getEnv() extract showFullDetails
       object v, k in obj with v * scale
     else obj
 
-  createSelectedDataEntry = (covidDataRecord, region, age, time, baselineDeathData, scale) ->
+  createSelectedDataEntry = (covidDataRecord, region, age, time, value) ->
     merge
-      {} region, age, time
+      {} region, age, time, value
       covidDataRecord
-      nonCovid19Deaths: covidDataRecord.totalDeaths - covidDataRecord.covid19Deaths
-      applyScale scale, baselineDeathData?[region]?[age] ? {}
 
   valueCalc = (row, numerator, denominator) ->
     n = if numerator == "1" then 1 else row[numerator]
@@ -93,7 +145,7 @@ getEnv() extract showFullDetails
   hasDenominator  = ({denominator}) -> equationElementHasNon1Value denominator
 
   getGraphDataElement: (rows, label, graphState) ->
-    graphState extract graphType, numerator, denominator, age, region
+    graphState extract graphType, graphBy, numerator, denominator, age, region
 
     [firstRow] = rows
 
@@ -117,7 +169,7 @@ getEnv() extract showFullDetails
               else
                 upperCamelCase region, ' '
 
-        array row in rows with valueCalc row, numerator[0], denominator[0]
+        array row in rows with row.value ? valueCalc row, numerator[0], denominator[0]
 
     value =
       if graphType[0] == :stacked
@@ -127,7 +179,9 @@ getEnv() extract showFullDetails
 
     {}
       label:
-        if m = label.match /(^\d+)-(\d+)$/
+        if graphBy[0] == :causeOfDeath
+          humanLabel label
+        else if m = label.match /(^\d+)-(\d+)$/
           [_, year, month] = m
           "#{months[month|0]}\n#{year}"
         else
@@ -143,70 +197,80 @@ getEnv() extract showFullDetails
       nonInfiniteValueSum: getSumNonInfiniteValues values
 
   getSelectedData: ({covidData: _covidData, graphState}) ->
-      _covidData extract? covidData, intentData, mechanismData, baselineDeathData, times, ages, latestYearWindowTimes, latest12MonthTimes
-      graphState extract? region, time, age, graphBy
-      [aRegion] = region
-      [aTime] = time
-      [anAge] = age
-      [axis] = graphBy
+    _covidData extract? covidData, intentData, mechanismData, baselineDeathData, times, ages, latestYearWindowTimes, latest12MonthTimes
+    graphState extract? region, time, age, graphBy
+    [aRegion] = region
+    [aTime] = time
+    [anAge] = age
+    [axis] = graphBy
 
-      axisKeys =
-        if axis == :time
-          switch aTime
-          when :allTime           then array v from times when !/^(all.*|202\d|l.*)$/i.test v
-          when :latestYearWindow  then latestYearWindowTimes
-          when :latest12Months    then latest12MonthTimes
-          else time
+    axisKeys =
+      switch axis
+      when :time
+        switch aTime
+        when :allTime           then array v from times when !/^(all.*|202\d|l.*)$/i.test v
+        when :latestYearWindow  then latestYearWindowTimes
+        when :latest12Months    then latest12MonthTimes
+        else time
 
-        else
-          if anAge == :allAges
-            array v from ages when !/^all/i.test v
-          else age
+      # when :causeOfDeath
+      #   causesOfDeathKeys
 
-      unless covidData
-        {}
       else
-        if axis == :time
-          object aTime from axisKeys
-            if region.length > 1
-              array aRegion in region
-                createSelectedDataEntry
-                  covidData[aRegion][aTime][anAge]
-                  aRegion
-                  anAge
-                  aTime
-                  baselineDeathData
-                  1/12
+        if anAge == :allAges
+          array v from ages when !/^all/i.test v
+        else age
 
-            else
-              array anAge in age
-                createSelectedDataEntry
-                  covidData[aRegion][aTime][anAge]
-                  aRegion
-                  anAge
-                  aTime
-                  baselineDeathData
-                  1/12
+    unless covidData
+      {}
+    else
+      switch axis
+      when :time
+        object aTime from axisKeys
+          if region.length > 1
+            array aRegion in region
+              createSelectedDataEntry
+                covidData[aRegion][aTime][anAge]
+                aRegion
+                anAge
+                aTime
 
-        else
-          object anAge from axisKeys
-            if region.length > 1
-              array aRegion in region
-                createSelectedDataEntry
-                  covidData[aRegion][aTime][anAge]
-                  aRegion
-                  anAge
-                  aTime
-                  baselineDeathData
+          else
+            array anAge in age
+              createSelectedDataEntry
+                covidData[aRegion][aTime][anAge]
+                aRegion
+                anAge
+                aTime
 
-            else
-              array aTime in time
-                createSelectedDataEntry
-                  covidData[aRegion][aTime][anAge]
-                  aRegion
-                  anAge
-                  aTime
-                  baselineDeathData
+      when :causeOfDeath
+        sourceData = covidData[aRegion][aTime][anAge]
+        object causeOfDeathKey from causesOfDeathKeys
+          []
+            createSelectedDataEntry
+              sourceData
+              aRegion
+              anAge
+              aTime
+              sourceData[causeOfDeathKey]
+
+      else # when :age
+        object anAge from axisKeys
+          if region.length > 1
+            array aRegion in region
+              createSelectedDataEntry
+                covidData[aRegion][aTime][anAge]
+                aRegion
+                anAge
+                aTime
+
+          else
+            array aTime in time
+              createSelectedDataEntry
+                covidData[aRegion][aTime][anAge]
+                aRegion
+                anAge
+                aTime
 
   getMonthSequence = ({monthsAgo = 0, totalMonths = 12, date = new Date()}) ->
     month = date.getMonth()
@@ -248,24 +312,69 @@ getEnv() extract showFullDetails
             ageSum[stat] = if stat == :population then v else (ageSum[stat] ? 0) + v
 
     covidData = null
+    accidentalDeathFields =
+      :carAccidents2019
+      :drowningAccidents2019
+      :poisoningAccidents2019
+      :suffocationAccidents2019
+
+    diseaseDeathFields =
+      :alzheimersDisease2019
+      :cancer2019
+      :cerebrovascularDiseases2019
+      :diabetesDisease2019
+      :heartDiseases2019
+      :influenzaPneumonia2019
+      :liverDisease2019
+      :respiratoryClrdDisease2019
+
+    violentDeathFields =
+      :homicides2019
+      :suicides2019
+
+
+
     merge
       {}
         latestYearWindowTimes = getMonthSequence {} monthsAgo: 13
         latest12MonthTimes    = getMonthSequence {} monthsAgo: 12
 
-      object d0, field from &covid-death-stats.getPreparedData()
-        if field == :covidData
-          covidData = object d1, region from d0
-            list = object d2, time from d1 with-key if time == "All Time" then :allTime else time
-              object values, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age with-key if age == "All Ages" then :allAges else age
+      preparedData = &covid-death-stats.getPreparedData()
+
+      numMonths: numMonths = reduce count, v, k from preparedData.covidData.UnitedStates inject 0 when isMonthKey k
+        count + 1
+
+      baselineDeathData: baselineDeathData = object d1, region from preparedData.baselineDeathData
+        object values, age from d1 with-key if age == "All Ages" then :allAges else age
+          sumAccidents2019 = reduce sum, k from accidentalDeathFields inject 0 with sum + values[k] ? 0
+          sumDiseases2019 = reduce sum, k from diseaseDeathFields inject 0 with sum + values[k] ? 0
+          sumViolence2019 = reduce sum, k from violentDeathFields inject 0 with sum + values[k] ? 0
+          values.allOtherAccidents2019 = values.allAccidents2019 - sumAccidents2019
+          values.allOtherDiseases2019 = values.allDiseases2019 - sumDiseases2019
+          values.allViolentDeaths2019 = sumViolence2019
+          values.survivers2019 = values.population2019 - values.allDeaths2019
+          values
+
+      covidData:
+        covidData = object d1, region from preparedData.covidData
+          list = object d2, time from d1 with-key if time == "All Time" then :allTime else time
+            reKeyed = object values, age from d2 when covidDataAgeGroupsToIncludeRegEx.test age with-key if age == "All Ages" then :allAges else age
+            object values, age from reKeyed
+              nonCovid19Deaths = values.totalDeaths - values.covid19Deaths
+              baselineDeathDataRegionAge = baselineDeathData[region][age]
+              scaler2019 = nonCovid19Deaths / baselineDeathDataRegionAge.allDeaths2019
+              merge
                 object v from values with if v? then v else minPrivValue # nulls mean 1-9, and we are going to assume 1 (minPrivValue)
+                {} nonCovid19Deaths, survivers: values.population - values.totalDeaths
+                object v, k from baselineDeathDataRegionAge
+                  unless /^(survivers|population)/.test k
+                    v * scaler2019 + .5 | 0
+                  else v
 
-            list.latest12Months   = populateMonthSetAges d1, latest12MonthTimes
-            list.latestYearWindow = populateMonthSetAges d1, latestYearWindowTimes
+          list.latest12Months   = populateMonthSetAges list, latest12MonthTimes
+          list.latestYearWindow = populateMonthSetAges list, latestYearWindowTimes
 
-            list
-
-        else d0
+          list
 
       regions:  regions = Object.keys covidData
       times: times =
@@ -282,6 +391,7 @@ getEnv() extract showFullDetails
         :totalDeaths
         :covid19Deaths
         :nonCovid19Deaths
+        :survivers
 
         :carAccidents2019
         :drowningAccidents2019
@@ -296,18 +406,22 @@ getEnv() extract showFullDetails
         :influenzaPneumonia2019
         :liverDisease2019
         :respiratoryClrdDisease2019
+
         :homicides2019
         :suicides2019
 
+        :allOtherAccidents2019
+        :allOtherDiseases2019
         :allAccidents2019
-        :allDeaths2019
         :allDiseases2019
+        :allViolentDeaths2019
         :allOtherDeaths2019
+        :allDeaths2019
 
         :population2019
 
       graphStateOptions:
-        graphBy:      :time :age
+        graphBy:      :time :age :causeOfDeath
         graphType:    :stacked :adjacent :oneBar
         numerator:    numerator = compactFlatten [] :1 valueFields
         denominator:  numerator

@@ -39,6 +39,8 @@ class Graph extends ViewStateComponent
 
   render: ->
     log {} @covidData
+    log {} @selectedData
+    log unitedStates: @covidData.covidData.UnitedStates.allTime.allAges
 
     mainContent = []
       Element

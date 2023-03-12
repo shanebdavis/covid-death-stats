@@ -79,5 +79,8 @@ class Legend extends ViewStateComponent
             padding: h: @gridSize, bottom: @gridSize
             childrenMargins: @gridSize / 4
 
-            array option in :numerator :denominator :region :time :age :graphBy :graphType
+            if @graphState.graphBy[0] != :causeOfDeath
+              array option in :numerator :denominator with @renderOption option
+
+            array option in :region :time :age :graphBy :graphType
               @renderOption option

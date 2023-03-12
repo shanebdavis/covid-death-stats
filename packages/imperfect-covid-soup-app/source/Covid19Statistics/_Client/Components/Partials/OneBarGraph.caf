@@ -36,8 +36,8 @@ class OneBarGraph extends ViewStateComponent
             animators: :size
             size: ww: value = values[i]
             draw:
-              c1.blend c2, (value - minValue) / valueRange
-              outline: #0001
+              c1.blend c2, v = bound 0, (value - minValue) / valueRange, 1
+              outline: if v > .5 then #fff1 else #0001
 
       Element
         size: h: @gridSize * 5

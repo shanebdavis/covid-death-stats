@@ -6,8 +6,8 @@ defaults =
   numerator:    [] :1
   denominator:  [] :1
   age:          [] :allAges
-  graphBy:      [] :age
-  graphType:       [] :adjacent
+  graphBy:      [] :age       # :time :age :causeOfDeath
+  graphType:    [] :adjacent  # :stacked :oneBar
 
 envProps = getEnv()
 
@@ -71,14 +71,14 @@ class GraphState extends ApplicationState
       log.warn "" Due to a bug, we can't show Stacked values with multiple denominators.
       state = merge state, graphType: [] :adjacent
 
-    if find field in compactFlattenAll state.numerator, state.denominator when /2019/.test field
-      time =
-        array time in state.time when /^(latestYearWindow|latest12Months|2020|2021)$/.test time
-      if time.length == 0 then time = [] :latestYearWindow
+    # if find field in compactFlattenAll state.numerator, state.denominator when /2019/.test field
+    #   time =
+    #     array time in state.time when /^(latestYearWindow|latest12Months|2020|2021)$/.test time
+    #   if time.length == 0 then time = [] :latestYearWindow
 
-      state = merge state,
-        graphBy: [] :age
-        time: time
+    #   state = merge state,
+    #     graphBy: [] :age
+    #     time: time
 
     merge state, {}
       custom = !!find v, k in state.presetData?.graphState when neq v, state[k]

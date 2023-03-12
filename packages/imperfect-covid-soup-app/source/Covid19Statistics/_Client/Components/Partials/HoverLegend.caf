@@ -72,6 +72,6 @@ class HoverLegend extends ViewStateComponent
       array value, i in values
         @renderRow labels[i], value, i
 
-      if values.length > 1
-        @renderRow :total,
-          reduce a, b from values inject 0 with a + b
+      # if values.length > 1
+      #   @renderRow :total,
+      #     reduce a, b from values inject 0 with a + b

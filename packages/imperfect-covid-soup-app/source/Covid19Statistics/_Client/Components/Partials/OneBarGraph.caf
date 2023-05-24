@@ -11,17 +11,28 @@ class OneBarGraph extends ViewStateComponent
     total = 0
     minValue = undefined
     maxValue = undefined
-    values = array row, i in @data
+    @ extract data
+    values = array row, i in data
 
       total += v = reduce sum, v from row.values inject 0 with sum + v
       minValue = min v, minValue ? v
       maxValue = max v, maxValue ? v
       v
+
     valueRange = maxValue - minValue
+
+    sorted =
+      array v, i in values
+        [] v, i
+      .sort (a, b) ->
+        b[0] - a[0]
+    sortedIndexes = array [v, i] in sorted with i
+    values = array i in sortedIndexes with values[i]
+    data = array i in sortedIndexes with data[i]
 
     palette = barColors.color
     c1 = palette[0]
-    c2 = peek palette
+    c2 = c1.blend :black, .5
 
     Element
       :column
@@ -31,13 +42,18 @@ class OneBarGraph extends ViewStateComponent
       Element
         :row
         size: hh: .25
-        array row, i in @data
+        array row, i in data
           Element
-            animators: :size :draw
+            # animators: :size :draw
             size: ww: value = values[i]
             draw:
-              c1.blend c2, v = bound 0, (value - minValue) / valueRange, 1
-              outline: if v > .5 then #fff1 else #0001
+              if /covid/.test row.label
+                #d00
+              else
+                c1.blend c2, i / (data.length - 1)
+              outline:
+                color:      #000
+                lineWidth:  3
 
       Element
         size: h: @gridSize * 5
@@ -57,13 +73,15 @@ class OneBarGraph extends ViewStateComponent
               xFrom += xFromWidth
               xTo += xToWidth
 
-          outline: TextPalette.black.disabled
+          outline:
+            color: TextPalette.black.disabled
+            lineWidth: 2
 
       Element
         :row
         size: hh: .25
         padding: top: @gridSize
-        array row, i in @data
+        array row, i in data
           Element
             :column
             childrenMargins: @gridSize
